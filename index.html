@@ -46,6 +46,7 @@
   <!-- Custom CSS -->
   <link rel="stylesheet" href="css/tokens.css">
   <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/custom.css">
 
   <style>
     /* Inline overrides for Tailwind coexistence */
@@ -493,7 +494,20 @@
     Copied!
   </div>
 
+  <!-- API Module -->
+  <script src="js/api.js"></script>
+
   <script>
+    // === TOKEN SETUP ===
+    // Prompt for token if not set
+    if (!GITHUB_TOKEN) {
+      const token = prompt('Enter GitHub PAT for upload access (or leave blank for view-only):');
+      if (token) {
+        localStorage.setItem('gh_token', token);
+        location.reload();
+      }
+    }
+
     // === NAVIGATION ===
     const sections = ['colors','typography','buttons','components','upload','assets','pages'];
     const navLinks = document.querySelectorAll('.nav-link');
@@ -542,65 +556,79 @@
     let uploadQueue = [];
 
     function handleUpload(input, type) {
+      if (!GITHUB_TOKEN) {
+        showToast('⚠ Set GitHub token first (reload with token)');
+        input.value = '';
+        return;
+      }
+
       const files = Array.from(input.files);
       const card = document.getElementById('upload-queue-card');
-      const list = document.getElementById('list');
+      const list = document.getElementById('upload-list');
 
       files.forEach(file => {
         uploadQueue.push({ file, type });
         const div = document.createElement('div');
         div.className = 'flex items-center justify-between bg-dark-gray rounded-lg px-4 py-2';
+        div.id = 'queue-' + file.name.replace(/[^a-z0-9]/gi, '_');
         div.innerHTML = `
           <div class="flex items-center gap-3">
             <span class="text-gold text-xs font-mono uppercase">${type}</span>
             <span class="text-sm text-white">${file.name}</span>
             <span class="text-xs text-mid-gray">${(file.size/1024).toFixed(1)}KB</span>
           </div>
-          <button class="text-mid-gray hover:text-crimson-glow text-sm" onclick="this.parentElement.remove(); uploadQueue = uploadQueue.filter(u => u.file.name !== '${file.name}')">✕</button>
+          <button class="text-mid-gray hover:text-crimson-glow text-sm" onclick="removeFromQueue('${file.name}')">✕</button>
         `;
-        document.getElementById('upload-list').appendChild(div);
+        list.appendChild(div);
       });
 
       card.style.display = 'block';
       input.value = '';
     }
 
+    function removeFromQueue(name) {
+      uploadQueue = uploadQueue.filter(u => u.file.name !== name);
+      const el = document.getElementById('queue-' + name.replace(/[^a-z0-9]/gi, '_'));
+      if (el) el.remove();
+      if (uploadQueue.length === 0) {
+        document.getElementById('upload-queue-card').style.display = 'none';
+      }
+    }
+
     async function commitUploads() {
+      if (!GITHUB_TOKEN) return showToast('⚠ No GitHub token');
       if (uploadQueue.length === 0) return showToast('No files in queue');
 
       showToast('Pushing ' + uploadQueue.length + ' file(s)...');
+      let success = 0, failed = 0;
 
       for (const item of uploadQueue) {
         const reader = new FileReader();
-        reader.onload = async (e) => {
-          const content = btoa(e.target.result);
-          const path = item.type === 'css' ? `css/${item.file.name}` : `assets/${item.type}/${item.file.name}`;
+        await new Promise(resolve => {
+          reader.onload = async (e) => {
+            const content = btoa(e.target.result);
+            const path = item.type === 'css' ? `css/${item.file.name}` : `assets/${item.type}/${item.file.name}`;
 
-          try {
-            const resp = await fetch(`https://api.github.com/repos/ALKAVisuals/webdesign/contents/${path}`, {
-              method: 'PUT',
-              headers: {
-                'Authorization': 'token ' + GITHUB_TOKEN,
-                'Content-Type': 'application/json'
-              },
-              body: JSON.stringify({
-                message: `Upload ${item.file.name}`,
-                content: content
-              })
-            });
-            if (resp.ok) {
-              showToast('✓ ' + item.file.name + ' uploaded');
-            } else {
-              const err = await resp.json();
-              showToast('✗ ' + item.file.name + ': ' + (err.message || 'Error'));
+            try {
+              const result = await LS.uploadToRepo(path, content, `upload: ${item.file.name}`);
+              if (result.content) {
+                success++;
+                showToast('✓ ' + item.file.name);
+              } else {
+                failed++;
+                showToast('✗ ' + item.file.name + ': ' + (result.message || 'Error'));
+              }
+            } catch (err) {
+              failed++;
+              showToast('✗ ' + item.file.name + ': network error');
             }
-          } catch (err) {
-            showToast('✗ Network error');
-          }
-        };
-        reader.readAsBinaryString(item.file);
+            resolve();
+          };
+          reader.readAsBinaryString(item.file);
+        });
       }
 
+      showToast(`Done: ${success} uploaded, ${failed} failed`);
       uploadQueue = [];
       document.getElementById('upload-list').innerHTML = '';
     }
