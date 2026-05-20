@@ -164,3 +164,16 @@ The live style guide at `index.html` has these sections:
 - **Theme:** `--light` (light mode override)
 - **Full WebGL:** `npm install metal-fx` for animated shader version
 - **Usage:** See style guide Metal FX section for live demos and code
+
+### Matrix — Dot Matrix Loaders
+- **Source:** https://github.com/zzzzshawn/matrix
+- **CSS:** `css/matrix.css` (full CSS fallback with all keyframes)
+- **Families:** Square (23), Circular (20), Triangle (20), Hex (10), Icon (1)
+- **Animation types:** Ripple, Center Ripple, Diagonal Sweep, Spiral Snake, Ring Snake, Column Snake, Glyph Pulse, Collapse, Hover Ripple, Echo
+- **Dot shapes:** Circle, Square, Diamond, Hearts
+- **Effects:** Bloom (selective glow), Halo (uniform glow), Muted
+- **Color presets:** solid-theme, solid-mint, grad-sunset, grad-ocean, grad-neon, grad-aurora, grad-fire, grad-prism
+- **CSS variables:** `--dmx-dot-fill`, `--dmx-cycle`, `--dmx-speed`, `--dmx-opacity-base/mid/peak`, `--dmx-dot-size`
+- **Reduced motion:** Full `prefers-reduced-motion` support
+- **Install full lib:** `npx shadcn@latest add https://dotmatrix.zzzzshawn.cloud/r/registry.json`
+- **Usage:** See style guide Matrix section for live demos and code
