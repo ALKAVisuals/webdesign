@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Legend Stories — Style Guide</title>
+  <meta name="description" content="Design system & style guide for Legend Stories">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            black: '#0a0a0a',
+            charcoal: '#1a1a1a',
+            'dark-gray': '#2a2a2a',
+            gray: '#4a4a4a',
+            'mid-gray': '#6a6a6a',
+            'light-gray': '#9a9a9a',
+            silver: '#c0c0c0',
+            white: '#f5f5f5',
+            gold: '#c9a84c',
+            'gold-light': '#e0c56a',
+            'gold-dark': '#a07830',
+            crimson: '#8b1a1a',
+            'crimson-glow': '#cc2222',
+          },
+          fontFamily: {
+            display: ['Bebas Neue', 'Impact', 'sans-serif'],
+            heading: ['Montserrat', 'Helvetica Neue', 'sans-serif'],
+            body: ['Inter', 'system-ui', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/components.css">
+
+  <style>
+    /* Inline overrides for Tailwind coexistence */
+    body { background: #0a0a0a; color: #f5f5f5; }
+    .sidebar { width: 280px; position: fixed; top: 0; left: 0; bottom: 0; overflow-y: auto; z-index: 50; }
+    .main-content { margin-left: 280px; }
+    @media (max-width: 1024px) {
+      .sidebar { transform: translateX(-100%); transition: transform 0.3s; }
+      .sidebar.open { transform: translateX(0); }
+      .main-content { margin-left: 0; }
+    }
+    .color-swatch { transition: transform 0.15s, box-shadow 0.15s; cursor: pointer; }
+    .color-swatch:hover { transform: scale(1.04); box-shadow: 0 4px 20px rgba(0,0,0,0.4); }
+    .color-swatch.copied::after { content: '✓ Copied'; position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,0.7); color: #c9a84c; font-size: 0.75rem; font-weight: 700; border-radius: inherit; }
+    .upload-zone { position: relative; }
+    .upload-zone input[type="file"] { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
+    .preview-frame { width: 100%; border: 1px solid #2a2a2a; border-radius: 0.75rem; background: #1a1a1a; min-height: 300px; }
+    .tab-btn.active { color: #c9a84c; border-bottom-color: #c9a84c; }
+    .fade-in { animation: fadeIn 0.3s ease; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+  </style>
+</head>
+<body class="font-body">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar bg-charcoal border-r border-dark-gray p-6">
+    <div class="mb-10">
+      <h1 class="font-display text-3xl tracking-wider text-white">LEGEND STORIES</h1>
+      <p class="text-xs text-mid-gray mt-1 tracking-widest uppercase">Style Guide v1.0</p>
+    </div>
+
+    <nav class="space-y-1">
+      <a href="#colors" class="nav-link active" data-section="colors">
+        <span>🎨</span> Colors
+      </a>
+      <a href="#typography" class="nav-link" data-section="typography">
+        <span>✦</span> Typography
+      </a>
+      <a href="#buttons" class="nav-link" data-section="buttons">
+        <span>◼</span> Buttons
+      </a>
+      <a href="#components" class="nav-link" data-section="components">
+        <span>◆</span> Components
+      </a>
+      <a href="#upload" class="nav-link" data-section="upload">
+        <span>↑</span> Upload Styles
+      </a>
+      <a href="#assets" class="nav-link" data-section="assets">
+        <span>▦</span> Assets
+      </a>
+      <a href="#pages" class="nav-link" data-section="pages">
+        <span>📄</span> Page Templates
+      </a>
+    </nav>
+
+    <div class="mt-10 pt-6 border-t border-dark-gray">
+      <p class="text-xs text-mid-gray leading-relaxed">
+        Upload CSS, images, fonts &amp; icons via the <strong class="text-gold">Upload</strong> section or push directly to the repo.
+      </p>
+    </div>
+
+    <div class="mt-6">
+      <a href="https://github.com/ALKAVisuals/webdesign" target="_blank" class="text-xs text-mid-gray hover:text-gold transition-colors">
+        ↗ View on GitHub
+      </a>
+    </div>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main class="main-content">
+
+    <!-- HEADER -->
+    <header class="sticky top-0 z-40 bg-black/80 backdrop-blur-md border-b border-dark-gray px-8 py-4 flex items-center justify-between">
+      <div class="flex items-center gap-4">
+        <button id="menu-toggle" class="lg:hidden text-white text-xl">☰</button>
+        <h2 id="page-title" class="font-heading text-lg font-bold tracking-wide text-white">Colors</h2>
+      </div>
+      <div class="flex items-center gap-3">
+        <span class="badge badge-gold">v1.0</span>
+        <a href="https://alkavisuals.github.io/webdesign/" target="_blank" class="btn btn-sm btn-ghost">Live Preview</a>
+      </div>
+    </header>
+
+    <div class="p-8">
+
+      <!-- ==================== COLORS ==================== -->
+      <section id="colors" class="section fade-in">
+        <div class="section-header">
+          <h3 class="section-title">Colors</h3>
+          <p class="section-subtitle">Click any swatch to copy the hex value.</p>
+        </div>
+
+        <!-- Brand Colors -->
+        <h4 class="font-heading text-sm font-bold tracking-widest uppercase text-mid-gray mb-4">Brand</h4>
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 mb-10">
+          <div class="color-swatch rounded-lg p-3 relative" style="background:#c9a84c; color:#0a0a0a" onclick="copyColor('#c9a84c', this)">
+            <div class="text-xs font-mono font-bold">GOLD</div>
+            <div class="text-xs font-mono opacity-70">#c9a84c</div>
+          </div>
+          <div class="color-swatch rounded-lg p-3 relative" style="background:#e0c56a; color:#0a0a0a" onclick="copyColor('#e0c56a', this)">
+            <div class="text-xs font-mono font-bold">GOLD LIGHT</div>
+            <div class="text-xs font-mono opacity-70">#e0c56a</div>
+          </div>
+          <div class="color-swatch rounded-lg p-3 relative" style="background:#a07830; color:#f5f5f5" onclick="copyColor('#a07830', this)">
+            <div class="text-xs font-mono font-bold">GOLD DARK</div>
+            <div class="text-xs font-mono opacity-70">#a07830</div>
+          </div>
+          <div class="color-swatch rounded-lg p-3 relative" style="background:#8b1a1a; color:#f5f5f5" onclick="copyColor('#8b1a1a', this)">
+            <div class="text-xs font-mono font-bold">CRIMSON</div>
+            <div class="text-xs font-mono opacity-70">#8b1a1a</div>
+          </div>
+          <div class="color-swatch rounded-lg p-3 relative" style="background:#cc2222; color:#f5f5f5" onclick="copyColor('#cc2222', this)">
+            <div class="text-xs font-mono font-bold">CRIMSON GLOW</div>
+            <div class="text-xs font-mono opacity-70">#cc2222</div>
+          </div>
+        </div>
+
+        <!-- Neutrals -->
+        <h4 class="font-heading text-sm font-bold tracking-widest uppercase text-mid-gray mb-4">Neutrals</h4>
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 mb-10">
+          <div class="color-swatch rounded-lg p-3 relative" style="background:#0a0a0a; color:#f5f5f5; border:1px solid #2a2a2a" onclick="copyColor('#0a0a0a', this)">
+            <div class="text-xs font-mono font-bold">BLACK</div>
+            <div class="text-xs font-mono opacity-70">#0a0a0a</div>
+          </div>
+          <div class="color-swatch rounded-lg p-3 relative" style="background:#1a1a1a; color:#f5f5f5; border:1px solid #2a2a2a" onclick="copyColor('#1a1a1a', this)">
+            <div class="text-xs font-mono font-bold">CHARCOAL</div>
+            <div class="text-xs font-mono opacity-70">#1a1a1a</div>
+          </div>
+          <div class="color-swatch rounded-lg p-3 relative" style="background:#2a2a2a; color:#f5f5f5" onclick="copyColor('#2a2a2a', this)">
+            <div class="text-xs font-mono font-bold">DARK GRAY</div>
+            <div class="text-xs font-mono opacity-70">#2a2a2a</div>
+          </div>
+          <div class="color-swatch rounded-lg p-3 relative" style="background:#4a4a4a; color:#f5f5f5" onclick="copyColor('#4a4a4a', this)">
+            <div class="text-xs font-mono font-bold">GRAY</div>
+            <div class="text-xs font-mono opacity-70">#4a4a4a</div>
+          </div>
+          <div class="color-swatch rounded-lg p-3 relative" style="background:#6a6a6a; color:#f5f5f5" onclick="copyColor('#6a6a6a', this)">
+            <div class="text-xs font-mono font-bold">MID GRAY</div>
+            <div class="text-xs font-mono opacity-70">#6a6a6a</div>
+          </div>
+          <div class="color-swatch rounded-lg p-3 relative" style="background:#9a9a9a; color:#0a0a0a" onclick="copyColor('#9a9a9a', this)">
+            <div class="text-xs font-mono font-bold">LIGHT GRAY</div>
+            <div class="text-xs font-mono opacity-70">#9a9a9a</div>
+          </div>
+          <div class="color-swatch rounded-lg p-3 relative" style="background:#c0c0c0; color:#0a0a0a" onclick="copyColor('#c0c0c0', this)">
+            <div class="text-xs font-mono font-bold">SILVER</div>
+            <div class="text-xs font-mono opacity-70">#c0c0c0</div>
+          </div>
+          <div class="color-swatch rounded-lg p-3 relative" style="background:#f5f5f5; color:#0a0a0a" onclick="copyColor('#f5f5f5', this)">
+            <div class="text-xs font-mono font-bold">WHITE</div>
+            <div class="text-xs font-mono opacity-70">#f5f5f5</div>
+          </div>
+        </div>
+
+        <!-- Semantic -->
+        <h4 class="font-heading text-sm font-bold tracking-widest uppercase text-mid-gray mb-4">Semantic</h4>
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+          <div class="color-swatch rounded-lg p-3 relative" style="background:#2a8a4a; color:#f5f5f5" onclick="copyColor('#2a8a4a', this)">
+            <div class="text-xs font-mono font-bold">SUCCESS</div>
+            <div class="text-xs font-mono opacity-70">#2a8a4a</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== TYPOGRAPHY ==================== -->
+      <section id="typography" class="section fade-in" style="display:none">
+        <div class="section-header">
+          <h3 class="section-title">Typography</h3>
+          <p class="section-subtitle">Font families, sizes, weights and spacing.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10">
+          <div class="card">
+            <h4 class="font-heading text-xs font-bold tracking-widest uppercase text-gold mb-4">Display — Bebas Neue</h4>
+            <div class="font-display text-6xl tracking-wide text-white leading-none mb-2">LEGEND</div>
+            <div class="font-display text-4xl tracking-wide text-white leading-none mb-2">STORIES</div>
+            <div class="font-mono text-xs text-mid-gray mt-4">font-family: 'Bebas Neue' · 400 · uppercase · tracking-wide</div>
+          </div>
+          <div class="card">
+            <h4 class="font-heading text-xs font-bold tracking-widest uppercase text-gold mb-4">Heading — Montserrat</h4>
+            <div class="font-heading text-3xl font-black text-white mb-1">Bold Headline</div>
+            <div class="font-heading text-xl font-semibold text-white mb-1">Subheading Text</div>
+            <div class="font-heading text-sm font-medium text-light-gray">Small Heading</div>
+            <div class="font-mono text-xs text-mid-gray mt-4">font-family: 'Montserrat' · 400–900</div>
+          </div>
+        </div>
+
+        <div class="card mb-10">
+          <h4 class="font-heading text-xs font-bold tracking-widest uppercase text-gold mb-4">Body — Inter</h4>
+          <p class="text-base text-white mb-2">Primary text — The quick brown fox jumps over the lazy dog.</p>
+          <p class="text-sm text-light-gray mb-2">Secondary text — The quick brown fox jumps over the lazy dog.</p>
+          <p class="text-xs text-mid-gray">Muted text — The quick brown fox jumps over the lazy dog.</p>
+          <div class="font-mono text-xs text-mid-gray mt-4">font-family: 'Inter' · 300–700 · 0.75rem–1.125rem</div>
+        </div>
+
+        <div class="card mb-10">
+          <h4 class="font-heading text-xs font-bold tracking-widest uppercase text-gold mb-4">Mono — JetBrains Mono</h4>
+          <code class="font-mono text-sm text-gold">const brand = "Legend Stories";</code>
+          <br><code class="font-mono text-sm text-light-gray">color: #c9a84c; /* gold */</code>
+          <div class="font-mono text-xs text-mid-gray mt-4">font-family: 'JetBrains Mono' · 400–500</div>
+        </div>
+
+        <div class="card">
+          <h4 class="font-heading text-xs font-bold tracking-widest uppercase text-gold mb-4">Type Scale</h4>
+          <div class="space-y-3">
+            <div class="flex items-baseline gap-4"><span class="font-mono text-xs text-mid-gray w-16">8xl</span><span class="text-6xl font-display">6rem</span></div>
+            <div class="flex items-baseline gap-4"><span class="font-mono text-xs text-mid-gray w-16">6xl</span><span class="text-4xl font-display">3.75rem</span></div>
+            <div class="flex items-baseline gap-4"><span class="font-mono text-xs text-mid-gray w-16">4xl</span><span class="text-2xl font-heading font-bold">2.25rem</span></div>
+            <div class="flex items-baseline gap-4"><span class="font-mono text-xs text-mid-gray w-16">2xl</span><span class="text-xl font-heading font-semibold">1.5rem</span></div>
+            <div class="flex items-baseline gap-4"><span class="font-mono text-xs text-mid-gray w-16">xl</span><span class="text-lg">1.25rem</span></div>
+            <div class="flex items-baseline gap-4"><span class="font-mono text-xs text-mid-gray w-16">base</span><span class="text-base">1rem</span></div>
+            <div class="flex items-baseline gap-4"><span class="font-mono text-xs text-mid-gray w-16">sm</span><span class="text-sm">0.875rem</span></div>
+            <div class="flex items-baseline gap-4"><span class="font-mono text-xs text-mid-gray w-16">xs</span><span class="text-xs">0.75rem</span></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== BUTTONS ==================== -->
+      <section id="buttons" class="section fade-in" style="display:none">
+        <div class="section-header">
+          <h3 class="section-title">Buttons</h3>
+          <p class="section-subtitle">All button variants and sizes.</p>
+        </div>
+
+        <div class="card mb-8">
+          <h4 class="font-heading text-xs font-bold tracking-widest uppercase text-gold mb-4">Primary</h4>
+          <div class="flex flex-wrap gap-4 items-center">
+            <button class="btn btn-primary">Primary</button>
+            <button class="btn btn-primary btn-lg">Large Primary</button>
+            <button class="btn btn-primary btn-sm">Small</button>
+            <button class="btn btn-primary" disabled style="opacity:0.4;cursor:not-allowed">Disabled</button>
+          </div>
+        </div>
+
+        <div class="card mb-8">
+          <h4 class="font-heading text-xs font-bold tracking-widest uppercase text-gold mb-4">Outline</h4>
+          <div class="flex flex-wrap gap-4 items-center">
+            <button class="btn btn-outline">Outline</button>
+            <button class="btn btn-outline btn-lg">Large Outline</button>
+            <button class="btn btn-outline btn-sm">Small</button>
+          </div>
+        </div>
+
+        <div class="card mb-8">
+          <h4 class="font-heading text-xs font-bold tracking-widest uppercase text-gold mb-4">Ghost &amp; Dark</h4>
+          <div class="flex flex-wrap gap-4 items-center">
+            <button class="btn btn-ghost">Ghost</button>
+            <button class="btn btn-dark">Dark</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="font-heading text-xs font-bold tracking-widest uppercase text-gold mb-4">Code</h4>
+          <pre class="font-mono text-xs text-light-gray bg-dark-gray p-4 rounded-lg overflow-x-auto"><code>&lt;button class="btn btn-primary"&gt;Click me&lt;/button&gt;
+&lt;button class="btn btn-outline btn-lg"&gt;Large&lt;/button&gt;
+&lt;button class="btn btn-ghost btn-sm"&gt;Small&lt;/button&gt;</code></pre>
+        </div>
+      </section>
+
+      <!-- ==================== COMPONENTS ==================== -->
+      <section id="components" class="section fade-in" style="display:none">
+        <div class="section-header">
+          <h3 class="section-title">Components</h3>
+          <p class="section-subtitle">Cards, badges, inputs and more.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+          <div class="card">
+            <h4 class="font-heading text-sm font-bold text-white mb-2">Default Card</h4>
+            <p class="text-sm text-light-gray">Standard card with border hover effect.</p>
+          </div>
+          <div class="card card-gold">
+            <h4 class="font-heading text-sm font-bold text-white mb-2">Gold Card</h4>
+            <p class="text-sm text-light-gray">Accent card with gold glow on hover.</p>
+          </div>
+          <div class="card">
+            <div class="flex items-center gap-3 mb-3">
+              <div class="w-10 h-10 rounded-full bg-gold/20 flex items-center justify-center text-gold font-bold text-sm">K</div>
+              <div>
+                <div class="text-sm font-semibold text-white">Karhan</div>
+                <div class="text-xs text-mid-gray">Owner</div>
+              </div>
+            </div>
+            <p class="text-sm text-light-gray">User card with avatar.</p>
+          </div>
+        </div>
+
+        <div class="card mb-10">
+          <h4 class="font-heading text-xs font-bold tracking-widest uppercase text-gold mb-4">Badges</h4>
+          <div class="flex flex-wrap gap-3">
+            <span class="badge badge-gold">Gold</span>
+            <span class="badge badge-crimson">Crimson</span>
+            <span class="badge badge-gray">Gray</span>
+            <span class="badge badge-gold">New</span>
+            <span class="badge badge-gray">v1.0</span>
+          </div>
+        </div>
+
+        <div class="card mb-10">
+          <h4 class="font-heading text-xs font-bold tracking-widest uppercase text-gold mb-4">Inputs</h4>
+          <div class="space-y-4 max-w-md">
+            <input type="text" class="input" placeholder="Default input...">
+            <input type="text" class="input" value="With value">
+            <input type="text" class="input" placeholder="Disabled" disabled style="opacity:0.4">
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="font-heading text-xs font-bold tracking-widest uppercase text-gold mb-4">Dividers</h4>
+          <hr class="divider">
+          <hr class="divider divider-gold">
+          <hr class="divider">
+        </div>
+      </section>
+
+      <!-- ==================== UPLOAD ==================== -->
+      <section id="upload" class="section fade-in" style="display:none">
+        <div class="section-header">
+          <h3 class="section-title">Upload Styles</h3>
+          <p class="section-subtitle">Upload CSS files, fonts, images and icons. Files go into the correct folders.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
+          <!-- CSS Upload -->
+          <div class="upload-zone" id="upload-css">
+            <input type="file" accept=".css,.scss,.less" multiple onchange="handleUpload(this, 'css')">
+            <div class="upload-zone-icon">📝</div>
+            <div class="upload-zone-text">Upload CSS</div>
+            <div class="upload-zone-hint">.css, .scss, .less → css/</div>
+          </div>
+
+          <!-- Image Upload -->
+          <div class="upload-zone" id="upload-images">
+            <input type="file" accept="image/*" multiple onchange="handleUpload(this, 'images')">
+            <div class="upload-zone-icon">🖼</div>
+            <div class="upload-zone-text">Upload Images</div>
+            <div class="upload-zone-hint">.png, .jpg, .svg, .webp → assets/images/</div>
+          </div>
+
+          <!-- Font Upload -->
+          <div class="upload-zone" id="upload-fonts">
+            <input type="file" accept=".woff,.woff2,.ttf,.otf,.eot" multiple onchange="handleUpload(this, 'fonts')">
+            <div class="upload-zone-icon">Aa</div>
+            <div class="upload-zone-text">Upload Fonts</div>
+            <div class="upload-zone-hint">.woff2, .ttf, .otf → assets/fonts/</div>
+          </div>
+
+          <!-- Icon Upload -->
+          <div class="upload-zone" id="upload-icons">
+            <input type="file" accept=".svg,.png,.ico" multiple onchange="handleUpload(this, 'icons')">
+            <div class="upload-zone-icon">⚡</div>
+            <div class="upload-zone-text">Upload Icons</div>
+            <div class="upload-zone-hint">.svg, .png, .ico → assets/icons/</div>
+          </div>
+        </div>
+
+        <!-- Upload Queue -->
+        <div class="card" id="upload-queue-card" style="display:none">
+          <h4 class="font-heading text-xs font-bold tracking-widest uppercase text-gold mb-4">Upload Queue</h4>
+          <div id="upload-list" class="space-y-2 mb-4"></div>
+          <button class="btn btn-primary" onclick="commitUploads()">↑ Push to GitHub</button>
+          <p class="text-xs text-mid-gray mt-3">Files will be committed to the repo via GitHub API.</p>
+        </div>
+
+        <!-- Manual Upload Instructions -->
+        <div class="card mt-6">
+          <h4 class="font-heading text-xs font-bold tracking-widest uppercase text-gold mb-4">Manual Upload</h4>
+          <p class="text-sm text-light-gray mb-3">You can also drag files directly into the repo on GitHub:</p>
+          <a href="https://github.com/ALKAVisuals/webdesign/upload/main/css" target="_blank" class="btn btn-outline btn-sm mr-2">Upload CSS</a>
+          <a href="https://github.com/ALKAVisuals/webdesign/upload/main/assets/images" target="_blank" class="btn btn-outline btn-sm mr-2">Upload Images</a>
+          <a href="https://github.com/ALKAVisuals/webdesign/upload/main/assets/fonts" target="_blank" class="btn btn-outline btn-sm mr-2">Upload Fonts</a>
+          <a href="https://github.com/ALKAVisuals/webdesign/upload/main/assets/icons" target="_blank" class="btn btn-outline btn-sm">Upload Icons</a>
+        </div>
+      </section>
+
+      <!-- ==================== ASSETS ==================== -->
+      <section id="assets" class="section fade-in" style="display:none">
+        <div class="section-header">
+          <h3 class="section-title">Assets</h3>
+          <p class="section-subtitle">All uploaded images, fonts and icons.</p>
+        </div>
+
+        <div class="mb-6 flex gap-2">
+          <button class="tab-btn active btn btn-sm btn-outline" onclick="filterAssets('all', this)">All</button>
+          <button class="tab-btn btn btn-sm btn-ghost" onclick="filterAssets('images', this)">Images</button>
+          <button class="tab-btn btn btn-sm btn-ghost" onclick="filterAssets('fonts', this)">Fonts</button>
+          <button class="tab-btn btn btn-sm btn-ghost" onclick="filterAssets('icons', this)">Icons</button>
+        </div>
+
+        <div id="asset-grid" class="asset-grid">
+          <div class="asset-item flex items-center justify-center text-mid-gray text-xs">
+            No assets yet.<br>Upload via ↑ section.
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== PAGE TEMPLATES ==================== -->
+      <section id="pages" class="section fade-in" style="display:none">
+        <div class="section-header">
+          <h3 class="section-title">Page Templates</h3>
+          <p class="section-subtitle">Preview and manage page templates.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="card">
+            <div class="aspect-video bg-dark-gray rounded-lg mb-4 flex items-center justify-center">
+              <span class="font-display text-2xl tracking-wider text-mid-gray">HOME</span>
+            </div>
+            <h4 class="font-heading text-sm font-bold text-white mb-1">index.html</h4>
+            <p class="text-xs text-mid-gray mb-3">Landing page with hero, products, CTA</p>
+            <a href="pages/index.html" target="_blank" class="btn btn-sm btn-outline">Preview</a>
+          </div>
+          <div class="card">
+            <div class="aspect-video bg-dark-gray rounded-lg mb-4 flex items-center justify-center">
+              <span class="font-display text-2xl tracking-wider text-mid-gray">SHOP</span>
+            </div>
+            <h4 class="font-heading text-sm font-bold text-white mb-1">shop.html</h4>
+            <p class="text-xs text-mid-gray mb-3">Product grid with filters</p>
+            <a href="pages/shop.html" target="_blank" class="btn btn-sm btn-outline">Preview</a>
+          </div>
+          <div class="card">
+            <div class="aspect-video bg-dark-gray rounded-lg mb-4 flex items-center justify-center">
+              <span class="font-display text-2xl tracking-wider text-mid-gray">ABOUT</span>
+            </div>
+            <h4 class="font-heading text-sm font-bold text-white mb-1">about.html</h4>
+            <p class="text-xs text-mid-gray mb-3">Brand story and team</p>
+            <a href="pages/about.html" target="_blank" class="btn btn-sm btn-outline">Preview</a>
+          </div>
+          <div class="card">
+            <div class="aspect-video bg-dark-gray rounded-lg mb-4 flex items-center justify-center">
+              <span class="font-display text-2xl tracking-wider text-mid-gray">CONTACT</span>
+            </div>
+            <h4 class="font-heading text-sm font-bold text-white mb-1">contact.html</h4>
+            <p class="text-xs text-mid-gray mb-3">Contact form and info</p>
+            <a href="pages/contact.html" target="_blank" class="btn btn-sm btn-outline">Preview</a>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- TOAST -->
+  <div id="toast" class="fixed bottom-6 right-6 bg-gold text-black px-5 py-3 rounded-lg font-heading text-sm font-bold tracking-wide shadow-lg transform translate-y-20 opacity-0 transition-all duration-300 z-50">
+    Copied!
+  </div>
+
+  <script>
+    // === NAVIGATION ===
+    const sections = ['colors','typography','buttons','components','upload','assets','pages'];
+    const navLinks = document.querySelectorAll('.nav-link');
+    const pageTitle = document.getElementById('page-title');
+
+    navLinks.forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const section = link.dataset.section;
+        showSection(section);
+      });
+    });
+
+    function showSection(id) {
+      sections.forEach(s => {
+        const el = document.getElementById(s);
+        if (el) el.style.display = (s === id) ? 'block' : 'none';
+      });
+      navLinks.forEach(l => {
+        l.classList.toggle('active', l.dataset.section === id);
+      });
+      const titles = {
+        colors: 'Colors', typography: 'Typography', buttons: 'Buttons',
+        components: 'Components', upload: 'Upload Styles', assets: 'Assets', pages: 'Page Templates'
+      };
+      pageTitle.textContent = titles[id] || id;
+      window.scrollTo(0, 0);
+    }
+
+    // === COLOR COPY ===
+    function copyColor(hex, el) {
+      navigator.clipboard.writeText(hex);
+      el.classList.add('copied');
+      showToast('Copied ' + hex);
+      setTimeout(() => el.classList.remove('copied'), 1200);
+    }
+
+    function showToast(msg) {
+      const t = document.getElementById('toast');
+      t.textContent = msg;
+      t.classList.remove('translate-y-20', 'opacity-0');
+      setTimeout(() => t.classList.add('translate-y-20', 'opacity-0'), 2000);
+    }
+
+    // === UPLOAD HANDLING ===
+    let uploadQueue = [];
+
+    function handleUpload(input, type) {
+      const files = Array.from(input.files);
+      const card = document.getElementById('upload-queue-card');
+      const list = document.getElementById('list');
+
+      files.forEach(file => {
+        uploadQueue.push({ file, type });
+        const div = document.createElement('div');
+        div.className = 'flex items-center justify-between bg-dark-gray rounded-lg px-4 py-2';
+        div.innerHTML = `
+          <div class="flex items-center gap-3">
+            <span class="text-gold text-xs font-mono uppercase">${type}</span>
+            <span class="text-sm text-white">${file.name}</span>
+            <span class="text-xs text-mid-gray">${(file.size/1024).toFixed(1)}KB</span>
+          </div>
+          <button class="text-mid-gray hover:text-crimson-glow text-sm" onclick="this.parentElement.remove(); uploadQueue = uploadQueue.filter(u => u.file.name !== '${file.name}')">✕</button>
+        `;
+        document.getElementById('upload-list').appendChild(div);
+      });
+
+      card.style.display = 'block';
+      input.value = '';
+    }
+
+    async function commitUploads() {
+      if (uploadQueue.length === 0) return showToast('No files in queue');
+
+      showToast('Pushing ' + uploadQueue.length + ' file(s)...');
+
+      for (const item of uploadQueue) {
+        const reader = new FileReader();
+        reader.onload = async (e) => {
+          const content = btoa(e.target.result);
+          const path = item.type === 'css' ? `css/${item.file.name}` : `assets/${item.type}/${item.file.name}`;
+
+          try {
+            const resp = await fetch(`https://api.github.com/repos/ALKAVisuals/webdesign/contents/${path}`, {
+              method: 'PUT',
+              headers: {
+                'Authorization': 'token ' + GITHUB_TOKEN,
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({
+                message: `Upload ${item.file.name}`,
+                content: content
+              })
+            });
+            if (resp.ok) {
+              showToast('✓ ' + item.file.name + ' uploaded');
+            } else {
+              const err = await resp.json();
+              showToast('✗ ' + item.file.name + ': ' + (err.message || 'Error'));
+            }
+          } catch (err) {
+            showToast('✗ Network error');
+          }
+        };
+        reader.readAsBinaryString(item.file);
+      }
+
+      uploadQueue = [];
+      document.getElementById('upload-list').innerHTML = '';
+    }
+
+    // === ASSET FILTER ===
+    function filterAssets(type, btn) {
+      document.querySelectorAll('.tab-btn').forEach(b => {
+        b.classList.remove('active', 'btn-outline');
+        b.classList.add('btn-ghost');
+      });
+      btn.classList.add('active', 'btn-outline');
+      btn.classList.remove('btn-ghost');
+      showToast('Filter: ' + type);
+    }
+
+    // === MOBILE MENU ===
+    document.getElementById('menu-toggle')?.addEventListener('click', () => {
+      document.querySelector('.sidebar').classList.toggle('open');
+    });
+
+    // === DRAG & DROP ===
+    document.querySelectorAll('.upload-zone').forEach(zone => {
+      zone.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        zone.classList.add('drag-over');
+      });
+      zone.addEventListener('dragleave', () => zone.classList.remove('drag-over'));
+      zone.addEventListener('drop', (e) => {
+        e.preventDefault();
+        zone.classList.remove('drag-over');
+        const input = zone.querySelector('input[type="file"]');
+        if (input && e.dataTransfer.files.length) {
+          input.files = e.dataTransfer.files;
+          input.onchange();
+        }
+      });
+    });
+  </script>
+</body>
+</html>

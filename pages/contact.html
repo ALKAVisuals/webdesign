@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Legend Stories — Contact</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config={theme:{extend:{colors:{black:'#0a0a0a',charcoal:'#1a1a1a','dark-gray':'#2a2a2a',gray:'#4a4a4a','mid-gray':'#6a6a6a','light-gray':'#9a9a9a',silver:'#c0c0c0',white:'#f5f5f5',gold:'#c9a84c','gold-light':'#e0c56a','gold-dark':'#a07830',crimson:'#8b1a1a','crimson-glow':'#cc2222'},fontFamily:{display:['Bebas Neue','Impact','sans-serif'],heading:['Montserrat','Helvetica Neue','sans-serif'],body:['Inter','system-ui','sans-serif']}}}}</script>
+  <link rel="stylesheet" href="../css/tokens.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <style>body{background:#0a0a0a;color:#f5f5f5}</style>
+</head>
+<body class="font-body">
+  <nav class="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-md border-b border-dark-gray">
+    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+      <a href="index.html" class="font-display text-2xl tracking-wider text-white">LEGEND STORIES</a>
+      <div class="hidden md:flex items-center gap-8">
+        <a href="index.html" class="text-sm font-heading font-medium text-light-gray hover:text-gold uppercase tracking-wider transition-colors">Home</a>
+        <a href="shop.html" class="text-sm font-heading font-medium text-light-gray hover:text-gold uppercase tracking-wider transition-colors">Shop</a>
+        <a href="about.html" class="text-sm font-heading font-medium text-light-gray hover:text-gold uppercase tracking-wider transition-colors">About</a>
+        <a href="contact.html" class="text-sm font-heading font-semibold text-gold uppercase tracking-wider">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <section class="pt-32 pb-24 px-6">
+    <div class="max-w-xl mx-auto">
+      <h1 class="font-display text-6xl tracking-wide text-white mb-3">CONTACT</h1>
+      <p class="text-light-gray mb-10">Questions? Custom orders? Get in touch.</p>
+      <form class="space-y-5" onsubmit="event.preventDefault(); alert('Form demo — connect to backend.');">
+        <div>
+          <label class="block text-xs font-heading font-bold tracking-widest uppercase text-mid-gray mb-2">Name</label>
+          <input type="text" class="input" placeholder="Your name">
+        </div>
+        <div>
+          <label class="block text-xs font-heading font-bold tracking-widest uppercase text-mid-gray mb-2">Email</label>
+          <input type="email" class="input" placeholder="you@email.com">
+        </div>
+        <div>
+          <label class="block text-xs font-heading font-bold tracking-widest uppercase text-mid-gray mb-2">Message</label>
+          <textarea class="input min-h-[120px] resize-y" placeholder="Tell us what you need..."></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary btn-lg w-full">Send Message</button>
+      </form>
+    </div>
+  </section>
+
+  <footer class="border-t border-dark-gray py-12 px-6">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+      <div class="font-display text-xl tracking-wider text-white">LEGEND STORIES</div>
+      <p class="text-xs text-mid-gray">© 2026 Legend Stories. All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>
