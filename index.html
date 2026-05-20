@@ -48,7 +48,6 @@
   <link rel="stylesheet" href="css/components.css">
   <link rel="stylesheet" href="css/custom.css">
   <link rel="stylesheet" href="css/metal-fx.css">
-  <link rel="stylesheet" href="css/matrix.css">
 
   <style>
     /* Inline overrides for Tailwind coexistence */
@@ -105,8 +104,8 @@
       <a href="#metal-fx" class="nav-link" data-section="metal-fx">
         <span>🔮</span> Metal FX
       </a>
-      <a href="#matrix" class="nav-link" data-section="matrix">
-        <span>⊞</span> Matrix
+      <a href="#axis" class="nav-link" data-section="axis">
+        <span>⚡</span> AXIS
       </a>
     </nav>
 
@@ -689,265 +688,152 @@
         </div>
       </section>
 
-      <!-- ==================== MATRIX ==================== -->
-      <section id="matrix" class="section fade-in" style="display:none">
+    </div>
+
+      <!-- ==================== AXIS ==================== -->
+      <section id="axis" class="section fade-in" style="display:none">
         <div class="section-header">
-          <h3 class="section-title">Matrix</h3>
-          <p class="section-subtitle">Dot matrix loading animations — 100+ variants. Source: <a href="https://github.com/zzzzshawn/matrix" target="_blank" class="text-gold hover:underline">zzzzshawn/matrix</a></p>
+          <h3 class="section-title">AXIS</h3>
+          <p class="section-subtitle">CRM landing page — Next.js + Tailwind CSS + Framer Motion. <a href="https://github.com/ALKAVisuals/webdesign/tree/main/axis" target="_blank" class="text-gold hover:underline">View source ↗</a></p>
         </div>
 
-        <!-- Color Presets -->
-        <h4 class="font-heading text-xs font-bold tracking-widest uppercase text-gold mb-4">Color Presets</h4>
-        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-10">
-          <div class="card text-center">
-            <div class="dmx-root mx-auto mb-3" style="--dmx-dot-fill:#c9a84c;width:48px;height:48px">
-              <div class="dmx-grid">
-                <div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:0"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:1"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:2"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:1"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:0"></div>
-                <div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:1"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:2"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:3"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:2"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:1"></div>
-                <div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:2"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:3"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:4"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:3"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:2"></div>
-                <div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:1"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:2"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:3"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:2"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:1"></div>
-                <div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:0"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:1"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:2"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:1"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:0"></div>
-              </div>
-            </div>
-            <span class="font-mono text-xs text-mid-gray">Legend Gold</span>
-          </div>
-          <div class="card text-center">
-            <div class="dmx-root mx-auto mb-3" style="--dmx-dot-fill:#34d399;width:48px;height:48px">
-              <div class="dmx-grid">
-                <div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:0"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:1"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:2"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:1"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:0"></div>
-                <div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:1"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:2"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:3"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:2"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:1"></div>
-                <div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:2"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:3"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:4"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:3"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:2"></div>
-                <div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:1"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:2"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:3"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:2"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:1"></div>
-                <div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:0"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:1"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:2"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:1"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:0"></div>
-              </div>
-            </div>
-            <span class="font-mono text-xs text-mid-gray">Mint</span>
-          </div>
-          <div class="card text-center">
-            <div class="dmx-root mx-auto mb-3" style="--dmx-dot-fill:#ff5f6d;width:48px;height:48px">
-              <div class="dmx-grid">
-                <div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:0"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:1"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:2"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:1"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:0"></div>
-                <div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:1"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:2"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:3"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:2"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:1"></div>
-                <div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:2"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:3"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:4"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:3"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:2"></div>
-                <div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:1"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:2"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:3"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:2"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:1"></div>
-                <div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:0"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:1"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:2"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:1"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:0"></div>
-              </div>
-            </div>
-            <span class="font-mono text-xs text-mid-gray">Sunset</span>
-          </div>
-          <div class="card text-center">
-            <div class="dmx-root mx-auto mb-3" style="--dmx-dot-fill:#00c6ff;width:48px;height:48px">
-              <div class="dmx-grid">
-                <div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:0"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:1"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:2"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:1"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:0"></div>
-                <div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:1"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:2"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:3"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:2"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:1"></div>
-                <div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:2"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:3"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:4"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:3"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:2"></div>
-                <div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:1"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:2"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:3"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:2"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:1"></div>
-                <div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:0"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:1"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:2"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:1"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:0"></div>
-              </div>
-            </div>
-            <span class="font-mono text-xs text-mid-gray">Ocean</span>
-          </div>
-        </div>
-
-        <!-- Animation Types -->
-        <h4 class="font-heading text-xs font-bold tracking-widest uppercase text-gold mb-4">Animation Types</h4>
-        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-10">
-          <div class="card text-center">
-            <div class="dmx-root mx-auto mb-3" style="--dmx-dot-fill:#c9a84c;width:48px;height:48px">
-              <div class="dmx-grid" id="dmx-ripple-demo">
-                <div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:0"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:1"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:2"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:1"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:0"></div>
-                <div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:1"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:2"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:3"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:2"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:1"></div>
-                <div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:2"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:3"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:4"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:3"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:2"></div>
-                <div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:1"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:2"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:3"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:2"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:1"></div>
-                <div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:0"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:1"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:2"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:1"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:0"></div>
-              </div>
-            </div>
-            <span class="font-mono text-xs text-mid-gray">Ripple</span>
-          </div>
-          <div class="card text-center">
-            <div class="dmx-root mx-auto mb-3" style="--dmx-dot-fill:#c9a84c;width:48px;height:48px">
-              <div class="dmx-grid">
-                <div class="dmx-dot dmx-center-origin-ripple" style="--dmx-center-ripple-ring:0"></div><div class="dmx-dot dmx-center-origin-ripple" style="--dmx-center-ripple-ring:1"></div><div class="dmx-dot dmx-center-origin-ripple" style="--dmx-center-ripple-ring:2"></div><div class="dmx-dot dmx-center-origin-ripple" style="--dmx-center-ripple-ring:1"></div><div class="dmx-dot dmx-center-origin-ripple" style="--dmx-center-ripple-ring:0"></div>
-                <div class="dmx-dot dmx-center-origin-ripple" style="--dmx-center-ripple-ring:1"></div><div class="dmx-dot dmx-center-origin-ripple" style="--dmx-center-ripple-ring:2"></div><div class="dmx-dot dmx-center-origin-ripple" style="--dmx-center-ripple-ring:3"></div><div class="dmx-dot dmx-center-origin-ripple" style="--dmx-center-ripple-ring:2"></div><div class="dmx-dot dmx-center-origin-ripple" style="--dmx-center-ripple-ring:1"></div>
-                <div class="dmx-dot dmx-center-origin-ripple" style="--dmx-center-ripple-ring:2"></div><div class="dmx-dot dmx-center-origin-ripple" style="--dmx-center-ripple-ring:3"></div><div class="dmx-dot dmx-center-origin-ripple" style="--dmx-center-ripple-ring:4"></div><div class="dmx-dot dmx-center-origin-ripple" style="--dmx-center-ripple-ring:3"></div><div class="dmx-dot dmx-center-origin-ripple" style="--dmx-center-ripple-ring:2"></div>
-                <div class="dmx-dot dmx-center-origin-ripple" style="--dmx-center-ripple-ring:1"></div><div class="dmx-dot dmx-center-origin-ripple" style="--dmx-center-ripple-ring:2"></div><div class="dmx-dot dmx-center-origin-ripple" style="--dmx-center-ripple-ring:3"></div><div class="dmx-dot dmx-center-origin-ripple" style="--dmx-center-ripple-ring:2"></div><div class="dmx-dot dmx-center-origin-ripple" style="--dmx-center-ripple-ring:1"></div>
-                <div class="dmx-dot dmx-center-origin-ripple" style="--dmx-center-ripple-ring:0"></div><div class="dmx-dot dmx-center-origin-ripple" style="--dmx-center-ripple-ring:1"></div><div class="dmx-dot dmx-center-origin-ripple" style="--dmx-center-ripple-ring:2"></div><div class="dmx-dot dmx-center-origin-ripple" style="--dmx-center-ripple-ring:1"></div><div class="dmx-dot dmx-center-origin-ripple" style="--dmx-center-ripple-ring:0"></div>
-              </div>
-            </div>
-            <span class="font-mono text-xs text-mid-gray">Center Ripple</span>
-          </div>
-          <div class="card text-center">
-            <div class="dmx-root mx-auto mb-3" style="--dmx-dot-fill:#c9a84c;width:48px;height:48px">
-              <div class="dmx-grid">
-                <div class="dmx-dot dmx-diagonal-alt-sweep" style="--dmx-path:0;--dmx-diagonal-parity:0"></div><div class="dmx-dot dmx-diagonal-alt-sweep" style="--dmx-path:0.1;--dmx-diagonal-parity:1"></div><div class="dmx-dot dmx-diagonal-alt-sweep" style="--dmx-path:0.2;--dmx-diagonal-parity:0"></div><div class="dmx-dot dmx-diagonal-alt-sweep" style="--dmx-path:0.3;--dmx-diagonal-parity:1"></div><div class="dmx-dot dmx-diagonal-alt-sweep" style="--dmx-path:0.4;--dmx-diagonal-parity:0"></div>
-                <div class="dmx-dot dmx-diagonal-alt-sweep" style="--dmx-path:0.1;--dmx-diagonal-parity:1"></div><div class="dmx-dot dmx-diagonal-alt-sweep" style="--dmx-path:0.2;--dmx-diagonal-parity:0"></div><div class="dmx-dot dmx-diagonal-alt-sweep" style="--dmx-path:0.3;--dmx-diagonal-parity:1"></div><div class="dmx-dot dmx-diagonal-alt-sweep" style="--dmx-path:0.4;--dmx-diagonal-parity:0"></div><div class="dmx-dot dmx-diagonal-alt-sweep" style="--dmx-path:0.5;--dmx-diagonal-parity:1"></div>
-                <div class="dmx-dot dmx-diagonal-alt-sweep" style="--dmx-path:0.2;--dmx-diagonal-parity:0"></div><div class="dmx-dot dmx-diagonal-alt-sweep" style="--dmx-path:0.3;--dmx-diagonal-parity:1"></div><div class="dmx-dot dmx-diagonal-alt-sweep" style="--dmx-path:0.4;--dmx-diagonal-parity:0"></div><div class="dmx-dot dmx-diagonal-alt-sweep" style="--dmx-path:0.5;--dmx-diagonal-parity:1"></div><div class="dmx-dot dmx-diagonal-alt-sweep" style="--dmx-path:0.6;--dmx-diagonal-parity:0"></div>
-                <div class="dmx-dot dmx-diagonal-alt-sweep" style="--dmx-path:0.3;--dmx-diagonal-parity:1"></div><div class="dmx-dot dmx-diagonal-alt-sweep" style="--dmx-path:0.4;--dmx-diagonal-parity:0"></div><div class="dmx-dot dmx-diagonal-alt-sweep" style="--dmx-path:0.5;--dmx-diagonal-parity:1"></div><div class="dmx-dot dmx-diagonal-alt-sweep" style="--dmx-path:0.6;--dmx-diagonal-parity:0"></div><div class="dmx-dot dmx-diagonal-alt-sweep" style="--dmx-path:0.7;--dmx-diagonal-parity:1"></div>
-                <div class="dmx-dot dmx-diagonal-alt-sweep" style="--dmx-path:0.4;--dmx-diagonal-parity:0"></div><div class="dmx-dot dmx-diagonal-alt-sweep" style="--dmx-path:0.5;--dmx-diagonal-parity:1"></div><div class="dmx-dot dmx-diagonal-alt-sweep" style="--dmx-path:0.6;--dmx-diagonal-parity:0"></div><div class="dmx-dot dmx-diagonal-alt-sweep" style="--dmx-path:0.7;--dmx-diagonal-parity:1"></div><div class="dmx-dot dmx-diagonal-alt-sweep" style="--dmx-path:0.8;--dmx-diagonal-parity:0"></div>
-              </div>
-            </div>
-            <span class="font-mono text-xs text-mid-gray">Diagonal Sweep</span>
-          </div>
-          <div class="card text-center">
-            <div class="dmx-root mx-auto mb-3" style="--dmx-dot-fill:#c9a84c;width:48px;height:48px">
-              <div class="dmx-grid">
-                <div class="dmx-dot dmx-spiral-snake" style="--dmx-spiral-order:0"></div><div class="dmx-dot dmx-spiral-snake" style="--dmx-spiral-order:1"></div><div class="dmx-dot dmx-spiral-snake" style="--dmx-spiral-order:2"></div><div class="dmx-dot dmx-spiral-snake" style="--dmx-spiral-order:3"></div><div class="dmx-dot dmx-spiral-snake" style="--dmx-spiral-order:4"></div>
-                <div class="dmx-dot dmx-spiral-snake" style="--dmx-spiral-order:15"></div><div class="dmx-dot dmx-spiral-snake" style="--dmx-spiral-order:16"></div><div class="dmx-dot dmx-spiral-snake" style="--dmx-spiral-order:17"></div><div class="dmx-dot dmx-spiral-snake" style="--dmx-spiral-order:18"></div><div class="dmx-dot dmx-spiral-snake" style="--dmx-spiral-order:5"></div>
-                <div class="dmx-dot dmx-spiral-snake" style="--dmx-spiral-order:14"></div><div class="dmx-dot dmx-spiral-snake" style="--dmx-spiral-order:23"></div><div class="dmx-dot dmx-spiral-snake" style="--dmx-spiral-order:24"></div><div class="dmx-dot dmx-spiral-snake" style="--dmx-spiral-order:19"></div><div class="dmx-dot dmx-spiral-snake" style="--dmx-spiral-order:6"></div>
-                <div class="dmx-dot dmx-spiral-snake" style="--dmx-spiral-order:13"></div><div class="dmx-dot dmx-spiral-snake" style="--dmx-spiral-order:22"></div><div class="dmx-dot dmx-spiral-snake" style="--dmx-spiral-order:21"></div><div class="dmx-dot dmx-spiral-snake" style="--dmx-spiral-order:20"></div><div class="dmx-dot dmx-spiral-snake" style="--dmx-spiral-order:7"></div>
-                <div class="dmx-dot dmx-spiral-snake" style="--dmx-spiral-order:12"></div><div class="dmx-dot dmx-spiral-snake" style="--dmx-spiral-order:11"></div><div class="dmx-dot dmx-spiral-snake" style="--dmx-spiral-order:10"></div><div class="dmx-dot dmx-spiral-snake" style="--dmx-spiral-order:9"></div><div class="dmx-dot dmx-spiral-snake" style="--dmx-spiral-order:8"></div>
-              </div>
-            </div>
-            <span class="font-mono text-xs text-mid-gray">Spiral Snake</span>
-          </div>
-        </div>
-
-        <!-- Bloom + Halo -->
-        <h4 class="font-heading text-xs font-bold tracking-widest uppercase text-gold mb-4">Bloom &amp; Halo</h4>
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-10">
-          <div class="card text-center">
-            <div class="dmx-root dmx-bloom mx-auto mb-3" style="--dmx-dot-fill:#c9a84c;width:56px;height:56px;--dmx-dot-size:4px">
-              <div class="dmx-grid">
-                <div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:0"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:1"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:2"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:1"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:0"></div>
-                <div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:1"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:2"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:3"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:2"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:1"></div>
-                <div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:2"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:3"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:4"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:3"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:2"></div>
-                <div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:1"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:2"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:3"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:2"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:1"></div>
-                <div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:0"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:1"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:2"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:1"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:0"></div>
-              </div>
-            </div>
-            <span class="font-mono text-xs text-mid-gray">Bloom</span>
-          </div>
-          <div class="card text-center">
-            <div class="dmx-root dmx-bloom dmx-bloom-halo mx-auto mb-3" style="--dmx-dot-fill:#c9a84c;width:56px;height:56px;--dmx-dot-size:4px">
-              <div class="dmx-grid">
-                <div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:0"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:1"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:2"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:1"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:0"></div>
-                <div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:1"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:2"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:3"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:2"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:1"></div>
-                <div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:2"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:3"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:4"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:3"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:2"></div>
-                <div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:1"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:2"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:3"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:2"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:1"></div>
-                <div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:0"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:1"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:2"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:1"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:0"></div>
-              </div>
-            </div>
-            <span class="font-mono text-xs text-mid-gray">Halo</span>
-          </div>
-          <div class="card text-center">
-            <div class="dmx-root dmx-bloom dmx-bloom-halo mx-auto mb-3" style="--dmx-dot-fill:#c9a84c;width:56px;height:56px;--dmx-dot-size:4px;--dmx-opacity-base:0.08;--dmx-opacity-mid:0.2;--dmx-opacity-peak:0.7">
-              <div class="dmx-grid">
-                <div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:0"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:1"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:2"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:1"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:0"></div>
-                <div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:1"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:2"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:3"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:2"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:1"></div>
-                <div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:2"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:3"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:4"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:3"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:2"></div>
-                <div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:1"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:2"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:3"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:2"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:1"></div>
-                <div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:0"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:1"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:2"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:1"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:0"></div>
-              </div>
-            </div>
-            <span class="font-mono text-xs text-mid-gray">Subtle</span>
-          </div>
-        </div>
-
-        <!-- Dot Shapes -->
-        <h4 class="font-heading text-xs font-bold tracking-widest uppercase text-gold mb-4">Dot Shapes</h4>
-        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-10">
-          <div class="card text-center">
-            <div class="dmx-root dmx-dot-shape-circle mx-auto mb-3" style="--dmx-dot-fill:#c9a84c;width:48px;height:48px">
-              <div class="dmx-grid">
-                <div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:0"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:1"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:2"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:1"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:0"></div>
-                <div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:1"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:2"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:3"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:2"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:1"></div>
-                <div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:2"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:3"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:4"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:3"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:2"></div>
-                <div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:1"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:2"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:3"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:2"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:1"></div>
-                <div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:0"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:1"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:2"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:1"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:0"></div>
-              </div>
-            </div>
-            <span class="font-mono text-xs text-mid-gray">Circle</span>
-          </div>
-          <div class="card text-center">
-            <div class="dmx-root dmx-dot-shape-square mx-auto mb-3" style="--dmx-dot-fill:#c9a84c;width:48px;height:48px">
-              <div class="dmx-grid">
-                <div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:0"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:1"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:2"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:1"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:0"></div>
-                <div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:1"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:2"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:3"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:2"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:1"></div>
-                <div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:2"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:3"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:4"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:3"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:2"></div>
-                <div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:1"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:2"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:3"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:2"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:1"></div>
-                <div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:0"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:1"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:2"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:1"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:0"></div>
-              </div>
-            </div>
-            <span class="font-mono text-xs text-mid-gray">Square</span>
-          </div>
-          <div class="card text-center">
-            <div class="dmx-root dmx-dot-shape-diamond mx-auto mb-3" style="--dmx-dot-fill:#c9a84c;width:48px;height:48px">
-              <div class="dmx-grid">
-                <div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:0"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:1"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:2"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:1"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:0"></div>
-                <div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:1"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:2"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:3"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:2"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:1"></div>
-                <div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:2"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:3"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:4"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:3"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:2"></div>
-                <div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:1"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:2"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:3"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:2"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:1"></div>
-                <div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:0"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:1"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:2"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:1"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:0"></div>
-              </div>
-            </div>
-            <span class="font-mono text-xs text-mid-gray">Diamond</span>
-          </div>
-          <div class="card text-center">
-            <div class="dmx-root dmx-dot-shape-hearts mx-auto mb-3" style="--dmx-dot-fill:#c9a84c;width:48px;height:48px">
-              <div class="dmx-grid">
-                <div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:0"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:1"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:2"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:1"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:0"></div>
-                <div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:1"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:2"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:3"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:2"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:1"></div>
-                <div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:2"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:3"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:4"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:3"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:2"></div>
-                <div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:1"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:2"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:3"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:2"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:1"></div>
-                <div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:0"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:1"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:2"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:1"></div><div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:0"></div>
-              </div>
-            </div>
-            <span class="font-mono text-xs text-mid-gray">Hearts</span>
-          </div>
-        </div>
-
-        <!-- Code -->
+        <!-- Live Preview -->
         <div class="card mb-10">
-          <h4 class="font-heading text-xs font-bold tracking-widest uppercase text-gold mb-4">CSS Usage</h4>
-          <pre class="font-mono text-xs text-light-gray bg-dark-gray p-4 rounded-lg overflow-x-auto"><code>&lt;!-- Basic ripple loader --&gt;
-&lt;div class="dmx-root" style="--dmx-dot-fill:#c9a84c;width:48px;height:48px"&gt;
-  &lt;div class="dmx-grid"&gt;
-    &lt;!-- 25 dots with --dmx-ripple-ring: 0-4 --&gt;
-    &lt;div class="dmx-dot dmx-ripple" style="--dmx-ripple-ring:0"&gt;&lt;/div&gt;
-    &lt;!-- ... repeat for all 25 positions --&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;!-- With bloom glow --&gt;
-&lt;div class="dmx-root dmx-bloom" style="--dmx-dot-fill:#c9a84c;width:48px;height:48px;--dmx-dot-size:4px"&gt;
-  ...
-&lt;/div&gt;
-
-&lt;!-- With halo (wider glow) --&gt;
-&lt;div class="dmx-root dmx-bloom dmx-bloom-halo" style="--dmx-dot-fill:#c9a84c;width:48px;height:48px"&gt;
-  ...
-&lt;/div&gt;
-
-&lt;!-- Square dots --&gt;
-&lt;div class="dmx-root dmx-dot-shape-square" style="--dmx-dot-fill:#c9a84c;width:48px;height:48px"&gt;
-  ...
-&lt;/div&gt;</code></pre>
+          <h4 class="font-heading text-xs font-bold tracking-widest uppercase text-gold mb-4">Live Preview</h4>
+          <div class="preview-frame" style="min-height:600px">
+            <iframe src="https://alkavisuals.github.io/webdesign/axis/" style="width:100%;height:600px;border:none;border-radius:0.75rem" title="AXIS Preview"></iframe>
+          </div>
+          <p class="text-xs text-mid-gray mt-3">Preview requires GitHub Pages deployment. If not available yet, run locally: <code class="font-mono text-gold">cd axis && npm install && npm run dev</code></p>
         </div>
 
-        <!-- Full Library -->
-        <div class="card">
-          <h4 class="font-heading text-xs font-bold tracking-widest uppercase text-gold mb-4">Full Library (100+ Variants)</h4>
-          <p class="text-sm text-light-gray mb-4">This CSS is a fallback. The full library has 100+ pre-built loader components across 5 families with React + TypeScript:</p>
-          <div class="grid grid-cols-2 sm:grid-cols-5 gap-3 mb-4">
-            <div class="badge badge-gold">Square (23)</div>
-            <div class="badge badge-gold">Circular (20)</div>
-            <div class="badge badge-gold">Triangle (20)</div>
-            <div class="badge badge-gold">Hex (10)</div>
-            <div class="badge badge-gold">Icon (1)</div>
+        <!-- Design Tokens -->
+        <h4 class="font-heading text-sm font-bold tracking-widest uppercase text-mid-gray mb-4">Design Tokens</h4>
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 mb-10">
+          <div class="color-swatch rounded-lg p-3 relative" style="background:#6366f1; color:#fff" onclick="copyColor('#6366f1', this)">
+            <div class="text-xs font-mono font-bold">INDIGO 500</div>
+            <div class="text-xs font-mono opacity-70">#6366f1</div>
           </div>
-          <pre class="font-mono text-xs text-light-gray bg-dark-gray p-4 rounded-lg overflow-x-auto mb-4"><code># Install the full library
-npx shadcn@latest add https://dotmatrix.zzzzshawn.cloud/r/registry.json
+          <div class="color-swatch rounded-lg p-3 relative" style="background:#8b5cf6; color:#fff" onclick="copyColor('#8b5cf6', this)">
+            <div class="text-xs font-mono font-bold">VIOLET 500</div>
+            <div class="text-xs font-mono opacity-70">#8b5cf6</div>
+          </div>
+          <div class="color-swatch rounded-lg p-3 relative" style="background:#1e1b4b; color:#fff" onclick="copyColor('#1e1b4b', this)">
+            <div class="text-xs font-mono font-bold">INDIGO 950</div>
+            <div class="text-xs font-mono opacity-70">#1e1b4b</div>
+          </div>
+          <div class="color-swatch rounded-lg p-3 relative" style="background:#f8fafc; color:#1e293b" onclick="copyColor('#f8fafc', this)">
+            <div class="text-xs font-mono font-bold">SLATE 50</div>
+            <div class="text-xs font-mono opacity-70">#f8fafc</div>
+          </div>
+          <div class="color-swatch rounded-lg p-3 relative" style="background:#0f172a; color:#f8fafc" onclick="copyColor('#0f172a', this)">
+            <div class="text-xs font-mono font-bold">SLATE 900</div>
+            <div class="text-xs font-mono opacity-70">#0f172a</div>
+          </div>
+        </div>
 
-# Or copy components from:
-# https://github.com/zzzzshawn/matrix</code></pre>
-          <div class="flex gap-3">
-            <a href="https://github.com/zzzzshawn/matrix" target="_blank" class="btn btn-sm btn-outline">GitHub ↗</a>
-            <a href="https://dotmatrix.zzzzshawn.cloud" target="_blank" class="btn btn-sm btn-ghost">Live Demo ↗</a>
+        <!-- Typography -->
+        <h4 class="font-heading text-sm font-bold tracking-widest uppercase text-mid-gray mb-4">Typography</h4>
+        <div class="card mb-10">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div>
+              <h4 class="font-heading text-xs font-bold tracking-widest uppercase text-gold mb-4">Font — Inter</h4>
+              <p class="text-4xl font-medium text-white mb-2">The CRM built for consultants</p>
+              <p class="text-lg text-light-gray mb-2">Subheading — manage clients and deals</p>
+              <p class="text-sm text-mid-gray">Body text — Axis helps you manage client relationships, track proposals, and close deals.</p>
+              <div class="font-mono text-xs text-mid-gray mt-4">font-family: 'Inter' · 300–700</div>
+            </div>
+            <div>
+              <h4 class="font-heading text-xs font-bold tracking-widest uppercase text-gold mb-4">Type Scale</h4>
+              <div class="space-y-2">
+                <div class="flex items-baseline gap-4"><span class="font-mono text-xs text-mid-gray w-16">7xl</span><span class="text-4xl font-medium">4.5rem</span></div>
+                <div class="flex items-baseline gap-4"><span class="font-mono text-xs text-mid-gray w-16">5xl</span><span class="text-2xl font-medium">3rem</span></div>
+                <div class="flex items-baseline gap-4"><span class="font-mono text-xs text-mid-gray w-16">3xl</span><span class="text-xl font-medium">1.875rem</span></div>
+                <div class="flex items-baseline gap-4"><span class="font-mono text-xs text-mid-gray w-16">xl</span><span class="text-lg">1.25rem</span></div>
+                <div class="flex items-baseline gap-4"><span class="font-mono text-xs text-mid-gray w-16">base</span><span class="text-base">1rem</span></div>
+                <div class="flex items-baseline gap-4"><span class="font-mono text-xs text-mid-gray w-16">sm</span><span class="text-sm">0.875rem</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Components -->
+        <h4 class="font-heading text-sm font-bold tracking-widest uppercase text-mid-gray mb-4">Components</h4>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+          <div class="card" style="background:#1e1b4b;border-color:#6366f1">
+            <h4 class="font-heading text-sm font-bold text-white mb-2">Hero</h4>
+            <p class="text-sm text-light-gray">Gradient background, CTA buttons, hero image placeholder</p>
+          </div>
+          <div class="card" style="background:#1e1b4b;border-color:#6366f1">
+            <h4 class="font-heading text-sm font-bold text-white mb-2">Navbar</h4>
+            <p class="text-sm text-light-gray">Floating pill design, mobile hamburger menu, theme toggle</p>
+          </div>
+          <div class="card" style="background:#1e1b4b;border-color:#6366f1">
+            <h4 class="font-heading text-sm font-bold text-white mb-2">Pricing</h4>
+            <p class="text-sm text-light-gray">Gradient card, feature list, CTA buttons</p>
+          </div>
+          <div class="card" style="background:#1e1b4b;border-color:#6366f1">
+            <h4 class="font-heading text-sm font-bold text-white mb-2">Testimonials</h4>
+            <p class="text-sm text-light-gray">Card grid, avatar, verified badge</p>
+          </div>
+          <div class="card" style="background:#1e1b4b;border-color:#6366f1">
+            <h4 class="font-heading text-sm font-bold text-white mb-2">Stats</h4>
+            <p class="text-sm text-light-gray">Animated counter, grid layout</p>
+          </div>
+          <div class="card" style="background:#1e1b4b;border-color:#6366f1">
+            <h4 class="font-heading text-sm font-bold text-white mb-2">Footer</h4>
+            <p class="text-sm text-light-gray">Links, social icons, copyright</p>
+          </div>
+        </div>
+
+        <!-- Tech Stack -->
+        <h4 class="font-heading text-sm font-bold tracking-widest uppercase text-mid-gray mb-4">Tech Stack</h4>
+        <div class="card mb-10">
+          <div class="flex flex-wrap gap-3">
+            <span class="badge badge-gray">Next.js 15</span>
+            <span class="badge badge-gray">React 19</span>
+            <span class="badge badge-gray">TypeScript</span>
+            <span class="badge badge-gray">Tailwind CSS</span>
+            <span class="badge badge-gray">Framer Motion</span>
+            <span class="badge badge-gray">next-themes</span>
+            <span class="badge badge-gray">lucide-react</span>
+          </div>
+          <div class="mt-4 font-mono text-xs text-mid-gray">
+            Repository: axis/ · Pages: / (landing), /auth (sign-in)
+          </div>
+        </div>
+
+        <!-- Source Files -->
+        <h4 class="font-heading text-sm font-bold tracking-widest uppercase text-mid-gray mb-4">Source Files</h4>
+        <div class="card">
+          <div class="space-y-2 font-mono text-xs">
+            <div class="flex items-center justify-between bg-dark-gray rounded-lg px-4 py-2">
+              <span class="text-light-gray">axis/src/app/page.tsx</span>
+              <span class="text-gold">Landing page</span>
+            </div>
+            <div class="flex items-center justify-between bg-dark-gray rounded-lg px-4 py-2">
+              <span class="text-light-gray">axis/src/app/layout.tsx</span>
+              <span class="text-gold">Root layout + theme</span>
+            </div>
+            <div class="flex items-center justify-between bg-dark-gray rounded-lg px-4 py-2">
+              <span class="text-light-gray">axis/src/app/auth/page.tsx</span>
+              <span class="text-gold">Auth page</span>
+            </div>
+            <div class="flex items-center justify-between bg-dark-gray rounded-lg px-4 py-2">
+              <span class="text-light-gray">axis/src/components/templates/axis/</span>
+              <span class="text-gold">11 components</span>
+            </div>
+            <div class="flex items-center justify-between bg-dark-gray rounded-lg px-4 py-2">
+              <span class="text-light-gray">axis/src/components/ui/</span>
+              <span class="text-gold">Button, Card</span>
+            </div>
+            <div class="flex items-center justify-between bg-dark-gray rounded-lg px-4 py-2">
+              <span class="text-light-gray">axis/src/app/globals.css</span>
+              <span class="text-gold">Design tokens</span>
+            </div>
           </div>
         </div>
       </section>
 
-    </div>
   </main>
 
   <!-- TOAST -->
@@ -970,7 +856,7 @@ npx shadcn@latest add https://dotmatrix.zzzzshawn.cloud/r/registry.json
     }
 
     // === NAVIGATION ===
-    const sections = ['colors','typography','buttons','components','upload','assets','pages','metal-fx','matrix'];
+    const sections = ['colors','typography','buttons','components','upload','assets','pages','metal-fx','axis'];
     const navLinks = document.querySelectorAll('.nav-link');
     const pageTitle = document.getElementById('page-title');
 
@@ -992,7 +878,7 @@ npx shadcn@latest add https://dotmatrix.zzzzshawn.cloud/r/registry.json
       });
       const titles = {
         colors: 'Colors', typography: 'Typography', buttons: 'Buttons',
-        components: 'Components', upload: 'Upload Styles', assets: 'Assets', pages: 'Page Templates', 'metal-fx': 'Metal FX', matrix: 'Matrix'
+        components: 'Components', upload: 'Upload Styles', assets: 'Assets', pages: 'Page Templates', 'metal-fx': 'Metal FX', axis: 'AXIS'
       };
       pageTitle.textContent = titles[id] || id;
       window.scrollTo(0, 0);
