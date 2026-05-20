@@ -87,7 +87,7 @@
 }
 
 .skp-hover-expand__item:hover .skp-hover-expand__label {
-  opacity: 1;
+  opacity: 1 !important;
 }
 
 /* ═══════════════════════════════════════════
