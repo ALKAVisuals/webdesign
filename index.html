@@ -50,6 +50,7 @@
   <link rel="stylesheet" href="css/metal-fx.css">
   <link rel="stylesheet" href="css/matrix.css">
   <link rel="stylesheet" href="css/axis.css">
+  <link rel="stylesheet" href="css/skipper.css">
 
   <style>
     /* Inline overrides for Tailwind coexistence */
@@ -114,6 +115,9 @@
       </a>
       <a href="#matrix" class="nav-link" data-section="matrix">
         <span>⊞</span> Matrix
+      </a>
+      <a href="#skipper" class="nav-link" data-section="skipper">
+        <span>⛵</span> Skiper UI
       </a>
     </nav>
 
@@ -1528,6 +1532,192 @@ npx shadcn@latest add https://dotmatrix.zzzzshawn.cloud/r/registry.json
         </div>
       </section>
 
+      <!-- ==================== SKIPPER UI ==================== -->
+      <section id="skipper" class="section fade-in" style="display:none">
+        <div class="section-header">
+          <h3 class="section-title">Skiper UI</h3>
+          <p class="section-subtitle">Advanced interaction components — hover effects, scroll triggers, carousels, canvas animations. Source: <a href="https://gxuri.in" target="_blank" class="text-gold hover:underline">gxuri.in ↗</a> · Author: <a href="https://x.com/Gur__vi" target="_blank" class="text-gold hover:underline">@gurvinder-singh02</a></p>
+        </div>
+
+        <!-- 1. Hover Expand -->
+        <h4 class="font-heading text-xs font-bold tracking-widest uppercase text-gold mb-4">1. Hover Expand — Image Gallery</h4>
+        <div class="card mb-10" style="background:#f5f4f3;border:none;padding:2rem 0">
+          <div class="skp-hover-expand">
+            <div class="skp-hover-expand__item skp-hover-expand__item--default" style="background:linear-gradient(135deg,#6366f1,#8b5cf6)"><div class="skp-hover-expand__overlay"></div><span class="skp-hover-expand__label"># 01</span></div>
+            <div class="skp-hover-expand__item skp-hover-expand__item--default" style="background:linear-gradient(135deg,#8b5cf6,#c084fc)"><div class="skp-hover-expand__overlay"></div><span class="skp-hover-expand__label"># 02</span></div>
+            <div class="skp-hover-expand__item skp-hover-expand__item--active" style="background:linear-gradient(135deg,#6366f1,#a78bfa)"><div class="skp-hover-expand__overlay" style="opacity:1"></div><span class="skp-hover-expand__label" style="opacity:1"># 03 — Active</span></div>
+            <div class="skp-hover-expand__item skp-hover-expand__item--default" style="background:linear-gradient(135deg,#c084fc,#e879f9)"><div class="skp-hover-expand__overlay"></div><span class="skp-hover-expand__label"># 04</span></div>
+            <div class="skp-hover-expand__item skp-hover-expand__item--default" style="background:linear-gradient(135deg,#6366f1,#8b5cf6)"><div class="skp-hover-expand__overlay"></div><span class="skp-hover-expand__label"># 05</span></div>
+            <div class="skp-hover-expand__item skp-hover-expand__item--default" style="background:linear-gradient(135deg,#8b5cf6,#6366f1)"><div class="skp-hover-expand__overlay"></div><span class="skp-hover-expand__label"># 06</span></div>
+            <div class="skp-hover-expand__item skp-hover-expand__item--default" style="background:linear-gradient(135deg,#a78bfa,#c084fc)"><div class="skp-hover-expand__overlay"></div><span class="skp-hover-expand__label"># 07</span></div>
+            <div class="skp-hover-expand__item skp-hover-expand__item--default" style="background:linear-gradient(135deg,#6366f1,#c084fc)"><div class="skp-hover-expand__overlay"></div><span class="skp-hover-expand__label"># 08</span></div>
+            <div class="skp-hover-expand__item skp-hover-expand__item--default" style="background:linear-gradient(135deg,#8b5cf6,#e879f9)"><div class="skp-hover-expand__overlay"></div><span class="skp-hover-expand__label"># 09</span></div>
+          </div>
+          <p class="text-xs text-mid-gray text-center mt-4">Hover over items to expand. Active item shows label overlay.</p>
+        </div>
+
+        <!-- 2. Sticky Card Stack -->
+        <h4 class="font-heading text-xs font-bold tracking-widest uppercase text-gold mb-4">2. Sticky Card Stack — Scroll Rotation</h4>
+        <div class="card mb-10" style="background:#0f172a;border-color:#1e293b">
+          <div class="skp-sticky-cards">
+            <div class="skp-sticky-cards__container mx-auto" style="max-width:28rem">
+              <div class="skp-sticky-cards__card skp-sticky-cards__card--0" style="background:linear-gradient(135deg,#1e1b4b,#312e81);display:flex;align-items:center;justify-content:center"><div class="text-center"><div class="text-4xl font-bold text-white mb-2">01</div><div class="text-sm text-indigo-300">First Card</div></div></div>
+              <div class="skp-sticky-cards__card skp-sticky-cards__card--1" style="background:linear-gradient(135deg,#312e81,#4c1d95);display:flex;align-items:center;justify-content:center"><div class="text-center"><div class="text-4xl font-bold text-white mb-2">02</div><div class="text-sm text-indigo-300">Second Card</div></div></div>
+              <div class="skp-sticky-cards__card skp-sticky-cards__card--2" style="background:linear-gradient(135deg,#4c1d95,#581c87);display:flex;align-items:center;justify-content:center"><div class="text-center"><div class="text-4xl font-bold text-white mb-2">03</div><div class="text-sm text-purple-300">Third Card</div></div></div>
+              <div class="skp-sticky-cards__card skp-sticky-cards__card--3" style="background:linear-gradient(135deg,#581c87,#7e22ce);display:flex;align-items:center;justify-content:center"><div class="text-center"><div class="text-4xl font-bold text-white mb-2">04</div><div class="text-sm text-purple-300">Fourth Card</div></div></div>
+              <div class="skp-sticky-cards__card skp-sticky-cards__card--4" style="background:linear-gradient(135deg,#7e22ce,#9333ea);display:flex;align-items:center;justify-content:center"><div class="text-center"><div class="text-4xl font-bold text-white mb-2">05</div><div class="text-sm text-purple-300">Fifth Card</div></div></div>
+            </div>
+          </div>
+          <p class="text-xs text-slate-400 text-center mt-4">Hover to see stack effect. Original uses GSAP ScrollTrigger.</p>
+        </div>
+
+        <!-- 3. Scroll Image Reveal -->
+        <h4 class="font-heading text-xs font-bold tracking-widest uppercase text-gold mb-4">3. Scroll Image Reveal — Scale &amp; Rotate</h4>
+        <div class="card mb-10" style="background:#e5e5e5;border:none">
+          <div class="skp-scroll-reveal mx-auto" style="max-width:32rem;height:16rem">
+            <div style="width:100%;height:100%;background:linear-gradient(135deg,#6366f1,#8b5cf6);display:flex;align-items:center;justify-content:center;border-radius:24px"><div class="text-center text-white"><div class="text-2xl font-bold mb-2">Scroll Reveal</div><div class="text-sm opacity-70">Scale + Rotate on scroll</div></div></div>
+          </div>
+          <p class="text-xs text-mid-gray text-center mt-4">Original uses Framer Motion useScroll + useTransform.</p>
+        </div>
+
+        <!-- 4. Card Swipe Carousel -->
+        <h4 class="font-heading text-xs font-bold tracking-widest uppercase text-gold mb-4">4. Card Swipe Carousel — Cards Effect</h4>
+        <div class="card mb-10" style="background:#f5f4f3;border:none;padding:2rem 0">
+          <div class="skp-carousel-cards mx-auto">
+            <div class="skp-carousel-cards__track" style="transform:translateX(0)">
+              <div class="skp-carousel-cards__slide skp-carousel-cards__slide--prev" style="background:linear-gradient(135deg,#8b5cf6,#c084fc)"><div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:1.5rem">← Prev</div></div>
+              <div class="skp-carousel-cards__slide skp-carousel-cards__slide--active" style="background:linear-gradient(135deg,#6366f1,#8b5cf6)"><div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:1.5rem">Active ✓</div></div>
+              <div class="skp-carousel-cards__slide skp-carousel-cards__slide--next" style="background:linear-gradient(135deg,#c084fc,#e879f9)"><div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:1.5rem">Next →</div></div>
+            </div>
+            <div class="skp-carousel-cards__nav">
+              <div class="skp-carousel-cards__dot"></div>
+              <div class="skp-carousel-cards__dot skp-carousel-cards__dot--active"></div>
+              <div class="skp-carousel-cards__dot"></div>
+              <div class="skp-carousel-cards__dot"></div>
+              <div class="skp-carousel-cards__dot"></div>
+            </div>
+          </div>
+          <p class="text-xs text-mid-gray text-center mt-4">Original uses Swiper.js cards effect. CSS-only fallback shown.</p>
+        </div>
+
+        <!-- 5. Perspective Carousel -->
+        <h4 class="font-heading text-xs font-bold tracking-widest uppercase text-gold mb-4">5. Perspective Carousel — Coverflow Effect</h4>
+        <div class="card mb-10" style="background:#f5f4f3;border:none;padding:2rem 0;overflow:hidden">
+          <div class="skp-carousel-perspective mx-auto">
+            <div class="skp-carousel-perspective__track">
+              <div class="skp-carousel-perspective__slide skp-carousel-perspective__slide--far-left" style="background:linear-gradient(135deg,#a78bfa,#c084fc)"><div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;color:white;font-weight:700">1</div></div>
+              <div class="skp-carousel-perspective__slide skp-carousel-perspective__slide--left" style="background:linear-gradient(135deg,#8b5cf6,#a78bfa)"><div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;color:white;font-weight:700">2</div></div>
+              <div class="skp-carousel-perspective__slide skp-carousel-perspective__slide--center" style="background:linear-gradient(135deg,#6366f1,#8b5cf6)"><div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:1.25rem">3 ★</div></div>
+              <div class="skp-carousel-perspective__slide skp-carousel-perspective__slide--right" style="background:linear-gradient(135deg,#c084fc,#e879f9)"><div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;color:white;font-weight:700">4</div></div>
+              <div class="skp-carousel-perspective__slide skp-carousel-perspective__slide--far-right" style="background:linear-gradient(135deg,#e879f9,#f0abfc)"><div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;color:white;font-weight:700">5</div></div>
+            </div>
+          </div>
+          <p class="text-xs text-mid-gray text-center mt-4">Original uses Swiper.js coverflow effect with 3D transforms.</p>
+        </div>
+
+        <!-- 6. Crowd Canvas -->
+        <h4 class="font-heading text-xs font-bold tracking-widest uppercase text-gold mb-4">6. Crowd Canvas — Canvas Animation</h4>
+        <div class="card mb-10 overflow-hidden" style="background:#fff;border:none;padding:0">
+          <div class="skp-crowd-canvas" style="height:24rem;position:relative">
+            <div class="absolute top-8 left-1/2 -translate-x-1/2 z-10">
+              <span class="text-xs uppercase tracking-widest" style="color:rgba(0,0,0,0.4);padding-bottom:3rem;display:block">Crowd Canvas<div class="absolute left-1/2 top-full w-px h-16 bg-gradient-to-b from-black/40 to-transparent"></div></span>
+            </div>
+            <div class="skp-crowd-fallback">
+              <div class="skp-crowd-fallback__peep" style="animation-delay:0s;width:35px;height:50px"></div>
+              <div class="skp-crowd-fallback__peep" style="animation-delay:0.1s;width:40px;height:55px"></div>
+              <div class="skp-crowd-fallback__peep" style="animation-delay:0.2s;width:30px;height:45px"></div>
+              <div class="skp-crowd-fallback__peep" style="animation-delay:0.3s;width:45px;height:60px"></div>
+              <div class="skp-crowd-fallback__peep" style="animation-delay:0.4s;width:38px;height:52px"></div>
+              <div class="skp-crowd-fallback__peep" style="animation-delay:0.5s;width:42px;height:58px"></div>
+              <div class="skp-crowd-fallback__peep" style="animation-delay:0.6s;width:36px;height:48px"></div>
+              <div class="skp-crowd-fallback__peep" style="animation-delay:0.7s;width:44px;height:62px"></div>
+              <div class="skp-crowd-fallback__peep" style="animation-delay:0.8s;width:32px;height:44px"></div>
+              <div class="skp-crowd-fallback__peep" style="animation-delay:0.9s;width:40px;height:56px"></div>
+              <div class="skp-crowd-fallback__peep" style="animation-delay:1.0s;width:37px;height:51px"></div>
+              <div class="skp-crowd-fallback__peep" style="animation-delay:1.1s;width:43px;height:59px"></div>
+              <div class="skp-crowd-fallback__peep" style="animation-delay:1.2s;width:34px;height:47px"></div>
+              <div class="skp-crowd-fallback__peep" style="animation-delay:1.3s;width:41px;height:54px"></div>
+              <div class="skp-crowd-fallback__peep" style="animation-delay:1.4s;width:39px;height:57px"></div>
+              <div class="skp-crowd-fallback__peep" style="animation-delay:1.5s;width:33px;height:46px"></div>
+              <div class="skp-crowd-fallback__peep" style="animation-delay:1.6s;width:46px;height:61px"></div>
+              <div class="skp-crowd-fallback__peep" style="animation-delay:1.7s;width:31px;height:43px"></div>
+              <div class="skp-crowd-fallback__peep" style="animation-delay:1.8s;width:38px;height:53px"></div>
+              <div class="skp-crowd-fallback__peep" style="animation-delay:1.9s;width:42px;height:58px"></div>
+              <div class="skp-crowd-fallback__peep" style="animation-delay:2.0s;width:35px;height:49px"></div>
+              <div class="skp-crowd-fallback__peep" style="animation-delay:2.1s;width:44px;height:60px"></div>
+              <div class="skp-crowd-fallback__peep" style="animation-delay:2.2s;width:36px;height:52px"></div>
+              <div class="skp-crowd-fallback__peep" style="animation-delay:2.3s;width:40px;height:55px"></div>
+              <div class="skp-crowd-fallback__peep" style="animation-delay:2.4s;width:34px;height:47px"></div>
+            </div>
+          </div>
+          <p class="text-xs text-mid-gray text-center p-4">Original uses Canvas API + GSAP for walking character animation. CSS fallback with walking animation shown.</p>
+        </div>
+
+        <!-- 7. Video Player -->
+        <h4 class="font-heading text-xs font-bold tracking-widest uppercase text-gold mb-4">7. Video Player — Popover Player</h4>
+        <div class="card mb-10" style="background:#f5f4f3;border:none">
+          <div class="skp-video-player mx-auto" style="width:12rem;height:12rem;background:linear-gradient(135deg,#6366f1,#8b5cf6);border-radius:16px;display:flex;align-items:center;justify-content:center;cursor:pointer" onclick="this.nextElementSibling.style.display='flex'">
+            <div style="color:white;text-align:center"><div style="font-size:2rem;margin-bottom:0.5rem">▶</div><div class="text-xs">Click to play</div></div>
+          </div>
+          <div class="skp-video-popover" style="display:none" onclick="this.style.display='none'">
+            <div class="skp-video-popover__backdrop"></div>
+            <div class="skp-video-popover__content">
+              <div class="skp-video-popover__close" onclick="event.stopPropagation();this.closest('.skp-video-popover').style.display='none'">✕</div>
+              <div style="width:100%;height:100%;background:linear-gradient(135deg,#1e1b4b,#312e81);display:flex;align-items:center;justify-content:center;color:white;font-size:1.5rem">Video Player</div>
+              <div class="skp-video-popover__controls">
+                <button class="skp-video-popover__btn">▶</button>
+                <div class="skp-video-popover__seek"><div class="skp-video-popover__seek-bar"></div></div>
+                <button class="skp-video-popover__btn">🔊</button>
+              </div>
+            </div>
+          </div>
+          <p class="text-xs text-mid-gray text-center mt-4">Click to open popover. Original uses Media Chrome + Framer Motion clip-path animation.</p>
+        </div>
+
+        <!-- Design Tokens -->
+        <h4 class="font-heading text-xs font-bold tracking-widest uppercase text-gold mb-4">Design Tokens</h4>
+        <div class="card mb-10">
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-4">
+            <div class="text-center"><div class="w-full h-12 rounded-lg mb-2" style="background:#f5f4f3;border:1px solid #e5e5e5"></div><span class="font-mono text-xs text-mid-gray">#f5f4f3 — bg</span></div>
+            <div class="text-center"><div class="w-full h-12 rounded-lg mb-2" style="background:#6366f1"></div><span class="font-mono text-xs text-mid-gray">#6366f1 — indigo</span></div>
+            <div class="text-center"><div class="w-full h-12 rounded-lg mb-2" style="background:#8b5cf6"></div><span class="font-mono text-xs text-mid-gray">#8b5cf6 — violet</span></div>
+            <div class="text-center"><div class="w-full h-12 rounded-lg mb-2" style="background:#c084fc"></div><span class="font-mono text-xs text-mid-gray">#c084fc — purple</span></div>
+          </div>
+          <div class="font-mono text-xs text-mid-gray">Border radius: 0.5rem · 0.75rem · 1rem · 1.5rem · 2rem · 9999px</div>
+        </div>
+
+        <!-- CSS Usage -->
+        <div class="card">
+          <h4 class="font-heading text-xs font-bold tracking-widest uppercase text-gold mb-4">CSS Usage</h4>
+          <pre class="font-mono text-xs text-light-gray bg-dark-gray p-4 rounded-lg overflow-x-auto"><code>/* Hover Expand Gallery */
+.skp-hover-expand { display: flex; gap: 4px; }
+.skp-hover-expand__item {
+  width: 5rem; height: 24rem;
+  border-radius: 24px;
+  transition: width 0.3s ease-in-out;
+  overflow: hidden;
+}
+.skp-hover-expand__item:hover { width: 24rem; }
+
+/* Card Stack */
+.skp-sticky-cards__card {
+  position: absolute;
+  transition: transform 0.5s ease;
+}
+.skp-sticky-cards:hover .skp-sticky-cards__card--0 {
+  transform: translateY(-10%) scale(0.7) rotate(5deg);
+}
+
+/* Perspective Carousel */
+.skp-carousel-perspective__slide--center {
+  transform: scale(1) translateZ(0) rotateY(0deg);
+}
+.skp-carousel-perspective__slide--left {
+  transform: translateX(-80%) scale(0.8) translateZ(-200px) rotateY(40deg);
+}</code></pre>
+        </div>
+      </section>
+
   </main>
 
   <!-- TOAST -->
@@ -1550,7 +1740,7 @@ npx shadcn@latest add https://dotmatrix.zzzzshawn.cloud/r/registry.json
     }
 
     // === NAVIGATION ===
-    const sections = ['colors','typography','buttons','components','upload','assets','pages','metal-fx','axis','development','matrix'];
+    const sections = ['colors','typography','buttons','components','upload','assets','pages','metal-fx','axis','development','matrix','skipper'];
     const navLinks = document.querySelectorAll('.nav-link');
     const pageTitle = document.getElementById('page-title');
 
@@ -1572,7 +1762,7 @@ npx shadcn@latest add https://dotmatrix.zzzzshawn.cloud/r/registry.json
       });
       const titles = {
         colors: 'Colors', typography: 'Typography', buttons: 'Buttons',
-        components: 'Components', upload: 'Upload Styles', assets: 'Assets', pages: 'Page Templates', 'metal-fx': 'Metal FX', axis: 'AXIS', development: 'Development', matrix: 'Matrix'
+        components: 'Components', upload: 'Upload Styles', assets: 'Assets', pages: 'Page Templates', 'metal-fx': 'Metal FX', axis: 'AXIS', development: 'Development', matrix: 'Matrix', skipper: 'Skiper UI'
       };
       pageTitle.textContent = titles[id] || id;
       window.scrollTo(0, 0);
