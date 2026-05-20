@@ -492,136 +492,97 @@
 }
 
 /* ═══════════════════════════════════════════
-   7. VIDEO PLAYER — Popover Player
+   7. VIDEO PLAYER — Popover Player & Magnetic Button
    ═══════════════════════════════════════════ */
 
-.skp-video-player {
+.skp-video-zone {
   position: relative;
-  display: inline-block;
   cursor: pointer;
-  border-radius: 16px;
+  border-radius: 20px;
   overflow: hidden;
 }
 
-.skp-video-player__video {
-  width: 100%;
-  height: 100%;
-  object-cover: cover;
-  display: block;
-}
-
-.skp-video-player__cursor {
-  position: absolute;
+.skp-play-btn-magnetic {
+  position: relative;
+  z-index: 10;
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  background: rgba(201,168,76,0.9);
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.5rem;
-  color: white;
-  font-size: 0.875rem;
-  mix-blend-mode: exclusion;
-  pointer-events: none;
-  z-index: 20;
+  justify-content: center;
+  color: #0a0a0a;
+  font-size: 1.5rem;
+  transition: transform 0.1s ease-out;
+  will-change: transform;
 }
 
-.skp-video-player__cursor-icon {
-  width: 1rem;
-  height: 1rem;
-  fill: white;
-}
-
-/* Popover */
-.skp-video-popover {
+/* Video Modal */
+.skp-video-modal {
   position: fixed;
   inset: 0;
   z-index: 100;
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-.skp-video-popover__backdrop {
-  position: absolute;
-  inset: 0;
   background: rgba(0,0,0,0.9);
   backdrop-filter: blur(8px);
 }
 
-.skp-video-popover__content {
-  position: relative;
-  width: 100%;
-  max-width: 80rem;
-  aspect-ratio: 16/9;
-  border-radius: 16px;
-  overflow: hidden;
-  box-shadow: 0 25px 50px rgba(0,0,0,0.5);
-}
-
-.skp-video-popover__close {
+.skp-video-modal__close {
   position: absolute;
-  top: 0.5rem;
-  right: 0.5rem;
+  top: 1rem;
+  right: 1rem;
   z-index: 10;
-  width: 2rem;
-  height: 2rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  background: rgba(0,0,0,0.6);
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 1.25rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 9999px;
-  background: rgba(0,0,0,0.5);
-  color: white;
-  cursor: pointer;
   transition: background 0.2s;
 }
 
-.skp-video-popover__close:hover {
+.skp-video-modal__close:hover {
   background: rgba(0,0,0,0.8);
 }
 
-.skp-video-popover__controls {
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
+/* Swiper overrides for Skiper UI */
+.skp-card-swipe-carousel .swiper-slide {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 1rem;
-  width: 100%;
-  max-width: 80rem;
-  padding: 1.25rem 2.5rem;
-  mix-blend-mode: exclusion;
-}
-
-.skp-video-popover__btn {
-  background: transparent;
-  border: none;
+  border-radius: 24px;
+  font-weight: 700;
+  font-size: 1.5rem;
   color: white;
-  cursor: pointer;
-  padding: 0.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
-.skp-video-popover__btn svg {
-  width: 1rem;
-  height: 1rem;
+.skp-carousel-perspective .swiper-slide {
+  transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-.skp-video-popover__seek {
-  flex: 1;
-  height: 2px;
-  background: rgba(255,255,255,0.3);
-  border-radius: 9999px;
-  cursor: pointer;
-  position: relative;
+.skp-carousel-perspective .swiper-pagination-bullet {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(201,168,76,0.2);
+  border: 1px solid rgba(201,168,76,0.3);
+  opacity: 1;
+  transition: all 0.3s ease;
 }
 
-.skp-video-popover__seek-bar {
-  height: 100%;
-  background: white;
-  border-radius: 9999px;
-  width: 35%;
+.skp-carousel-perspective .swiper-pagination-bullet-active {
+  background: #c9a84c;
+  border-color: #c9a84c;
+  box-shadow: 0 0 10px rgba(201,168,76,0.4);
+  transform: scale(1.2);
 }
 
 /* ═══════════════════════════════════════════
