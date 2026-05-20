@@ -150,3 +150,17 @@ The live style guide at `index.html` has these sections:
 - **Co-owner:** Compagnon
 - **Design lead:** OWL
 - **Repo:** https://github.com/ALKAVisuals/webdesign
+
+## Integrated Libraries
+
+### Metal FX — Liquid Metal Effect
+- **Source:** https://github.com/Jakubantalik/metal-fx
+- **CSS:** `css/metal-fx.css` (CSS fallback + core styles)
+- **Presets:** `--gold`, `--silver`, `--chromatic`, `--rose-gold`, `--legend` (custom)
+- **Variants:** `--button` (pill, 1px ring), `--circle` (compact, 2px ring)
+- **Effects:** `--shimmer` (animated sweep), `--legend-shimmer` (gold sweep), `--interactive` (hover glow)
+- **Strength:** `--strength-25`, `--strength-50`, `--strength-75`, `--strength-100`
+- **Sizes:** `--xs` (32px), `--sm` (40px), `--md` (48px), `--lg` (64px), `--xl` (80px)
+- **Theme:** `--light` (light mode override)
+- **Full WebGL:** `npm install metal-fx` for animated shader version
+- **Usage:** See style guide Metal FX section for live demos and code

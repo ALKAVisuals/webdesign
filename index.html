@@ -47,6 +47,7 @@
   <link rel="stylesheet" href="css/tokens.css">
   <link rel="stylesheet" href="css/components.css">
   <link rel="stylesheet" href="css/custom.css">
+  <link rel="stylesheet" href="css/metal-fx.css">
 
   <style>
     /* Inline overrides for Tailwind coexistence */
@@ -99,6 +100,9 @@
       </a>
       <a href="#pages" class="nav-link" data-section="pages">
         <span>📄</span> Page Templates
+      </a>
+      <a href="#metal-fx" class="nav-link" data-section="metal-fx">
+        <span>🔮</span> Metal FX
       </a>
     </nav>
 
@@ -486,6 +490,201 @@
         </div>
       </section>
 
+      <!-- ==================== METAL FX ==================== -->
+      <section id="metal-fx" class="section fade-in" style="display:none">
+        <div class="section-header">
+          <h3 class="section-title">Metal FX</h3>
+          <p class="section-subtitle">Liquid metal effect — CSS fallback + WebGL. Source: <a href="https://github.com/Jakubantalik/metal-fx" target="_blank" class="text-gold hover:underline">jakubantalik/metal-fx</a></p>
+        </div>
+
+        <!-- Presets -->
+        <h4 class="font-heading text-xs font-bold tracking-widest uppercase text-gold mb-4">Presets — CSS Fallback</h4>
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4 mb-10">
+          <div class="text-center">
+            <div class="metal-fx metal-fx--legend metal-fx--button metal-fx--shimmer mx-auto mb-2" style="width:120px;height:44px">
+              <div class="metal-fx__content">
+                <span class="font-heading text-xs font-bold uppercase tracking-wider" style="color:#f5f0e0">Gold</span>
+              </div>
+            </div>
+            <span class="font-mono text-xs text-mid-gray">.metal-fx--legend</span>
+          </div>
+          <div class="text-center">
+            <div class="metal-fx metal-fx--gold metal-fx--button metal-fx--shimmer mx-auto mb-2" style="width:120px;height:44px">
+              <div class="metal-fx__content">
+                <span class="font-heading text-xs font-bold uppercase tracking-wider" style="color:#f5e6c8">Gold</span>
+              </div>
+            </div>
+            <span class="font-mono text-xs text-mid-gray">.metal-fx--gold</span>
+          </div>
+          <div class="text-center">
+            <div class="metal-fx metal-fx--silver metal-fx--button metal-fx--shimmer mx-auto mb-2" style="width:120px;height:44px">
+              <div class="metal-fx__content">
+                <span class="font-heading text-xs font-bold uppercase tracking-wider" style="color:#d8dbe2">Silver</span>
+              </div>
+            </div>
+            <span class="font-mono text-xs text-mid-gray">.metal-fx--silver</span>
+          </div>
+          <div class="text-center">
+            <div class="metal-fx metal-fx--chromatic metal-fx--button metal-fx--shimmer mx-auto mb-2" style="width:120px;height:44px">
+              <div class="metal-fx__content">
+                <span class="font-heading text-xs font-bold uppercase tracking-wider" style="color:#e8e0f5">Chromatic</span>
+              </div>
+            </div>
+            <span class="font-mono text-xs text-mid-gray">.metal-fx--chromatic</span>
+          </div>
+          <div class="text-center">
+            <div class="metal-fx metal-fx--rose-gold metal-fx--button metal-fx--shimmer mx-auto mb-2" style="width:120px;height:44px">
+              <div class="metal-fx__content">
+                <span class="font-heading text-xs font-bold uppercase tracking-wider" style="color:#f5e0d8">Rose</span>
+              </div>
+            </div>
+            <span class="font-mono text-xs text-mid-gray">.metal-fx--rose-gold</span>
+          </div>
+          <div class="text-center">
+            <div class="metal-fx metal-fx--legend metal-fx--button metal-fx--legend-shimmer mx-auto mb-2" style="width:120px;height:44px">
+              <div class="metal-fx__content">
+                <span class="font-heading text-xs font-bold uppercase tracking-wider" style="color:#f5f0e0">Legend</span>
+              </div>
+            </div>
+            <span class="font-mono text-xs text-mid-gray">.metal-fx--legend-shimmer</span>
+          </div>
+        </div>
+
+        <!-- Variants -->
+        <h4 class="font-heading text-xs font-bold tracking-widest uppercase text-gold mb-4">Variants</h4>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mb-10">
+          <div class="text-center">
+            <div class="metal-fx metal-fx--legend metal-fx--button metal-fx--shimmer mx-auto mb-2" style="width:134px;height:40px">
+              <div class="metal-fx__content">
+                <span class="font-heading text-xs font-bold uppercase tracking-wider" style="color:#f5f0e0">Button</span>
+              </div>
+            </div>
+            <span class="font-mono text-xs text-mid-gray">.metal-fx--button</span>
+          </div>
+          <div class="text-center">
+            <div class="metal-fx metal-fx--legend metal-fx--circle metal-fx--shimmer mx-auto mb-2" style="width:44px;height:44px">
+              <div class="metal-fx__content">
+                <span class="font-heading text-xs font-bold" style="color:#f5f0e0">↑</span>
+              </div>
+            </div>
+            <span class="font-mono text-xs text-mid-gray">.metal-fx--circle</span>
+          </div>
+          <div class="text-center">
+            <div class="metal-fx metal-fx--legend metal-fx--button metal-fx--interactive metal-fx--shimmer mx-auto mb-2" style="width:134px;height:40px">
+              <div class="metal-fx__content">
+                <span class="font-heading text-xs font-bold uppercase tracking-wider" style="color:#f5f0e0">Hover</span>
+              </div>
+            </div>
+            <span class="font-mono text-xs text-mid-gray">.metal-fx--interactive</span>
+          </div>
+          <div class="text-center">
+            <div class="metal-fx metal-fx--legend metal-fx--button metal-fx--shimmer mx-auto mb-2" style="width:134px;height:40px;opacity:0.5">
+              <div class="metal-fx__content">
+                <span class="font-heading text-xs font-bold uppercase tracking-wider" style="color:#f5f0e0">50%</span>
+              </div>
+            </div>
+            <span class="font-mono text-xs text-mid-gray">.metal-fx--strength-50</span>
+          </div>
+        </div>
+
+        <!-- Sizes -->
+        <h4 class="font-heading text-xs font-bold tracking-widest uppercase text-gold mb-4">Sizes</h4>
+        <div class="flex flex-wrap items-end gap-6 mb-10">
+          <div class="text-center">
+            <div class="metal-fx metal-fx--legend metal-fx--circle metal-fx--shimmer metal-fx--xs mx-auto mb-2">
+              <div class="metal-fx__content"><span class="text-xs" style="color:#f5f0e0">xs</span></div>
+            </div>
+            <span class="font-mono text-xs text-mid-gray">32px</span>
+          </div>
+          <div class="text-center">
+            <div class="metal-fx metal-fx--legend metal-fx--circle metal-fx--shimmer metal-fx--sm mx-auto mb-2">
+              <div class="metal-fx__content"><span class="text-xs" style="color:#f5f0e0">sm</span></div>
+            </div>
+            <span class="font-mono text-xs text-mid-gray">40px</span>
+          </div>
+          <div class="text-center">
+            <div class="metal-fx metal-fx--legend metal-fx--circle metal-fx--shimmer metal-fx--md mx-auto mb-2">
+              <div class="metal-fx__content"><span class="text-sm" style="color:#f5f0e0">md</span></div>
+            </div>
+            <span class="font-mono text-xs text-mid-gray">48px</span>
+          </div>
+          <div class="text-center">
+            <div class="metal-fx metal-fx--legend metal-fx--circle metal-fx--shimmer metal-fx--lg mx-auto mb-2">
+              <div class="metal-fx__content"><span class="text-base" style="color:#f5f0e0">lg</span></div>
+            </div>
+            <span class="font-mono text-xs text-mid-gray">64px</span>
+          </div>
+          <div class="text-center">
+            <div class="metal-fx metal-fx--legend metal-fx--circle metal-fx--shimmer metal-fx--xl mx-auto mb-2">
+              <div class="metal-fx__content"><span class="text-lg" style="color:#f5f0e0">xl</span></div>
+            </div>
+            <span class="font-mono text-xs text-mid-gray">80px</span>
+          </div>
+        </div>
+
+        <!-- Light mode -->
+        <h4 class="font-heading text-xs font-bold tracking-widest uppercase text-gold mb-4">Light Mode</h4>
+        <div class="card mb-10 inline-block">
+          <div class="flex flex-wrap gap-4 items-center p-4">
+            <div class="metal-fx metal-fx--legend metal-fx--button metal-fx--light metal-fx--shimmer" style="width:120px;height:40px">
+              <div class="metal-fx__content">
+                <span class="font-heading text-xs font-bold uppercase tracking-wider" style="color:#1d1d1d">Light</span>
+              </div>
+            </div>
+            <div class="metal-fx metal-fx--legend metal-fx--circle metal-fx--light metal-fx--shimmer" style="width:40px;height:40px">
+              <div class="metal-fx__content">
+                <span class="font-heading text-xs font-bold" style="color:#1d1d1d">↑</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Code -->
+        <div class="card mb-10">
+          <h4 class="font-heading text-xs font-bold tracking-widest uppercase text-gold mb-4">CSS Usage</h4>
+          <pre class="font-mono text-xs text-light-gray bg-dark-gray p-4 rounded-lg overflow-x-auto"><code>&lt;!-- Gold metal button --&gt;
+&lt;div class="metal-fx metal-fx--legend metal-fx--button metal-fx--shimmer"&gt;
+  &lt;div class="metal-fx__content"&gt;
+    &lt;button&gt;Upgrade to Pro&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Circle icon button --&gt;
+&lt;div class="metal-fx metal-fx--legend metal-fx--circle metal-fx--shimmer metal-fx--md"&gt;
+  &lt;div class="metal-fx__content"&gt;
+    &lt;button aria-label="Send"&gt;↑&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- With strength modifier --&gt;
+&lt;div class="metal-fx metal-fx--gold metal-fx--button metal-fx--strength-75"&gt;
+  &lt;div class="metal-fx__content"&gt;
+    &lt;button&gt;75% strength&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+
+        <!-- Full WebGL -->
+        <div class="card">
+          <h4 class="font-heading text-xs font-bold tracking-widest uppercase text-gold mb-4">Full WebGL Version</h4>
+          <p class="text-sm text-light-gray mb-4">For the full animated liquid metal effect with WebGL shaders, install the library:</p>
+          <pre class="font-mono text-xs text-light-gray bg-dark-gray p-4 rounded-lg overflow-x-auto mb-4"><code>npm install metal-fx</code></pre>
+          <pre class="font-mono text-xs text-light-gray bg-dark-gray p-4 rounded-lg overflow-x-auto"><code>import { MetalFx } from 'metal-fx';
+
+&lt;MetalFx variant="button" preset="gold" theme="dark"&gt;
+  &lt;button&gt;Upgrade to Pro&lt;/button&gt;
+&lt;/MetalFx&gt;
+
+&lt;MetalFx variant="circle" preset="gold" strength={0.8}&gt;
+  &lt;button aria-label="Send"&gt;↑&lt;/button&gt;
+&lt;/MetalFx&gt;</code></pre>
+          <div class="mt-4 flex gap-3">
+            <a href="https://github.com/Jakubantalik/metal-fx" target="_blank" class="btn btn-sm btn-outline">GitHub ↗</a>
+            <a href="https://metal.jakubantalik.com" target="_blank" class="btn btn-sm btn-ghost">Live Demo ↗</a>
+          </div>
+        </div>
+      </section>
+
     </div>
   </main>
 
@@ -509,7 +708,7 @@
     }
 
     // === NAVIGATION ===
-    const sections = ['colors','typography','buttons','components','upload','assets','pages'];
+    const sections = ['colors','typography','buttons','components','upload','assets','pages','metal-fx'];
     const navLinks = document.querySelectorAll('.nav-link');
     const pageTitle = document.getElementById('page-title');
 
@@ -531,7 +730,7 @@
       });
       const titles = {
         colors: 'Colors', typography: 'Typography', buttons: 'Buttons',
-        components: 'Components', upload: 'Upload Styles', assets: 'Assets', pages: 'Page Templates'
+        components: 'Components', upload: 'Upload Styles', assets: 'Assets', pages: 'Page Templates', 'metal-fx': 'Metal FX'
       };
       pageTitle.textContent = titles[id] || id;
       window.scrollTo(0, 0);
