@@ -1602,17 +1602,84 @@ npx shadcn@latest add https://dotmatrix.zzzzshawn.cloud/r/registry.json
 
         <!-- 5. Perspective Carousel -->
         <h4 class="font-heading text-xs font-bold tracking-widest uppercase text-gold mb-4">5. Perspective Carousel — Coverflow Effect</h4>
-        <div class="card mb-10" style="background:#f5f4f3;border:none;padding:2rem 0;overflow:hidden">
-          <div class="skp-carousel-perspective mx-auto">
-            <div class="skp-carousel-perspective__track">
-              <div class="skp-carousel-perspective__slide skp-carousel-perspective__slide--far-left" style="background:linear-gradient(135deg,#a78bfa,#c084fc)"><div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;color:white;font-weight:700">1</div></div>
-              <div class="skp-carousel-perspective__slide skp-carousel-perspective__slide--left" style="background:linear-gradient(135deg,#8b5cf6,#a78bfa)"><div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;color:white;font-weight:700">2</div></div>
-              <div class="skp-carousel-perspective__slide skp-carousel-perspective__slide--center" style="background:linear-gradient(135deg,#6366f1,#8b5cf6)"><div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:1.25rem">3 ★</div></div>
-              <div class="skp-carousel-perspective__slide skp-carousel-perspective__slide--right" style="background:linear-gradient(135deg,#c084fc,#e879f9)"><div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;color:white;font-weight:700">4</div></div>
-              <div class="skp-carousel-perspective__slide skp-carousel-perspective__slide--far-right" style="background:linear-gradient(135deg,#e879f9,#f0abfc)"><div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;color:white;font-weight:700">5</div></div>
+        <div class="card mb-10" style="background:#0a0a0a;border:none;padding:2rem 0 1rem;overflow:hidden">
+          <div class="skp-carousel-perspective mx-auto" id="skp-perspective-carousel">
+            <!-- Navigation Arrows -->
+            <button class="skp-carousel-perspective__arrow skp-carousel-perspective__arrow--prev" id="skp-carousel-prev" aria-label="Previous slide">‹</button>
+            <button class="skp-carousel-perspective__arrow skp-carousel-perspective__arrow--next" id="skp-carousel-next" aria-label="Next slide">›</button>
+
+            <!-- Track -->
+            <div class="skp-carousel-perspective__track" id="skp-carousel-track">
+              <div class="skp-carousel-perspective__slide skp-carousel-perspective__slide--hidden" data-index="0">
+                <div class="skp-carousel-perspective__slide-content" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+                  <div class="skp-carousel-perspective__slide-icon">🏙️</div>
+                  <div>Urban</div>
+                  <div class="skp-carousel-perspective__slide-label">Street Culture</div>
+                </div>
+                <div class="skp-carousel-perspective__autoplay-bar" style="width:0%"></div>
+              </div>
+              <div class="skp-carousel-perspective__slide skp-carousel-perspective__slide--far-left" data-index="1">
+                <div class="skp-carousel-perspective__slide-content" style="background:linear-gradient(135deg,#2d1b69,#11998e)">
+                  <div class="skp-carousel-perspective__slide-icon">🎨</div>
+                  <div>Design</div>
+                  <div class="skp-carousel-perspective__slide-label">Visual Identity</div>
+                </div>
+                <div class="skp-carousel-perspective__autoplay-bar" style="width:0%"></div>
+              </div>
+              <div class="skp-carousel-perspective__slide skp-carousel-perspective__slide--left" data-index="2">
+                <div class="skp-carousel-perspective__slide-content" style="background:linear-gradient(135deg,#667eea,#764ba2)">
+                  <div class="skp-carousel-perspective__slide-icon">✨</div>
+                  <div>Shimmer</div>
+                  <div class="skp-carousel-perspective__slide-label">Metal FX</div>
+                </div>
+                <div class="skp-carousel-perspective__autoplay-bar" style="width:0%"></div>
+              </div>
+              <div class="skp-carousel-perspective__slide skp-carousel-perspective__slide--center" data-index="3">
+                <div class="skp-carousel-perspective__slide-content" style="background:linear-gradient(135deg,#c9a84c,#8b6914)">
+                  <div class="skp-carousel-perspective__slide-icon">👑</div>
+                  <div>Legend</div>
+                  <div class="skp-carousel-perspective__slide-label">Premium Quality</div>
+                </div>
+                <div class="skp-carousel-perspective__autoplay-bar" style="width:0%"></div>
+              </div>
+              <div class="skp-carousel-perspective__slide skp-carousel-perspective__slide--right" data-index="4">
+                <div class="skp-carousel-perspective__slide-content" style="background:linear-gradient(135deg,#f093fb,#f5576c)">
+                  <div class="skp-carousel-perspective__slide-icon">🔥</div>
+                  <div>Fire</div>
+                  <div class="skp-carousel-perspective__slide-label">Hot Drops</div>
+                </div>
+                <div class="skp-carousel-perspective__autoplay-bar" style="width:0%"></div>
+              </div>
+              <div class="skp-carousel-perspective__slide skp-carousel-perspective__slide--far-right" data-index="5">
+                <div class="skp-carousel-perspective__slide-content" style="background:linear-gradient(135deg,#4facfe,#00f2fe)">
+                  <div class="skp-carousel-perspective__slide-icon">💎</div>
+                  <div>Crystal</div>
+                  <div class="skp-carousel-perspective__slide-label">Clear Finish</div>
+                </div>
+                <div class="skp-carousel-perspective__autoplay-bar" style="width:0%"></div>
+              </div>
+              <div class="skp-carousel-perspective__slide skp-carousel-perspective__slide--hidden" data-index="6">
+                <div class="skp-carousel-perspective__slide-content" style="background:linear-gradient(135deg,#fa709a,#fee140)">
+                  <div class="skp-carousel-perspective__slide-icon">🌟</div>
+                  <div>Star</div>
+                  <div class="skp-carousel-perspective__slide-label">Limited Edition</div>
+                </div>
+                <div class="skp-carousel-perspective__autoplay-bar" style="width:0%"></div>
+              </div>
+            </div>
+
+            <!-- Pagination Dots -->
+            <div class="skp-carousel-perspective__pagination" id="skp-carousel-pagination">
+              <div class="skp-carousel-perspective__dot" data-slide="0"></div>
+              <div class="skp-carousel-perspective__dot" data-slide="1"></div>
+              <div class="skp-carousel-perspective__dot" data-slide="2"></div>
+              <div class="skp-carousel-perspective__dot skp-carousel-perspective__dot--active" data-slide="3"></div>
+              <div class="skp-carousel-perspective__dot" data-slide="4"></div>
+              <div class="skp-carousel-perspective__dot" data-slide="5"></div>
+              <div class="skp-carousel-perspective__dot" data-slide="6"></div>
             </div>
           </div>
-          <p class="text-xs text-mid-gray text-center mt-4">Original uses Swiper.js coverflow effect with 3D transforms.</p>
+          <p class="text-xs text-mid-gray text-center mt-4">Drag/swipe to navigate · Autoplay every 3s · Click arrows or dots</p>
         </div>
 
         <!-- 6. Crowd Canvas -->
