@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════════════════════════
-   SKIPPER UI — Full Interactive Component Scripts
+   SKIPPER UI — Full Interactive Component Scripts v2
    ═══════════════════════════════════════════════════════════════
    Dependencies: GSAP 3 + ScrollTrigger, Swiper.js 11
    All components use DOM-ready checks to prevent errors.
@@ -12,10 +12,9 @@
      1. HOVER EXPAND — Image Gallery
      ───────────────────────────────────────────── */
   (function initHoverExpand() {
-    const container = document.querySelector('.skp-hover-expand');
+    var container = document.querySelector('.skp-hover-expand');
     if (!container) return;
-
-    const items = container.querySelectorAll('.skp-hover-expand__item');
+    var items = container.querySelectorAll('.skp-hover-expand__item');
     if (!items.length) return;
 
     items.forEach(function(item) {
@@ -30,11 +29,10 @@
     });
 
     container.addEventListener('mouseleave', function() {
-      items.forEach(function(el, i) {
+      items.forEach(function(el) {
         el.classList.remove('skp-hover-expand__item--active');
         el.classList.add('skp-hover-expand__item--default');
       });
-      // Set middle item as active by default
       var mid = Math.floor(items.length / 2);
       items[mid].classList.remove('skp-hover-expand__item--default');
       items[mid].classList.add('skp-hover-expand__item--active');
@@ -47,50 +45,47 @@
   (function initStickyCards() {
     var container = document.querySelector('.skp-sticky-cards');
     if (!container) return;
-
     var cards = container.querySelectorAll('.skp-sticky-cards__card');
     if (!cards.length) return;
-
-    // Check if GSAP + ScrollTrigger are available
     if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
 
     gsap.registerPlugin(ScrollTrigger);
 
-    var totalCards = cards.length;
+    // Make container position:relative for absolute cards
+    container.style.position = 'relative';
+    container.style.overflow = 'visible';
 
-    // Pin the container
+    // Pin the wrapper
     ScrollTrigger.create({
       trigger: container,
-      start: 'top top+=80',
-      end: 'bottom+=300 top',
+      start: 'top top+=100',
+      end: 'bottom+=400 top',
       pin: true,
       pinSpacing: false,
     });
 
-    // Animate each card on scroll
     cards.forEach(function(card, i) {
-      if (i === 0) return; // First card stays in place
-
-      var scale = 1 - (i * 0.08);
-      var rotate = i % 2 === 0 ? (i * 2) : -(i * 2);
-      var yPercent = i * 3;
-
+      if (i === 0) return;
+      var scale = 1 - (i * 0.07);
+      var rotate = i % 2 === 0 ? (i * 1.5) : -(i * 1.5);
       gsap.to(card, {
         scale: scale,
         rotate: rotate,
-        yPercent: yPercent,
+        yPercent: i * 2,
         ease: 'none',
         scrollTrigger: {
           trigger: container,
-          start: 'top top+=80',
-          end: 'bottom+=300 top',
+          start: 'top top+=100',
+          end: 'bottom+=400 top',
           scrub: 1,
         }
       });
     });
 
-    // Refresh on load
-    ScrollTrigger.refresh();
+    // Refresh after images load
+    window.addEventListener('load', function() {
+      ScrollTrigger.refresh();
+    });
   })();
 
   /* ─────────────────────────────────────────────
@@ -99,18 +94,14 @@
   (function initScrollReveal() {
     var container = document.querySelector('.skp-scroll-reveal');
     if (!container) return;
-
     var img = container.querySelector('.skp-scroll-reveal__img');
     if (!img) return;
-
     if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
 
     gsap.registerPlugin(ScrollTrigger);
 
-    // Set initial state
-    gsap.set(img, { scale: 0.8, rotation: -8, opacity: 0.6 });
+    gsap.set(img, { scale: 0.75, rotation: -10, opacity: 0.5 });
 
-    // Animate on scroll
     gsap.to(img, {
       scale: 1,
       rotation: 0,
@@ -118,10 +109,14 @@
       ease: 'power2.out',
       scrollTrigger: {
         trigger: container,
-        start: 'top 80%',
+        start: 'top 85%',
         end: 'center center',
         scrub: 1.5,
       }
+    });
+
+    window.addEventListener('load', function() {
+      ScrollTrigger.refresh();
     });
   })();
 
@@ -131,24 +126,23 @@
   (function initCardSwipeCarousel() {
     var container = document.querySelector('.skp-card-swipe-carousel');
     if (!container) return;
-
     if (typeof Swiper === 'undefined') return;
 
-    var prevBtn = container.querySelector('.skp-carousel-prev');
-    var nextBtn = container.querySelector('.skp-carousel-next');
+    var prevBtn = document.querySelector('#skp-card-swipe-prev');
+    var nextBtn = document.querySelector('#skp-card-swipe-next');
 
     var swiper = new Swiper(container, {
       effect: 'cards',
       grabCursor: true,
       cardsEffect: {
-        perSlideOffset: 12,
-        perSlideRotate: 4,
+        perSlideOffset: 10,
+        perSlideRotate: 3,
         rotate: true,
         slideShadows: true,
       },
       loop: true,
       autoplay: {
-        delay: 3000,
+        delay: 3500,
         disableOnInteraction: false,
       },
       navigation: {
@@ -156,9 +150,6 @@
         nextEl: nextBtn,
       },
     });
-
-    // Store instance for external access
-    container._swiper = swiper;
   })();
 
   /* ─────────────────────────────────────────────
@@ -167,12 +158,11 @@
   (function initPerspectiveCarousel() {
     var container = document.querySelector('.skp-carousel-perspective');
     if (!container) return;
-
     if (typeof Swiper === 'undefined') return;
 
-    var prevBtn = container.querySelector('.skp-carousel-perspective__arrow--prev');
-    var nextBtn = container.querySelector('.skp-carousel-perspective__arrow--next');
-    var pagination = container.querySelector('.skp-carousel-perspective__pagination');
+    var prevBtn = document.querySelector('#skp-perspective-prev');
+    var nextBtn = document.querySelector('#skp-perspective-next');
+    var pagination = container.querySelector('.swiper-pagination');
 
     var swiper = new Swiper(container, {
       effect: 'coverflow',
@@ -181,13 +171,13 @@
       slidesPerView: 'auto',
       loop: true,
       autoplay: {
-        delay: 3000,
+        delay: 3500,
         disableOnInteraction: false,
       },
       coverflowEffect: {
-        rotate: 35,
+        rotate: 30,
         stretch: 0,
-        depth: 160,
+        depth: 180,
         modifier: 1,
         slideShadows: true,
       },
@@ -199,16 +189,7 @@
         prevEl: prevBtn,
         nextEl: nextBtn,
       },
-      on: {
-        slideChange: function() {
-          // Update autoplay bar
-          var bars = container.querySelectorAll('.skp-carousel-perspective__autoplay-bar');
-          bars.forEach(function(bar) { bar.style.width = '0%'; });
-        }
-      }
     });
-
-    container._swiper = swiper;
   })();
 
   /* ─────────────────────────────────────────────
@@ -220,89 +201,76 @@
 
     var canvas = document.getElementById('crowdCanvas');
     if (!canvas) {
-      // Create canvas if it doesn't exist
       canvas = document.createElement('canvas');
       canvas.id = 'crowdCanvas';
-      container.appendChild(canvas);
+      container.insertBefore(canvas, container.firstChild);
     }
 
     var ctx = canvas.getContext('2d');
     if (!ctx) return;
 
     var people = [];
-    var animationId = null;
-    var resizeTimeout = null;
+    var animId = null;
 
-    // Person class
     function Person(x, y, color) {
       this.x = x;
       this.y = y;
       this.baseY = y;
-      this.color = color || 'rgba(26, 26, 26, 0.7)';
-      this.speed = 0.3 + Math.random() * 0.8;
-      this.radius = 3 + Math.random() * 4;
-      this.headRadius = this.radius * 0.6;
-      this.walkPhase = Math.random() * Math.PI * 2;
-      this.walkSpeed = 0.03 + Math.random() * 0.04;
-      this.walkAmplitude = 2 + Math.random() * 3;
-      this.direction = Math.random() > 0.5 ? 1 : -1;
+      this.color = color || 'rgba(201,168,76,0.6)';
+      this.speed = 0.2 + Math.random() * 0.6;
+      this.radius = 2.5 + Math.random() * 3;
+      this.headR = this.radius * 0.55;
+      this.phase = Math.random() * Math.PI * 2;
+      this.speed = 0.02 + Math.random() * 0.03;
+      this.amp = 1.5 + Math.random() * 2;
+      this.dir = Math.random() > 0.5 ? 1 : -1;
     }
 
-    Person.prototype.update = function(canvasWidth) {
-      this.x += this.speed * this.direction;
-      this.walkPhase += this.walkSpeed;
-      this.y = this.baseY + Math.sin(this.walkPhase) * this.walkAmplitude;
-
-      // Wrap around
-      if (this.x > canvasWidth + 20) this.x = -20;
-      if (this.x < -20) this.x = canvasWidth + 20;
+    Person.prototype.update = function(w) {
+      this.x += this.speed * this.dir;
+      this.phase += 0.03;
+      this.y = this.baseY + Math.sin(this.phase) * this.amp;
+      if (this.x > w + 20) this.x = -20;
+      if (this.x < -20) this.x = w + 20;
     };
 
     Person.prototype.draw = function(ctx) {
-      var bobY = Math.sin(this.walkPhase) * 1.5;
-
-      // Body (ellipse)
+      var bob = Math.sin(this.phase) * 1.2;
       ctx.beginPath();
-      ctx.ellipse(this.x, this.y - this.headRadius * 2 + bobY, this.radius * 0.7, this.radius * 1.2, 0, 0, Math.PI * 2);
+      ctx.ellipse(this.x, this.y - this.headR * 2 + bob, this.radius * 0.6, this.radius * 1.1, 0, 0, Math.PI * 2);
       ctx.fillStyle = this.color;
       ctx.fill();
-
-      // Head (circle)
       ctx.beginPath();
-      ctx.arc(this.x, this.y - this.headRadius * 3.5 + bobY, this.headRadius, 0, Math.PI * 2);
-      ctx.fillStyle = this.color;
+      ctx.arc(this.x, this.y - this.headR * 3.2 + bob, this.headR, 0, Math.PI * 2);
       ctx.fill();
     };
 
     function resize() {
       var rect = container.getBoundingClientRect();
-      var dpr = window.devicePixelRatio || 1;
+      var dpr = Math.min(window.devicePixelRatio || 1, 2);
       canvas.width = rect.width * dpr;
       canvas.height = rect.height * dpr;
       canvas.style.width = rect.width + 'px';
       canvas.style.height = rect.height + 'px';
-      ctx.scale(dpr, dpr);
-
-      // Reinitialize people on resize
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
       initPeople(rect.width, rect.height);
     }
 
-    function initPeople(width, height) {
+    function initPeople(w, h) {
       people = [];
-      var count = Math.floor(width / 18);
+      var count = Math.max(15, Math.floor(w / 20));
       var colors = [
-        'rgba(26, 26, 26, 0.7)',
-        'rgba(201, 168, 76, 0.5)',
-        'rgba(99, 102, 241, 0.4)',
-        'rgba(139, 92, 246, 0.4)',
-        'rgba(192, 132, 252, 0.35)',
+        'rgba(201,168,76,0.6)',
+        'rgba(99,102,241,0.45)',
+        'rgba(139,92,246,0.4)',
+        'rgba(192,132,252,0.35)',
+        'rgba(26,26,26,0.7)',
       ];
-
       for (var i = 0; i < count; i++) {
-        var x = (i / count) * width + Math.random() * 20;
-        var y = height - 10 - Math.random() * 30;
-        var color = colors[Math.floor(Math.random() * colors.length)];
-        var p = new Person(x, y, color);
+        var x = Math.random() * w;
+        var y = h - 5 - Math.random() * 25;
+        var c = colors[Math.floor(Math.random() * colors.length)];
+        var p = new Person(x, y, c);
         p.baseY = y;
         people.push(p);
       }
@@ -312,37 +280,34 @@
       var rect = container.getBoundingClientRect();
       ctx.clearRect(0, 0, rect.width, rect.height);
 
-      // Draw ground line
+      // Ground
       ctx.beginPath();
-      ctx.moveTo(0, rect.height - 5);
-      ctx.lineTo(rect.width, rect.height - 5);
-      ctx.strokeStyle = 'rgba(201, 168, 76, 0.15)';
+      ctx.moveTo(0, rect.height - 3);
+      ctx.lineTo(rect.width, rect.height - 3);
+      ctx.strokeStyle = 'rgba(201,168,76,0.12)';
       ctx.lineWidth = 1;
       ctx.stroke();
 
-      // Update and draw people
       people.forEach(function(p) {
         p.update(rect.width);
         p.draw(ctx);
       });
 
-      animationId = requestAnimationFrame(animate);
+      animId = requestAnimationFrame(animate);
     }
 
-    // Initialize
     resize();
     animate();
 
-    // Resize handler with debounce
+    var resizeTimer;
     window.addEventListener('resize', function() {
-      clearTimeout(resizeTimeout);
-      resizeTimeout = setTimeout(resize, 200);
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(resize, 200);
     });
 
-    // Cleanup on page visibility change
     document.addEventListener('visibilitychange', function() {
       if (document.hidden) {
-        if (animationId) cancelAnimationFrame(animationId);
+        cancelAnimationFrame(animId);
       } else {
         animate();
       }
@@ -355,88 +320,61 @@
   (function initVideoPlayer() {
     var zone = document.querySelector('.skp-video-zone');
     if (!zone) return;
-
     var playBtn = zone.querySelector('.skp-play-btn-magnetic');
     var popover = document.querySelector('.skp-video-modal');
-    var closeBtn = popover ? popover.querySelector('.skp-video-modal__close') : null;
-
     if (!playBtn || !popover) return;
+    var closeBtn = popover.querySelector('.skp-video-modal__close');
 
-    // Magnetic button effect
-    var targetX = 0, targetY = 0;
-    var currentX = 0, currentY = 0;
-    var isOver = false;
-    var lerpFactor = 0.15;
-    var animFrame = null;
+    // Magnetic button
+    var targetX = 0, targetY = 0, curX = 0, curY = 0;
+    var isOver = false, lerp = 0.12, magFrame = null;
 
-    function animateMagnetic() {
+    function tickMagnetic() {
       if (!isOver) return;
-
-      currentX += (targetX - currentX) * lerpFactor;
-      currentY += (targetY - currentY) * lerpFactor;
-
-      playBtn.style.transform = 'translate(' + currentX + 'px, ' + currentY + 'px)';
-
-      animFrame = requestAnimationFrame(animateMagnetic);
+      curX += (targetX - curX) * lerp;
+      curY += (targetY - curY) * lerp;
+      playBtn.style.transform = 'translate(' + curX.toFixed(1) + 'px, ' + curY.toFixed(1) + 'px)';
+      magFrame = requestAnimationFrame(tickMagnetic);
     }
 
     zone.addEventListener('mousemove', function(e) {
       var rect = playBtn.getBoundingClientRect();
-      var centerX = rect.left + rect.width / 2;
-      var centerY = rect.top + rect.height / 2;
-
-      var deltaX = e.clientX - centerX;
-      var deltaY = e.clientY - centerY;
-
-      // Magnetic pull (max 12px)
-      targetX = Math.max(-12, Math.min(12, deltaX * 0.3));
-      targetY = Math.max(-12, Math.min(12, deltaY * 0.3));
-
-      if (!isOver) {
-        isOver = true;
-        animateMagnetic();
-      }
+      var cx = rect.left + rect.width / 2;
+      var cy = rect.top + rect.height / 2;
+      var dx = e.clientX - cx;
+      var dy = e.clientY - cy;
+      targetX = Math.max(-10, Math.min(10, dx * 0.25));
+      targetY = Math.max(-10, Math.min(10, dy * 0.25));
+      if (!isOver) { isOver = true; tickMagnetic(); }
     });
 
     zone.addEventListener('mouseleave', function() {
       isOver = false;
-      targetX = 0;
-      targetY = 0;
+      targetX = 0; targetY = 0;
       playBtn.style.transform = 'translate(0px, 0px)';
-      if (animFrame) cancelAnimationFrame(animFrame);
+      if (magFrame) cancelAnimationFrame(magFrame);
     });
 
-    // Popover open with clip-path circle animation
-    zone.addEventListener('click', function(e) {
-      if (e.target === playBtn || playBtn.contains(e.target)) {
-        openPopover();
-      }
+    // Open popover
+    zone.addEventListener('click', function() {
+      openPopover();
     });
 
     function openPopover() {
       popover.style.display = 'flex';
       popover.style.opacity = '0';
-
-      // Get click position for clip-path origin
       var rect = zone.getBoundingClientRect();
-      var originX = (rect.left + rect.width / 2) / window.innerWidth * 100;
-      var originY = (rect.top + rect.height / 2) / window.innerHeight * 100;
+      var ox = ((rect.left + rect.width / 2) / window.innerWidth * 100).toFixed(1);
+      var oy = ((rect.top + rect.height / 2) / window.innerHeight * 100).toFixed(1);
 
-      // Use GSAP if available, fallback to CSS transition
       if (typeof gsap !== 'undefined') {
-        gsap.set(popover, { clipPath: 'circle(0% at ' + originX + '% ' + originY + '%)' });
-        gsap.to(popover, {
-          clipPath: 'circle(80% at 50% 50%)',
-          opacity: 1,
-          duration: 0.6,
-          ease: 'power3.out',
-        });
+        gsap.set(popover, { clipPath: 'circle(0% at ' + ox + '% ' + oy + '%)' });
+        gsap.to(popover, { clipPath: 'circle(75% at 50% 50%)', opacity: 1, duration: 0.5, ease: 'power3.out' });
       } else {
-        popover.style.transition = 'opacity 0.4s ease, clip-path 0.6s ease';
-        popover.style.clipPath = 'circle(0% at ' + originX + '% ' + originY + '%)';
-        // Force reflow
-        popover.offsetHeight;
-        popover.style.clipPath = 'circle(80% at 50% 50%)';
+        popover.style.transition = 'opacity 0.4s ease, clip-path 0.5s ease';
+        popover.style.clipPath = 'circle(0% at ' + ox + '% ' + oy + '%)';
+        popover.offsetHeight; // reflow
+        popover.style.clipPath = 'circle(75% at 50% 50%)';
         popover.style.opacity = '1';
       }
     }
@@ -444,39 +382,20 @@
     function closePopover() {
       if (typeof gsap !== 'undefined') {
         gsap.to(popover, {
-          clipPath: 'circle(0% at 50% 50%)',
-          opacity: 0,
-          duration: 0.4,
-          ease: 'power3.in',
-          onComplete: function() {
-            popover.style.display = 'none';
-            popover.style.clipPath = '';
-          }
+          clipPath: 'circle(0% at 50% 50%)', opacity: 0, duration: 0.35, ease: 'power3.in',
+          onComplete: function() { popover.style.display = 'none'; popover.style.clipPath = ''; }
         });
       } else {
         popover.style.clipPath = 'circle(0% at 50% 50%)';
         popover.style.opacity = '0';
-        setTimeout(function() {
-          popover.style.display = 'none';
-          popover.style.clipPath = '';
-        }, 400);
+        setTimeout(function() { popover.style.display = 'none'; popover.style.clipPath = ''; }, 400);
       }
     }
 
-    if (closeBtn) {
-      closeBtn.addEventListener('click', closePopover);
-    }
-
-    // Close on backdrop click
-    popover.addEventListener('click', function(e) {
-      if (e.target === popover) closePopover();
-    });
-
-    // Close on Escape
+    if (closeBtn) closeBtn.addEventListener('click', closePopover);
+    popover.addEventListener('click', function(e) { if (e.target === popover) closePopover(); });
     document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape' && popover.style.display === 'flex') {
-        closePopover();
-      }
+      if (e.key === 'Escape' && popover.style.display === 'flex') closePopover();
     });
   })();
 

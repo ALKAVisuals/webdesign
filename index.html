@@ -1573,9 +1573,9 @@ npx shadcn@latest add https://dotmatrix.zzzzshawn.cloud/r/registry.json
 
         <!-- 2. Sticky Card Stack -->
         <h4 class="font-heading text-xs font-bold tracking-widest uppercase text-gold mb-4">2. Sticky Card Stack — Scroll Rotation</h4>
-        <div class="card mb-10" style="background:#0f172a;border-color:#1e293b;overflow:visible">
-          <div class="skp-sticky-cards">
-            <div class="skp-sticky-cards__container mx-auto" style="max-width:28rem;height:20rem">
+        <div class="card mb-10" style="background:#0f172a;border-color:#1e293b;overflow:visible;padding:2rem 0">
+          <div class="skp-sticky-cards" style="position:relative">
+            <div class="skp-sticky-cards__container mx-auto" style="position:relative;max-width:28rem;height:20rem">
               <div class="skp-sticky-cards__card skp-sticky-cards__card--0" style="background:linear-gradient(135deg,#1e1b4b,#312e81);display:flex;align-items:center;justify-content:center;border-radius:24px"><div class="text-center"><div class="text-4xl font-bold text-white mb-2">01</div><div class="text-sm text-indigo-300">First Card</div></div></div>
               <div class="skp-sticky-cards__card skp-sticky-cards__card--1" style="background:linear-gradient(135deg,#312e81,#4c1d95);display:flex;align-items:center;justify-content:center;border-radius:24px"><div class="text-center"><div class="text-4xl font-bold text-white mb-2">02</div><div class="text-sm text-indigo-300">Second Card</div></div></div>
               <div class="skp-sticky-cards__card skp-sticky-cards__card--2" style="background:linear-gradient(135deg,#4c1d95,#581c87);display:flex;align-items:center;justify-content:center;border-radius:24px"><div class="text-center"><div class="text-4xl font-bold text-white mb-2">03</div><div class="text-sm text-purple-300">Third Card</div></div></div>
@@ -1600,16 +1600,16 @@ npx shadcn@latest add https://dotmatrix.zzzzshawn.cloud/r/registry.json
         <div class="card mb-10" style="background:#f5f4f3;border:none;padding:2rem 0">
           <div class="skp-card-swipe-carousel swiper" style="max-width:24rem;height:24rem">
             <div class="swiper-wrapper">
-              <div class="swiper-slide" style="background:linear-gradient(135deg,#8b5cf6,#c084fc);border-radius:24px;display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:1.5rem">Card 1</div>
-              <div class="swiper-slide" style="background:linear-gradient(135deg,#6366f1,#8b5cf6);border-radius:24px;display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:1.5rem">Card 2 ✓</div>
-              <div class="swiper-slide" style="background:linear-gradient(135deg,#c084fc,#e879f9);border-radius:24px;display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:1.5rem">Card 3</div>
-              <div class="swiper-slide" style="background:linear-gradient(135deg,#a78bfa,#6366f1);border-radius:24px;display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:1.5rem">Card 4</div>
-              <div class="swiper-slide" style="background:linear-gradient(135deg,#8b5cf6,#a78bfa);border-radius:24px;display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:1.5rem">Card 5</div>
+              <div class="swiper-slide" style="background:linear-gradient(135deg,#8b5cf6,#c084fc);border-radius:24px;display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:1.5rem;box-shadow:0 8px 32px rgba(139,92,246,0.3)">Card 1</div>
+              <div class="swiper-slide" style="background:linear-gradient(135deg,#6366f1,#8b5cf6);border-radius:24px;display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:1.5rem;box-shadow:0 8px 32px rgba(99,102,241,0.3)">Card 2 ✓</div>
+              <div class="swiper-slide" style="background:linear-gradient(135deg,#c084fc,#e879f9);border-radius:24px;display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:1.5rem;box-shadow:0 8px 32px rgba(192,132,252,0.3)">Card 3</div>
+              <div class="swiper-slide" style="background:linear-gradient(135deg,#a78bfa,#6366f1);border-radius:24px;display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:1.5rem;box-shadow:0 8px 32px rgba(167,139,250,0.3)">Card 4</div>
+              <div class="swiper-slide" style="background:linear-gradient(135deg,#8b5cf6,#a78bfa);border-radius:24px;display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:1.5rem;box-shadow:0 8px 32px rgba(139,92,246,0.3)">Card 5</div>
             </div>
           </div>
           <div style="display:flex;justify-content:center;gap:1rem;margin-top:1.5rem">
-            <button class="skp-carousel-prev btn btn-sm btn-outline" style="border-color:#6366f1;color:#6366f1">← Prev</button>
-            <button class="skp-carousel-next btn btn-sm btn-outline" style="border-color:#6366f1;color:#6366f1">Next →</button>
+            <button id="skp-card-swipe-prev" class="btn btn-sm btn-outline" style="border-color:#6366f1;color:#6366f1">← Prev</button>
+            <button id="skp-card-swipe-next" class="btn btn-sm btn-outline" style="border-color:#6366f1;color:#6366f1">Next →</button>
           </div>
           <p class="text-xs text-mid-gray text-center mt-4">Swiper.js cards effect — drag to swipe, click arrows to navigate.</p>
         </div>
@@ -1658,8 +1658,8 @@ npx shadcn@latest add https://dotmatrix.zzzzshawn.cloud/r/registry.json
             <div class="swiper-pagination" style="position:relative;margin-top:1.5rem"></div>
           </div>
           <div style="display:flex;justify-content:center;gap:1rem;margin-top:1rem">
-            <button class="skp-carousel-perspective__arrow skp-carousel-perspective__arrow--prev" style="position:relative;top:auto;left:auto;transform:none;display:inline-flex">‹ Prev</button>
-            <button class="skp-carousel-perspective__arrow skp-carousel-perspective__arrow--next" style="position:relative;top:auto;right:auto;transform:none;display:inline-flex">Next ›</button>
+            <button id="skp-perspective-prev" class="skp-carousel-perspective__arrow skp-carousel-perspective__arrow--prev" style="position:relative;top:auto;left:auto;transform:none;display:inline-flex">‹ Prev</button>
+            <button id="skp-perspective-next" class="skp-carousel-perspective__arrow skp-carousel-perspective__arrow--next" style="position:relative;top:auto;right:auto;transform:none;display:inline-flex">Next ›</button>
           </div>
           <p class="text-xs text-mid-gray text-center mt-4">Swiper.js coverflow — drag/swipe, autoplay every 3s, click arrows or dots.</p>
         </div>
