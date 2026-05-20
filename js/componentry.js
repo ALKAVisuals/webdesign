@@ -1,9 +1,8 @@
 /* ═══════════════════════════════════════════════════════════════
    CLOSING PLASMA — Canvas 2D Atmospheric Background
    ═══════════════════════════════════════════════════════════════
-   Adapted from the WebGL GLSL shader (closing-plasma.tsx).
-   Uses Canvas 2D + requestAnimationFrame for a plasma-like effect
-   with FBM noise, mouse interaction, grain, sparkle, and vignette.
+   Optimized plasma effect using scaled canvas + ImageData.
+   Designed for real-time 30fps performance in the browser.
    ═══════════════════════════════════════════════════════════════ */
 
 (function() {
@@ -13,20 +12,22 @@
   const container = document.getElementById('crp-demo');
   if (!canvas || !container) return;
 
-  const ctx = canvas.getContext('2d');
+  const ctx = canvas.getContext('2d', { alpha: true });
   if (!ctx) return;
 
   // ── State ──
-  let width = 0, height = 0;
-  let dpr = 1;
+  let displayW = 0, displayH = 0;
+  let renderW = 0, renderH = 0; // lower-res render target
+  let scale = 4; // render at 1/4 resolution
   let mouseX = 0.5, mouseY = 0.5;
   let targetMouseX = 0.5, targetMouseY = 0.5;
   let time = 0;
   let isDark = 1;
   let animFrame = 0;
-  let lastFrameTime = 0;
+  let lastTime = 0;
+  let imageData = null;
+  let pixels = null;
 
-  // Settings
   const settings = {
     speed: 1,
     turbulence: 1,
@@ -37,105 +38,70 @@
     opacity: 1,
   };
 
-  // Color palettes
+  // Color palettes [r, g, b] 0-255
   const palettes = {
-    default: { darkA: [13,13,20], darkB: [31,37,64], darkC: [74,97,145], lightA: [240,242,247], lightB: [215,220,235], lightC: [188,197,224] },
-    neon:    { darkA: [5,7,8],     darkB: [20,57,41],  darkC: [114,255,136], lightA: [240,242,247], lightB: [215,220,235], lightC: [188,197,224] },
-    sunset:  { darkA: [26,10,46],  darkB: [60,20,30],  darkC: [255,107,107],  lightA: [255,240,230], lightB: [255,200,180], lightC: [255,170,150] },
-    ocean:   { darkA: [10,22,40],  darkB: [20,50,80],  darkC: [79,172,254],   lightA: [230,240,255], lightB: [200,220,250], lightC: [170,200,240] },
-    gold:    { darkA: [26,10,10],  darkB: [60,40,10],  darkC: [201,168,76],   lightA: [255,248,230], lightB: [240,220,180], lightC: [220,200,150] },
-    purple:  { darkA: [45,27,105], darkB: [80,30,120], darkC: [232,121,249],  lightA: [245,235,255], lightB: [220,200,250], lightC: [200,170,240] },
+    default: { A: [13,13,20], B: [31,37,64], C: [74,97,145] },
+    neon:    { A: [5,7,8],    B: [20,57,41],  C: [114,255,136] },
+    sunset:  { A: [26,10,46], B: [60,20,30],  C: [255,107,107] },
+  ocean:   { A: [10,22,40], B: [20,50,80],  C: [79,172,254] },
+    gold:    { A: [26,10,10], B: [60,40,10],  C: [201,168,76] },
+    purple:  { A: [45,27,105],B: [80,30,120], C: [232,121,240] },
   };
 
   let currentPalette = 'default';
 
-  // ── Simplex-like noise (fast hash-based) ──
-  const PERM_SIZE = 256;
-  const perm = new Uint8Array(PERM_SIZE * 2);
-  const gradP = new Array(PERM_SIZE);
-
-  function seedNoise(seed) {
-    const p = new Uint8Array(PERM_SIZE);
-    for (let i = 0; i < PERM_SIZE; i++) p[i] = i;
-    // Fisher-Yates with seed
-    let s = seed;
-    for (let i = PERM_SIZE - 1; i > 0; i--) {
-      s = (s * 16807 + 0) % 2147483647;
-      const j = s % (i + 1);
-      [p[i], p[j]] = [p[j], p[i]];
-    }
-    for (let i = 0; i < PERM_SIZE; i++) {
-      perm[i] = perm[i + PERM_SIZE] = p[i];
-      gradP[i] = {
-        x: Math.cos(p[i] / PERM_SIZE * Math.PI * 2),
-        y: Math.sin(p[i] / PERM_SIZE * Math.PI * 2),
-      };
-    }
-  }
-  seedNoise(42);
-
-  function fade(t) { return t * t * t * (t * (t * 6 - 15) + 10); }
-  function lerp(a, b, t) { return a + t * (b - a); }
-
-  function grad2d(hash, x, y) {
-    const g = gradP[hash & 255];
-    return g.x * x + g.y * y;
+  // ── Fast noise (hash-based, no allocation) ──
+  function hash(x, y) {
+    let h = x * 374761393 + y * 668265263;
+    h = (h ^ (h >> 13)) * 1274126177;
+    h = h ^ (h >> 16);
+    return (h & 0x7fffffff) / 0x7fffffff;
   }
 
-  function noise2D(x, y) {
-    const X = Math.floor(x) & 255;
-    const Y = Math.floor(y) & 255;
-    const xf = x - Math.floor(x);
-    const yf = y - Math.floor(y);
-    const u = fade(xf);
-    const v = fade(yf);
-    const aa = perm[perm[X] + Y];
-    const ab = perm[perm[X] + Y + 1];
-    const ba = perm[perm[X + 1] + Y];
-    const bb = perm[perm[X + 1] + Y + 1];
-    return lerp(
-      lerp(grad2d(aa, xf, yf), grad2d(ba, xf - 1, yf), u),
-      lerp(grad2d(ab, xf, yf - 1), grad2d(bb, xf - 1, yf - 1), u),
-      v
-    );
+  function smoothNoise(x, y) {
+    const ix = Math.floor(x), iy = Math.floor(y);
+    const fx = x - ix, fy = y - iy;
+    const sx = fx * fx * (3 - 2 * fx);
+    const sy = fy * fy * (3 - 2 * fy);
+    const n00 = hash(ix, iy);
+    const n10 = hash(ix + 1, iy);
+    const n01 = hash(ix, iy + 1);
+    const n11 = hash(ix + 1, iy + 1);
+    return n00 * (1-sx)*(1-sy) + n10 * sx*(1-sy) + n01 * (1-sx)*sy + n11 * sx*sy;
   }
 
   function fbm(x, y, turb) {
-    let total = 0, amp = 0.5, freq = 1;
-    const rotAngle = 0.45;
-    const cosR = Math.cos(rotAngle), sinR = Math.sin(rotAngle);
-    for (let i = 0; i < 5; i++) {
-      total += noise2D(x * freq, y * freq) * amp;
-      const rx = x * cosR - y * sinR;
-      const ry = x * sinR + y * cosR;
-      x = rx; y = ry;
-      freq *= lerp(1.85, 2.35, Math.min(turb, 2) * 0.5);
+    let v = 0, amp = 0.5, freq = 1;
+    for (let i = 0; i < 4; i++) {
+      v += smoothNoise(x * freq, y * freq) * amp;
+      freq *= 2.0 + turb * 0.15;
       amp *= 0.5;
     }
-    return total;
+    return v;
   }
 
   // ── Resize ──
   function resize() {
-    dpr = Math.min(window.devicePixelRatio || 1, 1.75);
     const rect = container.getBoundingClientRect();
-    width = Math.max(1, Math.floor(rect.width * dpr));
-    height = Math.max(1, Math.floor(rect.height * dpr));
-    canvas.width = width;
-    canvas.height = height;
-    canvas.style.width = rect.width + 'px';
-    canvas.style.height = rect.height + 'px';
+    displayW = rect.width;
+    displayH = rect.height;
+    // Render at reduced resolution
+    renderW = Math.max(1, Math.ceil(displayW / scale));
+    renderH = Math.max(1, Math.ceil(displayH / scale));
+    canvas.width = displayW;
+    canvas.height = displayH;
+    imageData = ctx.createImageData(renderW, renderH);
+    pixels = imageData.data;
   }
 
   resize();
-  const resizeObserver = new ResizeObserver(function() { resize(); });
-  resizeObserver.observe(container);
+  window.addEventListener('resize', resize);
 
   // ── Mouse ──
   container.addEventListener('pointermove', function(e) {
     const rect = container.getBoundingClientRect();
     targetMouseX = (e.clientX - rect.left) / rect.width;
-    targetMouseY = 1 - (e.clientY - rect.top) / rect.height;
+    targetMouseY = 1.0 - (e.clientY - rect.top) / rect.height;
   });
   container.addEventListener('pointerleave', function() {
     targetMouseX = 0.5;
@@ -144,136 +110,140 @@
 
   // ── Render ──
   function render(now) {
-    const delta = lastFrameTime ? (now - lastFrameTime) / 1000 : 0.016;
-    lastFrameTime = now;
-    time += delta * settings.speed;
+    const dt = lastTime ? Math.min((now - lastTime) / 1000, 0.05) : 0.016;
+    lastTime = now;
+    time += dt * settings.speed;
 
     // Smooth mouse
-    mouseX += (targetMouseX - mouseX) * 0.05;
-    mouseY += (targetMouseY - mouseY) * 0.05;
+    mouseX += (targetMouseX - mouseX) * 0.08;
+    mouseY += (targetMouseY - mouseY) * 0.08;
 
     const pal = palettes[currentPalette] || palettes.default;
-    const darkA = pal.darkA, darkB = pal.darkB, darkC = pal.darkC;
-    const lightA = pal.lightA, lightB = pal.lightB, lightC = pal.lightC;
-
-    const aspect = width / Math.max(height, 1);
-    const invW = 1 / width;
-    const invH = 1 / height;
-
-    const imageData = ctx.createImageData(width, height);
-    const data = imageData.data;
-
-    const t = time * 0.15;
+    const cA = pal.A, cB = pal.B, cC = pal.C;
+    const t = time * 0.12;
     const turb = settings.turbulence;
-    const mouseInf = settings.mouseInfluence;
-    const grainAmt = settings.grain;
-    const sparkleAmt = settings.sparkle;
-    const vignetteAmt = settings.vignette;
-    const alpha = settings.opacity;
+    const mInf = settings.mouseInfluence;
+    const aspect = renderW / renderH;
 
-    // Mouse in aspect-corrected space
+    // Mouse in normalized space
     const mx = (mouseX - 0.5) * aspect;
     const my = (mouseY - 0.5);
 
-    // Render at reduced resolution for performance, then scale
-    const step = dpr > 1 ? 2 : 1;
+    const invRW = 1 / renderW;
+    const invRH = 1 / renderH;
 
-    for (let y = 0; y < height; y += step) {
-      for (let x = 0; x < width; x += step) {
-        const uvx = x * invW;
-        const uvy = y * invH;
+    for (let py = 0; py < renderH; py++) {
+      for (let px = 0; px < renderW; px++) {
+        let ux = px * invRW;
+        let uy = py * invRH;
 
         // Aspect-corrected position
-        let px = (uvx - 0.5) * aspect;
-        let py = (uvy - 0.5);
+        let x = (ux - 0.5) * aspect;
+        let y = (uy - 0.5);
 
         // Mouse influence
-        const dx = px - mx;
-        const dy = py - my;
+        const dx = x - mx;
+        const dy = y - my;
         const dMouse = Math.sqrt(dx * dx + dy * dy);
-        px += (mx - px) * 0.02 * mouseInf * Math.max(0, 1 - dMouse / 0.45);
-        py += (my - py) * 0.02 * mouseInf * Math.max(0, 1 - dMouse / 0.45);
+        const mouseStrength = Math.max(0, 1 - dMouse / 0.5) * 0.025 * mInf;
+        x += (mx - x) * mouseStrength;
+        y += (my - y) * mouseStrength;
 
         // Flow field
-        const flowX = fbm(px + t * 0.2, px + t * 0.1, turb);
-        const flowY = fbm(px - t * 0.1, px + t * 0.3, turb);
+        const flowX = fbm(x + t * 0.15, y + t * 0.08, turb) - 0.5;
+        const flowY = fbm(x - t * 0.08, y + t * 0.2, turb) - 0.5;
 
-        // Noise
-        let n = fbm(px * 2 + flowX * 1.45, py * 2 + flowY * 1.45, turb);
+        // Main noise
+        let n = fbm(x * 1.8 + flowX * 1.2, y * 1.8 + flowY * 1.2, turb);
+        n = n * 0.5 + 0.5; // normalize to 0-1
 
         // Ridges
-        const ridgeNoise = noise2D(px * 4 + n, py * 4 + n);
-        let ridges = 1 - Math.abs(ridgeNoise * 2);
-        ridges = ridges * ridges * ridges;
+        const ridgeVal = smoothNoise(x * 3.5 + n * 2, y * 3.5 + n * 2);
+        const ridges = Math.pow(1 - Math.abs(ridgeVal * 2 - 1), 2.5);
 
         // Color mixing
-        const colorA = isDark ? darkA : lightA;
-        const colorB = isDark ? darkB : lightB;
-        const colorC = isDark ? darkC : lightC;
+        const blend1 = Math.max(0, Math.min(1, n));
+        const blend2 = Math.max(0, Math.min(1, n * 0.6 + ridges * 0.4));
 
-        const t1 = Math.max(0, Math.min(1, n * 0.5 + 0.5));
-        const t2 = Math.max(0, Math.min(1, n * 0.52 + ridges * 0.48));
+        let r = cA[0] + (cB[0] - cA[0]) * blend1;
+        let g = cA[1] + (cB[1] - cA[1]) * blend1;
+        let b = cA[2] + (cB[2] - cA[2]) * blend1;
 
-        let r = colorA[0] + (colorB[0] - colorA[0]) * t1;
-        let g = colorA[1] + (colorB[1] - colorA[1]) * t1;
-        let b = colorA[2] + (colorB[2] - colorA[2]) * t1;
-
-        r = r + (colorC[0] - r) * t2;
-        g = g + (colorC[1] - g) * t2;
-        b = b + (colorC[2] - b) * t2;
+        r = r + (cC[0] - r) * blend2;
+        g = g + (cC[1] - g) * blend2;
+        b = b + (cC[2] - b) * blend2;
 
         // Sparkle
-        if (sparkleAmt > 0) {
-          const sparkleNoise = Math.pow(Math.max(0, noise2D(x * 0.2 + t * 2, y * 0.2 + t * 2)), 18) * 0.5 * sparkleAmt;
-          const sr = isDark ? 0.8 : 0.56;
-          const sg = isDark ? 0.9 : 0.58;
-          const sb = isDark ? 1.0 : 0.72;
-          r += sr * sparkleNoise * 255;
-          g += sg * sparkleNoise * 255;
-          b += sb * sparkleNoise * 255;
+        if (settings.sparkle > 0) {
+          const sp = Math.pow(Math.max(0, smoothNoise(px * 0.15 + t * 3, py * 0.15 + t * 2.5)), 12) * settings.sparkle;
+          const spBright = isDark ? 220 : 180;
+          r += sp * spBright;
+          g += sp * spBright;
+          b += sp * (isDark ? 255 : 200);
         }
 
         // Vignette
-        const dist = Math.sqrt(px * px + py * py);
-        if (isDark && vignetteAmt > 0) {
-          const vig = 1 - Math.max(0, Math.min(1, (dist - 0.5) / (1.8 - 0.25 * isDark)));
-          r *= (1 - vig * vignetteAmt);
-          g *= (1 - vig * vignetteAmt);
-          b *= (1 - vig * vignetteAmt);
-        } else if (!isDark && vignetteAmt > 0) {
-          const vig = 1 - Math.max(0, Math.min(1, (dist - 0.4) / 1.05));
-          r = 255 + (r - 255) * vig;
-          g = 255 + (g - 255) * vig;
-          b = 255 + (b - 255) * vig;
+        const dist = Math.sqrt(x * x + y * y);
+        if (isDark) {
+          const vig = 1 - Math.max(0, Math.min(1, (dist - 0.4) / 1.2)) * settings.vignette;
+          r *= vig; g *= vig; b *= vig;
+        } else {
+          const vig = 1 - Math.max(0, Math.min(1, (dist - 0.3) / 0.9)) * settings.vignette * 0.5;
+          r = 255 - (255 - r) * vig;
+          g = 255 - (255 - g) * vig;
+          b = 255 - (255 - b) * vig;
         }
 
         // Grain
-        if (grainAmt > 0) {
-          const grainVal = (Math.sin((x + y * 127 + t * 50) * 0.012345) * 0.5 + 0.5 - 0.5) * 0.06 * grainAmt * 255;
-          r += grainVal;
-          g += grainVal;
-          b += grainVal;
+        if (settings.grain > 0) {
+          const grain = (hash(px + time * 100, py) - 0.5) * 15 * settings.grain;
+          r += grain; g += grain; b += grain;
+        }
+
+        // Light mode: blend towards white
+        if (!isDark) {
+          r = r * 0.3 + 240 * 0.7;
+          g = g * 0.3 + 242 * 0.7;
+          b = b * 0.3 + 247 * 0.7;
         }
 
         // Clamp
-        r = Math.max(0, Math.min(255, r));
-        g = Math.max(0, Math.min(255, g));
-        b = Math.max(0, Math.min(255, b));
+        r = r < 0 ? 0 : r > 255 ? 255 : r;
+        g = g < 0 ? 0 : g > 255 ? 255 : g;
+        b = b < 0 ? 0 : b > 255 ? 255 : b;
 
-        // Write pixels (fill step x step block)
-        for (let sy = 0; sy < step && y + sy < height; sy++) {
-          for (let sx = 0; sx < step && x + sx < width; sx++) {
-            const idx = ((y + sy) * width + (x + sx)) * 4;
-            data[idx] = r;
-            data[idx + 1] = g;
-            data[idx + 2] = b;
-            data[idx + 3] = alpha * 255;
-          }
-        }
+        const idx = (py * renderW + px) * 4;
+        pixels[idx] = r;
+        pixels[idx + 1] = g;
+        pixels[idx + 2] = b;
+        pixels[idx + 3] = settings.opacity * 255;
       }
     }
 
-    ctx.putImageData(imageData, 0, 0);
+    // Draw scaled-up image
+    // Use OffscreenCanvas if available, otherwise draw directly
+    if (typeof OffscreenCanvas !== 'undefined') {
+      try {
+        const offscreen = new OffscreenCanvas(renderW, renderH);
+        const offCtx = offscreen.getContext('2d');
+        offCtx.putImageData(imageData, 0, 0);
+        ctx.imageSmoothingEnabled = true;
+        ctx.imageSmoothingQuality = 'medium';
+        ctx.drawImage(offscreen, 0, 0, displayW, displayH);
+      } catch(e) {
+        // Fallback: put at native size (will be small but visible)
+        ctx.putImageData(imageData, 0, 0);
+      }
+    } else {
+      // Fallback: create temp canvas
+      const tmpCanvas = document.createElement('canvas');
+      tmpCanvas.width = renderW;
+      tmpCanvas.height = renderH;
+      tmpCanvas.getContext('2d').putImageData(imageData, 0, 0);
+      ctx.imageSmoothingEnabled = true;
+      ctx.drawImage(tmpCanvas, 0, 0, displayW, displayH);
+    }
+
     animFrame = requestAnimationFrame(render);
   }
 
@@ -282,7 +252,7 @@
   // ── Controls ──
   function bindSlider(id, key) {
     const el = document.getElementById(id);
-    const valEl = document.getElementById(id.replace('crp-', 'crp-val-'));
+    const valEl = document.getElementById('crp-val-' + id.replace('crp-', ''));
     if (!el) return;
     el.addEventListener('input', function() {
       settings[key] = parseFloat(this.value);
@@ -312,13 +282,12 @@
     if (btn) btn.classList.add('active');
   }
 
-  const themeDark = document.getElementById('crp-theme-dark');
-  const themeLight = document.getElementById('crp-theme-light');
-  const themeNeon = document.getElementById('crp-theme-neon');
-
-  if (themeDark) themeDark.addEventListener('click', function() { setTheme('dark'); });
-  if (themeLight) themeLight.addEventListener('click', function() { setTheme('light'); });
-  if (themeNeon) themeNeon.addEventListener('click', function() { setTheme('neon'); });
+  const td = document.getElementById('crp-theme-dark');
+  const tl = document.getElementById('crp-theme-light');
+  const tn = document.getElementById('crp-theme-neon');
+  if (td) td.addEventListener('click', function() { setTheme('dark'); });
+  if (tl) tl.addEventListener('click', function() { setTheme('light'); });
+  if (tn) tn.addEventListener('click', function() { setTheme('neon'); });
 
   // Color presets
   document.querySelectorAll('.crp-color-swatch .swatch').forEach(function(swatch) {
@@ -334,12 +303,12 @@
     });
   });
 
-  // Cleanup
+  // Cleanup on visibility change
   document.addEventListener('visibilitychange', function() {
     if (document.hidden) {
       cancelAnimationFrame(animFrame);
     } else {
-      lastFrameTime = 0;
+      lastTime = 0;
       animFrame = requestAnimationFrame(render);
     }
   });
