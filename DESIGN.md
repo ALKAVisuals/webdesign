@@ -177,3 +177,10 @@ The live style guide at `index.html` has these sections:
 - **Reduced motion:** Full `prefers-reduced-motion` support
 - **Install full lib:** `npx shadcn@latest add https://dotmatrix.zzzzshawn.cloud/r/registry.json`
 - **Usage:** See style guide Matrix section for live demos and code
+
+## Development Checklist
+- **Source:** https://github.com/ALKAVisuals/alka-group-agentic-engineering/tree/main/development
+- **Purpose:** Checklist voor development-taken (niet voor dagelijkse werkzaamheden)
+- **5 fasen:** Before You Start → Code Structure Cleanup → Grep Loop Review → Security Checklist → Launch
+- **Skills:** agentic-engineering-workflow, code-structure-cleanup, grep-loop-review-workflow, source-code-context
+- **Usage:** See style guide Development section voor volledige checklist met gates en valkuilen
