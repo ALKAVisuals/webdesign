@@ -65,6 +65,8 @@
       .sidebar { transform: translateX(-100%); transition: transform 0.3s; }
       .sidebar.open { transform: translateX(0); }
       .main-content { margin-left: 0; }
+      .sidebar-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 40; opacity: 0; transition: opacity 0.3s; }
+      .sidebar-overlay.active { display: block; opacity: 1; }
     }
     .color-swatch { transition: transform 0.15s, box-shadow 0.15s; cursor: pointer; }
     .color-swatch:hover { transform: scale(1.04); box-shadow: 0 4px 20px rgba(0,0,0,0.4); }
@@ -81,9 +83,12 @@
 
   <!-- SIDEBAR -->
   <aside class="sidebar bg-charcoal border-r border-dark-gray p-6">
-    <div class="mb-10">
-      <h1 class="font-display text-3xl tracking-wider text-white">LEGEND STORIES</h1>
-      <p class="text-xs text-mid-gray mt-1 tracking-widest uppercase">Style Guide v1.0</p>
+    <div class="mb-10 flex items-center justify-between">
+      <div>
+        <h1 class="font-display text-3xl tracking-wider text-white">LEGEND STORIES</h1>
+        <p class="text-xs text-mid-gray mt-1 tracking-widest uppercase">Style Guide v1.0</p>
+      </div>
+      <button id="sidebar-close" class="lg:hidden text-white text-2xl leading-none p-1 hover:text-gold transition-colors" aria-label="Close menu">✕</button>
     </div>
 
     <nav class="space-y-1">
@@ -140,6 +145,9 @@
       </a>
     </div>
   </aside>
+
+  <!-- SIDEBAR OVERLAY (mobile) -->
+  <div id="sidebar-overlay" class="sidebar-overlay" onclick="document.querySelector('.sidebar').classList.remove('open'); this.classList.remove('active');"></div>
 
   <!-- MAIN CONTENT -->
   <main class="main-content">
@@ -2051,8 +2059,43 @@ npx shadcn@latest add https://dotmatrix.zzzzshawn.cloud/r/registry.json
     }
 
     // === MOBILE MENU ===
-    document.getElementById('menu-toggle')?.addEventListener('click', () => {
-      document.querySelector('.sidebar').classList.toggle('open');
+    const sidebar = document.querySelector('.sidebar');
+    const menuToggle = document.getElementById('menu-toggle');
+
+    // Toggle menu open/close
+    menuToggle?.addEventListener('click', () => {
+      sidebar.classList.toggle('open');
+      document.getElementById('sidebar-overlay')?.classList.toggle('active');
+    });
+
+    // Close sidebar when clicking a nav link (mobile)
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        if (window.innerWidth <= 1024) {
+          sidebar.classList.remove('open');
+          document.getElementById('sidebar-overlay')?.classList.remove('active');
+        }
+      });
+    });
+
+    // Close sidebar when clicking overlay
+    document.getElementById('sidebar-overlay')?.addEventListener('click', () => {
+      sidebar.classList.remove('open');
+      document.getElementById('sidebar-overlay')?.classList.remove('active');
+    });
+
+    // Close sidebar on Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && sidebar.classList.contains('open')) {
+        sidebar.classList.remove('open');
+        document.getElementById('sidebar-overlay')?.classList.remove('active');
+      }
+    });
+
+    // Close sidebar button (mobile)
+    document.getElementById('sidebar-close')?.addEventListener('click', () => {
+      sidebar.classList.remove('open');
+      document.getElementById('sidebar-overlay')?.classList.remove('active');
     });
 
     // === DRAG & DROP ===
