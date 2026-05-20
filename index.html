@@ -51,6 +51,7 @@
   <link rel="stylesheet" href="css/matrix.css">
   <link rel="stylesheet" href="css/axis.css">
   <link rel="stylesheet" href="css/skipper.css">
+  <link rel="stylesheet" href="css/componentry.css">
 
   <!-- Swiper.js CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
@@ -121,6 +122,9 @@
       </a>
       <a href="#skipper" class="nav-link" data-section="skipper">
         <span>⛵</span> Skiper UI
+      </a>
+      <a href="#componentry" class="nav-link" data-section="componentry">
+        <span>🔮</span> Componentry.fun
       </a>
     </nav>
 
@@ -1738,6 +1742,157 @@ npx shadcn@latest add https://dotmatrix.zzzzshawn.cloud/r/registry.json
         </div>
       </section>
 
+      <!-- ==================== COMPONENTRY.FUN ==================== -->
+      <section id="componentry" class="section fade-in" style="display:none">
+        <div class="section-header">
+          <h3 class="section-title">Componentry.fun</h3>
+          <p class="section-subtitle">Premium WebGL shader components — plasma backgrounds, noise fields, atmospheric effects. Source: <a href="https://componentry.fun" target="_blank" class="text-gold hover:underline">componentry.fun ↗</a></p>
+        </div>
+
+        <!-- 1. Closing Plasma -->
+        <h4 class="font-heading text-xs font-bold tracking-widest uppercase text-gold mb-4">1. Closing Plasma — Atmospheric Background</h4>
+        <div class="card mb-6 overflow-hidden" style="background:#0a0a0a;border:none;padding:0">
+          <div class="crp-container" style="height:28rem" id="crp-demo">
+            <canvas id="crpCanvas" aria-hidden="true"></canvas>
+            <div class="crp-overlay">
+              <div class="text-center">
+                <div class="font-display text-5xl tracking-wider text-white mb-3" style="text-shadow:0 0 40px rgba(201,168,76,0.3)">LEGEND STORIES</div>
+                <p class="text-sm text-light-gray opacity-80">Move your mouse over the plasma · WebGL shader effect</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Controls -->
+        <div class="card mb-10" style="background:#0f0f0f;border-color:#1a1a1a">
+          <h4 class="font-heading text-xs font-bold tracking-widest uppercase text-gold mb-4">Live Controls</h4>
+          <div class="crp-controls mb-6">
+            <div class="crp-control">
+              <label>Speed <span class="crp-control-value" id="crp-val-speed">1.0</span></label>
+              <input type="range" id="crp-speed" min="0" max="3" step="0.1" value="1">
+            </div>
+            <div class="crp-control">
+              <label>Turbulence <span class="crp-control-value" id="crp-val-turbulence">1.0</span></label>
+              <input type="range" id="crp-turbulence" min="0" max="2" step="0.1" value="1">
+            </div>
+            <div class="crp-control">
+              <label>Mouse Influence <span class="crp-control-value" id="crp-val-mouse">1.0</span></label>
+              <input type="range" id="crp-mouse" min="0" max="3" step="0.1" value="1">
+            </div>
+            <div class="crp-control">
+              <label>Grain <span class="crp-control-value" id="crp-val-grain">1.0</span></label>
+              <input type="range" id="crp-grain" min="0" max="2" step="0.1" value="1">
+            </div>
+            <div class="crp-control">
+              <label>Sparkle <span class="crp-control-value" id="crp-val-sparkle">1.0</span></label>
+              <input type="range" id="crp-sparkle" min="0" max="2" step="0.1" value="1">
+            </div>
+            <div class="crp-control">
+              <label>Vignette <span class="crp-control-value" id="crp-val-vignette">1.0</span></label>
+              <input type="range" id="crp-vignette" min="0" max="2" step="0.1" value="1">
+            </div>
+            <div class="crp-control">
+              <label>Opacity <span class="crp-control-value" id="crp-val-opacity">1.0</span></label>
+              <input type="range" id="crp-opacity" min="0.1" max="1" step="0.05" value="1">
+            </div>
+          </div>
+
+          <!-- Theme toggle -->
+          <div class="mb-6">
+            <label class="font-heading text-xs font-bold tracking-widest uppercase text-mid-gray mb-3 block">Theme</label>
+            <div class="crp-theme-toggle">
+              <button class="crp-theme-btn active" id="crp-theme-dark">🌙 Dark</button>
+              <button class="crp-theme-btn" id="crp-theme-light">☀️ Light</button>
+              <button class="crp-theme-btn" id="crp-theme-neon">💚 Neon</button>
+            </div>
+          </div>
+
+          <!-- Color presets -->
+          <div>
+            <label class="font-heading text-xs font-bold tracking-widest uppercase text-mid-gray mb-3 block">Color Presets</label>
+            <div class="crp-colors">
+              <div class="crp-color-swatch">
+                <div class="swatch" style="background:linear-gradient(135deg,#0d0d14,#4a6191)" data-preset="default"></div>
+                <span class="label">Default</span>
+              </div>
+              <div class="crp-color-swatch">
+                <div class="swatch" style="background:linear-gradient(135deg,#050708,#72ff88)" data-preset="neon"></div>
+                <span class="label">Neon</span>
+              </div>
+              <div class="crp-color-swatch">
+                <div class="swatch" style="background:linear-gradient(135deg,#1a0a2e,#ff6b6b)" data-preset="sunset"></div>
+                <span class="label">Sunset</span>
+              </div>
+              <div class="crp-color-swatch">
+                <div class="swatch" style="background:linear-gradient(135deg,#0a1628,#4facfe)" data-preset="ocean"></div>
+                <span class="label">Ocean</span>
+              </div>
+              <div class="crp-color-swatch">
+                <div class="swatch" style="background:linear-gradient(135deg,#1a0a0a,#c9a84c)" data-preset="gold"></div>
+                <span class="label">Gold</span>
+              </div>
+              <div class="crp-color-swatch">
+                <div class="swatch" style="background:linear-gradient(135deg,#2d1b69,#e879f9)" data-preset="purple"></div>
+                <span class="label">Purple</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- API Reference -->
+        <h4 class="font-heading text-xs font-bold tracking-widest uppercase text-gold mb-4">API Reference</h4>
+        <div class="card mb-10 overflow-x-auto" style="background:#0f0f0f;border-color:#1a1a1a">
+          <table class="crp-api-table">
+            <thead>
+              <tr>
+                <th>Prop</th>
+                <th>Type</th>
+                <th>Default</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>speed</td><td>number</td><td>1</td><td>Animation speed multiplier</td></tr>
+              <tr><td>turbulence</td><td>number</td><td>1</td><td>Amount of layered FBM deformation</td></tr>
+              <tr><td>mouseInfluence</td><td>number</td><td>1</td><td>Strength of pointer distortion</td></tr>
+              <tr><td>grain</td><td>number</td><td>1</td><td>Procedural grain intensity</td></tr>
+              <tr><td>sparkle</td><td>number</td><td>1</td><td>Sparkle highlight intensity</td></tr>
+              <tr><td>vignette</td><td>number</td><td>1</td><td>Edge falloff intensity</td></tr>
+              <tr><td>opacity</td><td>number</td><td>1</td><td>Final alpha of the plasma output</td></tr>
+              <tr><td>interactive</td><td>boolean</td><td>true</td><td>Enables pointer interaction</td></tr>
+              <tr><td>darkColorA</td><td>string</td><td>#0d0d14</td><td>Dark palette base tone</td></tr>
+              <tr><td>darkColorB</td><td>string</td><td>#1f2540</td><td>Dark palette mid tone</td></tr>
+              <tr><td>darkColorC</td><td>string</td><td>#4a6191</td><td>Dark palette highlight</td></tr>
+              <tr><td>lightColorA</td><td>string</td><td>#f0f2f7</td><td>Light palette base tone</td></tr>
+              <tr><td>lightColorB</td><td>string</td><td>#d7dceb</td><td>Light palette mid tone</td></tr>
+              <tr><td>lightColorC</td><td>string</td><td>#bcc5e0</td><td>Light palette highlight</td></tr>
+              <tr><td>themeMode</td><td>string</td><td>auto</td><td>auto, light, or dark</td></tr>
+              <tr><td>children</td><td>ReactNode</td><td>—</td><td>Overlay content above plasma</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Usage -->
+        <div class="card">
+          <h4 class="font-heading text-xs font-bold tracking-widest uppercase text-gold mb-4">Usage</h4>
+          <pre class="font-mono text-xs text-light-gray bg-dark-gray p-4 rounded-lg overflow-x-auto"><code>import { ClosingPlasma } from "@/components/closing-plasma";
+
+&lt;ClosingPlasma
+  speed={1.5}
+  turbulence={1.35}
+  mouseInfluence={1.4}
+  grain={1.15}
+  sparkle={1.2}
+  vignette={1}
+  opacity={1}
+  interactive
+  darkColorA="#050708"
+  darkColorB="#143929"
+  darkColorC="#72ff88"
+/&gt;</code></pre>
+        </div>
+      </section>
+
   </main>
 
   <!-- TOAST -->
@@ -1928,6 +2083,9 @@ npx shadcn@latest add https://dotmatrix.zzzzshawn.cloud/r/registry.json
 
   <!-- Skiper UI Component Scripts -->
   <script src="js/skipper.js"></script>
+
+  <!-- Componentry.fun Scripts -->
+  <script src="js/componentry.js"></script>
 
 </body>
 </html>
