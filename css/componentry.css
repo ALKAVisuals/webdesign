@@ -211,3 +211,15 @@
 .crp-api-table tr:hover td {
   background: rgba(201, 168, 76, 0.03);
 }
+
+/* Noise field & gradient mesh */
+#crp-noise-field,
+#crp-gradient-mesh {
+  background: #0a0a0a;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+#crp-gradient-mesh {
+  transition: background 0.1s ease;
+}

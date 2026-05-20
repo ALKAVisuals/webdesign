@@ -1754,27 +1754,20 @@ npx shadcn@latest add https://dotmatrix.zzzzshawn.cloud/r/registry.json
       <section id="componentry" class="section fade-in" style="display:none">
         <div class="section-header">
           <h3 class="section-title">Componentry.fun</h3>
-          <p class="section-subtitle">Premium WebGL shader components — plasma backgrounds, noise fields, atmospheric effects. Source: <a href="https://componentry.fun" target="_blank" class="text-gold hover:underline">componentry.fun ↗</a></p>
+          <p class="section-subtitle">Premium WebGL shader components — plasma backgrounds, noise fields, mesh gradients. Source: <a href="https://componentry.fun" target="_blank" class="text-gold hover:underline">componentry.fun ↗</a></p>
         </div>
 
-        <!-- 1. Closing Plasma -->
+        <!-- ═══ 1. CLOSING PLASMA ═══ -->
         <h4 class="font-heading text-xs font-bold tracking-widest uppercase text-gold mb-4">1. Closing Plasma — Atmospheric Background</h4>
         <div class="card mb-6 overflow-hidden" style="background:#0a0a0a;border:none;padding:0">
-          <div class="crp-container" style="height:32rem" id="crp-demo">
-            <!-- Canvas injected by JS -->
+          <div class="crp-container" style="height:34rem" id="crp-demo">
             <div class="crp-overlay">
               <div class="text-center px-6">
-                <div class="font-display text-5xl md:text-6xl tracking-wider text-white mb-4" style="text-shadow:0 0 60px rgba(201,168,76,0.4), 0 0 120px rgba(201,168,76,0.15)">LEGEND STORIES</div>
-                <p class="text-sm text-light-gray opacity-70 max-w-md mx-auto">WebGL shader plasma — move your pointer to interact · click for ripple effect</p>
-                <div class="flex items-center justify-center gap-4 mt-6">
-                  <div class="flex items-center gap-2">
-                    <div class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></div>
-                    <span class="text-xs text-mid-gray">WebGL Active</span>
-                  </div>
-                  <div class="flex items-center gap-2">
-                    <div class="w-2 h-2 rounded-full bg-gold animate-pulse" style="animation-delay:0.5s"></div>
-                    <span class="text-xs text-mid-gray">60 FPS</span>
-                  </div>
+                <div class="font-display text-5xl md:text-7xl tracking-wider text-white mb-4" style="text-shadow:0 0 80px rgba(201,168,76,0.5),0 0 160px rgba(201,168,76,0.2)">LEGEND STORIES</div>
+                <p class="text-sm text-light-gray opacity-70 max-w-lg mx-auto">WebGL GLSL shader — 5-octave FBM noise, flow field, ridge noise, sparkle, film grain, vignette</p>
+                <div class="flex items-center justify-center gap-6 mt-6">
+                  <div class="flex items-center gap-2"><div class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></div><span class="text-xs text-mid-gray">WebGL Active</span></div>
+                  <div class="flex items-center gap-2"><div class="w-2 h-2 rounded-full bg-gold animate-pulse" style="animation-delay:0.5s"></div><span class="text-xs text-mid-gray" id="crp-fps">60 FPS</span></div>
                 </div>
               </div>
             </div>
@@ -1783,39 +1776,22 @@ npx shadcn@latest add https://dotmatrix.zzzzshawn.cloud/r/registry.json
 
         <!-- Controls -->
         <div class="card mb-10" style="background:#0f0f0f;border-color:#1a1a1a">
-          <h4 class="font-heading text-xs font-bold tracking-widest uppercase text-gold mb-4">Live Controls</h4>
-          <div class="crp-controls mb-6">
-            <div class="crp-control">
-              <label>Speed <span class="crp-control-value" id="crp-val-speed">1.00</span></label>
-              <input type="range" id="crp-speed" min="0" max="3" step="0.05" value="1">
-            </div>
-            <div class="crp-control">
-              <label>Turbulence <span class="crp-control-value" id="crp-val-turbulence">1.00</span></label>
-              <input type="range" id="crp-turbulence" min="0" max="2" step="0.05" value="1">
-            </div>
-            <div class="crp-control">
-              <label>Mouse Influence <span class="crp-control-value" id="crp-val-mouse">1.00</span></label>
-              <input type="range" id="crp-mouse" min="0" max="3" step="0.05" value="1">
-            </div>
-            <div class="crp-control">
-              <label>Grain <span class="crp-control-value" id="crp-val-grain">1.00</span></label>
-              <input type="range" id="crp-grain" min="0" max="2" step="0.05" value="1">
-            </div>
-            <div class="crp-control">
-              <label>Sparkle <span class="crp-control-value" id="crp-val-sparkle">1.00</span></label>
-              <input type="range" id="crp-sparkle" min="0" max="2" step="0.05" value="1">
-            </div>
-            <div class="crp-control">
-              <label>Vignette <span class="crp-control-value" id="crp-val-vignette">1.00</span></label>
-              <input type="range" id="crp-vignette" min="0" max="2" step="0.05" value="1">
-            </div>
-            <div class="crp-control">
-              <label>Opacity <span class="crp-control-value" id="crp-val-opacity">1.00</span></label>
-              <input type="range" id="crp-opacity" min="0.1" max="1" step="0.05" value="1">
+          <div class="flex items-center justify-between mb-4">
+            <h4 class="font-heading text-xs font-bold tracking-widest uppercase text-gold">Live Controls</h4>
+            <div class="flex gap-2">
+              <button id="crp-randomize" class="btn btn-sm btn-ghost text-xs">🎲 Randomize</button>
+              <button id="crp-pause" class="btn btn-sm btn-ghost text-xs">⏸ Pause</button>
             </div>
           </div>
-
-          <!-- Theme toggle -->
+          <div class="crp-controls mb-6">
+            <div class="crp-control"><label>Speed <span class="crp-control-value" id="crp-val-speed">1.00</span></label><input type="range" id="crp-speed" min="0" max="3" step="0.05" value="1"></div>
+            <div class="crp-control"><label>Turbulence <span class="crp-control-value" id="crp-val-turbulence">1.00</span></label><input type="range" id="crp-turbulence" min="0" max="2" step="0.05" value="1"></div>
+            <div class="crp-control"><label>Mouse Influence <span class="crp-control-value" id="crp-val-mouse">1.00</span></label><input type="range" id="crp-mouse" min="0" max="3" step="0.05" value="1"></div>
+            <div class="crp-control"><label>Grain <span class="crp-control-value" id="crp-val-grain">1.00</span></label><input type="range" id="crp-grain" min="0" max="2" step="0.05" value="1"></div>
+            <div class="crp-control"><label>Sparkle <span class="crp-control-value" id="crp-val-sparkle">1.00</span></label><input type="range" id="crp-sparkle" min="0" max="2" step="0.05" value="1"></div>
+            <div class="crp-control"><label>Vignette <span class="crp-control-value" id="crp-val-vignette">1.00</span></label><input type="range" id="crp-vignette" min="0" max="2" step="0.05" value="1"></div>
+            <div class="crp-control"><label>Opacity <span class="crp-control-value" id="crp-val-opacity">1.00</span></label><input type="range" id="crp-opacity" min="0.1" max="1" step="0.05" value="1"></div>
+          </div>
           <div class="mb-6">
             <label class="font-heading text-xs font-bold tracking-widest uppercase text-mid-gray mb-3 block">Theme Mode</label>
             <div class="crp-theme-toggle">
@@ -1824,76 +1800,61 @@ npx shadcn@latest add https://dotmatrix.zzzzshawn.cloud/r/registry.json
               <button class="crp-theme-btn" id="crp-theme-neon">💚 Neon</button>
             </div>
           </div>
-
-          <!-- Color presets -->
           <div>
             <label class="font-heading text-xs font-bold tracking-widest uppercase text-mid-gray mb-3 block">Color Palettes</label>
             <div class="crp-colors">
-              <div class="crp-color-swatch">
-                <div class="swatch" style="background:linear-gradient(135deg,#0d0d14,#4a6191)" data-preset="default"></div>
-                <span class="label">Default</span>
-              </div>
-              <div class="crp-color-swatch">
-                <div class="swatch" style="background:linear-gradient(135deg,#050708,#72ff88)" data-preset="neon"></div>
-                <span class="label">Neon</span>
-              </div>
-              <div class="crp-color-swatch">
-                <div class="swatch" style="background:linear-gradient(135deg,#1a0a2e,#ff6b6b)" data-preset="sunset"></div>
-                <span class="label">Sunset</span>
-              </div>
-              <div class="crp-color-swatch">
-                <div class="swatch" style="background:linear-gradient(135deg,#0a1628,#4facfe)" data-preset="ocean"></div>
-                <span class="label">Ocean</span>
-              </div>
-              <div class="crp-color-swatch">
-                <div class="swatch" style="background:linear-gradient(135deg,#1a0a0a,#c9a84c)" data-preset="gold"></div>
-                <span class="label">Gold</span>
-              </div>
-              <div class="crp-color-swatch">
-                <div class="swatch" style="background:linear-gradient(135deg,#2d1b69,#e879f9)" data-preset="purple"></div>
-                <span class="label">Purple</span>
-              </div>
-              <div class="crp-color-swatch">
-                <div class="swatch" style="background:linear-gradient(135deg,#000000,#ff4500)" data-preset="inferno"></div>
-                <span class="label">Inferno</span>
-              </div>
-              <div class="crp-color-swatch">
-                <div class="swatch" style="background:linear-gradient(135deg,#0a1a1a,#00ff88)" data-preset="aurora"></div>
-                <span class="label">Aurora</span>
-              </div>
+              <div class="crp-color-swatch"><div class="swatch" style="background:linear-gradient(135deg,#0d0d14,#4a6191)" data-preset="default"></div><span class="label">Default</span></div>
+              <div class="crp-color-swatch"><div class="swatch" style="background:linear-gradient(135deg,#050708,#72ff88)" data-preset="neon"></div><span class="label">Neon</span></div>
+              <div class="crp-color-swatch"><div class="swatch" style="background:linear-gradient(135deg,#1a0a2e,#ff6b6b)" data-preset="sunset"></div><span class="label">Sunset</span></div>
+              <div class="crp-color-swatch"><div class="swatch" style="background:linear-gradient(135deg,#0a1628,#4facfe)" data-preset="ocean"></div><span class="label">Ocean</span></div>
+              <div class="crp-color-swatch"><div class="swatch" style="background:linear-gradient(135deg,#1a0a0a,#c9a84c)" data-preset="gold"></div><span class="label">Gold</span></div>
+              <div class="crp-color-swatch"><div class="swatch" style="background:linear-gradient(135deg,#2d1b69,#e879f9)" data-preset="purple"></div><span class="label">Purple</span></div>
+              <div class="crp-color-swatch"><div class="swatch" style="background:linear-gradient(135deg,#000000,#ff4500)" data-preset="inferno"></div><span class="label">Inferno</span></div>
+              <div class="crp-color-swatch"><div class="swatch" style="background:linear-gradient(135deg,#0a1a1a,#00ff88)" data-preset="aurora"></div><span class="label">Aurora</span></div>
+              <div class="crp-color-swatch"><div class="swatch" style="background:linear-gradient(135deg,#0a0a1a,#8b5cf6)" data-preset="cosmic"></div><span class="label">Cosmic</span></div>
+              <div class="crp-color-swatch"><div class="swatch" style="background:linear-gradient(135deg,#1a0a00,#f59e0b)" data-preset="ember"></div><span class="label">Ember</span></div>
             </div>
           </div>
         </div>
 
-        <!-- Shader Info -->
+        <!-- Shader Details -->
         <div class="card mb-10" style="background:#0f0f0f;border-color:#1a1a1a">
-          <h4 class="font-heading text-xs font-bold tracking-widest uppercase text-gold mb-4">Shader Details</h4>
+          <h4 class="font-heading text-xs font-bold tracking-widest uppercase text-gold mb-4">Shader Pipeline</h4>
           <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div class="p-4 rounded-lg" style="background:#1a1a1a">
-              <div class="text-gold font-mono text-xs mb-1">FBM Noise</div>
-              <div class="text-mid-gray text-xs">5-octave fractal Brownian motion with rotational domain warping for organic flow patterns</div>
-            </div>
-            <div class="p-4 rounded-lg" style="background:#1a1a1a">
-              <div class="text-gold font-mono text-xs mb-1">Flow Field</div>
-              <div class="text-mid-gray text-xs">Dual-layer noise-driven flow distortion creating directional plasma movement</div>
-            </div>
-            <div class="p-4 rounded-lg" style="background:#1a1a1a">
-              <div class="text-gold font-mono text-xs mb-1">Ridge Noise</div>
-              <div class="text-mid-gray text-xs">Absolute-value ridge function with cubic power for sharp atmospheric detail</div>
-            </div>
-            <div class="p-4 rounded-lg" style="background:#1a1a1a">
-              <div class="text-gold font-mono text-xs mb-1">Sparkle</div>
-              <div class="text-mid-gray text-xs">High-power noise threshold creating sparse bright highlights that shimmer over time</div>
-            </div>
-            <div class="p-4 rounded-lg" style="background:#1a1a1a">
-              <div class="text-gold font-mono text-xs mb-1">Film Grain</div>
-              <div class="text-mid-gray text-xs">Procedural sine-based grain with temporal offset for analog texture</div>
-            </div>
-            <div class="p-4 rounded-lg" style="background:#1a1a1a">
-              <div class="text-gold font-mono text-xs mb-1">Vignette</div>
-              <div class="text-mid-gray text-xs">Radial falloff with theme-aware intensity — stronger in dark mode for depth</div>
-            </div>
+            <div class="p-4 rounded-lg" style="background:#1a1a1a"><div class="text-gold font-mono text-xs mb-1">FBM Noise</div><div class="text-mid-gray text-xs">5-octave fractal Brownian motion with rotational domain warping for organic flow patterns</div></div>
+            <div class="p-4 rounded-lg" style="background:#1a1a1a"><div class="text-gold font-mono text-xs mb-1">Flow Field</div><div class="text-mid-gray text-xs">Dual-layer noise-driven flow distortion creating directional plasma movement</div></div>
+            <div class="p-4 rounded-lg" style="background:#1a1a1a"><div class="text-gold font-mono text-xs mb-1">Ridge Noise</div><div class="text-mid-gray text-xs">Absolute-value ridge function with cubic power for sharp atmospheric detail</div></div>
+            <div class="p-4 rounded-lg" style="background:#1a1a1a"><div class="text-gold font-mono text-xs mb-1">Sparkle</div><div class="text-mid-gray text-xs">High-power noise threshold (n^18) creating sparse bright highlights that shimmer</div></div>
+            <div class="p-4 rounded-lg" style="background:#1a1a1a"><div class="text-gold font-mono text-xs mb-1">Film Grain</div><div class="text-mid-gray text-xs">Procedural sine-based grain with temporal offset for analog texture</div></div>
+            <div class="p-4 rounded-lg" style="background:#1a1a1a"><div class="text-gold font-mono text-xs mb-1">Vignette</div><div class="text-mid-gray text-xs">Radial falloff with theme-aware intensity — stronger in dark mode for depth</div></div>
           </div>
+        </div>
+
+        <!-- ═══ 2. NOISE FIELD ═══ -->
+        <h4 class="font-heading text-xs font-bold tracking-widest uppercase text-gold mb-4">2. Noise Field — Pattern Generator</h4>
+        <div class="card mb-10 overflow-hidden" style="background:#0a0a0a;border:none;padding:0">
+          <div id="crp-noise-field" class="crp-container" style="height:20rem"></div>
+          <div class="p-4"><p class="text-xs text-mid-gray text-center">Multi-octave noise pattern — Canvas 2D hash-based noise with temporal animation</p></div>
+        </div>
+
+        <!-- ═══ 3. GRADIENT MESH ═══ -->
+        <h4 class="font-heading text-xs font-bold tracking-widest uppercase text-gold mb-4">3. Gradient Mesh — Mouse Parallax</h4>
+        <div class="card mb-10 overflow-hidden" style="background:#0a0a0a;border:none;padding:0">
+          <div id="crp-gradient-mesh" class="crp-container" style="height:20rem;cursor:crosshair">
+            <div class="crp-overlay"><div class="text-center"><div class="font-display text-3xl tracking-wider text-white mb-2" style="text-shadow:0 0 40px rgba(201,168,76,0.3)">MESH GRADIENT</div><p class="text-xs text-light-gray opacity-60">Move your mouse to shift the gradient blobs</p></div></div>
+          </div>
+        </div>
+
+        <!-- Installation -->
+        <h4 class="font-heading text-xs font-bold tracking-widest uppercase text-gold mb-4">Installation</h4>
+        <div class="card mb-10" style="background:#0f0f0f;border-color:#1a1a1a">
+          <div class="flex flex-wrap gap-2 mb-4">
+            <span class="badge badge-gold">npm</span>
+            <span class="badge badge-gray">pnpm</span>
+            <span class="badge badge-gray">yarn</span>
+            <span class="badge badge-gray">bun</span>
+          </div>
+          <pre class="font-mono text-xs text-light-gray bg-dark-gray p-4 rounded-lg overflow-x-auto"><code>npx shadcn@latest add @componentry/closing-plasma</code></pre>
         </div>
 
         <!-- API Reference -->
