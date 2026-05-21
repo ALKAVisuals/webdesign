@@ -1,10 +1,10 @@
 /* ============================================
-   SKIPPER UI — Component Styles
+   SKIPPER UI — Component Styles v3
    Source: https://gxuri.in / @gurvinder-singh02
    ============================================
    
    CSS-only adaptations of React/Framer Motion/GSAP components.
-   Original components use Next.js + TypeScript + Framer Motion + GSAP + Swiper.
+   Mobile-first with responsive breakpoints.
    
    Component list:
    1. HoverExpand_001 — Image gallery with hover expand
@@ -71,7 +71,8 @@
   pointer-events: none;
 }
 
-.skp-hover-expand__item:hover .skp-hover-expand__overlay {
+.skp-hover-expand__item:hover .skp-hover-expand__overlay,
+.skp-hover-expand__item--active .skp-hover-expand__overlay {
   opacity: 1;
 }
 
@@ -86,8 +87,33 @@
   pointer-events: none;
 }
 
-.skp-hover-expand__item:hover .skp-hover-expand__label {
+.skp-hover-expand__item:hover .skp-hover-expand__label,
+.skp-hover-expand__item--active .skp-hover-expand__label {
   opacity: 1 !important;
+}
+
+/* Mobile: vertical stack */
+@media (max-width: 768px) {
+  .skp-hover-expand {
+    flex-direction: column;
+    padding: 0 10px;
+    gap: 6px;
+  }
+  .skp-hover-expand__item--default {
+    width: 100% !important;
+    height: 4rem;
+  }
+  .skp-hover-expand__item--active {
+    width: 100% !important;
+    height: 14rem;
+  }
+  .skp-hover-expand__item:hover {
+    width: 100% !important;
+    height: 14rem;
+  }
+  .skp-hover-expand__item:hover ~ .skp-hover-expand__item {
+    width: 100% !important;
+  }
 }
 
 /* ═══════════════════════════════════════════
@@ -143,13 +169,41 @@
   z-index: 1;
 }
 
-/* Animated state (via JS or hover) */
+/* Hover fallback (no GSAP) */
 .skp-sticky-cards:hover .skp-sticky-cards__card--0 {
   transform: translateY(-10%) scale(0.7) rotate(5deg);
 }
 
 .skp-sticky-cards:hover .skp-sticky-cards__card--1 {
   transform: translateY(0%) scale(1) rotate(0deg);
+}
+
+/* Mobile: CSS-only stacked cards */
+.skp-sticky-cards--mobile .skp-sticky-cards__container {
+  height: auto;
+  max-width: 100%;
+  overflow: visible;
+}
+
+.skp-sticky-cards--mobile .skp-sticky-cards__card {
+  position: relative;
+  transform: none !important;
+  margin-bottom: 1rem;
+  height: 10rem;
+}
+
+@media (max-width: 768px) {
+  .skp-sticky-cards__container {
+    height: auto;
+    max-width: 100%;
+    overflow: visible;
+  }
+  .skp-sticky-cards__card {
+    position: relative;
+    transform: none !important;
+    margin-bottom: 1rem;
+    height: 10rem;
+  }
 }
 
 /* ═══════════════════════════════════════════
@@ -181,9 +235,43 @@
   filter: blur(0);
 }
 
+/* Mobile: no sticky, simple reveal */
+.skp-scroll-reveal--mobile {
+  position: relative;
+  top: auto;
+  height: 60vh;
+  margin-bottom: 2rem;
+}
+
+.skp-scroll-reveal--mobile .skp-scroll-reveal__img {
+  transform: scale(1) rotate(0deg);
+  opacity: 1;
+}
+
+@media (max-width: 768px) {
+  .skp-scroll-reveal {
+    position: relative;
+    top: auto;
+    height: 60vh;
+    margin-bottom: 2rem;
+  }
+  .skp-scroll-reveal__img {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
+}
+
 /* ═══════════════════════════════════════════
    4. CARD SWIPE CAROUSEL — Cards Effect
    ═══════════════════════════════════════════ */
+
+.skp-card-swipe-carousel {
+  position: relative;
+  width: 100%;
+  max-width: 24rem;
+  height: 24rem;
+  padding-bottom: 2rem;
+}
 
 .skp-carousel-cards {
   position: relative;
@@ -256,6 +344,13 @@
 
 .skp-carousel-cards__dot--active {
   background: #6366f1;
+}
+
+@media (max-width: 768px) {
+  .skp-card-swipe-carousel {
+    max-width: 100%;
+    height: 18rem;
+  }
 }
 
 /* ═══════════════════════════════════════════
@@ -429,6 +524,26 @@
   transition: width 0.1s linear;
 }
 
+/* Mobile: smaller carousel */
+@media (max-width: 768px) {
+  .skp-carousel-perspective {
+    max-width: 100%;
+    height: 18rem;
+    padding: 0 2rem;
+  }
+  .skp-carousel-perspective__slide {
+    width: 14rem;
+    height: 12rem;
+  }
+  .skp-carousel-perspective__arrow {
+    width: 2.5rem;
+    height: 2.5rem;
+    font-size: 1rem;
+  }
+  .skp-carousel-perspective__arrow--prev { left: 0.25rem; }
+  .skp-carousel-perspective__arrow--next { right: 0.25rem; }
+}
+
 /* ═══════════════════════════════════════════
    6. CROWD CANVAS — Canvas Animation
    ═══════════════════════════════════════════ */
@@ -489,6 +604,12 @@
   25% { transform: translateY(-4px) scaleX(0.95); }
   50% { transform: translateY(0) scaleX(1); }
   75% { transform: translateY(-2px) scaleX(0.98); }
+}
+
+@media (max-width: 768px) {
+  .skp-crowd-canvas {
+    height: 50vh;
+  }
 }
 
 /* ═══════════════════════════════════════════
@@ -553,6 +674,75 @@
   background: rgba(0,0,0,0.8);
 }
 
+/* Video controls */
+.skp-video-controls {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1.5rem;
+  background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.skp-video-play {
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 1.25rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  min-width: 44px;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.skp-video-seek {
+  flex: 1;
+  height: 4px;
+  background: rgba(255,255,255,0.2);
+  border-radius: 2px;
+  overflow: hidden;
+  cursor: pointer;
+  position: relative;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+}
+
+.skp-video-seek-fill {
+  height: 100%;
+  background: #c9a84c;
+  border-radius: 2px;
+  transition: width 0.1s linear;
+}
+
+.skp-video-time {
+  color: rgba(255,255,255,0.6);
+  font-size: 0.75rem;
+  font-family: monospace;
+  min-width: 80px;
+  text-align: center;
+}
+
+.skp-video-mute {
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 1.25rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  min-width: 44px;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 /* Swiper overrides for Skiper UI */
 .skp-card-swipe-carousel .swiper-slide {
   display: flex;
@@ -583,6 +773,22 @@
   border-color: #c9a84c;
   box-shadow: 0 0 10px rgba(201,168,76,0.4);
   transform: scale(1.2);
+}
+
+/* Mobile video modal */
+@media (max-width: 768px) {
+  .skp-video-modal > div {
+    width: 95% !important;
+    border-radius: 12px !important;
+  }
+  .skp-video-controls {
+    padding: 1rem;
+    gap: 0.5rem;
+  }
+  .skp-video-time {
+    font-size: 0.65rem;
+    min-width: 60px;
+  }
 }
 
 /* ═══════════════════════════════════════════
@@ -623,4 +829,29 @@
   width: 1px;
   height: 4rem;
   background: linear-gradient(to bottom, rgba(0,0,0,0.4), transparent);
+}
+
+/* ═══════════════════════════════════════════
+   ACCESSIBILITY — Focus styles
+   ═══════════════════════════════════════════ */
+
+.skp-hover-expand__item:focus-visible,
+.skp-carousel-perspective__arrow:focus-visible,
+.skp-video-modal__close:focus-visible,
+.skp-video-play:focus-visible,
+.skp-video-mute:focus-visible {
+  outline: 2px solid #c9a84c;
+  outline-offset: 2px;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .skp-hover-expand__item,
+  .skp-sticky-cards__card,
+  .skp-scroll-reveal__img,
+  .skp-carousel-perspective__slide,
+  .skp-crowd-fallback__peep {
+    transition: none !important;
+    animation: none !important;
+  }
 }

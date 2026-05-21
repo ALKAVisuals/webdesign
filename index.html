@@ -2,7 +2,10 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#0a0a0a">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <title>Legend Stories — Style Guide</title>
   <meta name="description" content="Design system & style guide for Legend Stories">
 
@@ -59,14 +62,15 @@
   <style>
     /* Inline overrides for Tailwind coexistence */
     body { background: #0a0a0a; color: #f5f5f5; }
-    .sidebar { width: 280px; position: fixed; top: 0; left: 0; bottom: 0; overflow-y: auto; z-index: 50; }
+    .sidebar { width: 280px; position: fixed; top: 0; left: 0; bottom: 0; overflow-y: auto; z-index: 50; -webkit-overflow-scrolling: touch; }
     .main-content { margin-left: 280px; }
     @media (max-width: 1024px) {
-      .sidebar { transform: translateX(-100%); transition: transform 0.3s; }
+      .sidebar { transform: translateX(-100%); transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1); padding-left: max(1.5rem, env(safe-area-inset-left)); }
       .sidebar.open { transform: translateX(0); }
       .main-content { margin-left: 0; }
-      .sidebar-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 40; opacity: 0; transition: opacity 0.3s; }
+      .sidebar-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 40; opacity: 0; transition: opacity 0.3s; -webkit-tap-highlight-color: transparent; }
       .sidebar-overlay.active { display: block; opacity: 1; }
+      .nav-link { min-height: 44px; }
     }
     .color-swatch { transition: transform 0.15s, box-shadow 0.15s; cursor: pointer; }
     .color-swatch:hover { transform: scale(1.04); box-shadow: 0 4px 20px rgba(0,0,0,0.4); }
@@ -1691,17 +1695,17 @@ npx shadcn@latest add https://dotmatrix.zzzzshawn.cloud/r/registry.json
           </div>
 
           <!-- Video Modal -->
-          <div class="skp-video-modal" style="display:none;position:fixed;inset:0;z-index:100;align-items:center;justify-content:center;background:rgba(0,0,0,0.9);backdrop-filter:blur(8px)">
+          <div class="skp-video-modal" role="dialog" aria-modal="true" aria-label="Video player" style="display:none;position:fixed;inset:0;z-index:100;align-items:center;justify-content:center;background:rgba(0,0,0,0.9);backdrop-filter:blur(8px)">
             <div style="position:relative;width:90%;max-width:64rem;aspect-ratio:16/9;border-radius:16px;overflow:hidden;background:#0a0a0a;box-shadow:0 25px 60px rgba(0,0,0,0.5)">
-              <button class="skp-video-modal__close" style="position:absolute;top:1rem;right:1rem;z-index:10;width:2.5rem;height:2.5rem;border-radius:50%;background:rgba(0,0,0,0.6);color:white;border:none;cursor:pointer;font-size:1.25rem;display:flex;align-items:center;justify-content:center">✕</button>
+              <button class="skp-video-modal__close" aria-label="Close video player" style="position:absolute;top:1rem;right:1rem;z-index:10;width:2.5rem;height:2.5rem;border-radius:50%;background:rgba(0,0,0,0.6);color:white;border:none;cursor:pointer;font-size:1.25rem;display:flex;align-items:center;justify-content:center">✕</button>
               <div style="width:100%;height:100%;background:linear-gradient(135deg,#1e1b4b,#312e81);display:flex;align-items:center;justify-content:center;color:white;font-size:1.5rem">🎬 Video Player</div>
-              <div style="position:absolute;bottom:0;left:0;right:0;padding:1.5rem;background:linear-gradient(to top,rgba(0,0,0,0.8),transparent);display:flex;align-items:center;gap:1rem">
-                <button style="background:transparent;border:none;color:white;font-size:1.25rem;cursor:pointer">▶</button>
-                <div style="flex:1;height:4px;background:rgba(255,255,255,0.2);border-radius:2px;overflow:hidden">
-                  <div style="width:30%;height:100%;background:#c9a84c;border-radius:2px"></div>
+              <div class="skp-video-controls">
+                <button class="skp-video-play" aria-label="Play" style="background:transparent;border:none;color:white;font-size:1.25rem;cursor:pointer;padding:0.5rem;min-width:44px;min-height:44px;display:flex;align-items:center;justify-content:center">▶</button>
+                <div class="skp-video-seek" role="slider" aria-label="Seek" aria-valuemin="0" aria-valuemax="296" aria-valuenow="83" tabindex="0">
+                  <div class="skp-video-seek-fill" style="width:30%;height:100%;background:#c9a84c;border-radius:2px"></div>
                 </div>
-                <span style="color:rgba(255,255,255,0.6);font-size:0.75rem;font-mono">1:23 / 4:56</span>
-                <button style="background:transparent;border:none;color:white;font-size:1.25rem;cursor:pointer">🔊</button>
+                <span class="skp-video-time">1:23 / 4:56</span>
+                <button class="skp-video-mute" aria-label="Mute" style="background:transparent;border:none;color:white;font-size:1.25rem;cursor:pointer;padding:0.5rem;min-width:44px;min-height:44px;display:flex;align-items:center;justify-content:center">🔊</button>
               </div>
             </div>
           </div>
@@ -1723,7 +1727,10 @@ npx shadcn@latest add https://dotmatrix.zzzzshawn.cloud/r/registry.json
 
         <!-- CSS Usage -->
         <div class="card">
-          <h4 class="font-heading text-xs font-bold tracking-widest uppercase text-gold mb-4">CSS Usage</h4>
+          <div class="flex items-center justify-between mb-4">
+            <h4 class="font-heading text-xs font-bold tracking-widest uppercase text-gold mb-0">CSS Usage</h4>
+            <button class="btn btn-sm btn-ghost text-xs" onclick="copyCode(this)" aria-label="Copy CSS code">📋 Copy</button>
+          </div>
           <pre class="font-mono text-xs text-light-gray bg-dark-gray p-4 rounded-lg overflow-x-auto"><code>/* Hover Expand Gallery */
 .skp-hover-expand { display: flex; gap: 4px; }
 .skp-hover-expand__item {
@@ -1960,6 +1967,17 @@ npx shadcn@latest add https://dotmatrix.zzzzshawn.cloud/r/registry.json
       el.classList.add('copied');
       showToast('Copied ' + hex);
       setTimeout(() => el.classList.remove('copied'), 1200);
+    }
+
+    // === CODE COPY ===
+    function copyCode(btn) {
+      var pre = btn.closest('.card').querySelector('pre code');
+      if (pre) {
+        navigator.clipboard.writeText(pre.textContent);
+        btn.textContent = '✅ Copied!';
+        showToast('Code copied to clipboard');
+        setTimeout(() => btn.textContent = '📋 Copy', 2000);
+      }
     }
 
     function showToast(msg) {
