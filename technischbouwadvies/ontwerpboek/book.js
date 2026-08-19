@@ -1,5 +1,6 @@
 import { bookConfig, pages } from './book-data.js';
 import { assetManifest, pipelineConfig } from './asset-manifest.js';
+import { getViewDuration } from './book-timings.js';
 
 const leftPage = document.getElementById('leftPage');
 const rightPage = document.getElementById('rightPage');
@@ -69,7 +70,6 @@ function imageMarkup(page, item, className = '') {
 function assetVisual(page) {
   const asset = resolvedAsset(page);
   const layout = assetLayout(asset);
-
   if (layout === 'demo') return page.demoVisual;
 
   if (layout === 'gallery') {
@@ -171,10 +171,51 @@ function setLifecycle(nextState) {
   updateMeta(currentPage);
 }
 
+function pauseAutoplayTimer() {
+  window.clearTimeout(timer);
+  timer = null;
+  autoplayToggle.classList.remove('timer-running');
+}
+
+function currentViewDuration() {
+  return getViewDuration({
+    pages,
+    currentPage,
+    mobile: isMobile(),
+    fallbackMs: bookConfig.autoplayMs || 5000
+  });
+}
+
+function restartAutoplay() {
+  pauseAutoplayTimer();
+  if (!autoplay || lifecycle !== 'open') return;
+  const duration = currentViewDuration();
+  bookArea.style.setProperty('--view-duration', `${duration}ms`);
+  void autoplayToggle.offsetWidth;
+  autoplayToggle.classList.add('timer-running');
+  timer = window.setTimeout(() => {
+    autoplayToggle.classList.remove('timer-running');
+    next(false);
+  }, duration);
+}
+
+function syncAutoplayUi() {
+  autoplayToggle.setAttribute('aria-pressed', String(autoplay));
+  autoplayText.textContent = autoplay ? 'Autoplay aan' : 'Autoplay uit';
+  autoplayToggle.querySelector('.play-icon').textContent = autoplay ? '▶' : 'Ⅱ';
+  if (!autoplay) autoplayToggle.classList.remove('timer-running');
+}
+
+function setAutoplay(value) {
+  autoplay = value;
+  syncAutoplayUi();
+  restartAutoplay();
+}
+
 function openBook({ userInitiated = false } = {}) {
   if (lifecycle === 'open' || lifecycle === 'opening') return;
   window.clearTimeout(autoOpenTimer);
-  window.clearInterval(timer);
+  pauseAutoplayTimer();
   currentPage = 0;
   renderView();
   setLifecycle('opening');
@@ -182,27 +223,27 @@ function openBook({ userInitiated = false } = {}) {
     setLifecycle('open');
     setAutoplay(true);
     if (userInitiated) book.focus({ preventScroll: true });
-  }, prefersReducedMotion() ? 0 : 920);
+  }, prefersReducedMotion() ? 0 : 1040);
 }
 
 function finishBook() {
   if (lifecycle !== 'open') return;
-  window.clearInterval(timer);
+  pauseAutoplayTimer();
   autoplay = false;
   syncAutoplayUi();
   setLifecycle('ending');
   window.setTimeout(() => {
     setLifecycle('ended');
     restartBookButton.focus({ preventScroll: true });
-  }, prefersReducedMotion() ? 0 : 720);
+  }, prefersReducedMotion() ? 0 : 820);
 }
 
 function restartExperience() {
-  window.clearInterval(timer);
+  pauseAutoplayTimer();
   currentPage = 0;
   renderView();
   setLifecycle('closed');
-  window.setTimeout(() => openBook({ userInitiated: true }), prefersReducedMotion() ? 0 : 360);
+  window.setTimeout(() => openBook({ userInitiated: true }), prefersReducedMotion() ? 0 : 420);
 }
 
 function animate(direction) {
@@ -216,12 +257,14 @@ function goToPage(nextPageIndex, direction = 1, userInitiated = false) {
   if (lifecycle !== 'open') return;
   const target = normalizedPage(nextPageIndex);
   if (target === currentPage) return;
+  pauseAutoplayTimer();
   animate(direction);
   window.setTimeout(() => {
     currentPage = target;
     renderView();
-  }, prefersReducedMotion() ? 0 : 360);
-  if (userInitiated) restartAutoplay();
+    if (autoplay) restartAutoplay();
+  }, prefersReducedMotion() ? 0 : 520);
+  if (userInitiated && !autoplay) syncAutoplayUi();
 }
 
 function isLastView() {
@@ -244,23 +287,6 @@ function next(userInitiated = false) {
 function previous(userInitiated = false) {
   if (lifecycle !== 'open' || currentPage === 0) return;
   goToPage(currentPage - stepSize(), -1, userInitiated);
-}
-
-function restartAutoplay() {
-  window.clearInterval(timer);
-  if (autoplay && lifecycle === 'open') timer = window.setInterval(() => next(false), bookConfig.autoplayMs);
-}
-
-function syncAutoplayUi() {
-  autoplayToggle.setAttribute('aria-pressed', String(autoplay));
-  autoplayText.textContent = autoplay ? 'Autoplay aan' : 'Autoplay uit';
-  autoplayToggle.querySelector('.play-icon').textContent = autoplay ? '▶' : 'Ⅱ';
-}
-
-function setAutoplay(value) {
-  autoplay = value;
-  syncAutoplayUi();
-  restartAutoplay();
 }
 
 function buildDots() {
@@ -306,9 +332,9 @@ startBook.addEventListener('click', () => {
   openBook({ userInitiated: true });
 });
 
-book.addEventListener('mouseenter', () => window.clearInterval(timer));
+book.addEventListener('mouseenter', pauseAutoplayTimer);
 book.addEventListener('mouseleave', restartAutoplay);
-book.addEventListener('focusin', () => window.clearInterval(timer));
+book.addEventListener('focusin', pauseAutoplayTimer);
 book.addEventListener('focusout', restartAutoplay);
 book.addEventListener('pointerdown', (event) => {
   pointerStartX = event.clientX;
@@ -335,7 +361,7 @@ window.addEventListener('keydown', (event) => {
 });
 window.addEventListener('resize', handleResponsiveChange);
 document.addEventListener('visibilitychange', () => {
-  if (document.hidden) window.clearInterval(timer); else restartAutoplay();
+  if (document.hidden) pauseAutoplayTimer(); else restartAutoplay();
 });
 
 applyBookConfig();
