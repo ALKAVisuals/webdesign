@@ -1,0 +1,129 @@
+/* Fase M.1 — Style Lock
+   M.1A only: book geometry, proportions and viewport presence.
+   Do not add paper, typography, controls or spread-specific polish here yet. */
+
+:root {
+  --style-lock-page-ratio: .72;
+  --style-lock-spread-ratio: 1.44;
+}
+
+/* Desktop: the open book is two portrait pages, not a wide web panel. */
+.book-area {
+  width: min(1480px, 100%);
+  padding-inline: clamp(24px, 4vw, 64px);
+}
+
+.book-stage {
+  height: clamp(700px, 64vw, 860px);
+  place-items: center;
+}
+
+.book {
+  left: 50%;
+  right: auto;
+  width: min(1100px, 88vw);
+  height: auto;
+  aspect-ratio: var(--style-lock-spread-ratio);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  transform-origin: center center;
+}
+
+/* A closed cover represents one physical page of the same book. */
+.closed-cover {
+  width: min(520px, 42vw);
+  height: auto;
+  max-height: none;
+  aspect-ratio: var(--style-lock-page-ratio);
+}
+
+/* Physical geometry only. Material/shadow treatment belongs to M.1B. */
+.page-stack {
+  top: 3px;
+  bottom: -6px;
+  width: 49.35%;
+}
+
+.stack-left {
+  left: .45%;
+  transform: translate(-3px, 5px);
+}
+
+.stack-right {
+  right: .45%;
+  transform: translate(3px, 5px);
+}
+
+.book-spine {
+  width: 11px;
+}
+
+@media (max-width: 1180px) {
+  .book-stage {
+    height: clamp(660px, 68vw, 790px);
+  }
+
+  .book {
+    width: min(980px, 88vw);
+  }
+
+  .closed-cover {
+    width: min(470px, 43vw);
+  }
+}
+
+@media (max-width: 900px) and (min-width: 761px) {
+  .book-stage {
+    height: clamp(610px, 76vw, 700px);
+  }
+
+  .book {
+    width: min(860px, 91vw);
+  }
+
+  .closed-cover {
+    width: min(420px, 46vw);
+  }
+}
+
+/* Mobile remains a crisp, single 2D page. Existing Safari state fixes stay intact. */
+@media (max-width: 760px) {
+  .book-area {
+    padding-inline: max(12px, env(safe-area-inset-left));
+  }
+
+  .book-stage {
+    height: clamp(500px, calc(100svh - 130px), 640px);
+  }
+
+  .book,
+  .book-area.is-opening .book,
+  .book-area.is-open .book,
+  .book-area.is-turning-next .book,
+  .book-area.is-turning-prev .book,
+  .book-area.is-ending .book,
+  .book-area.is-ended .book {
+    aspect-ratio: var(--style-lock-page-ratio) !important;
+  }
+
+  .book-area.is-closed .closed-cover,
+  .book-area.is-opening .closed-cover {
+    aspect-ratio: var(--style-lock-page-ratio) !important;
+  }
+
+  .stack-left {
+    inset: 0 0 -5px 0 !important;
+    transform: translateY(4px) !important;
+  }
+}
+
+@media (max-width: 420px) {
+  .book-stage {
+    height: clamp(480px, calc(100svh - 120px), 600px);
+  }
+}
+
+@media (max-width: 760px) and (max-height: 700px) {
+  .book-stage {
+    height: clamp(445px, calc(100svh - 105px), 535px);
+  }
+}
