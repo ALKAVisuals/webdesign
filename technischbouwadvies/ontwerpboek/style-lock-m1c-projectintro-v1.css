@@ -1,0 +1,162 @@
+/* M.1C V1 — Projectintro editorial typography / masterspread refinement.
+   Scope: spread 01 only. The V8 cover and M.1B physical book treatment stay intact. */
+
+:root {
+  --m1c-ink: #242522;
+  --m1c-muted: #6f6c65;
+  --m1c-bronze: #a97636;
+  --m1c-hairline: rgba(72, 62, 49, .16);
+}
+
+/* --------------------------------------------------------------------------
+   Spread 01 — text page. Match the quiet editorial balance of the reference:
+   chapter marker, restrained title, short copy, generous negative space.
+   -------------------------------------------------------------------------- */
+
+.editorial-text-page[data-spread="01"] {
+  position: relative;
+  align-items: flex-start;
+  color: var(--m1c-ink);
+}
+
+.editorial-text-page[data-spread="01"] .editorial-kicker {
+  position: relative;
+  margin: 0 0 38px;
+  padding-bottom: 17px;
+  color: var(--m1c-bronze);
+  font-family: "DM Sans", system-ui, sans-serif;
+  font-size: 8px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: .16em;
+}
+
+.editorial-text-page[data-spread="01"] .editorial-kicker::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 24px;
+  height: 1px;
+  background: var(--m1c-bronze);
+}
+
+.editorial-text-page[data-spread="01"] .editorial-title {
+  width: min(190px, 72%);
+  max-width: none;
+  margin: 0;
+  color: var(--m1c-ink);
+  font-family: "Libre Baskerville", Georgia, serif;
+  font-size: clamp(27px, 2.25vw, 34px);
+  font-weight: 400;
+  line-height: .99;
+  letter-spacing: -.045em;
+}
+
+/* The reference places the accent line with the chapter marker, not under the title. */
+.editorial-text-page[data-spread="01"] .editorial-rule {
+  display: none;
+}
+
+.editorial-text-page[data-spread="01"] .editorial-copy {
+  width: min(235px, 82%);
+  max-width: none;
+  margin: 34px 0 0;
+  color: var(--m1c-muted);
+  font-family: "DM Sans", system-ui, sans-serif;
+  font-size: 9.4px;
+  font-weight: 400;
+  line-height: 1.72;
+  letter-spacing: .005em;
+}
+
+.editorial-text-page[data-spread="01"] .editorial-facts,
+.editorial-text-page[data-spread="01"] .editorial-legend {
+  display: none;
+}
+
+.editorial-text-page[data-spread="01"] .editorial-footer-label {
+  margin-top: auto;
+  padding-bottom: 1px;
+  color: #65635e;
+  font-family: "DM Sans", system-ui, sans-serif;
+  font-size: 6.3px;
+  font-weight: 500;
+  letter-spacing: .13em;
+}
+
+/* Keep the hero side visually dominant and clean. */
+.editorial-visual-page[data-spread="01"] {
+  background: #ece7df;
+}
+
+.editorial-visual-page[data-spread="01"] .asset-full,
+.editorial-visual-page[data-spread="01"] .asset-full img {
+  width: 100%;
+  height: 100%;
+}
+
+.editorial-visual-page[data-spread="01"] .asset-full img {
+  object-position: center center !important;
+  filter: saturate(.91) contrast(.98);
+}
+
+/* --------------------------------------------------------------------------
+   Tablet / mobile — same editorial logic, not a scaled desktop headline.
+   -------------------------------------------------------------------------- */
+
+@media (max-width: 760px) {
+  .editorial-text-page[data-spread="01"] {
+    min-height: 100%;
+    padding-top: 4px;
+  }
+
+  .editorial-text-page[data-spread="01"] .editorial-kicker {
+    margin-bottom: 40px;
+    padding-bottom: 16px;
+    font-size: 8px !important;
+    letter-spacing: .17em;
+  }
+
+  .editorial-text-page[data-spread="01"] .editorial-kicker::after {
+    width: 25px;
+  }
+
+  .editorial-text-page[data-spread="01"] .editorial-title {
+    width: 180px;
+    max-width: 72%;
+    font-size: clamp(29px, 8.4vw, 34px) !important;
+    line-height: .98 !important;
+    letter-spacing: -.047em !important;
+  }
+
+  .editorial-text-page[data-spread="01"] .editorial-copy {
+    width: min(255px, 84%);
+    margin-top: 36px;
+    font-size: 11.3px !important;
+    line-height: 1.67 !important;
+    color: #77736c;
+  }
+
+  .editorial-text-page[data-spread="01"] .editorial-footer-label {
+    font-size: 6.5px;
+    letter-spacing: .14em;
+  }
+}
+
+@media (max-width: 420px) {
+  .editorial-text-page[data-spread="01"] .editorial-kicker {
+    margin-bottom: 35px;
+  }
+
+  .editorial-text-page[data-spread="01"] .editorial-title {
+    width: 168px;
+    font-size: clamp(27px, 8vw, 31px) !important;
+  }
+
+  .editorial-text-page[data-spread="01"] .editorial-copy {
+    width: min(245px, 86%);
+    margin-top: 32px;
+    font-size: 10.8px !important;
+  }
+}
