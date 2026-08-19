@@ -1,0 +1,90 @@
+/* Phase M mobile state hardening — deterministic cover/open states on iOS Safari. */
+
+@media (max-width: 760px) {
+  /* CLOSED / OPENING: always show a real, crisp cover. Never show an empty stage. */
+  .book-area.is-closed .closed-cover,
+  .book-area.is-opening .closed-cover {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+    left: 50% !important;
+    right: auto !important;
+    top: 50% !important;
+    bottom: auto !important;
+    width: min(330px, 80vw) !important;
+    height: auto !important;
+    max-height: none !important;
+    aspect-ratio: .69;
+    transform: translate(-50%, -50%) !important;
+    transform-style: flat !important;
+    animation: none !important;
+    filter: none !important;
+    z-index: 80 !important;
+    -webkit-backface-visibility: visible !important;
+    backface-visibility: visible !important;
+  }
+
+  .book-area.is-closed .book,
+  .book-area.is-opening .book {
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+  }
+
+  .book-area.is-closed .minimal-controls,
+  .book-area.is-opening .minimal-controls {
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+  }
+
+  /* OPEN: remove the cover completely and reveal one crisp 2D page. */
+  .book-area.is-open .closed-cover,
+  .book-area.is-turning-next .closed-cover,
+  .book-area.is-turning-prev .closed-cover,
+  .book-area.is-ending .closed-cover,
+  .book-area.is-ended .closed-cover {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    animation: none !important;
+  }
+
+  .book-area.is-open .book,
+  .book-area.is-turning-next .book,
+  .book-area.is-turning-prev .book {
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+  }
+
+  .book-area.is-open .minimal-controls,
+  .book-area.is-turning-next .minimal-controls,
+  .book-area.is-turning-prev .minimal-controls {
+    opacity: .92 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+  }
+
+  /* Keep cover typography and line art native-sharp. */
+  .closed-cover,
+  .closed-cover *,
+  .approved-cover,
+  .approved-cover-lineart {
+    filter: none !important;
+    will-change: auto !important;
+  }
+
+  .approved-cover h2 {
+    font-size: clamp(36px, 10.5vw, 46px) !important;
+  }
+}
+
+@media (max-width: 390px) {
+  .book-area.is-closed .closed-cover,
+  .book-area.is-opening .closed-cover {
+    width: min(310px, 78vw) !important;
+  }
+}
