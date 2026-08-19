@@ -6,145 +6,102 @@
 
 ---
 
-## 1. Vaste projectbeslissingen
+## 1. Vaste beslissingen
 
 - Het ontwerpboek is publiek **geen leeromgeving**.
-- Publiek verdwijnen: tutorial/TD Vision U, prototype V0.x, DEMO/IN UITWERKING/DEFINITIEF, technische statusinformatie en asset-pipelinecopy.
-- Het doel is een **premium interactieve projectvisualisatie / digitaal architectuurboek** voor latere integratie in technischbouwadvies.nl.
+- Publiek geen tutorial/TD Vision U, prototype V0.x, DEMO/IN UITWERKING/DEFINITIEF, ontwikkelaarsstatus of asset-pipelinecopy.
+- Doel: een **premium interactieve projectvisualisatie / digitaal architectuurboek** voor latere integratie in technischbouwadvies.nl.
 - De echte website technischbouwadvies.nl wordt voorlopig niet aangepast.
 - Standalone werkmap: `ALKAVisuals/webdesign/technischbouwadvies/ontwerpboek/`.
-- Workflow: **research → visual direction → static design → user approval → implementatie → motion polish → mobile polish → integratie**.
+- De goedgekeurde art direction wordt niet opnieuw ontworpen tenzij de gebruiker dat expliciet vraagt.
 
 ---
 
-## 2. Afgeronde visuele fasen
-
-- **Fase A — Visual audit: AFGEROND**
-- **Fase B — Online reference research: AFGEROND**
-- **Fase C — Visuele richtingen vergelijken: AFGEROND**
-- **Fase D — Masterspread: AFGEROND EN GOEDGEKEURD**
-- **Fase E — Cover redesign: AFGEROND EN GOEDGEKEURD**
-- **Fase F — Spread template system: AFGEROND EN GOEDGEKEURD**
-- **Fase G — Volledige statische boekflow: AFGEROND EN GOEDGEKEURD**
-- **Fase H — Nieuwe visuele stijl implementeren in standalone boektool: UITGEVOERD OP IMPLEMENTATIEBRANCH**
-
----
-
-## 3. Definitieve art direction
+## 2. Definitieve art direction — GOEDGEKEURD
 
 ### A+B
-
-De vaste visuele basis is een combinatie van:
 
 - ca. 65% Swiss / Architectural Editorial
 - ca. 25% Warm Architectural Monograph
 - ca. 10% subtiele digitale motion
 
-### De goedgekeurde masterspread is de design foundation
-
-De eerder goedgekeurde `06 — Plattegrond`-masterspread bepaalt vanaf nu:
-
-- boekverhouding
+Vaste kenmerken:
 - warm off-white papier
 - charcoal tekst
 - subtiel bronsaccent
 - editorial serif + neutrale sans
-- ruime marges
-- gecontroleerd grid
+- ruime marges en streng grid
 - rustige gutter/rug
 - subtiele paginadikte en contactschaduw
 - technische tekeningen groot en helder
 - renders groot / bijna full bleed waar passend
 - minimale publieke UI
 
-Deze basis niet opnieuw onderzoeken tenzij de gebruiker dat expliciet vraagt.
+De goedgekeurde `06 — Plattegrond`-masterspread blijft de design foundation.
 
 ---
 
-## 4. Definitieve coverrichting
+## 3. Cover — GOEDGEKEURD
 
-### Gekozen: Technical Line Art + rust van Pure Typography
-
-De gebruiker heeft deze richting goedgekeurd.
-
-Vaste kenmerken:
+**Technical Line Art + rust van Pure Typography**
 
 - warm off-white cover
 - grote rustige titel `ONTWERPBOEK`
 - subtitel `VAN CONCEPT NAAR TECHNISCH ONTWERP`
-- zeer subtiele technische architectuurlijntekening
+- zeer subtiele architectuurlijntekening
 - charcoal typografie
 - één klein bronsaccent
 - onderaan subtiel `TECHNISCH BOUWADVIES`
-- geen projectrender als coverbasis
-- geen prototype-, versie- of statusinformatie
+- geen render als coverbasis
+- geen prototype-/statusinformatie
 
 ---
 
-## 5. Definitief spread system — 8 spreads
+## 4. Definitief spread system — GOEDGEKEURD
 
-De volgende 8 spreadtypes zijn visueel ontworpen en goedgekeurd:
+1. Projectintro / hero
+2. Variantenvergelijking
+3. Plattegrond
+4. Gevel & doorsnede
+5. Bouwdetail
+6. Interieur & materialen
+7. Exterieur impressie
+8. Resultaat / CTA
 
-1. **Projectintro / hero**
-   - korte projectcontext
-   - één grote architectuurvisual
-
-2. **Variantenvergelijking**
-   - meerdere ontwerpopties
-   - strak en vergelijkbaar grid
-
-3. **Plattegrond**
-   - tekst/legenda links
-   - grote technische tekening rechts
-
-4. **Gevel & doorsnede**
-   - technische aanzichten en doorsnede
-   - veel witruimte
-
-5. **Bouwdetail**
-   - groot detail
-   - materiaal-/opbouwinformatie
-
-6. **Interieur & materialen**
-   - grote interieurvisual
-   - subtiel materiaalpalet
-
-7. **Exterieur impressie**
-   - render krijgt visuele dominantie
-
-8. **Resultaat / CTA**
-   - afsluitend resultaat
-   - subtiele doorverwijzing naar Technisch Bouwadvies
-
----
-
-## 6. Goedgekeurde boekflow
-
-Vaste volgorde:
+Vaste flow:
 
 **Cover → Projectintro → Varianten → Plattegrond → Gevel & doorsnede → Bouwdetail → Interieur & materialen → Exterieur impressie → Resultaat / CTA**
 
-De volledige statische boekflow is als één geheel ontworpen en door de gebruiker goedgekeurd.
+---
+
+## 5. Afgeronde fasen
+
+- **Fase A — Visual audit: AFGEROND**
+- **Fase B — Online reference research: AFGEROND**
+- **Fase C — Visuele richtingen: AFGEROND**
+- **Fase D — Masterspread: AFGEROND + GOEDGEKEURD**
+- **Fase E — Cover redesign: AFGEROND + GOEDGEKEURD**
+- **Fase F — Spread template system: AFGEROND + GOEDGEKEURD**
+- **Fase G — Volledige statische boekflow: AFGEROND + GOEDGEKEURD**
+- **Fase H — Visueel systeem implementeren: AFGEROND + GEMERGED NAAR MAIN**
+
+Fase H is via PR #12 naar `main` gemerged. De standalone boektool bevat nu de nieuwe A+B-shell, gekozen cover, 8 spreads, minimale controls en vernieuwde editorial data/layouts.
 
 ---
 
-## 7. Publieke UI — definitieve richting
+## 6. Publieke UI — vaste richting
 
-Niet zichtbaar in de publieke ervaring:
-
-- Prototype V0.x
-- DEMO / IN UITWERKING / DEFINITIEF
-- status-overview
+Niet tonen:
+- prototypeversies
+- contentstatusbadges
 - statusdots
 - ontwikkelaarsinformatie
 - grote toolbar
 - zichtbare autoplaytekst
 - uitgebreide interaction hints
-- tutorial / TD Vision U / leerfase
-- asset-pipelinecopy
+- tutorial-/leeromgevingcopy
 
 Wel behouden, zeer subtiel:
-
 - vorige/volgende pijlen
 - kleine spreadteller
 - minimale autoplaybediening
@@ -153,7 +110,7 @@ Wel behouden, zeer subtiel:
 
 ---
 
-## 8. Technische basis die behouden blijft
+## 7. Technische basis die behouden blijft
 
 - desktop dubbele spread
 - mobiel single-page
@@ -171,92 +128,69 @@ Wel behouden, zeer subtiel:
 
 ---
 
-## 9. Implementatie Fase H — uitgevoerd
+## 8. Fase I — Page-turn & motion polish
 
-Branch:
+**Status: GEÏMPLEMENTEERD OP BRANCH `agent/motion-polish`**
 
-`agent/implement-approved-book-visuals`
+Toegevoegd:
 
-Op deze branch is de oude publieke prototypepresentatie vervangen door het goedgekeurde visuele systeem.
+### `motion-polish.css`
+- rustiger cover-open beweging
+- coveranimatie afgestemd op bestaande lifecycle-timing
+- groter maar rustiger perspectief
+- subtielere contactschaduw
+- realistischere bewegende paginaschaduw
+- page-turn met zachtere acceleratie en afremming
+- minder theatrale 3D-rotatie
+- subtiele reactie van boek/schaduw tijdens omslaan
+- zachtere overgang naar eindstaat
+- aparte, kortere mobile motion
+- `prefers-reduced-motion` blijft gerespecteerd
 
-### Gewijzigd / toegevoegd
+### `motion-polish.js`
+- observeert alleen de bestaande page-turn status
+- voegt tijdelijk `is-turning-next` / `is-turning-prev` toe aan het boek
+- verandert de bestaande `book.js` niet
+- maakt gekoppelde schaduw- en dieptefeedback mogelijk
 
-- `index.html`
-  - oude leer-/prototypecopy verwijderd
-  - status UI verwijderd
-  - nieuwe rustige presentatiecontext
-  - goedgekeurde Technical Line Art cover
-  - minimale controls
+### `index.html`
+- laadt `motion-polish.css` als laatste visuele laag
+- laadt `motion-polish.js` na `book.js`
 
-- `approved-book.css`
-  - volledige A+B visuele laag
-  - goedgekeurde boekverhouding
-  - papier, schaduw, gutter, typografie en spreadopmaak
-  - desktop/mobile basis
+### Validatie
+- branch is gebaseerd op actuele `main`
+- wijzigingen raken alleen `technischbouwadvies/ontwerpboek/`
+- `motion-polish.js` is lokaal gevalideerd met `node --check`
 
-- `approved-book-fixes.css`
-  - kleine compatibiliteitsoverrides
-
-- `book-data.js`
-  - oude 14 hoofdstukken vervangen door 16 boekpagina's = 8 spreads
-  - geen tutorial/leeromgevingverhaal meer
-
-- `asset-manifest.js`
-  - assets gekoppeld aan de nieuwe spread-ID's
-
-- `book-timings.js`
-  - timing afgestemd op de 8 spreads
-
-- `book.js`
-  - editorial presentations: text, gallery, technical, materials, visual, CTA
-  - spreadteller 01/08 t/m 08/08
-  - bestaande autoplay/swipe/keyboard/lifecycle behouden
-
-### Scopeveiligheid
-
-Alle wijzigingen blijven binnen:
-
-`technischbouwadvies/ontwerpboek/`
-
-De echte website `technischbouwadvies.nl` is niet aangepast.
+De openbare GitHub Pages-route kon vanuit de huidige browsingomgeving nog niet betrouwbaar worden geopend. Daarom is browser-visuele QA nog geen afgeronde claim.
 
 ---
 
-## 10. Validatie-opmerking
+## 9. Eerstvolgende stap
 
-De GitHub branchdiff is gecontroleerd en raakt uitsluitend de standalone ontwerpboekmap.
+Na merge van Fase I:
 
-Een lokale `git clone`/Node-validatie kon in de huidige runtime niet worden uitgevoerd omdat de container geen DNS/internetverbinding naar GitHub had. Daarom moet na merge de openbare GitHub Pages-versie nog visueel/functioneel worden gecontroleerd.
+### Fase J — Mobile visual polish + browser QA
 
-Dit is **geen reden om de visuele koers opnieuw te ontwerpen**. Eventuele problemen worden als implementatie-/QA-fixes behandeld.
+1. desktop live layout controleren zodra de publieke route bereikbaar is
+2. cover/open/page-turn visueel nalopen
+3. mobile single-page compositie apart beoordelen
+4. swipe feedback en mobile page-turn verfijnen
+5. typografie/marges per mobile breakpoint controleren
+6. overflow/clipping controleren
+7. daarna performance/accessibility-polish
 
----
-
-## 11. Exacte volgende fase
-
-### Fase I — Live visual QA + page-turn / motion redesign
-
-Volgorde:
-
-1. openbare GitHub Pages-versie controleren
-2. desktopspread vergelijken met de goedgekeurde masterspread
-3. layoutbugs herstellen
-4. cover-open animatie beoordelen
-5. page-turn subtieler en realistischer maken
-6. timing/schaduw/perspectief verfijnen
-7. daarna mobile polish
-
-Belangrijk: eerst de nieuwe statische browserweergave laten kloppen; motion mag slechte layout nooit maskeren.
+Belangrijk: art direction, cover en spreads niet opnieuw ontwerpen; alleen implementatie- en responsive QA.
 
 ---
 
-## 12. Nieuwe chat — exacte overdracht
+## 10. Overdracht naar nieuwe chat
 
-> We gaan verder met het premium interactieve ontwerpboek voor Technisch Bouwadvies. Open in `ALKAVisuals/webdesign` eerst `technischbouwadvies/ontwerpboek/VISUAL-DESIGN-ROADMAP.md` en daarna `technischbouwadvies/ontwerpboek/VISUAL-DESIGN-PROGRESS.md`. Lees beide volledig voordat je iets wijzigt. Het ontwerp is al goedgekeurd: A+B art direction, de masterspread, de Technical Line Art cover en de volledige 8-spread boekflow staan vast en mogen niet opnieuw worden ontworpen tenzij de gebruiker dat expliciet vraagt. Fase H heeft de nieuwe visuele stijl in de standalone boektool geïmplementeerd. De volgende taak is Fase I: de openbare GitHub Pages-versie visueel/functioneel controleren, eventuele implementatiebugs herstellen en daarna de page-turn/motion verfijnen. De echte website technischbouwadvies.nl nog niet aanpassen.
+> We gaan verder met het premium interactieve ontwerpboek voor Technisch Bouwadvies. Open in `ALKAVisuals/webdesign` eerst `technischbouwadvies/ontwerpboek/VISUAL-DESIGN-ROADMAP.md` en daarna `technischbouwadvies/ontwerpboek/VISUAL-DESIGN-PROGRESS.md`. Lees beide volledig. De A+B art direction, masterspread, Technical Line Art cover en 8-spread boekflow zijn al goedgekeurd en mogen niet opnieuw worden ontworpen tenzij de gebruiker dat expliciet vraagt. Fase H is naar main gemerged. Fase I heeft de premium page-turn/motion polish op branch `agent/motion-polish` geïmplementeerd. Controleer of die branch al is gemerged; zo niet, valideer scope en merge hem. Daarna is Fase J: mobile visual polish en browser-QA. De echte website technischbouwadvies.nl nog niet aanpassen.
 
 ---
 
-## 13. Snelle status
+## 11. Snelle status
 
 **GOEDGEKEURD**
 - A+B art direction
@@ -265,21 +199,19 @@ Belangrijk: eerst de nieuwe statische browserweergave laten kloppen; motion mag 
 - 8 spreadtypes
 - volledige boekflow
 
-**GEÏMPLEMENTEERD OP BRANCH**
+**OP MAIN**
 - nieuwe publieke shell
 - nieuwe cover
-- nieuwe spreaddata
-- nieuwe editorial layouts
+- 8 spreads
+- editorial layouts
 - minimale controls
-- assetmapping
-- timings
+- assetmapping en timings
 
-**NU DOEN**
-- merge implementatiebranch
-- live GitHub Pages QA
-- daarna page-turn / motion polish
+**HUIDIGE BRANCH**
+- `agent/motion-polish`
+- premium cover/page-turn/shadow motion
 
-**LATER**
-- mobile polish
-- performance/accessibility
-- integratie in technischbouwadvies.nl
+**VOLGENDE FASE**
+- mobile polish + browser QA
+- daarna performance/accessibility
+- pas daarna integratie in technischbouwadvies.nl
