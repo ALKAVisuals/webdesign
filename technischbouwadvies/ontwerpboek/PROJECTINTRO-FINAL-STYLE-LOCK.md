@@ -10,7 +10,7 @@ Status: WORKING BRANCH — NIET MERGEN NAAR MAIN ZONDER EXPLICIETE GOEDKEURING.
 - Live `technischbouwadvies.nl`: NIET WIJZIGEN
 
 ## Werkmethode
-Alle visuele correcties voor Projectintro worden vanaf nu uitsluitend op deze branch opgebouwd. Na iedere stap volgt gebruikersreview. Pas na expliciete eindgoedkeuring wordt één finale PR naar `webdesign/main` geopend en gemerged.
+Alle visuele correcties voor Projectintro worden uitsluitend op deze branch opgebouwd. Na iedere stap volgt gebruikersreview. Pas na expliciete eindgoedkeuring wordt één finale PR naar `webdesign/main` geopend en gemerged.
 
 ## Oorspronkelijke style-lock
 1. Baseline / veilige branch — AFGEROND
@@ -23,9 +23,9 @@ Alle visuele correcties voor Projectintro worden vanaf nu uitsluitend op deze br
 8. Final reference pass — AFGEROND ALS INHOUDELIJKE BASIS
 
 ## Nieuwe fysieke boek-pass
-A1. Linker boekrug / buitenrand — ACTIEF / REVIEW
-A2. Rechter page stack — ACTIEF / REVIEW
-A3. Onderrand en boekdikte
+A1. Linker boekrug / buitenrand — AFGEROND ALS RICHTING
+A2. Rechter page stack — AFGEROND ALS RICHTING
+A3. Onderrand en boekdikte — ACTIEF / REVIEW
 B1. Echte middenrug
 B2. Subtiele pagina-kromming
 C1. Contactschaduw
@@ -47,16 +47,19 @@ F. Finale vergelijking + merge
 - Linker extra folio blijft verborgen
 - Mobiele permanente pagina blijft volledig 2D
 
-## A1 + A2 — huidige buitenranden
-- Links is een afzonderlijk boekblok toegevoegd buiten de eigenlijke spread, zodat de pagina niet langer als één vlakke HTML-rechthoek eindigt
-- De linker rand bestaat uit meerdere zeer dunne ivory/papierlijnen, een donkere kern en een subtiele buitenlaag
-- De linker edge steekt circa 10 px buiten het boekvlak en krijgt een minimale contactschaduw
-- Rechts is een iets duidelijkere page stack toegevoegd, passend bij de referentie waar de losse paginalagen aan de buitenzijde zichtbaar zijn
-- De rechter stack gebruikt afwisselend lichte papierlagen en zeer dunne donkerdere scheidingen; geen dikke decoratieve rand
-- Rechts steekt de stack circa 11 px buiten het boekvlak
-- De fysieke buitenranden zitten achter het leesbare boekvlak en veranderen de bestaande 36.5/63.5 compositie niet
-- Onderrand, echte middenrug, pagina-kromming en nieuwe schaduwbehandeling zijn bewust nog NIET uitgevoerd
-- A1/A2 zijn desktop-only; mobiel blijft voorlopig exact de veilige single-page 2D-versie
+## A1 + A2 — verfijnde buitenranden
+- Linker rand compacter en donkerder gemaakt zodat deze meer als rug/boekblok leest en minder als een regelmatig lijnpatroon
+- Rechter page stack rijker en iets luchtiger gemaakt met onregelmatiger laagdiktes
+- Links en rechts zijn bewust niet meer symmetrisch
+- De buitenranden blijven achter het leesbare boekvlak en wijzigen de 36.5/63.5 compositie niet
+
+## A3 — huidige onderrand en boekdikte
+- Nieuw doorlopend bottom page block toegevoegd zodat linker en rechter zijranden niet meer abrupt stoppen
+- Onderrand opgebouwd uit meerdere lichte papierlagen met wisselende dikte en contrast
+- Extra onderste laag toegevoegd met iets afwijkende inspringing zodat de dikte niet als één rechte grijze balk oogt
+- Buitenhoeken subtiel afgerond zodat het boek minder mathematisch vlak voelt
+- Contactschaduw onder de onderrand blijft bewust zeer beperkt; volledige schaduwbehandeling volgt pas in C1
+- Mobiel blijft voor deze stap ongewijzigd; alle desktop fysieke edges zijn daar nog verborgen
 
 ## Vaste preview
 `projectintro-style-lock-preview.html` is de actuele branch-preview. Per reviewstap gebruiken we daarnaast een nieuwe cache-veilige live wrapper.
