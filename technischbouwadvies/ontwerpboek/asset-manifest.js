@@ -8,8 +8,8 @@ const prodAsset = (path) => `https://raw.githubusercontent.com/ALKAVisuals/alkab
 export const assetManifest = {
   '01-projectintro-visual': {
     type: 'full',
-    src: prodAsset('diensten/aanbouw-ontwerp-volledig-hout.webp'),
-    alt: 'Architectonische visualisatie van een eigentijdse woningaanbouw met houten materialisering',
+    src: prodAsset('projecten/illustratieve-case-aanbouw-rijwoning.webp'),
+    alt: 'Sfeervolle architectonische exterieurvisualisatie van een rijwoning met aanbouw',
     fit: 'cover',
     label: 'Projectintro'
   },
