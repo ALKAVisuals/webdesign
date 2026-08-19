@@ -41,15 +41,57 @@ function resolvedAsset(page) {
   return assetManifest[page.id] || page.asset || null;
 }
 
+function assetLayout(asset) {
+  if (!asset) return 'demo';
+  if (asset.type === 'gallery' && Array.isArray(asset.items) && asset.items.some((item) => item?.src)) return 'gallery';
+  if ((asset.type === 'single' || asset.type === 'full' || !asset.type) && asset.src) return asset.type === 'full' ? 'full' : 'single';
+  return 'demo';
+}
+
+function fitValue(value) {
+  return value === 'contain' ? 'contain' : 'cover';
+}
+
+function imageMarkup(page, item, className = '') {
+  const alt = escapeHtml(item.alt || page.title);
+  const fit = fitValue(item.fit);
+  const classAttr = className ? ` class="${className}"` : '';
+  return `<img${classAttr} data-page-id="${escapeHtml(page.id)}" src="${escapeHtml(item.src)}" alt="${alt}" loading="lazy" decoding="async" style="object-fit:${fit};object-position:center;">`;
+}
+
 function assetVisual(page) {
   const asset = resolvedAsset(page);
-  if (!asset?.src) return page.demoVisual;
+  const layout = assetLayout(asset);
 
-  const alt = escapeHtml(asset.alt || page.title);
-  const fit = asset.fit === 'contain' ? 'contain' : 'cover';
+  if (layout === 'demo') return page.demoVisual;
+
+  if (layout === 'gallery') {
+    const columns = Math.max(1, Math.min(Number(asset.columns) || asset.items.length, 4));
+    const tiles = asset.items
+      .filter((item) => item?.src)
+      .map((item, index) => {
+        const label = escapeHtml(item.label || `Beeld ${index + 1}`);
+        return `<figure class="asset-tile">
+          ${imageMarkup(page, item)}
+          <figcaption class="asset-label">${label}</figcaption>
+        </figure>`;
+      })
+      .join('');
+
+    return `<div class="asset-gallery" style="--asset-columns:${columns}">${tiles}</div>`;
+  }
+
+  if (layout === 'full') {
+    const label = escapeHtml(asset.label || 'Projectrender');
+    return `<div class="asset-full">
+      ${imageMarkup(page, asset)}
+      <span class="asset-label">${label}</span>
+    </div>`;
+  }
+
   const label = escapeHtml(asset.label || 'Echt projectbeeld');
-  return `<div class="visual-paper" data-real-asset="true">
-    <img data-page-id="${escapeHtml(page.id)}" src="${escapeHtml(asset.src)}" alt="${alt}" loading="lazy" decoding="async" style="width:100%;height:100%;display:block;object-fit:${fit};object-position:center;">
+  return `<div class="asset-single visual-paper">
+    ${imageMarkup(page, asset)}
     <span class="visual-caption">${label}</span>
   </div>`;
 }
@@ -59,14 +101,16 @@ function pageTemplate(page, index) {
     return `<div class="page-heading"><span class="step-number">—</span><h2>EINDE</h2></div><p class="page-copy">Dit is het einde van het prototype.</p>`;
   }
 
-  const assetState = resolvedAsset(page)?.src ? 'ECHTE CONTENT' : 'DEMO';
+  const layout = assetLayout(resolvedAsset(page));
+  const assetState = layout === 'demo' ? 'DEMO' : 'REAL-ASSET';
+
   return `
     <div class="page-heading">
       <span class="step-number">${String(index + 1).padStart(2, '0')}</span>
       <h2>${escapeHtml(page.title.toUpperCase())}</h2>
     </div>
     <p class="page-copy">${escapeHtml(page.copy)}</p>
-    <div class="visual" data-page-id="${escapeHtml(page.id)}" data-content-state="${assetState}">${assetVisual(page)}</div>`;
+    <div class="visual" data-page-id="${escapeHtml(page.id)}" data-content-state="${assetState}" data-layout="${layout}">${assetVisual(page)}</div>`;
 }
 
 function bindAssetFallbacks() {
@@ -77,6 +121,7 @@ function bindAssetFallbacks() {
       if (!page || !visual) return;
       visual.innerHTML = page.demoVisual;
       visual.dataset.contentState = 'DEMO-FALLBACK';
+      visual.dataset.layout = 'demo';
     }, { once: true });
   });
 }
