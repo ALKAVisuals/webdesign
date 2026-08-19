@@ -1,0 +1,64 @@
+/* M.1A V8 — final illustration polish.
+   Loaded after style-lock-v7.css. Scope: closed cover illustration only.
+   Goal: preserve the approved V7 cover system and refine just the architectural sketch. */
+
+:root {
+  --v8-line: #5c5953;
+}
+
+/* Keep all V7 typography and object geometry. Only refine the drawing field. */
+.approved-cover-lineart {
+  left: -0.5%;
+  bottom: 5.2%;
+  width: 103%;
+  height: 64%;
+  stroke: var(--v8-line);
+  stroke-width: .60;
+  opacity: .445;
+  mix-blend-mode: multiply;
+}
+
+.approved-cover-lineart .outline {
+  stroke-width: .88;
+  opacity: .95;
+}
+
+.approved-cover-lineart .structure {
+  stroke-width: .56;
+  opacity: .80;
+}
+
+.approved-cover-lineart .detail {
+  stroke-width: .46;
+  opacity: .72;
+}
+
+.approved-cover-lineart .thin {
+  stroke-width: .30;
+  opacity: .48;
+}
+
+.approved-cover-lineart .faint {
+  stroke-width: .20;
+  opacity: .22;
+}
+
+.approved-cover-lineart .ghost {
+  stroke-width: .18;
+  opacity: .14;
+}
+
+.approved-cover-lineart .plant {
+  stroke-width: .34;
+  opacity: .48;
+}
+
+@media (max-width: 760px) {
+  .approved-cover-lineart {
+    left: -1%;
+    bottom: 5.15%;
+    width: 104%;
+    height: 64.5%;
+    opacity: .46;
+  }
+}
