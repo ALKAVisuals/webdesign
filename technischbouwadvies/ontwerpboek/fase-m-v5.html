@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="description" content="Fase M V5 preview van het interactieve ontwerpboek van Technisch Bouwadvies.">
+  <title>Fase M V5 — Ontwerpboek</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=20260819-1825">
+  <link rel="stylesheet" href="content-layouts.css?v=20260819-1825">
+  <link rel="stylesheet" href="book-lifecycle.css?v=20260819-1825">
+  <link rel="stylesheet" href="approved-book.css?v=20260819-1825">
+  <link rel="stylesheet" href="approved-book-fixes.css?v=20260819-1825">
+  <link rel="stylesheet" href="motion-polish.css?v=20260819-1825">
+  <link rel="stylesheet" href="mobile-polish.css?v=20260819-1825">
+  <link rel="stylesheet" href="accessibility-polish.css?v=20260819-1825">
+  <link rel="stylesheet" href="phase-m-visual-qa.css?v=20260819-1825">
+  <link rel="stylesheet" href="phase-m-mobile-repair.css?v=20260819-1825">
+  <link rel="stylesheet" href="phase-m-mobile-clarity.css?v=20260819-1825">
+  <link rel="stylesheet" href="phase-m-mobile-state.css?v=20260819-1825">
+  <link rel="stylesheet" href="phase-m-cover-fit.css?v=20260819-1825">
+</head>
+<body>
+  <header class="presentation-header">
+    <a class="presentation-brand" href="#boek" aria-label="Technisch Bouwadvies ontwerpboek">
+      <span class="presentation-brand-mark" aria-hidden="true">TB</span>
+      <span><strong>TECHNISCH</strong><small>BOUWADVIES</small></span>
+    </a>
+    <span class="presentation-label">PROJECTVISUALISATIE</span>
+  </header>
+
+  <main class="presentation-main">
+    <section class="presentation-intro" id="boek">
+      <p class="presentation-eyebrow">VAN CONCEPT NAAR TECHNISCH ONTWERP</p>
+      <h1>Bekijk hoe een ontwerp<br>tot leven komt.</h1>
+      <p>Een rustig, beeldgedreven ontwerpverhaal waarin technische tekeningen, materiaalkeuzes en visualisaties samen één geheel vormen.</p>
+      <button class="presentation-open" id="startBook" type="button" aria-controls="book">Open ontwerpboek <span>→</span></button>
+    </section>
+
+    <section class="book-area is-closed" id="bookArea" data-lifecycle="closed" aria-label="Interactief ontwerpboek">
+      <div class="visually-hidden" aria-live="polite" aria-atomic="true">
+        <strong id="currentChapter">Ontwerpboek klaar om te openen</strong>
+        <div><span id="metaProgressBar"></span></div>
+      </div>
+
+      <div class="book-stage">
+        <div class="book-shadow" aria-hidden="true"></div>
+
+        <button class="closed-cover" id="coverStart" type="button" aria-label="Open het ontwerpboek" aria-controls="book">
+          <div class="cover-inner approved-cover">
+            <p class="approved-cover-kicker">TECHNISCH ONTWERP</p>
+            <h2>ONTWERPBOEK</h2>
+            <p class="approved-cover-subtitle">VAN CONCEPT NAAR TECHNISCH ONTWERP</p>
+            <span class="approved-cover-rule" aria-hidden="true"></span>
+            <svg class="approved-cover-lineart" viewBox="0 0 420 300" aria-hidden="true">
+              <path d="M54 246V118L164 62l112 57v127M54 118l111 60 111-59M165 178v69"/>
+              <path d="M276 247v-82l94-24v106M276 165l47-33 47 9M303 160v87M337 151v96"/>
+              <path d="M75 129v105M99 141v93M123 153v81M147 165v69M192 164v75M219 151v88M246 137v102" class="thin"/>
+              <line x1="32" y1="247" x2="389" y2="247" class="thin"/>
+            </svg>
+            <span class="approved-cover-brand">TECHNISCH BOUWADVIES</span>
+          </div>
+        </button>
+
+        <div class="book" id="book" tabindex="0" role="region" aria-label="Blader door het ontwerpboek met de pijltjestoetsen of swipe">
+          <div class="page-stack stack-left" aria-hidden="true"></div>
+          <div class="page-stack stack-right" aria-hidden="true"></div>
+          <div class="book-spine" aria-hidden="true"></div>
+          <article class="book-page page-left" id="leftPage" aria-live="off"></article>
+          <article class="book-page page-right" id="rightPage" aria-live="off"></article>
+          <div class="page-turn" id="pageTurn" aria-hidden="true"><div class="turn-back"></div></div>
+        </div>
+
+        <div class="book-end" id="bookEnd" aria-hidden="true">
+          <p class="presentation-eyebrow">ONTWERPVERHAAL COMPLEET</p>
+          <h3>Van eerste idee naar een helder uitgewerkt ontwerp.</h3>
+          <p>Bekijk het verhaal opnieuw of ga verder naar Technisch Bouwadvies.</p>
+          <div class="book-end-actions">
+            <button class="presentation-open" id="restartBook" type="button" aria-controls="book">Bekijk opnieuw <span>↻</span></button>
+            <a class="presentation-link" href="https://technischbouwadvies.nl/">Technisch Bouwadvies <span>→</span></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="minimal-controls" aria-label="Boekbediening">
+        <button class="minimal-arrow" id="prevPage" type="button" aria-label="Vorige pagina" aria-controls="book">←</button>
+        <div class="minimal-position">
+          <span id="metaCount">00 / 08</span>
+          <div class="minimal-progress" aria-hidden="true"><span id="minimalProgress"></span></div>
+        </div>
+        <button class="minimal-arrow" id="nextPage" type="button" aria-label="Volgende pagina" aria-controls="book">→</button>
+        <button class="minimal-autoplay" id="autoplayToggle" type="button" aria-pressed="false" aria-label="Start automatisch bladeren" aria-controls="book">
+          <span class="play-icon" aria-hidden="true">▶</span>
+          <span class="visually-hidden" id="autoplayText">Autoplay uit</span>
+        </button>
+        <div class="visually-hidden" id="pageDots" aria-hidden="true"></div>
+      </div>
+    </section>
+  </main>
+
+  <noscript>Voor het interactieve ontwerpboek is JavaScript nodig.</noscript>
+  <script src="phase-m-mobile-behavior.js?v=20260819-1825"></script>
+  <script type="module" src="book.js?v=20260819-1825"></script>
+  <script type="module" src="motion-polish.js?v=20260819-1825"></script>
+  <script type="module" src="accessibility-performance.js?v=20260819-1825"></script>
+</body>
+</html>
