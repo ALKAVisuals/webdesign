@@ -4,12 +4,13 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Interactief ontwerpboek prototype voor Technisch Bouwadvies — van tutorial naar praktijkontwerp.">
-  <title>Ontwerpboek V0.5 — Technisch Bouwadvies</title>
+  <title>Ontwerpboek V0.6 — Technisch Bouwadvies</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="content-layouts.css">
+  <link rel="stylesheet" href="book-lifecycle.css">
 </head>
 <body>
   <header class="site-header">
@@ -24,7 +25,7 @@
       <a href="#over">Over prototype</a>
     </nav>
 
-    <span class="prototype-badge" id="prototypeVersion">Prototype V0.5</span>
+    <span class="prototype-badge" id="prototypeVersion">Prototype V0.6</span>
   </header>
 
   <main>
@@ -36,7 +37,7 @@
         <p class="intro">De demo laat zien hoe kennis uit een TD Vision U-traject later kan worden vertaald naar een eigen praktijkproject met schetsen, bouwkundige tekeningen, materiaalkeuzes en interieur- en exterieurrenders.</p>
 
         <div class="hero-actions">
-          <button class="button button-dark" id="startBook" type="button">Start het boek <span>→</span></button>
+          <button class="button button-dark" id="startBook" type="button">Open ontwerpboek <span>→</span></button>
           <a class="button button-light" href="#proces">Bekijk de opbouw <span>↓</span></a>
         </div>
 
@@ -46,29 +47,29 @@
         </div>
       </div>
 
-      <div class="book-area">
+      <div class="book-area is-closed" id="bookArea" data-lifecycle="closed">
         <div class="book-meta" aria-live="polite">
           <div>
             <span class="meta-label">Huidig hoofdstuk</span>
-            <strong id="currentChapter">01 · Referentie & briefing</strong>
+            <strong id="currentChapter">Ontwerpboek klaar om te openen</strong>
           </div>
           <div class="meta-progress" aria-hidden="true"><span id="metaProgressBar"></span></div>
-          <span class="meta-count" id="metaCount">1 / 14</span>
+          <span class="meta-count" id="metaCount">0 / 14</span>
         </div>
 
         <div class="book-stage" aria-label="Interactief ontwerpboek">
           <div class="book-shadow" aria-hidden="true"></div>
 
-          <div class="closed-cover" aria-hidden="true">
+          <button class="closed-cover" id="coverStart" type="button" aria-label="Open het ontwerpboek">
             <div class="cover-inner">
               <div class="cover-mark"><span></span><span></span></div>
               <p class="cover-kicker">TECHNISCH BOUWADVIES</p>
               <div class="cover-title">ONTWERP<br>BOEK</div>
               <div class="cover-subtitle">Van tutorial<br>naar praktijk</div>
               <div class="cover-rule"></div>
-              <span class="cover-edition" id="coverEdition">V0.5 · FLEXIBLE CONTENT LAYOUTS</span>
+              <span class="cover-edition" id="coverEdition">V0.6 · BOOK EXPERIENCE</span>
             </div>
-          </div>
+          </button>
 
           <div class="book" id="book" tabindex="0" aria-label="Blader door het ontwerpboek met de pijltjestoetsen of swipe">
             <div class="page-stack stack-left" aria-hidden="true"></div>
@@ -78,19 +79,29 @@
             <article class="book-page page-right" id="rightPage" aria-live="polite"></article>
             <div class="page-turn" id="pageTurn" aria-hidden="true"><div class="turn-back"></div></div>
           </div>
+
+          <div class="book-end" id="bookEnd" aria-hidden="true">
+            <p class="eyebrow">ONTWERPPROCES COMPLEET</p>
+            <h3>Van eerste leerstap naar een compleet ontwerp.</h3>
+            <p>Het boek kan opnieuw worden afgespeeld of de bezoeker kan verder naar de werkwijze van Technisch Bouwadvies.</p>
+            <div class="book-end-actions">
+              <button class="button button-dark" id="restartBook" type="button">Bekijk opnieuw <span>↻</span></button>
+              <a class="button button-light" href="#proces">Bekijk werkwijze <span>↓</span></a>
+            </div>
+          </div>
         </div>
 
         <div class="book-toolbar">
           <button class="circle-button" id="prevPage" type="button" aria-label="Vorige spread">←</button>
           <div class="dots" id="pageDots" aria-label="Paginanavigatie"></div>
           <button class="circle-button" id="nextPage" type="button" aria-label="Volgende spread">→</button>
-          <button class="autoplay-toggle" id="autoplayToggle" type="button" aria-pressed="true">
-            <span class="play-icon" aria-hidden="true">▶</span>
-            <span id="autoplayText">Autoplay aan</span>
+          <button class="autoplay-toggle" id="autoplayToggle" type="button" aria-pressed="false">
+            <span class="play-icon" aria-hidden="true">Ⅱ</span>
+            <span id="autoplayText">Autoplay uit</span>
           </button>
         </div>
 
-        <p class="interaction-hint">Sleep of swipe over het boek · gebruik ← → · autoplay elke 5 seconden</p>
+        <p class="interaction-hint">Het boek opent automatisch · sleep of swipe · gebruik ← → · autoplay elke 5 seconden</p>
       </div>
     </section>
 
@@ -103,10 +114,10 @@
 
     <section class="demo-note" id="over">
       <div>
-        <p class="eyebrow">V0.5 — FLEXIBELE CONTENTLAYOUTS</p>
-        <h2>Eén boek ondersteunt nu technische tekeningen, galleries en grote renders.</h2>
+        <p class="eyebrow">V0.6 — BOOK EXPERIENCE</p>
+        <h2>De pagina voelt nu als één doorlopend ontwerpboek in plaats van een losse slider.</h2>
       </div>
-      <p>Pagina 04 test drie ontwerpvarianten als gallery, pagina 06 blijft een technische single-asset en pagina 12 gebruikt een full-page exterieurrender. Straks kunnen echte TD Vision U-screenshots en projectbeelden per hoofdstuk dezelfde drie layouttypes gebruiken zonder de bladerlogica opnieuw te bouwen.</p>
+      <p>De cover opent automatisch, daarna start autoplay. Aan het einde stopt het boek bewust en verschijnt een nette eindstaat met herstart en vervolgactie. De bestaande single-, gallery- en full-page contentlayouts blijven gewoon werken.</p>
     </section>
   </main>
 

@@ -1,6 +1,6 @@
 export const pipelineConfig = {
-  version: 'V0.5',
-  edition: 'FLEXIBLE CONTENT LAYOUTS'
+  version: 'V0.6',
+  edition: 'BOOK EXPERIENCE'
 };
 
 export const assetManifest = {
