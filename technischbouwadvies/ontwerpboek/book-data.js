@@ -54,11 +54,10 @@ export const pages = [
     id: '01-projectintro-text',
     spread: '01',
     presentation: 'text',
-    kicker: '01 — PROJECTINTRO',
-    title: 'Een helder ontwerp begint met een duidelijke basis.',
-    copy: 'Wensen, bestaande situatie en ruimtelijke kansen worden samengebracht in één ontwerpverhaal. De presentatie houdt techniek en visualisatie bewust in balans.',
-    footer: 'TECHNISCH BOUWADVIES',
-    facts: [['Project','Woninguitbreiding'],['Fase','Technisch ontwerp'],['Presentatie','Tekenwerk & visualisatie']]
+    kicker: '01',
+    title: 'PROJECT INTRO',
+    copy: 'Een doordacht ontwerp begint met inzicht in de locatie, de wensen en de mogelijkheden. Hiermee ontstaat een solide basis voor een toekomstbestendig en haalbaar ontwerp.',
+    footer: 'TECHNISCH BOUWADVIES'
   },
   {
     id: '01-projectintro-visual',
