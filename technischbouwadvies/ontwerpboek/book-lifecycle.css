@@ -1,0 +1,140 @@
+/* V0.6 — cover/open/end lifecycle. Kept separate from page/content styling. */
+.book-area { position: relative; }
+
+.closed-cover {
+  appearance: none;
+  border: 0;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  transform-origin: right center;
+  transform-style: preserve-3d;
+  transition: transform .9s cubic-bezier(.2,.72,.18,1), opacity .45s ease, filter .45s ease;
+}
+.closed-cover:focus-visible { outline: 2px solid var(--bronze); outline-offset: 5px; }
+.closed-cover::before {
+  content: "Open boek";
+  position: absolute;
+  left: 50%;
+  bottom: 18px;
+  z-index: 3;
+  transform: translateX(-50%);
+  padding: 8px 12px;
+  border: 1px solid rgba(170,123,53,.38);
+  border-radius: 999px;
+  background: rgba(255,253,248,.88);
+  color: #5e4727;
+  font-size: 10px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  opacity: .92;
+}
+
+.book,
+.book-meta,
+.book-toolbar,
+.interaction-hint {
+  transition: opacity .55s ease, transform .85s cubic-bezier(.2,.72,.18,1), filter .55s ease;
+}
+
+.book-area.is-closed .book {
+  opacity: 0;
+  transform: translateX(8%) rotateX(4deg) rotateZ(.25deg) scale(.93);
+  pointer-events: none;
+  filter: blur(1px) drop-shadow(0 10px 12px rgba(45,39,28,.08));
+}
+.book-area.is-closed .book-meta,
+.book-area.is-closed .book-toolbar,
+.book-area.is-closed .interaction-hint { opacity: .38; }
+.book-area.is-closed .book-toolbar { pointer-events: none; }
+
+.book-area.is-opening .closed-cover {
+  transform: perspective(1300px) rotateY(-112deg) translateX(-2%);
+  filter: drop-shadow(24px 12px 20px rgba(45,39,28,.24));
+}
+.book-area.is-opening .book {
+  opacity: 1;
+  transform: rotateX(2deg) rotateZ(.25deg) scale(.985);
+}
+.book-area.is-opening .book-toolbar,
+.book-area.is-opening .interaction-hint { opacity: .25; pointer-events: none; }
+
+.book-area.is-open .closed-cover {
+  transform: perspective(1300px) rotateY(-178deg) translateX(-6%);
+  opacity: 0;
+  pointer-events: none;
+}
+.book-area.is-open .book {
+  opacity: 1;
+  transform: rotateX(2deg) rotateZ(.25deg) scale(1);
+}
+.book-area.is-open .book-meta,
+.book-area.is-open .book-toolbar,
+.book-area.is-open .interaction-hint { opacity: 1; }
+
+.book-area.is-ending .book {
+  transform: rotateX(2deg) rotateZ(.25deg) scale(.97);
+  opacity: .45;
+  filter: blur(1px) drop-shadow(0 18px 14px rgba(45,39,28,.14));
+}
+.book-area.is-ending .book-toolbar,
+.book-area.is-ending .interaction-hint { opacity: 0; pointer-events: none; }
+
+.book-end {
+  position: absolute;
+  z-index: 25;
+  inset: 50% 6% auto auto;
+  width: min(440px, 70%);
+  transform: translateY(-42%) scale(.96);
+  padding: clamp(24px, 3vw, 38px);
+  border: 1px solid rgba(170,123,53,.26);
+  border-radius: 8px;
+  background: rgba(251,250,247,.96);
+  box-shadow: 0 24px 70px rgba(40,34,24,.18);
+  backdrop-filter: blur(10px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .45s ease, transform .55s cubic-bezier(.2,.72,.18,1);
+}
+.book-area.is-ended .book-end {
+  opacity: 1;
+  transform: translateY(-50%) scale(1);
+  pointer-events: auto;
+}
+.book-area.is-ended .book { opacity: .22; transform: rotateX(2deg) rotateZ(.25deg) scale(.95); }
+.book-area.is-ended .book-toolbar,
+.book-area.is-ended .interaction-hint { opacity: 0; pointer-events: none; }
+
+.book-end .eyebrow { margin-bottom: 12px; }
+.book-end h3 {
+  margin: 0;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(28px, 3vw, 42px);
+  line-height: 1.04;
+  letter-spacing: -.035em;
+}
+.book-end p:not(.eyebrow) { color: var(--muted); line-height: 1.7; font-size: 14px; }
+.book-end-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
+.book-end-actions .button { min-height: 46px; }
+
+.book-toolbar button:disabled { opacity: .36; cursor: default; transform: none; }
+
+@media (max-width: 760px) {
+  .closed-cover::before { bottom: 12px; }
+  .book-end {
+    inset: 50% 5% auto 5%;
+    width: auto;
+  }
+  .book-area.is-opening .closed-cover { transform: perspective(900px) rotateY(-105deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .closed-cover,
+  .book,
+  .book-meta,
+  .book-toolbar,
+  .interaction-hint,
+  .book-end { transition-duration: .01ms !important; }
+}
