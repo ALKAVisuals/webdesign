@@ -83,9 +83,8 @@ Vaste flow:
 - **Fase E — Cover redesign: AFGEROND + GOEDGEKEURD**
 - **Fase F — Spread template system: AFGEROND + GOEDGEKEURD**
 - **Fase G — Volledige statische boekflow: AFGEROND + GOEDGEKEURD**
-- **Fase H — Visueel systeem implementeren: AFGEROND + GEMERGED NAAR MAIN**
-
-Fase H is via PR #12 naar `main` gemerged. De standalone boektool bevat nu de nieuwe A+B-shell, gekozen cover, 8 spreads, minimale controls en vernieuwde editorial data/layouts.
+- **Fase H — Visueel systeem implementeren: AFGEROND + GEMERGED NAAR MAIN via PR #12**
+- **Fase I — Page-turn & motion polish: AFGEROND + GEMERGED NAAR MAIN via PR #13**
 
 ---
 
@@ -120,7 +119,7 @@ Wel behouden, zeer subtiel:
 - autoplay
 - hoofdstuktiming
 - open/closed lifecycle
-- page-turn trigger/logica
+- premium page-turn
 - asset manifest
 - single/gallery/full assettypes
 - image fallback
@@ -128,69 +127,90 @@ Wel behouden, zeer subtiel:
 
 ---
 
-## 8. Fase I — Page-turn & motion polish
+## 8. Fase I — Motion polish — OP MAIN
 
-**Status: GEÏMPLEMENTEERD OP BRANCH `agent/motion-polish`**
-
-Toegevoegd:
+Toegevoegd via PR #13:
 
 ### `motion-polish.css`
 - rustiger cover-open beweging
-- coveranimatie afgestemd op bestaande lifecycle-timing
 - groter maar rustiger perspectief
 - subtielere contactschaduw
 - realistischere bewegende paginaschaduw
-- page-turn met zachtere acceleratie en afremming
-- minder theatrale 3D-rotatie
-- subtiele reactie van boek/schaduw tijdens omslaan
-- zachtere overgang naar eindstaat
-- aparte, kortere mobile motion
-- `prefers-reduced-motion` blijft gerespecteerd
+- zachtere page-turn acceleratie/afremming
+- subtiele reactie van boek en onderliggende pagina
+- rustigere eindanimatie
+- kortere mobile motion
+- `prefers-reduced-motion` ondersteuning
 
 ### `motion-polish.js`
-- observeert alleen de bestaande page-turn status
-- voegt tijdelijk `is-turning-next` / `is-turning-prev` toe aan het boek
-- verandert de bestaande `book.js` niet
-- maakt gekoppelde schaduw- en dieptefeedback mogelijk
+- observeert bestaande page-turn status
+- koppelt tijdelijk voorwaartse/achterwaartse status aan shadow/depth feedback
+- `book.js` zelf blijft onaangeraakt
+
+---
+
+## 9. Fase J — Mobile visual polish — HUIDIGE BRANCH
+
+Branch:
+
+`agent/mobile-polish-phase-j`
+
+Toegevoegd:
+
+### `mobile-polish.css`
+- mobiel boek als echte single-page compositie
+- responsive boekhoogte met `svh`
+- safe-area ondersteuning
+- geen horizontale overflow
+- betere titel/body-schaal op 760 / 390px breakpoints
+- technische tekeningen krijgen gegarandeerd meer verticale ruimte
+- variantenpagina verandert op mobiel van 3 kleine kolommen naar 3 verticale vergelijkingsrijen
+- full-bleed visualpagina's blijven gecontroleerd beeldvullend
+- materiaalstalen schalen compacter
+- CTA en bediening blijven bruikbaar op korte schermen
+- previous/next/autoplay krijgen 44px tapzones
+- touch hover-effecten worden op coarse pointers uitgeschakeld
+- aparte compact-regels voor schermen lager dan 700px
 
 ### `index.html`
-- laadt `motion-polish.css` als laatste visuele laag
-- laadt `motion-polish.js` na `book.js`
+- laadt `mobile-polish.css` als laatste stylesheet zodat uitsluitend mobile overrides de desktopstijl niet wijzigen
 
-### Validatie
-- branch is gebaseerd op actuele `main`
-- wijzigingen raken alleen `technischbouwadvies/ontwerpboek/`
-- `motion-polish.js` is lokaal gevalideerd met `node --check`
+### Scopecontrole
+- branch staat 0 commits achter op `main`
+- vóór documentatie-update veranderden alleen `index.html` en `mobile-polish.css`
+- alle wijzigingen blijven binnen `technischbouwadvies/ontwerpboek/`
 
-De openbare GitHub Pages-route kon vanuit de huidige browsingomgeving nog niet betrouwbaar worden geopend. Daarom is browser-visuele QA nog geen afgeronde claim.
-
----
-
-## 9. Eerstvolgende stap
-
-Na merge van Fase I:
-
-### Fase J — Mobile visual polish + browser QA
-
-1. desktop live layout controleren zodra de publieke route bereikbaar is
-2. cover/open/page-turn visueel nalopen
-3. mobile single-page compositie apart beoordelen
-4. swipe feedback en mobile page-turn verfijnen
-5. typografie/marges per mobile breakpoint controleren
-6. overflow/clipping controleren
-7. daarna performance/accessibility-polish
-
-Belangrijk: art direction, cover en spreads niet opnieuw ontwerpen; alleen implementatie- en responsive QA.
+### Browser-QA beperking
+De openbare GitHub Pages-route kon vanuit de huidige browsertool niet rechtstreeks worden geladen en de container heeft geen DNS-toegang tot GitHub. Daarom is **echte screenshot/browser-QA nog niet als afgerond gemarkeerd**. De mobile fase is op code/CSS-structuur gecontroleerd; live visuele QA blijft een expliciete vervolgcontrole zodra de route toegankelijk is.
 
 ---
 
-## 10. Overdracht naar nieuwe chat
+## 10. Eerstvolgende fase
 
-> We gaan verder met het premium interactieve ontwerpboek voor Technisch Bouwadvies. Open in `ALKAVisuals/webdesign` eerst `technischbouwadvies/ontwerpboek/VISUAL-DESIGN-ROADMAP.md` en daarna `technischbouwadvies/ontwerpboek/VISUAL-DESIGN-PROGRESS.md`. Lees beide volledig. De A+B art direction, masterspread, Technical Line Art cover en 8-spread boekflow zijn al goedgekeurd en mogen niet opnieuw worden ontworpen tenzij de gebruiker dat expliciet vraagt. Fase H is naar main gemerged. Fase I heeft de premium page-turn/motion polish op branch `agent/motion-polish` geïmplementeerd. Controleer of die branch al is gemerged; zo niet, valideer scope en merge hem. Daarna is Fase J: mobile visual polish en browser-QA. De echte website technischbouwadvies.nl nog niet aanpassen.
+Na merge van Fase J:
+
+### Fase K — Performance & accessibility polish
+
+1. toetsenbord/focusstates nalopen
+2. ARIA en button labels controleren
+3. reduced-motion gedrag nalopen
+4. image loading / lazy loading controleren
+5. WebP/AVIF-strategie voor echte projectassets vastleggen
+6. CLS/overflow-risico's beperken
+7. CSS-lagen opschonen waar veilig
+8. daarna integratievoorbereiding voor technischbouwadvies.nl
+
+Belangrijk: de visuele art direction, cover en spreadlayouts niet opnieuw ontwerpen.
 
 ---
 
-## 11. Snelle status
+## 11. Overdracht naar nieuwe chat
+
+> We gaan verder met het premium interactieve ontwerpboek voor Technisch Bouwadvies. Open in `ALKAVisuals/webdesign` eerst `technischbouwadvies/ontwerpboek/VISUAL-DESIGN-ROADMAP.md` en daarna `technischbouwadvies/ontwerpboek/VISUAL-DESIGN-PROGRESS.md`. Lees beide volledig. De A+B art direction, masterspread, Technical Line Art cover en 8-spread boekflow zijn al goedgekeurd en mogen niet opnieuw worden ontworpen tenzij de gebruiker dat expliciet vraagt. Fase H is via PR #12 naar main gemerged en Fase I motion polish via PR #13. Fase J mobile polish staat op branch `agent/mobile-polish-phase-j`; controleer of die al is gemerged. Als dat zo is, ga door met Fase K: performance & accessibility polish. De echte website technischbouwadvies.nl nog niet aanpassen.
+
+---
+
+## 12. Snelle status
 
 **GOEDGEKEURD**
 - A+B art direction
@@ -205,13 +225,14 @@ Belangrijk: art direction, cover en spreads niet opnieuw ontwerpen; alleen imple
 - 8 spreads
 - editorial layouts
 - minimale controls
-- assetmapping en timings
+- assetmapping/timings
+- premium motion polish
 
 **HUIDIGE BRANCH**
-- `agent/motion-polish`
-- premium cover/page-turn/shadow motion
+- `agent/mobile-polish-phase-j`
+- mobile single-page polish
 
-**VOLGENDE FASE**
-- mobile polish + browser QA
-- daarna performance/accessibility
-- pas daarna integratie in technischbouwadvies.nl
+**DAARNA**
+- performance/accessibility
+- integratievoorbereiding
+- pas daarna implementatie in technischbouwadvies.nl
