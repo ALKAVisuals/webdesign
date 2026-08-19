@@ -1,0 +1,231 @@
+/* D — Projectintro final integration into the real interactive book.
+   Scope: spread 01 desktop presentation. Mobile remains governed by the existing safe 2D rules until step E. */
+
+:root {
+  --pi-paper: #faf7ef;
+  --pi-paper-warm: #f5efe5;
+  --pi-ink: #242522;
+  --pi-muted: #6f6c65;
+  --pi-bronze: #a97636;
+}
+
+@media (min-width: 761px) {
+  /* Approved 36.5 / 63.5 masterspread, only while spread 01 is visible. */
+  .book:has(.editorial-layout[data-spread="01"]) {
+    grid-template-columns: 36.5% 63.5% !important;
+    aspect-ratio: 1.46 !important;
+    filter:
+      drop-shadow(0 4px 4px rgba(54,42,31,.075))
+      drop-shadow(0 16px 22px rgba(63,50,37,.075)) !important;
+  }
+
+  /* Physical page blocks follow the asymmetric page widths. */
+  .book:has(.editorial-layout[data-spread="01"]) .stack-left {
+    width: 36.5% !important;
+    left: 0 !important;
+    right: auto !important;
+    top: 3px !important;
+    bottom: -8px !important;
+    transform: translate(-8px, 3px) !important;
+    border-radius: 3px 0 0 4px !important;
+    background: #f3ede4 !important;
+    box-shadow:
+      -1px 0 0 rgba(74,62,50,.44),
+      -3px 0 0 #e7dfd4,
+      -5px 0 0 rgba(248,244,236,.94),
+      -7px 0 0 rgba(104,91,77,.38),
+      0 2px 0 #f8f4ec,
+      0 4px 0 #e9e1d6,
+      0 6px 0 #f4ede4,
+      0 8px 0 rgba(174,160,145,.42) !important;
+  }
+
+  .book:has(.editorial-layout[data-spread="01"]) .stack-right {
+    width: 63.5% !important;
+    right: 0 !important;
+    left: auto !important;
+    top: 3px !important;
+    bottom: -8px !important;
+    transform: translate(11px, 3px) !important;
+    border-radius: 0 3px 4px 0 !important;
+    background: #f3ede4 !important;
+    box-shadow:
+      1px 0 0 #faf6ef,
+      3px 0 0 rgba(188,176,162,.62),
+      5px 0 0 #f8f3eb,
+      7px 0 0 rgba(139,126,112,.40),
+      9px 0 0 #f5eee5,
+      11px 0 0 rgba(89,77,65,.54),
+      0 2px 0 #f8f4ec,
+      0 4px 0 #e8e0d5,
+      0 6px 0 #f5eee5,
+      0 8px 0 rgba(176,162,147,.42) !important;
+  }
+
+  /* Centre seam sits on the true 36.5% fold. */
+  .book:has(.editorial-layout[data-spread="01"]) .book-spine {
+    left: 36.5% !important;
+    width: 24px !important;
+    transform: translateX(-50%) !important;
+    border-radius: 0 !important;
+    opacity: .86 !important;
+    background: linear-gradient(90deg,
+      transparent 0%,
+      rgba(79,61,43,.02) 15%,
+      rgba(68,52,36,.07) 38%,
+      rgba(48,36,25,.155) 50%,
+      rgba(72,56,40,.08) 57%,
+      rgba(255,255,255,.095) 71%,
+      transparent 100%) !important;
+  }
+
+  .book:has(.editorial-layout[data-spread="01"]) .book-spine::after {
+    top: 0 !important;
+    bottom: 0 !important;
+    background: rgba(46,35,24,.24) !important;
+    box-shadow: -2px 0 4px rgba(54,41,29,.08), 2px 0 4px rgba(255,255,255,.07) !important;
+  }
+
+  /* A restrained broad floor shadow supplies weight without a card-like halo. */
+  .book-stage:has(.book .editorial-layout[data-spread="01"]) .book-shadow {
+    width: min(980px, 78%) !important;
+    height: 38px !important;
+    bottom: 9.2% !important;
+    border-radius: 50% !important;
+    background: rgba(63,50,37,.095) !important;
+    filter: blur(18px) !important;
+    opacity: .42 !important;
+  }
+
+  /* Left page: warm ivory paper and the approved editorial rhythm. */
+  .page-left:has(.editorial-text-page[data-spread="01"]) {
+    padding: 7.9% 9.5% 6.8% 15.2% !important;
+    border-color: rgba(83,68,50,.045) !important;
+    border-radius: 2px 0 2px 3px !important;
+    background:
+      radial-gradient(ellipse at 18% 12%, rgba(255,255,255,.34), transparent 40%),
+      linear-gradient(135deg, rgba(255,255,255,.06), transparent 46%, rgba(111,88,60,.018) 100%),
+      linear-gradient(90deg, var(--pi-paper) 0%, var(--pi-paper) 88%, var(--pi-paper-warm) 100%) !important;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.42), inset -10px 0 18px rgba(63,50,35,.026) !important;
+  }
+
+  .page-left:has(.editorial-text-page[data-spread="01"])::before {
+    opacity: .72 !important;
+    background:
+      radial-gradient(ellipse 72% 105% at 100% 50%, rgba(54,40,27,.085) 0%, rgba(72,55,38,.042) 23%, transparent 68%),
+      linear-gradient(90deg, transparent 76%, rgba(255,255,255,.11) 96%, rgba(255,255,255,.15) 100%) !important;
+  }
+
+  .editorial-text-page[data-spread="01"] {
+    min-height: 100%;
+    align-items: flex-start !important;
+    justify-content: flex-start !important;
+  }
+
+  .editorial-text-page[data-spread="01"] .editorial-kicker {
+    margin: 0 0 30px !important;
+    padding: 0 0 20px !important;
+  }
+
+  .editorial-text-page[data-spread="01"] .editorial-kicker::before {
+    font-size: 9px !important;
+    letter-spacing: .12em !important;
+  }
+
+  .editorial-text-page[data-spread="01"] .editorial-kicker::after {
+    width: 29px !important;
+  }
+
+  .editorial-text-page[data-spread="01"] .editorial-title {
+    width: 205px !important;
+    max-width: 100% !important;
+    min-height: 0 !important;
+  }
+
+  .editorial-text-page[data-spread="01"] .editorial-title::before {
+    font-size: clamp(29px, 2.55vw, 40px) !important;
+    line-height: 1.08 !important;
+    letter-spacing: -.025em !important;
+  }
+
+  .editorial-text-page[data-spread="01"] .editorial-copy {
+    width: min(225px, 78%) !important;
+    max-width: min(225px, 78%) !important;
+    min-height: 0 !important;
+    margin-top: 57px !important;
+  }
+
+  .editorial-text-page[data-spread="01"] .editorial-copy::before {
+    font-size: 10.8px !important;
+    line-height: 1.72 !important;
+    color: var(--pi-muted) !important;
+  }
+
+  .editorial-text-page[data-spread="01"] .editorial-footer-label {
+    margin-top: auto !important;
+    padding-bottom: 0 !important;
+    font-size: 7.6px !important;
+    letter-spacing: .12em !important;
+    color: #6e6b64 !important;
+  }
+
+  /* Full-height hero, using the approved crop/treatment. */
+  .page-right:has(.editorial-visual-page[data-spread="01"]) {
+    padding: 0 !important;
+    overflow: hidden !important;
+    border-color: rgba(83,68,50,.035) !important;
+    border-radius: 0 2px 3px 2px !important;
+    background: #24251f !important;
+    box-shadow: inset 9px 0 16px rgba(28,21,15,.035) !important;
+  }
+
+  .editorial-visual-page[data-spread="01"],
+  .editorial-visual-page[data-spread="01"] .visual,
+  .editorial-visual-page[data-spread="01"] .asset-full {
+    width: 100% !important;
+    height: 100% !important;
+    min-height: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .editorial-visual-page[data-spread="01"] .asset-full img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    object-position: 50% 52% !important;
+    transform: scale(1.018) !important;
+    transform-origin: center !important;
+    filter: saturate(.90) contrast(1.04) brightness(.91) !important;
+  }
+
+  .page-right:has(.editorial-visual-page[data-spread="01"])::before {
+    opacity: .66 !important;
+    background:
+      radial-gradient(ellipse 78% 108% at 0% 50%, rgba(22,17,12,.18) 0%, rgba(24,19,14,.09) 22%, transparent 70%),
+      linear-gradient(90deg, rgba(255,255,255,.045) 0%, transparent 12%) !important;
+  }
+
+  /* User-preferred folio stays in the lower-right corner of the hero. */
+  .page-right:has(.editorial-visual-page[data-spread="01"])::after {
+    display: block !important;
+    content: "02" !important;
+    right: 3.2% !important;
+    bottom: 3.05% !important;
+    left: auto !important;
+    top: auto !important;
+    z-index: 12 !important;
+    font-family: "Libre Baskerville", Georgia, serif !important;
+    font-size: 8px !important;
+    line-height: 1 !important;
+    color: rgba(250,247,241,.94) !important;
+    text-shadow: 0 1px 5px rgba(0,0,0,.28) !important;
+  }
+
+  .page-left:has(.editorial-text-page[data-spread="01"])::after {
+    display: none !important;
+  }
+}
+
+/* Step E will deliberately translate the approved physical style to mobile.
+   Until then, do not override the existing iOS-safe single-page rules here. */
