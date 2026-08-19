@@ -4,41 +4,117 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="robots" content="noindex,nofollow">
-  <title>Projectintro — Final Style Lock · Stap 5</title>
+  <title>Projectintro — Final Style Lock · Stap 6</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    :root{--bg:#eee9e1;--paper:#faf7f1;--ink:#242522;--muted:#747169;--bronze:#a97636}
-    *{box-sizing:border-box} html,body{margin:0;min-height:100%;background:var(--bg);color:var(--ink)}
+    :root{
+      --bg:#ece6dd;
+      --paper:#f8f4ec;
+      --paper-soft:#f5efe6;
+      --paper-edge:#e7dfd4;
+      --ink:#242522;
+      --muted:#747169;
+      --bronze:#a97636;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;min-height:100%;background:var(--bg);color:var(--ink)}
     body{font-family:"DM Sans",system-ui,sans-serif;padding:54px 24px 70px}
     .stage{width:min(1080px,92vw);margin:0 auto}
     .label{margin:0 0 18px;text-align:center;font-size:11px;letter-spacing:.16em;color:#77736c}
+
+    /* STEP 6 — physical book treatment.
+       Keep the object quiet: warm paper, close contact shadow, restrained page depth and a soft gutter instead of a digital divider. */
+    .book-shell{
+      position:relative;
+      isolation:isolate;
+    }
+    .book-shell::before{
+      content:"";
+      position:absolute;
+      z-index:-1;
+      left:1.25%;
+      right:1.05%;
+      bottom:-5px;
+      height:7px;
+      border-radius:0 0 2px 2px;
+      background:
+        linear-gradient(180deg,
+          rgba(247,242,234,.96) 0 24%,
+          rgba(224,216,205,.78) 25% 38%,
+          rgba(246,240,232,.94) 39% 66%,
+          rgba(219,210,199,.62) 67% 78%,
+          rgba(241,235,226,.80) 79% 100%);
+      box-shadow:0 2px 2px rgba(54,44,34,.06);
+    }
+    .book-shell::after{
+      content:"";
+      position:absolute;
+      z-index:-2;
+      left:4%;
+      right:3.2%;
+      bottom:-15px;
+      height:22px;
+      border-radius:50%;
+      background:rgba(63,50,37,.16);
+      filter:blur(11px);
+      opacity:.62;
+    }
 
     /* STEP 2 — locked spread geometry. */
     .book{
       display:grid;
       grid-template-columns:36.5% 63.5%;
       aspect-ratio:1.46;
-      background:var(--paper);
-      box-shadow:0 24px 45px rgba(53,43,32,.13),0 4px 7px rgba(53,43,32,.07);
       position:relative;
       overflow:hidden;
+      background:var(--paper);
+      border:1px solid rgba(83,68,50,.055);
+      box-shadow:
+        0 16px 30px rgba(55,43,31,.105),
+        0 4px 9px rgba(55,43,31,.055),
+        0 1px 1px rgba(55,43,31,.04);
     }
-    .book:after{
+    .book::before{
       content:"";
       position:absolute;
-      left:36.5%;
+      inset:0;
+      z-index:6;
+      pointer-events:none;
+      background:
+        radial-gradient(circle at 18% 12%,rgba(255,255,255,.17),transparent 29%),
+        linear-gradient(180deg,rgba(255,255,255,.08),transparent 24%,rgba(92,73,51,.015) 100%);
+      opacity:.42;
+    }
+    .gutter{
+      position:absolute;
+      z-index:7;
+      pointer-events:none;
       top:0;
       bottom:0;
-      width:1px;
-      transform:translateX(-.5px);
-      background:rgba(70,58,42,.085);
-      pointer-events:none;
-      z-index:4;
+      left:36.5%;
+      width:15px;
+      transform:translateX(-50%);
+      background:
+        linear-gradient(90deg,
+          rgba(76,59,40,.045) 0%,
+          rgba(76,59,40,.012) 24%,
+          rgba(255,255,255,.13) 48%,
+          rgba(71,54,37,.052) 72%,
+          rgba(71,54,37,.012) 100%);
+      opacity:.72;
     }
-    .page{position:relative;min-width:0;background:var(--paper)}
-    .left{padding:8.35% 10.2% 6.3%;display:flex;flex-direction:column}
+
+    .page{position:relative;min-width:0}
+    .left{
+      padding:8.35% 10.2% 6.3%;
+      display:flex;
+      flex-direction:column;
+      background:
+        linear-gradient(90deg,var(--paper) 0%,var(--paper) 89%,var(--paper-soft) 100%);
+      box-shadow:inset -1px 0 rgba(77,62,44,.025);
+    }
 
     /* STEP 4 — locked chapter marker + title. */
     .kicker{
@@ -73,8 +149,7 @@
     }
     h1 span{display:block;white-space:nowrap}
 
-    /* STEP 5 — bodycopy, negative space, footer and folio.
-       Keep the copy deliberately narrow so the lower two-thirds read as intentional editorial whitespace. */
+    /* STEP 5 — locked bodycopy, whitespace, footer and folio. */
     .copy{
       width:min(74%,190px);
       margin:29px 0 0;
@@ -103,7 +178,7 @@
       font-size:8px;
       line-height:1;
       color:#8b857c;
-      z-index:5;
+      z-index:8;
     }
     .left .page-no{left:10.2%}
     .right .page-no{right:3.2%;color:rgba(250,247,241,.94);text-shadow:0 1px 5px rgba(0,0,0,.28)}
@@ -122,7 +197,7 @@
       transform-origin:center center;
       filter:saturate(.90) contrast(1.04) brightness(.91);
     }
-    .right:before{
+    .right::before{
       content:"";
       position:absolute;
       inset:0;
@@ -130,46 +205,72 @@
       pointer-events:none;
       background:
         linear-gradient(180deg,rgba(22,23,19,.015) 0%,rgba(17,18,15,.07) 100%),
-        linear-gradient(90deg,rgba(19,20,17,.035) 0%,transparent 14%);
+        linear-gradient(90deg,rgba(19,20,17,.04) 0%,transparent 13%);
     }
-    .right:after{display:none}
+    .right::after{
+      content:"";
+      position:absolute;
+      z-index:3;
+      left:0;
+      top:0;
+      bottom:0;
+      width:12px;
+      pointer-events:none;
+      background:linear-gradient(90deg,rgba(19,17,14,.105),rgba(19,17,14,.025) 44%,transparent 100%);
+      opacity:.56;
+    }
 
     .status{margin:18px 0 0;text-align:center;color:#77736c;font-size:11px}
 
     @media(max-width:760px){
       body{padding:24px 14px 50px}
       .stage{width:min(390px,94vw)}
-      .book{display:block;aspect-ratio:.72}
+      .book-shell::before{left:2%;right:2%;bottom:-3px;height:4px;opacity:.55}
+      .book-shell::after{left:7%;right:7%;bottom:-9px;height:14px;filter:blur(8px);opacity:.40}
+      .book{
+        display:block;
+        aspect-ratio:.72;
+        box-shadow:0 11px 22px rgba(55,43,31,.09),0 2px 5px rgba(55,43,31,.045);
+      }
+      .book::before{opacity:.25}
+      .gutter{display:none}
       .right{display:none}
-      .left{height:100%;padding:9% 8.5% 6.8%}
+      .left{
+        height:100%;
+        padding:9% 8.5% 6.8%;
+        background:var(--paper);
+        box-shadow:none;
+      }
       .kicker{font-size:8px}
       .rule{width:25px;margin:14px 0 31px}
       h1{font-size:30px;line-height:.97;letter-spacing:-.043em}
       .copy{width:min(76%,220px);margin-top:28px;font-size:10.2px;line-height:1.68;color:#716e67}
       .brand{margin-bottom:18px;font-size:6.8px;letter-spacing:.14em}
       .left .page-no{left:8.5%;bottom:3.2%;font-size:7.5px}
-      .book:after{display:none}
     }
   </style>
 </head>
 <body>
   <main class="stage">
-    <p class="label">PROJECTINTRO · STEP 5 · BODYCOPY, WITRUIMTE & FOOTER</p>
-    <section class="book" aria-label="Projectintro bodycopy and whitespace review spread">
-      <article class="page left">
-        <p class="kicker">01</p>
-        <span class="rule" aria-hidden="true"></span>
-        <h1><span>PROJECT</span><span>INTRO</span></h1>
-        <p class="copy">Een doordacht ontwerp begint met inzicht in de locatie, de wensen en de mogelijkheden. Zo ontstaat een heldere basis voor een haalbaar en toekomstbestendig ontwerp.</p>
-        <span class="brand">TECHNISCH BOUWADVIES</span>
-        <span class="page-no">01</span>
-      </article>
-      <article class="page right">
-        <img src="https://raw.githubusercontent.com/ALKAVisuals/alkabouwadvies/main/images/website-2026/projecten/illustratieve-case-aanbouw-rijwoning.webp" alt="Sfeervolle architectonische exterieurvisualisatie van een rijwoning met aanbouw">
-        <span class="page-no">02</span>
-      </article>
-    </section>
-    <p class="status">Stap 5 actief op de style-lock branch. Main blijft ongemoeid. Beoordeel nu bodycopy, verticale rust, footer en paginanummering.</p>
+    <p class="label">PROJECTINTRO · STEP 6 · FYSIEK BOEKGEVOEL</p>
+    <div class="book-shell">
+      <section class="book" aria-label="Projectintro physical book review spread">
+        <article class="page left">
+          <p class="kicker">01</p>
+          <span class="rule" aria-hidden="true"></span>
+          <h1><span>PROJECT</span><span>INTRO</span></h1>
+          <p class="copy">Een doordacht ontwerp begint met inzicht in de locatie, de wensen en de mogelijkheden. Zo ontstaat een heldere basis voor een haalbaar en toekomstbestendig ontwerp.</p>
+          <span class="brand">TECHNISCH BOUWADVIES</span>
+          <span class="page-no">01</span>
+        </article>
+        <article class="page right">
+          <img src="https://raw.githubusercontent.com/ALKAVisuals/alkabouwadvies/main/images/website-2026/projecten/illustratieve-case-aanbouw-rijwoning.webp" alt="Sfeervolle architectonische exterieurvisualisatie van een rijwoning met aanbouw">
+          <span class="page-no">02</span>
+        </article>
+        <span class="gutter" aria-hidden="true"></span>
+      </section>
+    </div>
+    <p class="status">Stap 6 actief op de style-lock branch. Main blijft ongemoeid. Beoordeel nu alleen papierwarmte, gutter, page-depth en boekschaduw.</p>
   </main>
 </body>
 </html>
