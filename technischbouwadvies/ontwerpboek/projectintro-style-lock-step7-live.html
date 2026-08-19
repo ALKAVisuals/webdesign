@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Projectintro — Stap 7 Live Preview</title>
+</head>
+<body>
+  <script>
+    const source = 'https://raw.githubusercontent.com/ALKAVisuals/webdesign/agent/projectintro-final-style-lock/technischbouwadvies/ontwerpboek/projectintro-style-lock-preview.html?v=20260819-2156';
+    fetch(source, { cache: 'no-store' })
+      .then(response => {
+        if (!response.ok) throw new Error('Preview source kon niet worden geladen');
+        return response.text();
+      })
+      .then(html => {
+        document.open();
+        document.write(html);
+        document.close();
+      })
+      .catch(() => {
+        document.body.innerHTML = '<p style="font-family:system-ui;padding:2rem">De live preview kon niet worden geladen. Vernieuw de pagina.</p>';
+      });
+  </script>
+</body>
+</html>
