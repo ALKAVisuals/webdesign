@@ -16,8 +16,8 @@ Alle visuele correcties voor Projectintro worden vanaf nu uitsluitend op deze br
 1. Baseline / veilige branch — AFGEROND
 2. Spreadverhouding & geometrie — AFGEROND
 3. Hero-afbeelding & beeldpresentatie — AFGEROND
-4. Chapter marker & titel — ACTIEF / REVIEW
-5. Bodycopy, witruimte & footer
+4. Chapter marker & titel — AFGEROND
+5. Bodycopy, witruimte & footer — ACTIEF / REVIEW
 6. Fysiek boekgevoel
 7. Desktop + mobiel QA
 8. Final reference pass + finale merge
@@ -39,15 +39,26 @@ Alle visuele correcties voor Projectintro worden vanaf nu uitsluitend op deze br
 - Rustige kleurbehandeling: lichte desaturatie, iets meer contrast en lagere helderheid
 - Zeer subtiele donkere overlay voor meer architectural-monograph sfeer
 
-## Stap 4 — huidige chapter marker & titel
-- Chapter marker teruggebracht naar een kleine bronzen `01`
-- Hairline verkort naar 27 px en dichter bij de marker geplaatst
+## Stap 4 — vastgelegde chapter marker & titel
+- Kleine bronzen `01`
+- Hairline 27 px en compact bij de chapter marker
 - Titel geforceerd naar twee regels: `PROJECT` / `INTRO`
-- Titelschaal teruggebracht naar max. 40 px op desktop
-- Line-height aangescherpt naar .96 voor een compactere editorial titelvorm
-- Serif blijft Libre Baskerville om de rustige architectuurmonografie-richting te behouden
-- Mobiel gebruikt dezelfde tweeregelige hiërarchie met een aparte 30 px schaal
-- Bodycopy, footer, papier en schaduw zijn in deze stap bewust niet aangepast
+- Titelschaal max. 40 px op desktop
+- Line-height .96 en subtiele negatieve tracking
+- Libre Baskerville als rustige editorial serif
+- Mobiel dezelfde hiërarchie met 30 px titelmaat
+
+## Stap 5 — huidige bodycopy, witruimte & footer
+- Bodycopy versmald naar max. 190 px / 74% van de linker pagina
+- Bodytekst iets kleiner en lichter gemaakt: 10.4 px, line-height 1.72
+- Tekst inhoudelijk iets ingekort zodat de kolom rustiger en editorialer valt
+- Afstand titel → bodycopy teruggebracht naar 29 px
+- Grote onderste witruimte bewust behouden als onderdeel van de compositie
+- `TECHNISCH BOUWADVIES` subtieler gezet op 7.2 px met meer letterspacing
+- Footer iets boven de folio gezet zodat merknaam en paginanummer niet concurreren
+- Linker folio uitgelijnd met de hoofdinhoud en teruggebracht naar 8 px
+- Mobiel eigen smallere copykolom, 10.2 px bodytekst en subtielere footer/folio
+- Papier, gutter, page-stack en boekschaduw zijn in deze stap bewust niet gewijzigd
 
 ## Vaste preview
 `projectintro-style-lock-preview.html` is de visuele branch-preview. Deze wordt gedurende de style-lock steeds bijgewerkt zodat dezelfde link kan worden gebruikt voor review.
