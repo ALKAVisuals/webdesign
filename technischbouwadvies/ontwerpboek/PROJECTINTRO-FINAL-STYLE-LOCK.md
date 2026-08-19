@@ -31,7 +31,7 @@ B2. Subtiele pagina-kromming — AFGEROND ALS RICHTING
 C1. Contactschaduw — AFGEROND ALS RICHTING
 C2. Papiergevoel — AFGEROND ALS RICHTING
 D. Projectintro-integratie — AFGEROND ALS RICHTING
-E. Mobile vertaling — ACTIEF / REVIEW
+E. Mobile vertaling — E2 ACTIEF / REVIEW
 F. Finale vergelijking + merge
 
 ## Vastgelegde inhoudelijke basis
@@ -99,18 +99,26 @@ F. Finale vergelijking + merge
 - De door gebruiker gewenste `02` blijft rechtsonder op de hero zichtbaar; de linker extra folio blijft verborgen
 - De D-preview gebruikt de echte interactieve boekmarkup, book.js, asset-manifest en bestaande lifecyclebestanden via een cache-veilige branchwrapper
 
-## E — huidige mobile vertaling
+## E — mobile vertaling
 - `style-lock-m1c-projectintro-mobile.css` vertaalt spread 01 naar mobiel zonder de bestaande iOS/Safari-veiligheidsregels te omzeilen
 - Mobiel blijft één pagina tegelijk tonen; er wordt geen tweede lege rechterpagina gereserveerd
 - Leesbare pagina, tekst, hero en editorial-layout blijven permanent 2D: geen perspective, geen 3D-transform, geen filter op de content en geen will-change rasterisatie
-- Het fysieke gevoel komt mobiel uitsluitend uit een aparte platte `stack-left` achter de actieve pagina met enkele scherpe ivoorkleurige lagen en een minimale rechter/onderrand
-- De geblurde `book-shadow` is voor Projectintro mobiel uitgeschakeld; hierdoor blijft de leesbare sheet scherp en rustig
-- De tekstpagina gebruikt vlak warm ivory papier met slechts zeer lichte lineaire lichtvariatie; de oude zichtbare dot/noise textuur wordt voor deze spread overschreven
-- Mobiele typografie is opnieuw afgestemd op de huidige style-lock: chapter marker `01`, titel `PROJECT / INTRO`, bodycopy en footer houden dezelfde hiërarchie als desktop maar zijn voor portrait leesbaarheid herschaald
-- Pagina 02 blijft in de echte `book.js` flow de volgende afzonderlijke mobiele pagina; wanneer die naar `.page-left` wordt gerenderd, vult de hero de volledige pagina
-- De hero blijft mobiel bewust zonder CSS filter/scale om Safari-scherpte te behouden; `object-position: 50% 52%` blijft wel behouden
-- De door gebruiker gewenste `02` staat ook op de mobiele hero rechtsonder
-- `projectintro-integration-e-mobile-live.html` is de cache-veilige reviewwrapper voor deze stap en laadt de echte interactieve boekengine
+- De geblurde `book-shadow` is voor Projectintro mobiel uitgeschakeld
+- Pagina 02 blijft in de echte `book.js` flow de volgende afzonderlijke mobiele pagina en de door gebruiker gewenste `02` blijft op de mobiele hero rechtsonder
+
+## E2 — huidige mobiele compositiecorrectie
+- E2 is gestart na echte iPhone-review van E1; desktopregels zijn niet gewijzigd
+- `style-lock-m1c-projectintro-mobile-e2.css` wordt na de E1-mobile stylesheet geladen en bevat alleen mobiele overrides
+- De volledige `.presentation-intro` verdwijnt zodra het boek in `opening`, `open`, `turning`, `ending` of `ended` staat; hierdoor blijft `Open ontwerpboek →` niet boven een reeds geopend boek staan en reserveert die landingssectie geen verticale ruimte meer
+- De open boekzone krijgt opnieuw een kleine veilige bovenruimte en het boek kan optisch beter in de beschikbare viewport staan
+- Titel `PROJECT / INTRO` is ongeveer 8–10% teruggeschaald ten opzichte van E1 en blijft op twee regels
+- Bodycopy is iets kleiner en smaller gemaakt zodat de pagina meer als editorial print en minder als webtekst leest
+- Footer is eveneens minimaal teruggenomen zodat de hiërarchie rustiger wordt
+- Mobiele page stack is minder mathematisch regelmatig gemaakt: laagoffsets, kleurwaarden en onderlinge afstanden variëren subtiel
+- Een uiterst smalle rechter buitenrand op de onderliggende papierstapel geeft extra fysieke boekdikte zonder 3D-transform, blur of filter op de leesbare pagina
+- De hero-pagina erft dezelfde platte page-stack en blijft verder full-bleed en scherp
+- De E2-review is vastgezet op commit `39d0df935b05d6b2ab1fe94c3e48826ca8e6c75d`
+- `projectintro-integration-e2-mobile-2312.html` is de unieke cache-veilige E2-reviewwrapper
 
 ## Vaste preview
-`projectintro-style-lock-preview.html` blijft de visuele stijlschets. Vanaf stap E is `projectintro-integration-e-mobile-live.html` de belangrijkste reviewpreview voor de echte interactieve desktop/mobile implementatie.
+`projectintro-style-lock-preview.html` blijft de visuele stijlschets. Voor de huidige echte mobiele review is `projectintro-integration-e2-mobile-2312.html` leidend. Pas na review van E2 gaat het project door naar stap F.
