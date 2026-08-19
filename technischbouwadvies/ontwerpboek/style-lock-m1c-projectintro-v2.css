@@ -1,0 +1,225 @@
+/* M.1C V2 — Projectintro precision match against the VOLLEDIGE BOEKFLOW reference.
+   Scope: spread 01 only. Keep V8 cover and M.1B book physics intact. */
+
+:root {
+  --m1c2-ink: #252622;
+  --m1c2-muted: #6f6c65;
+  --m1c2-bronze: #a87535;
+}
+
+/* The first spread must read as a quiet architectural book page, not a web article. */
+.editorial-text-page[data-spread="01"] {
+  align-items: flex-start;
+  justify-content: flex-start;
+  color: var(--m1c2-ink);
+}
+
+/* Chapter marker: only 01 + a short bronze hairline, as in the reference. */
+.editorial-text-page[data-spread="01"] .editorial-kicker {
+  position: relative;
+  width: 100%;
+  margin: 0 0 26px !important;
+  padding: 0 0 14px !important;
+  font-size: 0 !important;
+  line-height: 1 !important;
+  color: transparent !important;
+}
+
+.editorial-text-page[data-spread="01"] .editorial-kicker::before {
+  content: "01";
+  display: block;
+  color: var(--m1c2-bronze);
+  font-family: "DM Sans", system-ui, sans-serif;
+  font-size: 7.4px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: .12em;
+}
+
+.editorial-text-page[data-spread="01"] .editorial-kicker::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 18px;
+  height: 1px;
+  background: var(--m1c2-bronze);
+}
+
+/* Force the reference title even when an older book-data.js is still cached by iOS. */
+.editorial-text-page[data-spread="01"] .editorial-title {
+  width: 120px !important;
+  max-width: 120px !important;
+  min-height: 46px;
+  margin: 0 !important;
+  font-size: 0 !important;
+  line-height: 1 !important;
+  letter-spacing: 0 !important;
+  color: transparent !important;
+}
+
+.editorial-text-page[data-spread="01"] .editorial-title::before {
+  content: "PROJECT\A INTRO";
+  white-space: pre;
+  display: block;
+  color: var(--m1c2-ink);
+  font-family: "Libre Baskerville", Georgia, serif;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.06;
+  letter-spacing: -.035em;
+}
+
+.editorial-text-page[data-spread="01"] .editorial-rule {
+  display: none !important;
+}
+
+/* Reference copy is short, narrow and visually secondary. */
+.editorial-text-page[data-spread="01"] .editorial-copy {
+  width: 188px !important;
+  max-width: 188px !important;
+  min-height: 70px;
+  margin: 29px 0 0 !important;
+  font-size: 0 !important;
+  line-height: 1 !important;
+  color: transparent !important;
+}
+
+.editorial-text-page[data-spread="01"] .editorial-copy::before {
+  content: "Een doordacht ontwerp begint met inzicht in de locatie, de wensen en de mogelijkheden. Hiermee ontstaat een solide basis voor een toekomstbestendig en haalbaar ontwerp.";
+  display: block;
+  color: var(--m1c2-muted);
+  font-family: "DM Sans", system-ui, sans-serif;
+  font-size: 7.5px;
+  font-weight: 400;
+  line-height: 1.72;
+  letter-spacing: .003em;
+}
+
+.editorial-text-page[data-spread="01"] .editorial-facts,
+.editorial-text-page[data-spread="01"] .editorial-legend {
+  display: none !important;
+}
+
+.editorial-text-page[data-spread="01"] .editorial-footer-label {
+  margin-top: auto !important;
+  padding: 0 0 1px !important;
+  color: #64635e;
+  font-family: "DM Sans", system-ui, sans-serif;
+  font-size: 5.7px !important;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: .115em !important;
+}
+
+/* Spread 01 has no extra page number printed inside the text page in the reference. */
+.book-page:has(.editorial-text-page[data-spread="01"])::after {
+  display: none !important;
+}
+
+/* Keep the physical page edge neutral; never let focus look like a decorative bronze frame. */
+.book-page:has(.editorial-text-page[data-spread="01"]) {
+  border-color: rgba(78, 66, 51, .05) !important;
+}
+
+/* Desktop spread: the left page should occupy a restrained editorial column. */
+@media (min-width: 761px) {
+  .book-page:has(.editorial-text-page[data-spread="01"]) {
+    padding: 7.8% 7.2% 5.8% !important;
+  }
+
+  .editorial-text-page[data-spread="01"] .editorial-title::before {
+    font-size: clamp(20px, 1.72vw, 26px);
+  }
+
+  .editorial-text-page[data-spread="01"] .editorial-copy {
+    width: min(205px, 70%) !important;
+    max-width: min(205px, 70%) !important;
+  }
+
+  .editorial-text-page[data-spread="01"] .editorial-copy::before {
+    font-size: 7.2px;
+    line-height: 1.70;
+  }
+}
+
+/* Mobile is a single portrait page, but it preserves the same restrained print hierarchy. */
+@media (max-width: 760px) {
+  .book:focus,
+  .book:focus-visible {
+    outline: none !important;
+    outline-offset: 0 !important;
+  }
+
+  .book-page:has(.editorial-text-page[data-spread="01"]) {
+    padding: 8.6% 9.2% 6.6% !important;
+    border: 1px solid rgba(78, 66, 51, .045) !important;
+    border-radius: 2px !important;
+  }
+
+  .editorial-text-page[data-spread="01"] {
+    padding-top: 0 !important;
+  }
+
+  .editorial-text-page[data-spread="01"] .editorial-kicker {
+    margin-bottom: 25px !important;
+    padding-bottom: 13px !important;
+  }
+
+  .editorial-text-page[data-spread="01"] .editorial-kicker::before {
+    font-size: 7.2px;
+  }
+
+  .editorial-text-page[data-spread="01"] .editorial-kicker::after {
+    width: 18px;
+  }
+
+  .editorial-text-page[data-spread="01"] .editorial-title {
+    width: 118px !important;
+    max-width: 118px !important;
+    min-height: 48px;
+  }
+
+  .editorial-text-page[data-spread="01"] .editorial-title::before {
+    font-size: 20px !important;
+    line-height: 1.05 !important;
+    letter-spacing: -.035em !important;
+  }
+
+  .editorial-text-page[data-spread="01"] .editorial-copy {
+    width: min(192px, 67%) !important;
+    max-width: min(192px, 67%) !important;
+    min-height: 88px;
+    margin-top: 31px !important;
+  }
+
+  .editorial-text-page[data-spread="01"] .editorial-copy::before {
+    font-size: 7.8px !important;
+    line-height: 1.72 !important;
+  }
+
+  .editorial-text-page[data-spread="01"] .editorial-footer-label {
+    font-size: 5.8px !important;
+    letter-spacing: .115em !important;
+  }
+}
+
+@media (max-width: 420px) {
+  .book-page:has(.editorial-text-page[data-spread="01"]) {
+    padding: 8.4% 9% 6.4% !important;
+  }
+
+  .editorial-text-page[data-spread="01"] .editorial-title::before {
+    font-size: 19px !important;
+  }
+
+  .editorial-text-page[data-spread="01"] .editorial-copy {
+    width: min(184px, 68%) !important;
+    max-width: min(184px, 68%) !important;
+    margin-top: 28px !important;
+  }
+
+  .editorial-text-page[data-spread="01"] .editorial-copy::before {
+    font-size: 7.5px !important;
+  }
+}
