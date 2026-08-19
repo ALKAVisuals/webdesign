@@ -1,0 +1,111 @@
+/* Phase M mobile clarity — keep the open page crisp on iOS Safari.
+   The physical effect is moved to the page-turn overlay; the readable page stays 2D. */
+
+@media (max-width: 760px) {
+  html,
+  body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  .book-stage {
+    perspective: none !important;
+  }
+
+  .book,
+  .book-area.is-opening .book,
+  .book-area.is-open .book,
+  .book-area.is-turning-next .book,
+  .book-area.is-turning-prev .book,
+  .book-area.is-ending .book,
+  .book-area.is-ended .book {
+    transform: translate(-50%, -50%) !important;
+    transform-style: flat !important;
+    backface-visibility: visible !important;
+    -webkit-backface-visibility: visible !important;
+    will-change: auto !important;
+    filter: none !important;
+  }
+
+  .book-area.is-open .book,
+  .book-area.is-turning-next .book,
+  .book-area.is-turning-prev .book {
+    animation: none !important;
+    opacity: 1 !important;
+  }
+
+  .book-page,
+  .page-left,
+  .editorial-layout {
+    transform: none !important;
+    filter: none !important;
+    backface-visibility: visible !important;
+    -webkit-backface-visibility: visible !important;
+    will-change: auto !important;
+  }
+
+  .book-page {
+    box-shadow:
+      0 14px 30px rgba(44, 36, 27, .11),
+      inset 0 0 0 1px rgba(78, 67, 53, .035) !important;
+  }
+
+  .book-shadow {
+    width: min(350px, 78vw) !important;
+    height: 42px !important;
+    bottom: 8% !important;
+    opacity: .34 !important;
+    filter: blur(22px) !important;
+    transform: translateX(-50%) !important;
+  }
+
+  .book-area.is-turning-next .book-shadow,
+  .book-area.is-turning-prev .book-shadow {
+    transform: translateX(-50%) !important;
+    filter: blur(22px) !important;
+  }
+
+  /* Only the temporary page-turn sheet may use 3D transforms. */
+  .page-turn {
+    transform-style: preserve-3d !important;
+    backface-visibility: hidden !important;
+    -webkit-backface-visibility: hidden !important;
+    will-change: transform, opacity !important;
+    filter: none !important;
+  }
+
+  .book-area.is-turning-next .page-right,
+  .book-area.is-turning-prev .page-left {
+    animation: none !important;
+    filter: none !important;
+  }
+
+  .asset-full img,
+  .asset-single img,
+  .asset-tile img,
+  .editorial-technical-page svg {
+    transform: none !important;
+    filter: none !important;
+    image-rendering: auto;
+  }
+
+  .minimal-controls {
+    margin-top: 14px !important;
+  }
+}
+
+@media (max-width: 420px) {
+  .book-page {
+    padding: 26px 24px !important;
+  }
+
+  .editorial-title {
+    font-size: clamp(25px, 7.5vw, 31px) !important;
+  }
+
+  .editorial-copy {
+    font-size: 10px !important;
+    line-height: 1.68 !important;
+  }
+}
