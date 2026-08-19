@@ -1,0 +1,30 @@
+/* Phase M cover fit — keep the approved cover title inside the physical book on desktop and mobile. */
+
+.approved-cover h2 {
+  max-width: 100%;
+  font-size: clamp(30px, 2.55vw, 39px) !important;
+  line-height: .98 !important;
+  letter-spacing: -.052em !important;
+  white-space: nowrap;
+}
+
+.approved-cover-subtitle {
+  max-width: 100%;
+}
+
+/* Projectintro is a single, quiet hero image rather than a comparison panel. */
+img[data-page-id="01-projectintro-visual"] {
+  object-position: center center !important;
+}
+
+@media (max-width: 760px) {
+  .approved-cover h2 {
+    font-size: clamp(27px, 7.7vw, 32px) !important;
+  }
+}
+
+@media (max-width: 390px) {
+  .approved-cover h2 {
+    font-size: clamp(26px, 7.45vw, 29px) !important;
+  }
+}
