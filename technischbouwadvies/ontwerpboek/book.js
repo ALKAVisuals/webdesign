@@ -1,5 +1,5 @@
 import { bookConfig, pages } from './book-data.js';
-import { assetManifest, pipelineConfig } from './asset-manifest.js';
+import { assetManifest } from './asset-manifest.js';
 import { getViewDuration } from './book-timings.js';
 
 const leftPage = document.getElementById('leftPage');
@@ -19,8 +19,7 @@ const startBook = document.getElementById('startBook');
 const currentChapter = document.getElementById('currentChapter');
 const metaCount = document.getElementById('metaCount');
 const metaProgressBar = document.getElementById('metaProgressBar');
-const versionBadge = document.getElementById('prototypeVersion');
-const coverEdition = document.getElementById('coverEdition');
+const minimalProgress = document.getElementById('minimalProgress');
 
 let currentPage = 0;
 let autoplay = false;
@@ -35,6 +34,8 @@ const isMobile = () => window.matchMedia('(max-width: 760px)').matches;
 const prefersReducedMotion = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const viewCount = () => isMobile() ? pages.length : Math.ceil(pages.length / 2);
 const stepSize = () => isMobile() ? 1 : 2;
+const spreadCount = () => Math.ceil(pages.length / 2);
+const spreadNumber = (pageIndex) => Math.min(spreadCount(), Math.floor(pageIndex / 2) + 1);
 
 function escapeHtml(value = '') {
   return String(value)
@@ -70,7 +71,7 @@ function imageMarkup(page, item, className = '') {
 function assetVisual(page) {
   const asset = resolvedAsset(page);
   const layout = assetLayout(asset);
-  if (layout === 'demo') return page.demoVisual;
+  if (layout === 'demo') return page.demoVisual || '';
 
   if (layout === 'gallery') {
     const columns = Math.max(1, Math.min(Number(asset.columns) || asset.items.length, 4));
@@ -85,19 +86,67 @@ function assetVisual(page) {
   }
 
   if (layout === 'full') {
-    const label = escapeHtml(asset.label || 'Projectrender');
-    return `<div class="asset-full">${imageMarkup(page, asset)}<span class="asset-label">${label}</span></div>`;
+    return `<div class="asset-full">${imageMarkup(page, asset)}</div>`;
   }
 
-  const label = escapeHtml(asset.label || 'Echt projectbeeld');
-  return `<div class="asset-single visual-paper">${imageMarkup(page, asset)}<span class="visual-caption">${label}</span></div>`;
+  return `<div class="asset-single">${imageMarkup(page, asset)}</div>`;
+}
+
+function factsMarkup(items = [], className = 'editorial-facts') {
+  if (!Array.isArray(items) || !items.length) return '';
+  return `<dl class="${className}">${items.map(([label, value]) => `<dt>${escapeHtml(label)}</dt><dd><strong>${escapeHtml(value)}</strong></dd>`).join('')}</dl>`;
+}
+
+function textPageMarkup(page) {
+  return `
+    <p class="editorial-kicker">${escapeHtml(page.kicker || '')}</p>
+    <h2 class="editorial-title${page.presentation === 'cta' ? ' large' : ''}">${escapeHtml(page.title)}</h2>
+    <span class="editorial-rule" aria-hidden="true"></span>
+    <p class="editorial-copy">${escapeHtml(page.copy || '')}</p>
+    ${factsMarkup(page.facts)}
+    ${factsMarkup(page.legend, 'editorial-legend')}
+    ${page.footer ? `<span class="editorial-footer-label">${escapeHtml(page.footer)}</span>` : ''}
+  `;
 }
 
 function pageTemplate(page, index) {
-  if (!page) return `<div class="page-heading"><span class="step-number">—</span><h2>EINDE</h2></div><p class="page-copy">Dit is het einde van het prototype.</p>`;
-  const layout = assetLayout(resolvedAsset(page));
-  const assetState = layout === 'demo' ? 'DEMO' : 'REAL-ASSET';
-  return `<div class="page-heading"><span class="step-number">${String(index + 1).padStart(2, '0')}</span><h2>${escapeHtml(page.title.toUpperCase())}</h2></div><p class="page-copy">${escapeHtml(page.copy)}</p><div class="visual" data-page-id="${escapeHtml(page.id)}" data-content-state="${assetState}" data-layout="${layout}">${assetVisual(page)}</div>`;
+  if (!page) return '<div class="editorial-layout"></div>';
+
+  const presentation = page.presentation || 'text';
+  let markup = '';
+
+  if (presentation === 'visual') {
+    markup = `<div class="visual">${assetVisual(page)}</div>`;
+  } else if (presentation === 'gallery') {
+    markup = `
+      <p class="editorial-kicker">${escapeHtml(page.kicker || '')}</p>
+      <h2 class="editorial-title">${escapeHtml(page.title)}</h2>
+      <p class="editorial-copy variation-intro">${escapeHtml(page.copy || '')}</p>
+      <div class="visual">${assetVisual(page)}</div>
+    `;
+  } else if (presentation === 'technical') {
+    markup = `
+      <p class="editorial-kicker">${escapeHtml(page.kicker || '')}</p>
+      <h2 class="editorial-title">${escapeHtml(page.title)}</h2>
+      ${page.copy ? `<p class="editorial-copy">${escapeHtml(page.copy)}</p>` : ''}
+      <div class="visual">${assetVisual(page)}</div>
+    `;
+  } else if (presentation === 'materials') {
+    markup = `
+      ${textPageMarkup(page)}
+      <div class="material-swatches" aria-label="Materiaalpalet"><span></span><span></span><span></span><span></span><span></span></div>
+      <div class="material-swatches-labels" aria-hidden="true"><span>hout</span><span>steen</span><span>bekleding</span><span>kozijn</span><span>glas</span></div>
+    `;
+  } else if (presentation === 'cta') {
+    markup = `
+      ${textPageMarkup(page)}
+      <a class="presentation-link editorial-cta" href="https://technischbouwadvies.nl/">Bespreek uw bouwplan <span>→</span></a>
+    `;
+  } else {
+    markup = textPageMarkup(page);
+  }
+
+  return `<div class="editorial-layout editorial-${escapeHtml(presentation)}-page" data-spread="${escapeHtml(page.spread || '')}">${markup}</div>`;
 }
 
 function bindAssetFallbacks() {
@@ -106,30 +155,36 @@ function bindAssetFallbacks() {
       const page = pages.find((item) => item.id === image.dataset.pageId);
       const visual = image.closest('.visual');
       if (!page || !visual) return;
-      visual.innerHTML = page.demoVisual;
-      visual.dataset.contentState = 'DEMO-FALLBACK';
-      visual.dataset.layout = 'demo';
+      visual.innerHTML = page.demoVisual || '';
     }, { once: true });
   });
 }
 
 function updateMeta(activeIndex) {
+  const total = spreadCount();
   if (lifecycle === 'closed' || lifecycle === 'opening') {
     currentChapter.textContent = 'Ontwerpboek klaar om te openen';
-    metaCount.textContent = `0 / ${pages.length}`;
+    metaCount.textContent = `00 / ${String(total).padStart(2, '0')}`;
     metaProgressBar.style.width = '0%';
+    if (minimalProgress) minimalProgress.style.width = '0%';
     return;
   }
+
   if (lifecycle === 'ended' || lifecycle === 'ending') {
-    currentChapter.textContent = 'Proces compleet';
-    metaCount.textContent = `${pages.length} / ${pages.length}`;
+    currentChapter.textContent = 'Ontwerpverhaal compleet';
+    metaCount.textContent = `${String(total).padStart(2, '0')} / ${String(total).padStart(2, '0')}`;
     metaProgressBar.style.width = '100%';
+    if (minimalProgress) minimalProgress.style.width = '100%';
     return;
   }
+
+  const currentSpread = spreadNumber(activeIndex);
   const page = pages[activeIndex] || pages[pages.length - 1];
-  currentChapter.textContent = `${String(activeIndex + 1).padStart(2, '0')} · ${page.title}`;
-  metaCount.textContent = `${activeIndex + 1} / ${pages.length}`;
-  metaProgressBar.style.width = `${((activeIndex + 1) / pages.length) * 100}%`;
+  currentChapter.textContent = `${String(currentSpread).padStart(2, '0')} · ${page.title}`;
+  metaCount.textContent = `${String(currentSpread).padStart(2, '0')} / ${String(total).padStart(2, '0')}`;
+  const percentage = (currentSpread / total) * 100;
+  metaProgressBar.style.width = `${percentage}%`;
+  if (minimalProgress) minimalProgress.style.width = `${percentage}%`;
 }
 
 function normalizedPage(pageIndex) {
@@ -142,19 +197,24 @@ function renderView() {
   currentPage = normalizedPage(currentPage);
   const leftIndex = currentPage;
   const rightIndex = leftIndex + 1;
+
   leftPage.innerHTML = pageTemplate(pages[leftIndex], leftIndex);
   rightPage.innerHTML = pageTemplate(pages[rightIndex], rightIndex);
   leftPage.dataset.page = String(leftIndex + 1).padStart(2, '0');
   rightPage.dataset.page = pages[rightIndex] ? String(rightIndex + 1).padStart(2, '0') : '—';
   rightPage.hidden = isMobile();
+
   updateMeta(leftIndex);
   bindAssetFallbacks();
+
   const activeDot = isMobile() ? leftIndex : Math.floor(leftIndex / 2);
   [...dotsHost.children].forEach((dot, index) => {
     const active = index === activeDot;
     dot.classList.toggle('active', active);
     dot.setAttribute('aria-current', active ? 'true' : 'false');
   });
+
+  prevButton.disabled = lifecycle !== 'open' || currentPage === 0;
 }
 
 function setLifecycle(nextState) {
@@ -163,7 +223,7 @@ function setLifecycle(nextState) {
   bookArea.classList.remove('is-closed', 'is-opening', 'is-open', 'is-ending', 'is-ended');
   bookArea.classList.add(`is-${nextState}`);
   const interactive = nextState === 'open';
-  prevButton.disabled = !interactive;
+  prevButton.disabled = !interactive || currentPage === 0;
   nextButton.disabled = !interactive;
   autoplayToggle.disabled = !interactive;
   book.setAttribute('aria-hidden', String(nextState === 'closed'));
@@ -182,7 +242,7 @@ function currentViewDuration() {
     pages,
     currentPage,
     mobile: isMobile(),
-    fallbackMs: bookConfig.autoplayMs || 5000
+    fallbackMs: bookConfig.autoplayMs || 6000
   });
 }
 
@@ -202,7 +262,7 @@ function restartAutoplay() {
 function syncAutoplayUi() {
   autoplayToggle.setAttribute('aria-pressed', String(autoplay));
   autoplayText.textContent = autoplay ? 'Autoplay aan' : 'Autoplay uit';
-  autoplayToggle.querySelector('.play-icon').textContent = autoplay ? '▶' : 'Ⅱ';
+  autoplayToggle.querySelector('.play-icon').textContent = autoplay ? 'Ⅱ' : '▶';
   if (!autoplay) autoplayToggle.classList.remove('timer-running');
 }
 
@@ -223,7 +283,7 @@ function openBook({ userInitiated = false } = {}) {
     setLifecycle('open');
     setAutoplay(true);
     if (userInitiated) book.focus({ preventScroll: true });
-  }, prefersReducedMotion() ? 0 : 1040);
+  }, prefersReducedMotion() ? 0 : 1000);
 }
 
 function finishBook() {
@@ -235,7 +295,7 @@ function finishBook() {
   window.setTimeout(() => {
     setLifecycle('ended');
     restartBookButton.focus({ preventScroll: true });
-  }, prefersReducedMotion() ? 0 : 820);
+  }, prefersReducedMotion() ? 0 : 700);
 }
 
 function restartExperience() {
@@ -243,7 +303,7 @@ function restartExperience() {
   currentPage = 0;
   renderView();
   setLifecycle('closed');
-  window.setTimeout(() => openBook({ userInitiated: true }), prefersReducedMotion() ? 0 : 420);
+  window.setTimeout(() => openBook({ userInitiated: true }), prefersReducedMotion() ? 0 : 380);
 }
 
 function animate(direction) {
@@ -253,7 +313,7 @@ function animate(direction) {
   pageTurn.classList.add(direction === 1 ? 'turning-next' : 'turning-prev');
 }
 
-function goToPage(nextPageIndex, direction = 1, userInitiated = false) {
+function goToPage(nextPageIndex, direction = 1) {
   if (lifecycle !== 'open') return;
   const target = normalizedPage(nextPageIndex);
   if (target === currentPage) return;
@@ -263,8 +323,7 @@ function goToPage(nextPageIndex, direction = 1, userInitiated = false) {
     currentPage = target;
     renderView();
     if (autoplay) restartAutoplay();
-  }, prefersReducedMotion() ? 0 : 520);
-  if (userInitiated && !autoplay) syncAutoplayUi();
+  }, prefersReducedMotion() ? 0 : 480);
 }
 
 function isLastView() {
@@ -281,12 +340,12 @@ function next(userInitiated = false) {
     finishBook();
     return;
   }
-  goToPage(currentPage + stepSize(), 1, userInitiated);
+  goToPage(currentPage + stepSize(), 1);
 }
 
-function previous(userInitiated = false) {
+function previous() {
   if (lifecycle !== 'open' || currentPage === 0) return;
-  goToPage(currentPage - stepSize(), -1, userInitiated);
+  goToPage(currentPage - stepSize(), -1);
 }
 
 function buildDots() {
@@ -294,22 +353,15 @@ function buildDots() {
   for (let i = 0; i < viewCount(); i += 1) {
     const dot = document.createElement('button');
     dot.type = 'button';
-    dot.className = 'dot';
-    dot.setAttribute('aria-label', isMobile() ? `Ga naar pagina ${i + 1}` : `Ga naar spread ${i + 1}`);
+    dot.setAttribute('tabindex', '-1');
+    dot.setAttribute('aria-hidden', 'true');
     dot.addEventListener('click', () => {
       if (lifecycle !== 'open') return;
       const targetPage = isMobile() ? i : i * 2;
-      goToPage(targetPage, targetPage >= currentPage ? 1 : -1, true);
+      goToPage(targetPage, targetPage >= currentPage ? 1 : -1);
     });
     dotsHost.appendChild(dot);
   }
-}
-
-function applyBookConfig() {
-  const version = pipelineConfig.version || bookConfig.version;
-  const edition = pipelineConfig.edition || bookConfig.edition;
-  if (versionBadge) versionBadge.textContent = `Prototype ${version}`;
-  if (coverEdition) coverEdition.textContent = `${version} · ${edition}`;
 }
 
 function handleResponsiveChange() {
@@ -323,12 +375,12 @@ function handleResponsiveChange() {
 }
 
 nextButton.addEventListener('click', () => next(true));
-prevButton.addEventListener('click', () => previous(true));
+prevButton.addEventListener('click', previous);
 autoplayToggle.addEventListener('click', () => setAutoplay(!autoplay));
 coverStart.addEventListener('click', () => openBook({ userInitiated: true }));
 restartBookButton.addEventListener('click', restartExperience);
 startBook.addEventListener('click', () => {
-  document.getElementById('boek').scrollIntoView({ behavior: prefersReducedMotion() ? 'auto' : 'smooth', block: 'center' });
+  bookArea.scrollIntoView({ behavior: prefersReducedMotion() ? 'auto' : 'smooth', block: 'center' });
   openBook({ userInitiated: true });
 });
 
@@ -347,7 +399,7 @@ book.addEventListener('pointerup', (event) => {
   pointerStartX = null;
   pointerStartY = null;
   if (Math.abs(deltaX) < 45 || Math.abs(deltaX) <= Math.abs(deltaY)) return;
-  if (deltaX < 0) next(true); else previous(true);
+  if (deltaX < 0) next(true); else previous();
 });
 book.addEventListener('pointercancel', () => {
   pointerStartX = null;
@@ -356,7 +408,7 @@ book.addEventListener('pointercancel', () => {
 
 window.addEventListener('keydown', (event) => {
   if (event.key === 'ArrowRight') next(true);
-  if (event.key === 'ArrowLeft') previous(true);
+  if (event.key === 'ArrowLeft') previous();
   if ((event.key === 'Enter' || event.key === ' ') && lifecycle === 'closed') openBook({ userInitiated: true });
 });
 window.addEventListener('resize', handleResponsiveChange);
@@ -364,9 +416,8 @@ document.addEventListener('visibilitychange', () => {
   if (document.hidden) pauseAutoplayTimer(); else restartAutoplay();
 });
 
-applyBookConfig();
 buildDots();
 renderView();
 syncAutoplayUi();
 setLifecycle('closed');
-autoOpenTimer = window.setTimeout(() => openBook(), prefersReducedMotion() ? 400 : 1600);
+autoOpenTimer = window.setTimeout(() => openBook(), prefersReducedMotion() ? 500 : 2000);

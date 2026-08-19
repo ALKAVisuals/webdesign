@@ -1,0 +1,17 @@
+/* Small compatibility overrides for the approved visual system. */
+.closed-cover::before,
+.closed-cover::after { display: none !important; }
+
+.editorial-visual-page { margin: -48px; }
+.editorial-gallery-page .visual { flex: 1; min-height: 0; }
+.editorial-materials-page .editorial-footer-label { margin-top: 26px; }
+.editorial-materials-page .material-swatches { margin-top: auto; }
+.editorial-cta-page .editorial-cta { align-self: flex-start; margin-top: 34px; }
+
+@media (max-width: 900px) {
+  .editorial-visual-page { margin: -30px; }
+}
+
+@media (max-width: 760px) {
+  .editorial-visual-page { margin: -32px -29px; }
+}

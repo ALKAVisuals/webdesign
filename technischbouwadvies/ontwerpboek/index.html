@@ -3,134 +3,96 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Interactief ontwerpboek prototype voor Technisch Bouwadvies — van tutorial naar praktijkontwerp.">
-  <title>Ontwerpboek V0.8 — Technisch Bouwadvies</title>
+  <meta name="description" content="Interactief ontwerpboek van Technisch Bouwadvies — van concept naar technisch uitgewerkt ontwerp.">
+  <title>Ontwerpboek — Technisch Bouwadvies</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="content-layouts.css">
   <link rel="stylesheet" href="book-lifecycle.css">
-  <link rel="stylesheet" href="book-polish.css">
-  <link rel="stylesheet" href="content-status.css">
+  <link rel="stylesheet" href="approved-book.css">
+  <link rel="stylesheet" href="approved-book-fixes.css">
 </head>
 <body>
-  <header class="site-header">
-    <a class="brand" href="#boek" aria-label="Technisch Bouwadvies ontwerpboek prototype">
-      <span class="brand-mark" aria-hidden="true"><i></i><i></i></span>
-      <span class="brand-copy"><strong>TECHNISCH</strong><span>BOUWADVIES</span></span>
+  <header class="presentation-header">
+    <a class="presentation-brand" href="#boek" aria-label="Technisch Bouwadvies ontwerpboek">
+      <span class="presentation-brand-mark" aria-hidden="true">TB</span>
+      <span><strong>TECHNISCH</strong><small>BOUWADVIES</small></span>
     </a>
-
-    <nav class="nav" aria-label="Hoofdnavigatie">
-      <a href="#boek">Ontwerpboek</a>
-      <a href="#proces">Werkwijze</a>
-      <a href="#over">Over prototype</a>
-    </nav>
-
-    <span class="prototype-badge" id="prototypeVersion">Prototype V0.8</span>
+    <span class="presentation-label">PROJECTVISUALISATIE</span>
   </header>
 
-  <main>
-    <section class="hero" id="boek">
-      <div class="hero-copy">
-        <p class="eyebrow">TECHNISCH TEKENWERK &amp; VISUALISATIE</p>
-        <h1>Van tutorial<br>naar echt ontwerp</h1>
-        <p class="lead">Een automatisch bladerend ontwerpverhaal van eerste leerstap tot technisch en visueel eindresultaat.</p>
-        <p class="intro">De demo laat zien hoe kennis uit een TD Vision U-traject later kan worden vertaald naar een eigen praktijkproject met schetsen, bouwkundige tekeningen, materiaalkeuzes en interieur- en exterieurrenders.</p>
-
-        <div class="hero-actions">
-          <button class="button button-dark" id="startBook" type="button">Open ontwerpboek <span>→</span></button>
-          <a class="button button-light" href="#proces">Bekijk de opbouw <span>↓</span></a>
-        </div>
-
-        <div class="trust-line">
-          <span class="trust-icon">✓</span>
-          <span>Los testprototype · geen koppeling met technischbouwadvies.nl</span>
-        </div>
-      </div>
-
-      <div class="book-area is-closed" id="bookArea" data-lifecycle="closed">
-        <div class="book-meta" aria-live="polite">
-          <div>
-            <span class="meta-label">Huidig hoofdstuk</span>
-            <strong id="currentChapter">Ontwerpboek klaar om te openen</strong>
-          </div>
-          <div class="meta-progress" aria-hidden="true"><span id="metaProgressBar"></span></div>
-          <span class="meta-count" id="metaCount">0 / 14</span>
-        </div>
-
-        <div class="status-overview" id="statusOverview" aria-label="Contentstatus van het ontwerpboek">
-          <strong>14 hoofdstukken · contentstatus</strong>
-          <div class="status-counts" id="statusCounts"></div>
-          <div class="status-track" id="statusTrack" aria-hidden="true"></div>
-        </div>
-
-        <div class="book-stage" aria-label="Interactief ontwerpboek">
-          <div class="book-shadow" aria-hidden="true"></div>
-
-          <button class="closed-cover" id="coverStart" type="button" aria-label="Open het ontwerpboek">
-            <div class="cover-inner">
-              <div class="cover-mark"><span></span><span></span></div>
-              <p class="cover-kicker">TECHNISCH BOUWADVIES</p>
-              <div class="cover-title">ONTWERP<br>BOEK</div>
-              <div class="cover-subtitle">Van tutorial<br>naar praktijk</div>
-              <div class="cover-rule"></div>
-              <span class="cover-edition" id="coverEdition">V0.8 · CONTENT STATUS SYSTEM</span>
-            </div>
-          </button>
-
-          <div class="book" id="book" tabindex="0" aria-label="Blader door het ontwerpboek met de pijltjestoetsen of swipe">
-            <div class="page-stack stack-left" aria-hidden="true"></div>
-            <div class="page-stack stack-right" aria-hidden="true"></div>
-            <div class="book-spine" aria-hidden="true"></div>
-            <article class="book-page page-left" id="leftPage" aria-live="polite"></article>
-            <article class="book-page page-right" id="rightPage" aria-live="polite"></article>
-            <div class="page-turn" id="pageTurn" aria-hidden="true"><div class="turn-back"></div></div>
-          </div>
-
-          <div class="book-end" id="bookEnd" aria-hidden="true">
-            <p class="eyebrow">ONTWERPPROCES COMPLEET</p>
-            <h3>Van eerste leerstap naar een compleet ontwerp.</h3>
-            <p>Het boek kan opnieuw worden afgespeeld of de bezoeker kan verder naar de werkwijze van Technisch Bouwadvies.</p>
-            <div class="book-end-actions">
-              <button class="button button-dark" id="restartBook" type="button">Bekijk opnieuw <span>↻</span></button>
-              <a class="button button-light" href="#proces">Bekijk werkwijze <span>↓</span></a>
-            </div>
-          </div>
-        </div>
-
-        <div class="book-toolbar">
-          <button class="circle-button" id="prevPage" type="button" aria-label="Vorige spread">←</button>
-          <div class="dots" id="pageDots" aria-label="Paginanavigatie"></div>
-          <button class="circle-button" id="nextPage" type="button" aria-label="Volgende spread">→</button>
-          <button class="autoplay-toggle" id="autoplayToggle" type="button" aria-pressed="false">
-            <span class="play-icon" aria-hidden="true">Ⅱ</span>
-            <span id="autoplayText">Autoplay uit</span>
-          </button>
-        </div>
-
-        <p class="interaction-hint">Het boek opent automatisch · sleep of swipe · gebruik ← → · kijktijd past zich per hoofdstuk aan</p>
-      </div>
+  <main class="presentation-main">
+    <section class="presentation-intro" id="boek">
+      <p class="presentation-eyebrow">VAN CONCEPT NAAR TECHNISCH ONTWERP</p>
+      <h1>Bekijk hoe een ontwerp<br>tot leven komt.</h1>
+      <p>Een rustig, beeldgedreven ontwerpverhaal waarin technische tekeningen, materiaalkeuzes en visualisaties samen één geheel vormen.</p>
+      <button class="presentation-open" id="startBook" type="button">Open ontwerpboek <span>→</span></button>
     </section>
 
-    <section class="process-strip" id="proces" aria-label="Opbouw van het ontwerpboek">
-      <article><span class="process-icon">01</span><div><h2>Leren &amp; modelleren</h2><p>Tutorial, referentie en basismodel</p></div></article>
-      <article><span class="process-icon">02</span><div><h2>Ontwerpen</h2><p>Schets, variant en materiaalkeuze</p></div></article>
-      <article><span class="process-icon">03</span><div><h2>Technisch uitwerken</h2><p>Plattegrond, gevel, doorsnede en detail</p></div></article>
-      <article><span class="process-icon">04</span><div><h2>Visualiseren</h2><p>Interieur, exterieur en eindpresentatie</p></div></article>
-    </section>
-
-    <section class="demo-note" id="over">
-      <div>
-        <p class="eyebrow">V0.8 — CONTENT STATUS SYSTEM</p>
-        <h2>Vanaf nu is direct zichtbaar welke hoofdstukken nog demo zijn en welke echte content krijgen.</h2>
+    <section class="book-area is-closed" id="bookArea" data-lifecycle="closed" aria-label="Interactief ontwerpboek">
+      <div class="visually-hidden" aria-live="polite">
+        <strong id="currentChapter">Ontwerpboek klaar om te openen</strong>
+        <div><span id="metaProgressBar"></span></div>
       </div>
-      <p>Iedere pagina krijgt een feitelijke status: <strong>DEMO</strong>, <strong>IN UITWERKING</strong> of <strong>DEFINITIEF</strong>. De balk boven het boek telt de hoofdstukken per status. De huidige technische testassets blijven bewust 'in uitwerking'; pas echte, gecontroleerde projectcontent mag later als definitief worden gemarkeerd.</p>
+
+      <div class="book-stage">
+        <div class="book-shadow" aria-hidden="true"></div>
+
+        <button class="closed-cover" id="coverStart" type="button" aria-label="Open het ontwerpboek">
+          <div class="cover-inner approved-cover">
+            <p class="approved-cover-kicker">TECHNISCH ONTWERP</p>
+            <h2>ONTWERPBOEK</h2>
+            <p class="approved-cover-subtitle">VAN CONCEPT NAAR TECHNISCH ONTWERP</p>
+            <span class="approved-cover-rule" aria-hidden="true"></span>
+            <svg class="approved-cover-lineart" viewBox="0 0 420 300" aria-hidden="true">
+              <path d="M54 246V118L164 62l112 57v127M54 118l111 60 111-59M165 178v69"/>
+              <path d="M276 247v-82l94-24v106M276 165l47-33 47 9M303 160v87M337 151v96"/>
+              <path d="M75 129v105M99 141v93M123 153v81M147 165v69M192 164v75M219 151v88M246 137v102" class="thin"/>
+              <line x1="32" y1="247" x2="389" y2="247" class="thin"/>
+            </svg>
+            <span class="approved-cover-brand">TECHNISCH BOUWADVIES</span>
+          </div>
+        </button>
+
+        <div class="book" id="book" tabindex="0" aria-label="Blader door het ontwerpboek met de pijltjestoetsen of swipe">
+          <div class="page-stack stack-left" aria-hidden="true"></div>
+          <div class="page-stack stack-right" aria-hidden="true"></div>
+          <div class="book-spine" aria-hidden="true"></div>
+          <article class="book-page page-left" id="leftPage" aria-live="polite"></article>
+          <article class="book-page page-right" id="rightPage" aria-live="polite"></article>
+          <div class="page-turn" id="pageTurn" aria-hidden="true"><div class="turn-back"></div></div>
+        </div>
+
+        <div class="book-end" id="bookEnd" aria-hidden="true">
+          <p class="presentation-eyebrow">ONTWERPVERHAAL COMPLEET</p>
+          <h3>Van eerste idee naar een helder uitgewerkt ontwerp.</h3>
+          <p>Bekijk het verhaal opnieuw of ga verder naar Technisch Bouwadvies.</p>
+          <div class="book-end-actions">
+            <button class="presentation-open" id="restartBook" type="button">Bekijk opnieuw <span>↻</span></button>
+            <a class="presentation-link" href="https://technischbouwadvies.nl/">Technisch Bouwadvies <span>→</span></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="minimal-controls" aria-label="Boekbediening">
+        <button class="minimal-arrow" id="prevPage" type="button" aria-label="Vorige spread">←</button>
+        <div class="minimal-position">
+          <span id="metaCount">0 / 08</span>
+          <div class="minimal-progress"><span id="minimalProgress"></span></div>
+        </div>
+        <button class="minimal-arrow" id="nextPage" type="button" aria-label="Volgende spread">→</button>
+        <button class="minimal-autoplay" id="autoplayToggle" type="button" aria-pressed="false" aria-label="Autoplay aan of uit">
+          <span class="play-icon" aria-hidden="true">Ⅱ</span>
+          <span class="visually-hidden" id="autoplayText">Autoplay uit</span>
+        </button>
+        <div class="visually-hidden" id="pageDots" aria-hidden="true"></div>
+      </div>
     </section>
   </main>
 
   <noscript>Voor het interactieve ontwerpboek is JavaScript nodig.</noscript>
   <script type="module" src="book.js"></script>
-  <script type="module" src="content-status-ui.js"></script>
 </body>
 </html>
