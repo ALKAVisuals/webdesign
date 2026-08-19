@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="robots" content="noindex,nofollow">
-  <title>Projectintro — Final Style Lock · Stap 4</title>
+  <title>Projectintro — Final Style Lock · Stap 5</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
@@ -38,10 +38,9 @@
       z-index:4;
     }
     .page{position:relative;min-width:0;background:var(--paper)}
-    .left{padding:8.35% 10.2% 7.2%;display:flex;flex-direction:column}
+    .left{padding:8.35% 10.2% 6.3%;display:flex;flex-direction:column}
 
-    /* STEP 4 — chapter marker + title only.
-       Match the reference hierarchy: small bronze 01, short hairline, then a restrained two-line serif title. */
+    /* STEP 4 — locked chapter marker + title. */
     .kicker{
       margin:0;
       color:var(--bronze);
@@ -74,11 +73,39 @@
     }
     h1 span{display:block;white-space:nowrap}
 
-    /* Step 5 values are intentionally still untouched. */
-    .copy{width:88%;margin:34px 0 0;color:var(--muted);font-size:12px;line-height:1.75}
-    .brand{margin-top:auto;font-size:8px;letter-spacing:.14em;color:#77736c}
-    .page-no{position:absolute;bottom:3%;font-family:"Libre Baskerville",Georgia,serif;font-size:9px;color:#8a847b;z-index:5}
-    .left .page-no{left:6.1%}
+    /* STEP 5 — bodycopy, negative space, footer and folio.
+       Keep the copy deliberately narrow so the lower two-thirds read as intentional editorial whitespace. */
+    .copy{
+      width:min(74%,190px);
+      margin:29px 0 0;
+      color:#6e6b64;
+      font-family:"DM Sans",system-ui,sans-serif;
+      font-size:10.4px;
+      font-weight:400;
+      line-height:1.72;
+      letter-spacing:.002em;
+    }
+    .brand{
+      margin-top:auto;
+      margin-bottom:18px;
+      color:#6f6c65;
+      font-family:"DM Sans",system-ui,sans-serif;
+      font-size:7.2px;
+      font-weight:500;
+      line-height:1;
+      letter-spacing:.145em;
+      white-space:nowrap;
+    }
+    .page-no{
+      position:absolute;
+      bottom:3.05%;
+      font-family:"Libre Baskerville",Georgia,serif;
+      font-size:8px;
+      line-height:1;
+      color:#8b857c;
+      z-index:5;
+    }
+    .left .page-no{left:10.2%}
     .right .page-no{right:3.2%;color:rgba(250,247,241,.94);text-shadow:0 1px 5px rgba(0,0,0,.28)}
 
     /* STEP 3 — locked hero presentation. */
@@ -114,25 +141,26 @@
       .stage{width:min(390px,94vw)}
       .book{display:block;aspect-ratio:.72}
       .right{display:none}
-      .left{height:100%;padding:9% 8.5% 7.5%}
+      .left{height:100%;padding:9% 8.5% 6.8%}
       .kicker{font-size:8px}
       .rule{width:25px;margin:14px 0 31px}
       h1{font-size:30px;line-height:.97;letter-spacing:-.043em}
-      .copy{width:84%;font-size:11px}
-      .brand{font-size:7px}
+      .copy{width:min(76%,220px);margin-top:28px;font-size:10.2px;line-height:1.68;color:#716e67}
+      .brand{margin-bottom:18px;font-size:6.8px;letter-spacing:.14em}
+      .left .page-no{left:8.5%;bottom:3.2%;font-size:7.5px}
       .book:after{display:none}
     }
   </style>
 </head>
 <body>
   <main class="stage">
-    <p class="label">PROJECTINTRO · STEP 4 · CHAPTER MARKER & TITEL</p>
-    <section class="book" aria-label="Projectintro title hierarchy review spread">
+    <p class="label">PROJECTINTRO · STEP 5 · BODYCOPY, WITRUIMTE & FOOTER</p>
+    <section class="book" aria-label="Projectintro bodycopy and whitespace review spread">
       <article class="page left">
         <p class="kicker">01</p>
         <span class="rule" aria-hidden="true"></span>
         <h1><span>PROJECT</span><span>INTRO</span></h1>
-        <p class="copy">Een doordacht ontwerp begint met inzicht in de locatie, de wensen en de mogelijkheden. Hiermee ontstaat een solide basis voor een toekomstbestendig en haalbaar ontwerp.</p>
+        <p class="copy">Een doordacht ontwerp begint met inzicht in de locatie, de wensen en de mogelijkheden. Zo ontstaat een heldere basis voor een haalbaar en toekomstbestendig ontwerp.</p>
         <span class="brand">TECHNISCH BOUWADVIES</span>
         <span class="page-no">01</span>
       </article>
@@ -141,7 +169,7 @@
         <span class="page-no">02</span>
       </article>
     </section>
-    <p class="status">Stap 4 actief op de style-lock branch. Main blijft ongemoeid. Beoordeel nu alleen 01, bronzen hairline, titelpositie, tweeregelige opbouw en serif-finesse.</p>
+    <p class="status">Stap 5 actief op de style-lock branch. Main blijft ongemoeid. Beoordeel nu bodycopy, verticale rust, footer en paginanummering.</p>
   </main>
 </body>
 </html>
