@@ -26,8 +26,8 @@ Alle visuele correcties voor Projectintro worden uitsluitend op deze branch opge
 A1. Linker boekrug / buitenrand — AFGEROND ALS RICHTING
 A2. Rechter page stack — AFGEROND ALS RICHTING
 A3. Onderrand en boekdikte — AFGEROND ALS RICHTING
-B1. Echte middenrug — ACTIEF / REVIEW
-B2. Subtiele pagina-kromming
+B1. Echte middenrug — AFGEROND ALS RICHTING
+B2. Subtiele pagina-kromming — ACTIEF / REVIEW
 C1. Contactschaduw
 C2. Papiergevoel
 D. Projectintro-integratie
@@ -57,17 +57,23 @@ F. Finale vergelijking + merge
 - Onderrand opgebouwd uit meerdere lichte papierlagen met wisselende dikte en contrast
 - Extra onderste laag met afwijkende inspringing voorkomt het effect van één rechte grijze balk
 - Buitenhoeken subtiel afgerond
-- Volledige contactschaduwbehandeling blijft gereserveerd voor C1
 
-## B1 — huidige echte middenrug
-- Oude smalle digitale gutter vervangen door een 24 px brede, zeer zachte spine valley
-- In het hart van de rug staat slechts één dunne donkere kern in plaats van een harde scheidingslijn
-- Direct naast de kern zit een minimale lichte rebound/highlight, zoals licht op papier vlak naast een vouw
-- Linkerpagina krijgt in de laatste circa 22 px richting rug een zeer zachte donkere overgang
-- Hero krijgt in de eerste circa 18 px een iets diepere rugschaaduw zodat het beeld niet vlak tegen de tekstpagina plakt
-- Nieuwe `spine-foot` laat de middenrug onderaan visueel doorlopen in het eerder gebouwde bottom page block
-- Er zijn bewust nog geen page transforms of echte vervormingen toegevoegd; subtiele pagina-kromming volgt pas in B2
-- Mobiel blijft volledig ongemoeid: gutter, spine-foot en desktop fysieke randeffecten zijn daar verborgen
+## B1 — vastgelegde middenrug
+- Oude digitale gutter vervangen door een 24 px zachte spine valley
+- Eén dunne donkere kern vormt het hart van de rug
+- Minimale lichte rebound/highlight naast de kern
+- Linkerpagina en hero krijgen zachte lokale rugschaaduw
+- `spine-foot` laat de middenrug in het bottom page block doorlopen
+
+## B2 — huidige subtiele pagina-kromming
+- Geen transforms toegepast op tekst, pagina of hero; alle leesbare content blijft geometrisch vlak en scherp
+- Linkerpagina krijgt in de laatste circa 62 px richting de rug een zachte elliptische schaduwcurve met een lichte papierhighlight vlak naast de vouw
+- Rechterpagina krijgt in de eerste circa 58 px een overeenkomstige maar iets donkerdere curve, passend bij de fotografische hero
+- Boven- en onderzijde van beide curves hebben afzonderlijke zeer zachte highlights/schaduwen zodat de pagina niet als een rechte verticale gradient leest
+- De B2-curves liggen als overlays boven de pagina's en vervormen de inhoud niet
+- Op 761–980 px worden de curves iets smaller zodat de rug niet te zwaar wordt
+- Mobiel blijft exact de veilige 2D single-page versie: alle B2 curvature overlays zijn daar uitgeschakeld
+- Contactschaduw en algemene papiermaterialiteit zijn bewust nog niet opnieuw ontworpen; die volgen in C1 en C2
 
 ## Vaste preview
 `projectintro-style-lock-preview.html` is de actuele branch-preview. Per reviewstap gebruiken we daarnaast een nieuwe cache-veilige live wrapper.
