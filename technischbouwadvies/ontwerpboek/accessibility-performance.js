@@ -44,9 +44,7 @@ function syncAutoplayAccessibility() {
 
 autoplayToggle.addEventListener('click', (event) => {
   if (!event.isTrusted || !reducedMotionQuery.matches) return;
-  queueMicrotask(() => {
-    reducedMotionOptIn = autoplayToggle.getAttribute('aria-pressed') === 'true';
-  });
+  reducedMotionOptIn = autoplayToggle.getAttribute('aria-pressed') === 'true';
 });
 
 const autoplayObserver = new MutationObserver(syncAutoplayAccessibility);
