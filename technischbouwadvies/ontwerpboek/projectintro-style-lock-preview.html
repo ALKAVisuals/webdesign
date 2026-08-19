@@ -91,8 +91,20 @@
       font-size:7.6px;font-weight:500;line-height:1;letter-spacing:.12em;white-space:nowrap
     }
 
-    /* Projectintro reference has no extra folio competing with the chapter marker. */
+    /* Keep the left folio quiet, but preserve the elegant right-corner folio on the hero. */
     .page-no{display:none}
+    .right .page-no{
+      display:block;
+      position:absolute;
+      right:3.2%;
+      bottom:3.05%;
+      z-index:8;
+      font-family:"Libre Baskerville",Georgia,serif;
+      font-size:8px;
+      line-height:1;
+      color:rgba(250,247,241,.94);
+      text-shadow:0 1px 5px rgba(0,0,0,.28)
+    }
 
     .right{overflow:hidden;background:#24251f;isolation:isolate}
     .right img{
