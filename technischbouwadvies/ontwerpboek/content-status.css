@@ -54,6 +54,7 @@
 .status-track .progress { background: var(--bronze); }
 .status-track .final { background: #557861; }
 
+.dot { position: relative; }
 .dot.status-demo { box-shadow: inset 0 0 0 1px rgba(110,103,94,.16); }
 .dot.status-progress { box-shadow: inset 0 0 0 1px rgba(167,119,50,.46); }
 .dot.status-final { box-shadow: inset 0 0 0 1px rgba(69,103,79,.50); }
