@@ -4,18 +4,17 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="robots" content="noindex,nofollow">
-  <title>Projectintro — Final Style Lock · Stap 7</title>
+  <title>Projectintro — Final Style Lock · Stap 8</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
   <style>
     :root{
-      --bg:#ece6dd;
-      --paper:#f8f4ec;
+      --bg:#eee8df;
+      --paper:#faf7f1;
       --paper-soft:#f5efe6;
-      --paper-edge:#e7dfd4;
       --ink:#242522;
-      --muted:#747169;
+      --muted:#6f6c65;
       --bronze:#a97636;
     }
     *{box-sizing:border-box}
@@ -29,65 +28,72 @@
     .stage{width:min(1080px,92vw);margin:0 auto}
     .label{margin:0 0 18px;text-align:center;font-size:11px;letter-spacing:.16em;color:#77736c}
 
-    /* STEP 6 — locked physical book treatment. */
+    /* FINAL REFERENCE PASS — physical treatment kept deliberately quiet. */
     .book-shell{position:relative;isolation:isolate}
     .book-shell::before{
-      content:"";position:absolute;z-index:-1;left:1.25%;right:1.05%;bottom:-5px;height:7px;border-radius:0 0 2px 2px;
-      background:linear-gradient(180deg,rgba(247,242,234,.96) 0 24%,rgba(224,216,205,.78) 25% 38%,rgba(246,240,232,.94) 39% 66%,rgba(219,210,199,.62) 67% 78%,rgba(241,235,226,.80) 79% 100%);
-      box-shadow:0 2px 2px rgba(54,44,34,.06)
+      content:"";position:absolute;z-index:-1;left:1.3%;right:1.1%;bottom:-3px;height:4px;border-radius:0 0 2px 2px;
+      background:linear-gradient(180deg,rgba(247,242,234,.86),rgba(222,214,204,.54));
+      opacity:.72
     }
     .book-shell::after{
-      content:"";position:absolute;z-index:-2;left:4%;right:3.2%;bottom:-15px;height:22px;border-radius:50%;
-      background:rgba(63,50,37,.16);filter:blur(11px);opacity:.62
+      content:"";position:absolute;z-index:-2;left:5%;right:4%;bottom:-11px;height:17px;border-radius:50%;
+      background:rgba(63,50,37,.12);filter:blur(10px);opacity:.48
     }
 
-    /* STEP 2 — locked spread geometry. */
+    /* Reference-locked 36.5 / 63.5 composition. */
     .book{
       display:grid;grid-template-columns:36.5% 63.5%;aspect-ratio:1.46;position:relative;overflow:hidden;background:var(--paper);
-      border:1px solid rgba(83,68,50,.055);
-      box-shadow:0 16px 30px rgba(55,43,31,.105),0 4px 9px rgba(55,43,31,.055),0 1px 1px rgba(55,43,31,.04)
+      border:1px solid rgba(83,68,50,.04);
+      box-shadow:0 13px 25px rgba(55,43,31,.085),0 3px 7px rgba(55,43,31,.045),0 1px 1px rgba(55,43,31,.025)
     }
     .book::before{
       content:"";position:absolute;inset:0;z-index:6;pointer-events:none;
-      background:radial-gradient(circle at 18% 12%,rgba(255,255,255,.17),transparent 29%),linear-gradient(180deg,rgba(255,255,255,.08),transparent 24%,rgba(92,73,51,.015) 100%);
-      opacity:.42
+      background:linear-gradient(180deg,rgba(255,255,255,.06),transparent 26%,rgba(92,73,51,.01) 100%);
+      opacity:.34
     }
     .gutter{
-      position:absolute;z-index:7;pointer-events:none;top:0;bottom:0;left:36.5%;width:15px;transform:translateX(-50%);
-      background:linear-gradient(90deg,rgba(76,59,40,.045) 0%,rgba(76,59,40,.012) 24%,rgba(255,255,255,.13) 48%,rgba(71,54,37,.052) 72%,rgba(71,54,37,.012) 100%);
-      opacity:.72
+      position:absolute;z-index:7;pointer-events:none;top:0;bottom:0;left:36.5%;width:7px;transform:translateX(-50%);
+      background:linear-gradient(90deg,rgba(76,59,40,.025),rgba(255,255,255,.08) 48%,rgba(71,54,37,.03));
+      opacity:.42
     }
 
     .page{position:relative;min-width:0}
     .left{
-      padding:8.35% 10.2% 6.3%;display:flex;flex-direction:column;
-      background:linear-gradient(90deg,var(--paper) 0%,var(--paper) 89%,var(--paper-soft) 100%);
-      box-shadow:inset -1px 0 rgba(77,62,44,.025)
+      padding:7.9% 9.5% 6.8% 15.2%;
+      display:flex;
+      flex-direction:column;
+      background:linear-gradient(90deg,var(--paper) 0%,var(--paper) 91%,var(--paper-soft) 100%);
+      box-shadow:inset -1px 0 rgba(77,62,44,.018)
     }
 
-    /* STEP 4 — locked chapter marker + title. */
-    .kicker{margin:0;color:var(--bronze);font-family:"DM Sans",system-ui,sans-serif;font-size:9px;line-height:1;letter-spacing:.12em;font-weight:600}
-    .rule{width:27px;height:1px;background:var(--bronze);margin:14px 0 31px;opacity:.92}
+    /* Reference-derived vertical rhythm. */
+    .kicker{
+      margin:0;color:var(--bronze);font-family:"DM Sans",system-ui,sans-serif;
+      font-size:9px;line-height:1;letter-spacing:.12em;font-weight:600
+    }
+    .rule{
+      width:29px;height:1px;background:var(--bronze);
+      margin:30px 0 53px;opacity:.9
+    }
     h1{
       margin:0;width:max-content;max-width:100%;display:flex;flex-direction:column;align-items:flex-start;
-      font-family:"Libre Baskerville",Georgia,serif;font-weight:400;font-size:clamp(29px,2.55vw,40px);line-height:.96;letter-spacing:-.042em;color:var(--ink)
+      font-family:"Libre Baskerville",Georgia,serif;font-weight:400;
+      font-size:clamp(29px,2.55vw,40px);line-height:1.08;letter-spacing:-.025em;color:var(--ink)
     }
     h1 span{display:block;white-space:nowrap}
 
-    /* STEP 5 — locked bodycopy, whitespace, footer and folio. */
     .copy{
-      width:min(74%,190px);margin:29px 0 0;color:#6e6b64;font-family:"DM Sans",system-ui,sans-serif;
-      font-size:10.4px;font-weight:400;line-height:1.72;letter-spacing:.002em
+      width:min(58%,225px);margin:57px 0 0;color:var(--muted);
+      font-family:"DM Sans",system-ui,sans-serif;font-size:10.8px;font-weight:400;line-height:1.72;letter-spacing:0
     }
     .brand{
-      margin-top:auto;margin-bottom:18px;color:#6f6c65;font-family:"DM Sans",system-ui,sans-serif;
-      font-size:7.2px;font-weight:500;line-height:1;letter-spacing:.145em;white-space:nowrap
+      margin-top:auto;margin-bottom:0;color:#6e6b64;font-family:"DM Sans",system-ui,sans-serif;
+      font-size:7.6px;font-weight:500;line-height:1;letter-spacing:.12em;white-space:nowrap
     }
-    .page-no{position:absolute;bottom:3.05%;font-family:"Libre Baskerville",Georgia,serif;font-size:8px;line-height:1;color:#8b857c;z-index:8}
-    .left .page-no{left:10.2%}
-    .right .page-no{right:3.2%;color:rgba(250,247,241,.94);text-shadow:0 1px 5px rgba(0,0,0,.28)}
 
-    /* STEP 3 — locked hero presentation. */
+    /* Projectintro reference has no extra folio competing with the chapter marker. */
+    .page-no{display:none}
+
     .right{overflow:hidden;background:#24251f;isolation:isolate}
     .right img{
       position:absolute;inset:0;width:100%;height:100%;display:block;object-fit:cover;object-position:50% 52%;
@@ -95,26 +101,26 @@
     }
     .right::before{
       content:"";position:absolute;inset:0;z-index:2;pointer-events:none;
-      background:linear-gradient(180deg,rgba(22,23,19,.015) 0%,rgba(17,18,15,.07) 100%),linear-gradient(90deg,rgba(19,20,17,.04) 0%,transparent 13%)
+      background:linear-gradient(180deg,rgba(22,23,19,.01) 0%,rgba(17,18,15,.055) 100%),linear-gradient(90deg,rgba(19,20,17,.025) 0%,transparent 11%)
     }
     .right::after{
-      content:"";position:absolute;z-index:3;left:0;top:0;bottom:0;width:12px;pointer-events:none;
-      background:linear-gradient(90deg,rgba(19,17,14,.105),rgba(19,17,14,.025) 44%,transparent 100%);opacity:.56
+      content:"";position:absolute;z-index:3;left:0;top:0;bottom:0;width:7px;pointer-events:none;
+      background:linear-gradient(90deg,rgba(19,17,14,.07),rgba(19,17,14,.012) 55%,transparent);opacity:.42
     }
 
     .status{margin:18px 0 0;text-align:center;color:#77736c;font-size:11px}
 
-    /* STEP 7 — desktop QA for normal browser zoom and mid-size laptops. */
     @media (min-width:761px) and (max-width:980px){
       body{padding-left:18px;padding-right:18px}
       .stage{width:min(940px,95vw)}
-      .left{padding-left:9.4%;padding-right:9.4%}
+      .left{padding-left:14.4%;padding-right:9.2%}
+      .rule{margin-top:24px;margin-bottom:42px}
       h1{font-size:34px}
-      .copy{width:min(78%,180px);font-size:10px}
-      .brand{font-size:6.9px}
+      .copy{width:min(62%,205px);font-size:10.3px;margin-top:44px}
+      .brand{font-size:7px}
     }
 
-    /* STEP 7 — iPhone/mobile QA. Permanent readable page stays purely 2D. */
+    /* Mobile remains the safe, crisp 2D single-page treatment from QA. */
     @media(max-width:760px){
       html,body{min-height:100dvh}
       body{
@@ -123,15 +129,15 @@
       .stage{width:min(390px,94vw)}
       .label{margin-bottom:14px;font-size:9px;letter-spacing:.12em}
       .book-shell{transform:none;filter:none;perspective:none}
-      .book-shell::before{left:2%;right:2%;bottom:-3px;height:4px;opacity:.42;box-shadow:none}
-      .book-shell::after{left:7%;right:7%;bottom:-7px;height:10px;filter:none;opacity:.18;border-radius:50%;background:rgba(63,50,37,.12)}
+      .book-shell::before{left:2%;right:2%;bottom:-2px;height:3px;opacity:.34}
+      .book-shell::after{left:8%;right:8%;bottom:-6px;height:9px;filter:none;opacity:.13;border-radius:50%;background:rgba(63,50,37,.10)}
       .book{
         display:block;width:100%;aspect-ratio:.72;transform:none!important;filter:none!important;perspective:none!important;
-        box-shadow:0 8px 18px rgba(55,43,31,.075),0 1px 4px rgba(55,43,31,.035);
+        box-shadow:0 7px 16px rgba(55,43,31,.065),0 1px 3px rgba(55,43,31,.03);
         outline:0!important;-webkit-transform:none!important
       }
       .book:focus,.book:focus-visible,.page:focus,.page:focus-visible{outline:0!important}
-      .book::before{opacity:.18}
+      .book::before{opacity:.12}
       .gutter{display:none}
       .right{display:none!important}
       .left{
@@ -142,8 +148,7 @@
       .rule{width:25px;margin:14px 0 31px}
       h1{font-size:30px;line-height:.97;letter-spacing:-.043em}
       .copy{width:min(76%,220px);margin-top:28px;font-size:10.2px;line-height:1.68;color:#716e67}
-      .brand{margin-bottom:18px;font-size:6.8px;letter-spacing:.14em}
-      .left .page-no{left:8.5%;bottom:3.2%;font-size:7.5px}
+      .brand{margin-bottom:0;font-size:6.8px;letter-spacing:.14em}
       .status{font-size:9px;line-height:1.45;margin-top:15px}
     }
 
@@ -153,7 +158,6 @@
       h1{font-size:28px}
       .copy{width:min(78%,205px);font-size:9.9px;line-height:1.67;margin-top:26px}
       .brand{font-size:6.5px}
-      .left .page-no{left:8.3%}
     }
 
     @media(max-width:760px) and (orientation:landscape){
@@ -165,14 +169,14 @@
 </head>
 <body>
   <main class="stage">
-    <p class="label">PROJECTINTRO · STEP 7 · DESKTOP + MOBIEL QA</p>
+    <p class="label">PROJECTINTRO · STEP 8 · FINAL REFERENCE PASS</p>
     <div class="book-shell">
-      <section class="book" aria-label="Projectintro desktop en mobile QA spread" tabindex="-1">
+      <section class="book" aria-label="Projectintro final reference review spread" tabindex="-1">
         <article class="page left">
           <p class="kicker">01</p>
           <span class="rule" aria-hidden="true"></span>
           <h1><span>PROJECT</span><span>INTRO</span></h1>
-          <p class="copy">Een doordacht ontwerp begint met inzicht in de locatie, de wensen en de mogelijkheden. Zo ontstaat een heldere basis voor een haalbaar en toekomstbestendig ontwerp.</p>
+          <p class="copy">Een doordacht ontwerp begint met inzicht in de locatie, de wensen en de mogelijkheden. Hiermee ontstaat een solide basis voor een toekomstbestendig en haalbaar ontwerp.</p>
           <span class="brand">TECHNISCH BOUWADVIES</span>
           <span class="page-no">01</span>
         </article>
@@ -183,7 +187,7 @@
         <span class="gutter" aria-hidden="true"></span>
       </section>
     </div>
-    <p class="status">Stap 7 actief op de style-lock branch. Main blijft ongemoeid. Controleer desktop op 100% zoom en mobiel in Safari: scherpte, marges, enkel-paginaweergave en typografische balans.</p>
+    <p class="status">Stap 8 staat klaar voor eindreview. Main blijft ongemoeid tot expliciete finale goedkeuring.</p>
   </main>
 </body>
 </html>
