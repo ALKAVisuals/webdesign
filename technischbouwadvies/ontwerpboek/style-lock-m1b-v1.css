@@ -1,0 +1,189 @@
+/* M.1B V1 — paper / shadow / gutter style lock.
+   Loaded after M.1A V8. Scope: physical treatment of the OPEN book only.
+   The approved V8 closed cover remains untouched. */
+
+:root {
+  --m1b-paper: #f8f5ee;
+  --m1b-paper-light: #fbf8f2;
+  --m1b-paper-gutter: #f1ebe2;
+  --m1b-edge: rgba(78, 66, 51, .065);
+  --m1b-shadow: rgba(44, 36, 27, .12);
+  --m1b-contact: rgba(44, 36, 27, .08);
+}
+
+/* --------------------------------------------------------------------------
+   Open-book paper surface
+   -------------------------------------------------------------------------- */
+
+.book-page {
+  border-color: var(--m1b-edge);
+  background: var(--m1b-paper);
+}
+
+/* Remove the visible dotted texture from the old prototype and replace it with
+   an almost imperceptible stock variation plus a controlled inner-page falloff. */
+.book-page::before {
+  opacity: 1;
+  background:
+    radial-gradient(circle at 17% 24%, rgba(91, 75, 55, .020) .35px, transparent .55px),
+    radial-gradient(circle at 74% 68%, rgba(91, 75, 55, .016) .32px, transparent .52px);
+  background-size: 15px 15px, 19px 19px;
+}
+
+.page-left {
+  background:
+    linear-gradient(90deg,
+      var(--m1b-paper-light) 0%,
+      var(--m1b-paper) 72%,
+      var(--m1b-paper-gutter) 100%);
+  box-shadow:
+    inset -8px 0 15px rgba(63, 50, 35, .035),
+    inset 0 1px 0 rgba(255, 255, 255, .42);
+}
+
+.page-right {
+  background:
+    linear-gradient(90deg,
+      var(--m1b-paper-gutter) 0%,
+      var(--m1b-paper) 28%,
+      var(--m1b-paper-light) 100%);
+  box-shadow:
+    inset 8px 0 15px rgba(63, 50, 35, .030),
+    inset 0 1px 0 rgba(255, 255, 255, .42);
+}
+
+/* --------------------------------------------------------------------------
+   Gutter / centre seam
+   -------------------------------------------------------------------------- */
+
+.book-spine {
+  width: 8px;
+  border-radius: 50%;
+  opacity: .48;
+  background:
+    linear-gradient(90deg,
+      rgba(65, 51, 36, .065) 0%,
+      rgba(65, 51, 36, .020) 24%,
+      rgba(255, 255, 255, .36) 48%,
+      rgba(65, 51, 36, .018) 72%,
+      rgba(65, 51, 36, .055) 100%);
+}
+
+/* A very fine centre contact line prevents the gutter from reading as a glow. */
+.book-spine::after {
+  content: "";
+  position: absolute;
+  top: 2.5%;
+  bottom: 2.5%;
+  left: 50%;
+  width: 1px;
+  transform: translateX(-50%);
+  background: rgba(78, 63, 44, .055);
+}
+
+/* --------------------------------------------------------------------------
+   Physical page thickness
+   -------------------------------------------------------------------------- */
+
+.page-stack {
+  top: 2px;
+  bottom: -5px;
+  width: 49.40%;
+  border-color: rgba(80, 68, 52, .055);
+  background: #eee8df;
+}
+
+.stack-left {
+  left: .48%;
+  transform: translate(-2px, 4px);
+  box-shadow:
+    -1px 2px 0 #eee8df,
+    -2px 4px 0 #e9e2d8,
+    -3px 6px 0 #e3dbcf;
+}
+
+.stack-right {
+  right: .48%;
+  transform: translate(2px, 4px);
+  box-shadow:
+    1px 2px 0 #eee8df,
+    2px 4px 0 #e9e2d8,
+    3px 6px 0 #e3dbcf;
+}
+
+/* --------------------------------------------------------------------------
+   Natural contact shadow — no digital halo
+   -------------------------------------------------------------------------- */
+
+.book {
+  filter:
+    drop-shadow(0 18px 18px var(--m1b-shadow))
+    drop-shadow(0 4px 4px var(--m1b-contact));
+}
+
+.book-shadow {
+  width: min(860px, 70%);
+  height: 52px;
+  bottom: 10.5%;
+  border-radius: 50%;
+  background: rgba(49, 40, 29, .10);
+  filter: blur(22px);
+  opacity: 0;
+  transition: opacity .45s ease;
+}
+
+.book-area.is-opening .book-shadow,
+.book-area.is-open .book-shadow,
+.book-area.is-turning-next .book-shadow,
+.book-area.is-turning-prev .book-shadow {
+  opacity: .58;
+}
+
+.book-area.is-closed .book-shadow,
+.book-area.is-ending .book-shadow,
+.book-area.is-ended .book-shadow {
+  opacity: 0 !important;
+}
+
+/* Keep the page edges thin and quiet. */
+.page-left { border-radius: 3px 0 1px 3px; }
+.page-right { border-radius: 0 3px 3px 1px; }
+
+/* --------------------------------------------------------------------------
+   Mobile: one crisp 2D sheet; no fake centre gutter.
+   -------------------------------------------------------------------------- */
+
+@media (max-width: 760px) {
+  .book-page,
+  .page-left,
+  .page-right {
+    background: var(--m1b-paper-light) !important;
+    border-color: rgba(78, 66, 51, .055);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.40) !important;
+  }
+
+  .book-page::before {
+    opacity: .45;
+  }
+
+  .book-spine {
+    display: none !important;
+  }
+
+  .book {
+    filter:
+      drop-shadow(0 12px 14px rgba(44, 36, 27, .085))
+      drop-shadow(0 3px 3px rgba(44, 36, 27, .045));
+  }
+
+  .book-shadow {
+    display: none;
+  }
+
+  .page-stack {
+    top: 2px;
+    bottom: -4px;
+    border-color: rgba(80, 68, 52, .045);
+    background: #eee8df;
+  }
+}
