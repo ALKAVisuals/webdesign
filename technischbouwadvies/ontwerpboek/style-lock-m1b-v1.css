@@ -187,3 +187,78 @@
     background: #eee8df;
   }
 }
+
+/* --------------------------------------------------------------------------
+   M.1B V2 — mobile single-page repair
+   Fixes the iOS regression where the right grid column remained reserved after
+   the right page was hidden. Desktop is intentionally untouched.
+   -------------------------------------------------------------------------- */
+
+@media (max-width: 760px) {
+  .book,
+  .book-area.is-opening .book,
+  .book-area.is-open .book,
+  .book-area.is-turning-next .book,
+  .book-area.is-turning-prev .book,
+  .book-area.is-ending .book,
+  .book-area.is-ended .book {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) !important;
+    grid-template-rows: minmax(0, 1fr) !important;
+    width: min(360px, calc(100vw - 32px), calc((100svh - 170px) * .72)) !important;
+    max-width: calc(100vw - 32px) !important;
+  }
+
+  .page-left {
+    display: block !important;
+    grid-column: 1 / -1 !important;
+    grid-row: 1 !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    height: 100% !important;
+    border-radius: 3px !important;
+  }
+
+  .page-right,
+  .page-right[hidden],
+  .stack-right,
+  .book-spine {
+    display: none !important;
+  }
+
+  .stack-left {
+    display: block !important;
+    width: 100% !important;
+    left: 0 !important;
+    right: 0 !important;
+    top: 2px !important;
+    bottom: -4px !important;
+    transform: translateY(4px) !important;
+    box-shadow:
+      0 2px 0 #eee8df,
+      0 4px 0 #e9e2d8 !important;
+  }
+
+  .book:focus,
+  .book:focus-visible {
+    outline: none !important;
+    outline-offset: 0 !important;
+  }
+
+  .book {
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+@media (max-width: 420px) {
+  .book,
+  .book-area.is-opening .book,
+  .book-area.is-open .book,
+  .book-area.is-turning-next .book,
+  .book-area.is-turning-prev .book,
+  .book-area.is-ending .book,
+  .book-area.is-ended .book {
+    width: min(calc(100vw - 28px), calc((100svh - 160px) * .72)) !important;
+    max-width: calc(100vw - 28px) !important;
+  }
+}
