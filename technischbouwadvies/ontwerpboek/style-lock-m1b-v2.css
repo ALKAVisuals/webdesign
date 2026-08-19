@@ -1,0 +1,86 @@
+/* M.1B V2 — mobile single-page repair.
+   Loaded after style-lock-m1b-v1.css. Scope: mobile open-book geometry only.
+   Fixes the two-column grid leaking back in after earlier Safari repair layers. */
+
+@media (max-width: 760px) {
+  /* A mobile open book is one physical page, not half of a desktop spread. */
+  .book,
+  .book-area.is-opening .book,
+  .book-area.is-open .book,
+  .book-area.is-turning-next .book,
+  .book-area.is-turning-prev .book,
+  .book-area.is-ending .book,
+  .book-area.is-ended .book {
+    grid-template-columns: minmax(0, 1fr) !important;
+    width: min(330px, calc(100vw - 36px), calc((100svh - 160px) * .72)) !important;
+    height: auto !important;
+    aspect-ratio: .72 !important;
+  }
+
+  .page-left {
+    grid-column: 1 / -1 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .page-right,
+  .page-right[hidden],
+  .stack-right,
+  .book-spine {
+    display: none !important;
+  }
+
+  .stack-left {
+    width: 100% !important;
+    left: 0 !important;
+    right: 0 !important;
+    inset: 0 0 -4px 0 !important;
+    transform: translateY(3px) !important;
+  }
+
+  /* Prevent a persistent bronze focus rectangle after a touch-open action in iOS Safari.
+     Button focus indicators remain intact; the swipeable book canvas itself does not need one on coarse pointers. */
+  @media (hover: none) and (pointer: coarse) {
+    .book:focus,
+    .book:focus-visible {
+      outline: none !important;
+      outline-offset: 0 !important;
+    }
+  }
+
+  /* Keep the readable sheet visually clean and fully 2D. */
+  .book-page,
+  .page-left {
+    border-radius: 2px !important;
+    overflow: hidden !important;
+  }
+
+  .minimal-controls {
+    width: min(330px, calc(100vw - 36px)) !important;
+    margin-top: 10px !important;
+  }
+}
+
+@media (max-width: 420px) {
+  .book,
+  .book-area.is-opening .book,
+  .book-area.is-open .book,
+  .book-area.is-turning-next .book,
+  .book-area.is-turning-prev .book,
+  .book-area.is-ending .book,
+  .book-area.is-ended .book {
+    width: min(318px, calc(100vw - 32px), calc((100svh - 150px) * .72)) !important;
+  }
+}
+
+@media (max-width: 760px) and (max-height: 700px) {
+  .book,
+  .book-area.is-opening .book,
+  .book-area.is-open .book,
+  .book-area.is-turning-next .book,
+  .book-area.is-turning-prev .book,
+  .book-area.is-ending .book,
+  .book-area.is-ended .book {
+    width: min(292px, calc(100vw - 32px), calc((100svh - 135px) * .72)) !important;
+  }
+}
