@@ -11,16 +11,15 @@
 - Het ontwerpboek is publiek **geen leeromgeving**.
 - Publiek geen tutorial/TD Vision U, prototype V0.x, DEMO/IN UITWERKING/DEFINITIEF, ontwikkelaarsstatus of asset-pipelinecopy.
 - Doel: een **premium interactieve projectvisualisatie / digitaal architectuurboek** voor latere integratie in technischbouwadvies.nl.
-- De echte website technischbouwadvies.nl wordt voorlopig niet aangepast.
-- Standalone werkmap: `ALKAVisuals/webdesign/technischbouwadvies/ontwerpboek/`.
 - De goedgekeurde art direction wordt niet opnieuw ontworpen tenzij de gebruiker dat expliciet vraagt.
+- Standalone werkmap: `ALKAVisuals/webdesign/technischbouwadvies/ontwerpboek/`.
+- De echte productie-site wordt pas gewijzigd via een aparte integratiebranch nadat de juiste productie-repo en stack zijn bevestigd.
 
 ---
 
 ## 2. Definitieve art direction — GOEDGEKEURD
 
 ### A+B
-
 - ca. 65% Swiss / Architectural Editorial
 - ca. 25% Warm Architectural Monograph
 - ca. 10% subtiele digitale motion
@@ -83,9 +82,10 @@ Vaste flow:
 - **Fase E — Cover redesign: AFGEROND + GOEDGEKEURD**
 - **Fase F — Spread template system: AFGEROND + GOEDGEKEURD**
 - **Fase G — Volledige statische boekflow: AFGEROND + GOEDGEKEURD**
-- **Fase H — Visueel systeem implementeren: AFGEROND + MAIN via PR #12**
-- **Fase I — Page-turn & motion polish: AFGEROND + MAIN via PR #13**
-- **Fase J — Mobile visual polish: AFGEROND + MAIN via PR #14**
+- **Fase H — Visueel systeem implementeren: MAIN via PR #12**
+- **Fase I — Page-turn & motion polish: MAIN via PR #13**
+- **Fase J — Mobile visual polish: MAIN via PR #14**
+- **Fase K — Performance & accessibility: MAIN via PR #15**
 
 ---
 
@@ -102,124 +102,130 @@ Vaste flow:
 - swipe + keyboard navigation
 - premium motion/page-turn
 - mobiele responsive polish
+- accessibility/focus polish
+- reduced-motion autoplaybehandeling
+- next-spread idle preload
 - asset manifest + image fallback
-- reduced-motion basis
+- assetoptimalisatierichtlijnen
 
 ---
 
-## 7. Fase J — Mobile polish — OP MAIN
+## 7. Fase K — Performance & accessibility — OP MAIN
 
-Via PR #14 toegevoegd:
+Via PR #15 toegevoegd:
 
-### `mobile-polish.css`
-- echte single-page mobiele compositie
-- responsive boekhoogte met `svh`
-- safe-area ondersteuning
-- geen horizontale overflow
-- betere typografie op 760px / 390px
-- technische tekeningen krijgen meer verticale ruimte
-- varianten veranderen van 3 kleine kolommen naar 3 verticale vergelijkingsrijen
-- full-bleed visualpagina's blijven gecontroleerd beeldvullend
-- compactere materiaalstalen
-- 44px tapzones voor controls
-- compact-regels voor schermen lager dan 700px
-- touch-hover effecten uit op coarse pointers
-
-Browser-screenshot-QA blijft nog apart open omdat de publieke GitHub Pages-route vanuit de huidige tooling niet betrouwbaar bereikbaar is.
-
----
-
-## 8. Fase K — Performance & accessibility — HUIDIGE BRANCH
-
-Branch:
-
-`agent/performance-accessibility`
-
-### Toegevoegd: `accessibility-polish.css`
+### `accessibility-polish.css`
 - duidelijke `:focus-visible` states
-- focuskleur afgestemd op de bestaande A+B-stijl
-- reduced-motion timerprogress wordt uitgeschakeld
-- forced-colors fallback voor belangrijke controls/rules
+- reduced-motion timerprogress uit
+- forced-colors fallback
 
-### Toegevoegd: `accessibility-performance.js`
-- autoplayknop krijgt dynamisch een duidelijk toegankelijk label
-- bij `prefers-reduced-motion` wordt automatisch bladeren direct gepauzeerd
-- gebruiker kan daarna bewust autoplay opnieuw inschakelen
-- `Escape` pauzeert lopende autoplay
-- automatische eindfocus wordt niet gestolen wanneer de gebruiker niet bewust met het boek heeft geïnterageerd
-- eerstvolgende pagina/spread wordt tijdens idle time voorgeladen
-- preload wordt overgeslagen wanneer `navigator.connection.saveData` actief is
+### `accessibility-performance.js`
+- dynamisch toegankelijk autoplaylabel
+- `prefers-reduced-motion` pauzeert autoplay standaard
+- bewuste opt-in blijft mogelijk
+- `Escape` pauzeert autoplay
+- automatische eindfocus wordt niet gestolen zonder bewuste interactie
+- volgende pagina/spread idle-preload
+- geen preload bij `saveData`
 
 ### `index.html`
-- Google Fonts gebruikt `display=swap`
-- live region krijgt `aria-atomic=true`
-- dynamische boekpagina's staan niet meer zelf op `aria-live=polite`; één centrale statusregion verzorgt aankondigingen
-- boek heeft expliciet `role=region`
-- controls hebben `aria-controls=book`
-- progresslijn is decoratief voor assistive technology
-- nieuwe accessibility CSS/JS worden geladen
+- `display=swap` voor fonts
+- centrale `aria-live` statusregion
+- dynamische boekpagina's zelf niet meer live-announcen
+- boek als expliciete region
+- controls gekoppeld via `aria-controls`
 
-### Assetstrategie
-Nieuw document:
-
-`ASSET-GUIDELINES.md`
-
-Daarin staan vaste afspraken voor:
-- AVIF/WebP-renders
+### `ASSET-GUIDELINES.md`
+Vaste afspraken voor:
+- AVIF/WebP renders
 - SVG/WebP technische tekeningen
-- resolutie-uitgangspunten
-- mobile crop
+- resolutie
+- crop
 - bestandsnamen
 - alt-tekst
-- lazy loading / next-spread preload
-- publicatiecontrole
-
-### Validatie
-- `accessibility-performance.js` komt door `node --check`
-- alle wijzigingen blijven binnen `technischbouwadvies/ontwerpboek/`
+- loading
+- publicatiecheck
 
 ---
 
-## 9. Open QA-punt
+## 8. Open QA-punt
 
 De openbare GitHub Pages-route kon vanuit de huidige browsertool niet betrouwbaar worden geladen en de container heeft geen DNS-toegang tot GitHub.
 
-Daarom geldt:
-
+Daarom:
 - code-/structuur-QA: uitgevoerd
-- echte live screenshot-QA desktop/mobile: **nog open**
+- live screenshot-QA desktop/mobile: **nog open**
 
-Dit is een implementatie-QA-punt en geen reden om art direction, cover of spreadlayouts opnieuw te ontwerpen.
-
----
-
-## 10. Eerstvolgende fase
-
-Na merge van Fase K:
-
-### Fase L — Integratievoorbereiding
-
-Nog **niet** direct de productie-site aanpassen.
-
-Eerst:
-1. bepalen welke bestanden/componenten uit de standalone tool naar technischbouwadvies.nl moeten
-2. CSS-isolatieplan maken
-3. fontstrategie bepalen
-4. assetpad + data/config aanpak bepalen
-5. homepageplaatsing en beschikbare breedte vastleggen
-6. fallback voor reduced motion/mobile vastleggen
-7. performancebudget voor de homepage bepalen
-8. daarna pas een aparte integratiebranch in de echte productie-repo
+Dit is een implementatie-QA-punt en geen reden om de art direction opnieuw te ontwerpen.
 
 ---
 
-## 11. Overdracht naar nieuwe chat
+## 9. Fase L — Integratievoorbereiding — HUIDIGE BRANCH
 
-> We gaan verder met het premium interactieve ontwerpboek voor Technisch Bouwadvies. Open in `ALKAVisuals/webdesign` eerst `technischbouwadvies/ontwerpboek/VISUAL-DESIGN-ROADMAP.md`, daarna `VISUAL-DESIGN-PROGRESS.md` en indien assets relevant zijn `ASSET-GUIDELINES.md`. Lees ze volledig. De A+B art direction, masterspread, Technical Line Art cover en 8-spread boekflow zijn al goedgekeurd en mogen niet opnieuw worden ontworpen tenzij de gebruiker dat expliciet vraagt. Fase H is via PR #12 naar main, Fase I via PR #13 en Fase J via PR #14. Fase K performance/accessibility staat op branch `agent/performance-accessibility`; controleer of die al is gemerged. Als dat zo is, ga door met Fase L: integratievoorbereiding. De echte website technischbouwadvies.nl nog niet aanpassen zonder aparte integratiebranch.
+Branch:
+
+`agent/integration-plan`
+
+Nieuw document:
+
+`INTEGRATION-PLAN.md`
+
+Daarin staat vastgelegd:
+- juiste productie-repo eerst bevestigen
+- prototype-CSS niet rechtstreeks kopiëren
+- productiecomponent namespacen onder `.tba-designbook`
+- globale `body/html/button/a/:root` regels verwijderen of root-scopen
+- JS-selectors root-scopen in plaats van globale IDs
+- productiecomponentstructuur
+- homepageplaatsing
+- fontstrategie
+- productie-assetsmap
+- IntersectionObserver / lazy initialisatie
+- autoplay alleen in viewport
+- no-JS fallback
+- controls
+- optionele analytics
+- integratietesten
+- aparte productiebranch
+- rollbackstrategie
+- go/no-go checklist
+
+Belangrijkste technische conclusie:
+
+**De standalone tool is visueel/technisch de bron, maar niet rechtstreeks copy-paste-ready voor productie vanwege globale prototype-CSS en globale selectors.** De productie-integratie wordt een geïsoleerde component.
 
 ---
 
-## 12. Snelle status
+## 10. Productierepo-status
+
+Binnen de GitHub-connector is wel `ALKAVisuals/technischbouwadvies-dashboard` gevonden, maar dat is een dashboardrepo en wordt **niet** automatisch als publieke website-repo behandeld.
+
+De juiste productie-repo voor technischbouwadvies.nl moet dus eerst expliciet worden geïdentificeerd voordat integratiecode wordt geschreven.
+
+---
+
+## 11. Eerstvolgende stap
+
+Na merge van Fase L:
+
+1. gebruiker / repo-context gebruiken om de echte productie-repo te identificeren
+2. frontendstack en homepagebestand/component inspecteren
+3. bestaande fonts, CSS-architectuur en deploystrategie inspecteren
+4. `INTEGRATION-PLAN.md` vertalen naar een exact migratiebestandenschema
+5. aparte productiebranch maken
+6. pas daarna het boek daadwerkelijk integreren
+
+Geen productiecode aanpassen zolang stap 1–4 niet zijn afgerond.
+
+---
+
+## 12. Overdracht naar nieuwe chat
+
+> We gaan verder met het premium interactieve ontwerpboek voor Technisch Bouwadvies. Open in `ALKAVisuals/webdesign` eerst `technischbouwadvies/ontwerpboek/VISUAL-DESIGN-ROADMAP.md`, daarna `VISUAL-DESIGN-PROGRESS.md`, `ASSET-GUIDELINES.md` en `INTEGRATION-PLAN.md`. Lees ze volledig. De A+B art direction, masterspread, Technical Line Art cover en 8-spread boekflow zijn al goedgekeurd en mogen niet opnieuw worden ontworpen tenzij de gebruiker dat expliciet vraagt. Fase H t/m K staan op `main` via PR #12–#15. Fase L integratievoorbereiding staat op branch `agent/integration-plan`; controleer of die al is gemerged. De volgende echte stap is de correcte productie-repo voor technischbouwadvies.nl identificeren en de stack/homepage/deploystrategie inspecteren. Niet aannemen dat `technischbouwadvies-dashboard` de publieke website-repo is en nog geen productiecode wijzigen voordat dit bevestigd is.
+
+---
+
+## 13. Snelle status
 
 **GOEDGEKEURD**
 - A+B art direction
@@ -232,10 +238,12 @@ Eerst:
 - desktopvisuals
 - motion polish
 - mobile polish
+- performance/accessibility
 
 **HUIDIGE BRANCH**
-- `agent/performance-accessibility`
+- `agent/integration-plan`
 
-**DAARNA**
-- integratievoorbereiding
-- daarna pas aparte productie-integratiebranch
+**VOLGENDE ECHTE STAP**
+- productie-repo identificeren
+- stack/homepage/deploy inspecteren
+- dan pas aparte integratiebranch
