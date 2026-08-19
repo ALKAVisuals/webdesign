@@ -18,8 +18,8 @@ Alle visuele correcties voor Projectintro worden vanaf nu uitsluitend op deze br
 3. Hero-afbeelding & beeldpresentatie — AFGEROND
 4. Chapter marker & titel — AFGEROND
 5. Bodycopy, witruimte & footer — AFGEROND
-6. Fysiek boekgevoel — ACTIEF / REVIEW
-7. Desktop + mobiel QA
+6. Fysiek boekgevoel — AFGEROND
+7. Desktop + mobiel QA — ACTIEF / REVIEW
 8. Final reference pass + finale merge
 
 ## Stap 2 — vastgelegde geometrie
@@ -29,7 +29,6 @@ Alle visuele correcties voor Projectintro worden vanaf nu uitsluitend op deze br
 - Gutter op de echte 36.5%-scheiding
 - Hero full-bleed van boven tot onder
 - Linker binnenmarges afgestemd op de smallere editorial kolom
-- Mobiele single-page geometrie inhoudelijk niet gewijzigd
 
 ## Stap 3 — vastgelegde hero-presentatie
 - Hero gebruikt `images/website-2026/projecten/illustratieve-case-aanbouw-rijwoning.webp`
@@ -57,21 +56,31 @@ Alle visuele correcties voor Projectintro worden vanaf nu uitsluitend op deze br
 - `TECHNISCH BOUWADVIES` subtiel gezet op 7.2 px met ruime tracking
 - Footer boven de folio geplaatst zodat merknaam en paginanummer niet concurreren
 - Linker folio uitgelijnd met de hoofdinhoud en teruggebracht naar 8 px
-- Mobiel eigen smallere copykolom en subtielere footer/folio
 
-## Stap 6 — huidig fysiek boekgevoel
-- Papier warmer gemaakt naar een zachte ivory/off-white basis (`#f8f4ec`)
-- Buitenachtergrond iets warmer en neutraler gemaakt zodat boek en omgeving loskomen zonder hard contrast
-- Digitale 1 px middenlijn vervangen door een zachte 15 px gutter met subtiele licht-/schaduwverloop
-- Linker pagina krijgt een nauwelijks zichtbare donkerder papierzone richting de rug
-- Rechter hero krijgt langs de rug een subtiele contactschaduw zodat beeld en tekstpagina als één fysieke spread samenkomen
-- Boekschaduw dichter tegen het object gebracht en veel zachter gemaakt
-- Onder het boek een zeer beperkte page-stack toegevoegd: enkele lichte papierlagen in plaats van opvallende gestapelde lijnen
-- Zachte contactschaduw onder de paginalagen toegevoegd voor een fysiek objectgevoel
-- Buitenrand teruggebracht tot een bijna onzichtbare hairline
-- Papier krijgt alleen zeer subtiele lichtvariatie; geen zware texture
-- Mobiel blijft volledig 2D: geen 3D-transforms, geen zichtbare gutter en alleen een zachte vlakke schaduw/page-edge
-- Typografie, copy, geometrie en hero-crop zijn in deze stap inhoudelijk niet gewijzigd
+## Stap 6 — vastgelegd fysiek boekgevoel
+- Papierbasis: zachte ivory/off-white (`#f8f4ec`)
+- Warme neutrale buitenachtergrond
+- Zachte 15 px gutter in plaats van een digitale 1 px lijn
+- Subtiele papierverdonkering richting de rug
+- Rustige page-stack onder het boek
+- Zachtere, dichter geplaatste contactschaduw
+- Buitenrand als nauwelijks zichtbare hairline
+- Mobiel geen 3D-gutter of zware fysieke effecten
+
+## Stap 7 — huidige desktop + mobiel QA
+- `viewport-fit=cover` toegevoegd voor correcte iPhone safe-area verwerking
+- Horizontale overflow hard voorkomen
+- `-webkit-text-size-adjust:100%` toegevoegd zodat iOS tekst niet onverwacht herschaalt
+- Tussenbreedte 761–980 px krijgt eigen desktop/laptop schaal voor titel, copy en marges
+- Mobiele permanente pagina blijft volledig 2D: geen perspective, transform of filter op het leesbare boekvlak
+- Rechterpagina op mobiel hard verborgen zodat nooit een lege tweede kolom kan ontstaan
+- Gutter op mobiel volledig uitgeschakeld
+- Mobiele schaduw/page-depth verder vereenvoudigd zonder blur-filter om Safari-rasterisatie te vermijden
+- Focus outline op het boekvlak mobiel hard onderdrukt; desktoptoegankelijkheid wordt niet globaal verwijderd
+- Extra breakpoint onder 420 px voor kleinere iPhones
+- Landscape-mobile krijgt een compacte, veilige enkel-paginaweergave
+- Safe-area paddings toegevoegd voor notch/home-indicator
+- Desktop spread, hero en fysieke behandeling inhoudelijk niet gewijzigd
 
 ## Vaste preview
-`projectintro-style-lock-preview.html` is de visuele branch-preview. Deze wordt gedurende de style-lock steeds bijgewerkt zodat dezelfde link kan worden gebruikt voor review.
+`projectintro-style-lock-preview.html` is de actuele branch-preview. Voor review gebruiken we daarnaast per stap een cache-veilige live wrapper.
