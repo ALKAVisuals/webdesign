@@ -1,46 +1,60 @@
 export const pipelineConfig = {
-  version: 'V0.8',
-  edition: 'CONTENT STATUS SYSTEM'
+  version: 'APPROVED',
+  edition: 'A+B VISUAL SYSTEM'
 };
 
 export const assetManifest = {
-  '04-varianten': {
+  '01-projectintro-visual': {
+    type: 'full',
+    src: 'assets/project/12-exterieur-render.svg',
+    alt: 'Architectonische projectvisualisatie als introductie van het ontwerpverhaal',
+    fit: 'cover',
+    label: 'Projectintro'
+  },
+  '02-varianten-visual': {
     type: 'gallery',
     columns: 3,
     label: 'Ontwerpvarianten',
     items: [
       {
         src: 'assets/project/04-variant-a.svg',
-        alt: 'Ontwerpvariant A, compacte uitbouw',
+        alt: 'Ontwerpvariant A',
         fit: 'contain',
-        label: 'Variant A · compact'
+        label: 'Variant A'
       },
       {
         src: 'assets/project/04-variant-b.svg',
-        alt: 'Ontwerpvariant B, gekozen uitbouw',
+        alt: 'Ontwerpvariant B',
         fit: 'contain',
-        label: 'Variant B · gekozen'
+        label: 'Variant B'
       },
       {
         src: 'assets/project/04-variant-c.svg',
-        alt: 'Ontwerpvariant C, maximale uitbouw',
+        alt: 'Ontwerpvariant C',
         fit: 'contain',
-        label: 'Variant C · maximaal'
+        label: 'Variant C'
       }
     ]
   },
-  '06-plattegrond': {
+  '03-plattegrond-visual': {
     type: 'single',
     src: 'assets/project/06-plattegrond.svg',
-    alt: 'Testplattegrond voor de contentpijplijn van Technisch Bouwadvies',
+    alt: 'Technische plattegrond van het ontwerp',
     fit: 'contain',
-    label: 'Technische tekening · plattegrond'
+    label: 'Plattegrond'
   },
-  '12-exterieur-render': {
+  '07-exterieur-visual': {
     type: 'full',
     src: 'assets/project/12-exterieur-render.svg',
-    alt: 'Tijdelijke exterieurrender voor de full-page contenttest',
+    alt: 'Exterieurvisualisatie van het ontwerp',
     fit: 'cover',
-    label: 'Exterieur render · full page'
+    label: 'Exterieur impressie'
+  },
+  '08-resultaat-visual': {
+    type: 'full',
+    src: 'assets/project/12-exterieur-render.svg',
+    alt: 'Eindvisualisatie van het uitgewerkte ontwerp',
+    fit: 'cover',
+    label: 'Projectresultaat'
   }
 };
