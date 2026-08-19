@@ -2,8 +2,8 @@
    The art direction stays fixed; this layer only refines movement, depth and feedback. */
 
 :root {
-  --motion-turn-duration: 1120ms;
-  --motion-cover-duration: 1180ms;
+  --motion-turn-duration: 960ms;
+  --motion-cover-duration: 920ms;
   --motion-ease-page: cubic-bezier(.42,.04,.12,1);
   --motion-ease-settle: cubic-bezier(.18,.72,.16,1);
 }
@@ -186,7 +186,7 @@
 .book-area.is-ended .book-end { opacity:1; transform:translateY(0) scale(1); }
 
 @media (max-width:760px) {
-  :root { --motion-turn-duration:820ms; --motion-cover-duration:900ms; }
+  :root { --motion-turn-duration:900ms; --motion-cover-duration:820ms; }
   .book-stage { perspective:2100px; }
   .book-area.is-turning-next .book,
   .book-area.is-turning-prev .book { animation:none; }
