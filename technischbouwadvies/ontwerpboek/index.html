@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Interactief ontwerpboek prototype voor Technisch Bouwadvies — van tutorial naar praktijkontwerp.">
-  <title>Ontwerpboek V0.7 — Technisch Bouwadvies</title>
+  <title>Ontwerpboek V0.8 — Technisch Bouwadvies</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="content-layouts.css">
   <link rel="stylesheet" href="book-lifecycle.css">
   <link rel="stylesheet" href="book-polish.css">
+  <link rel="stylesheet" href="content-status.css">
 </head>
 <body>
   <header class="site-header">
@@ -26,7 +27,7 @@
       <a href="#over">Over prototype</a>
     </nav>
 
-    <span class="prototype-badge" id="prototypeVersion">Prototype V0.7</span>
+    <span class="prototype-badge" id="prototypeVersion">Prototype V0.8</span>
   </header>
 
   <main>
@@ -58,6 +59,12 @@
           <span class="meta-count" id="metaCount">0 / 14</span>
         </div>
 
+        <div class="status-overview" id="statusOverview" aria-label="Contentstatus van het ontwerpboek">
+          <strong>14 hoofdstukken · contentstatus</strong>
+          <div class="status-counts" id="statusCounts"></div>
+          <div class="status-track" id="statusTrack" aria-hidden="true"></div>
+        </div>
+
         <div class="book-stage" aria-label="Interactief ontwerpboek">
           <div class="book-shadow" aria-hidden="true"></div>
 
@@ -68,7 +75,7 @@
               <div class="cover-title">ONTWERP<br>BOEK</div>
               <div class="cover-subtitle">Van tutorial<br>naar praktijk</div>
               <div class="cover-rule"></div>
-              <span class="cover-edition" id="coverEdition">V0.7 · PREMIUM BOOK POLISH</span>
+              <span class="cover-edition" id="coverEdition">V0.8 · CONTENT STATUS SYSTEM</span>
             </div>
           </button>
 
@@ -115,14 +122,15 @@
 
     <section class="demo-note" id="over">
       <div>
-        <p class="eyebrow">V0.7 — PREMIUM BOOK POLISH</p>
-        <h2>Meer materiaalgevoel, rustigere timing en een natuurlijkere pagina-omslag.</h2>
+        <p class="eyebrow">V0.8 — CONTENT STATUS SYSTEM</p>
+        <h2>Vanaf nu is direct zichtbaar welke hoofdstukken nog demo zijn en welke echte content krijgen.</h2>
       </div>
-      <p>De cover en pagina's hebben een verfijnd papier- en linneneffect gekregen, de page-turn heeft meer diepte en lichtval en ieder hoofdstuk krijgt nu een eigen kijktijd. Technische tekeningen blijven langer leesbaar en renders krijgen extra presentatietijd.</p>
+      <p>Iedere pagina krijgt een feitelijke status: <strong>DEMO</strong>, <strong>IN UITWERKING</strong> of <strong>DEFINITIEF</strong>. De balk boven het boek telt de hoofdstukken per status. De huidige technische testassets blijven bewust 'in uitwerking'; pas echte, gecontroleerde projectcontent mag later als definitief worden gemarkeerd.</p>
     </section>
   </main>
 
   <noscript>Voor het interactieve ontwerpboek is JavaScript nodig.</noscript>
   <script type="module" src="book.js"></script>
+  <script type="module" src="content-status-ui.js"></script>
 </body>
 </html>
