@@ -30,8 +30,8 @@ B1. Echte middenrug — AFGEROND ALS RICHTING
 B2. Subtiele pagina-kromming — AFGEROND ALS RICHTING
 C1. Contactschaduw — AFGEROND ALS RICHTING
 C2. Papiergevoel — AFGEROND ALS RICHTING
-D. Projectintro-integratie — ACTIEF / REVIEW
-E. Mobile vertaling
+D. Projectintro-integratie — AFGEROND ALS RICHTING
+E. Mobile vertaling — ACTIEF / REVIEW
 F. Finale vergelijking + merge
 
 ## Vastgelegde inhoudelijke basis
@@ -86,7 +86,7 @@ F. Finale vergelijking + merge
 - Page stacks en onderrand gebruiken dezelfde warme ivoorfamilie
 - Mobiel blijft vlak en rustig voor iOS-scherpte
 
-## D — huidige Projectintro-integratie
+## D — vastgelegde Projectintro-integratie
 - De goedgekeurde fysieke richting is niet langer alleen een standalone stijlschets: `style-lock-m1c-projectintro-final.css` past de regels gericht toe op spread `01` van het echte interactieve boek
 - De daadwerkelijke `.book` krijgt op desktop alleen bij spread 01 de 36.5% / 63.5% masterspread
 - Bestaande `.page-stack`, `.book-spine`, `.book-shadow`, `.page-left` en `.page-right` van de echte boekengine worden gebruikt; er is geen tweede boekcomponent gebouwd
@@ -97,8 +97,20 @@ F. Finale vergelijking + merge
 - Hero crop/treatment is geïntegreerd: 50% / 52%, schaal 1.018, lichte desaturatie, iets meer contrast en lagere helderheid
 - De inhoudelijke hiërarchie van de linkerpagina is opnieuw op de goedgekeurde masterspread afgestemd
 - De door gebruiker gewenste `02` blijft rechtsonder op de hero zichtbaar; de linker extra folio blijft verborgen
-- De huidige D-preview gebruikt de echte interactieve boekmarkup, book.js, asset-manifest en bestaande lifecyclebestanden via een cache-veilige branchwrapper
-- Mobile is in deze D-stap bewust niet opnieuw gestyled; bestaande iOS-safe single-page regels blijven leidend tot stap E
+- De D-preview gebruikt de echte interactieve boekmarkup, book.js, asset-manifest en bestaande lifecyclebestanden via een cache-veilige branchwrapper
+
+## E — huidige mobile vertaling
+- `style-lock-m1c-projectintro-mobile.css` vertaalt spread 01 naar mobiel zonder de bestaande iOS/Safari-veiligheidsregels te omzeilen
+- Mobiel blijft één pagina tegelijk tonen; er wordt geen tweede lege rechterpagina gereserveerd
+- Leesbare pagina, tekst, hero en editorial-layout blijven permanent 2D: geen perspective, geen 3D-transform, geen filter op de content en geen will-change rasterisatie
+- Het fysieke gevoel komt mobiel uitsluitend uit een aparte platte `stack-left` achter de actieve pagina met enkele scherpe ivoorkleurige lagen en een minimale rechter/onderrand
+- De geblurde `book-shadow` is voor Projectintro mobiel uitgeschakeld; hierdoor blijft de leesbare sheet scherp en rustig
+- De tekstpagina gebruikt vlak warm ivory papier met slechts zeer lichte lineaire lichtvariatie; de oude zichtbare dot/noise textuur wordt voor deze spread overschreven
+- Mobiele typografie is opnieuw afgestemd op de huidige style-lock: chapter marker `01`, titel `PROJECT / INTRO`, bodycopy en footer houden dezelfde hiërarchie als desktop maar zijn voor portrait leesbaarheid herschaald
+- Pagina 02 blijft in de echte `book.js` flow de volgende afzonderlijke mobiele pagina; wanneer die naar `.page-left` wordt gerenderd, vult de hero de volledige pagina
+- De hero blijft mobiel bewust zonder CSS filter/scale om Safari-scherpte te behouden; `object-position: 50% 52%` blijft wel behouden
+- De door gebruiker gewenste `02` staat ook op de mobiele hero rechtsonder
+- `projectintro-integration-e-mobile-live.html` is de cache-veilige reviewwrapper voor deze stap en laadt de echte interactieve boekengine
 
 ## Vaste preview
-`projectintro-style-lock-preview.html` blijft de visuele stijlschets. `projectintro-integration-d-live.html` is vanaf stap D de belangrijkste reviewpreview omdat die de echte interactieve boekimplementatie laadt.
+`projectintro-style-lock-preview.html` blijft de visuele stijlschets. Vanaf stap E is `projectintro-integration-e-mobile-live.html` de belangrijkste reviewpreview voor de echte interactieve desktop/mobile implementatie.
