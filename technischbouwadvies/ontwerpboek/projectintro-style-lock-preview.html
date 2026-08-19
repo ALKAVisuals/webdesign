@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="robots" content="noindex,nofollow">
-  <title>Projectintro — Final Style Lock · Stap 2</title>
+  <title>Projectintro — Final Style Lock · Stap 3</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
@@ -15,8 +15,7 @@
     .stage{width:min(1080px,92vw);margin:0 auto}
     .label{margin:0 0 18px;text-align:center;font-size:11px;letter-spacing:.16em;color:#77736c}
 
-    /* STEP 2 — spread geometry only.
-       Reference ratio: quiet narrow editorial column + dominant full-height visual. */
+    /* STEP 2 — locked spread geometry. */
     .book{
       display:grid;
       grid-template-columns:36.5% 63.5%;
@@ -36,7 +35,7 @@
       transform:translateX(-.5px);
       background:rgba(70,58,42,.085);
       pointer-events:none;
-      z-index:3;
+      z-index:4;
     }
     .page{position:relative;min-width:0;background:var(--paper)}
     .left{padding:8.5% 10.2% 7.2%;display:flex;flex-direction:column}
@@ -45,12 +44,35 @@
     h1{margin:0;font-family:"Libre Baskerville",Georgia,serif;font-weight:400;font-size:clamp(31px,3vw,47px);line-height:1.02;letter-spacing:-.035em}
     .copy{width:88%;margin:34px 0 0;color:var(--muted);font-size:12px;line-height:1.75}
     .brand{margin-top:auto;font-size:8px;letter-spacing:.14em;color:#77736c}
-    .page-no{position:absolute;bottom:3%;font-family:"Libre Baskerville",Georgia,serif;font-size:9px;color:#8a847b;z-index:2}
-    .left .page-no{left:6.1%}.right .page-no{right:3.2%;color:rgba(250,247,241,.92);text-shadow:0 1px 4px rgba(0,0,0,.22)}
+    .page-no{position:absolute;bottom:3%;font-family:"Libre Baskerville",Georgia,serif;font-size:9px;color:#8a847b;z-index:5}
+    .left .page-no{left:6.1%}
+    .right .page-no{right:3.2%;color:rgba(250,247,241,.94);text-shadow:0 1px 5px rgba(0,0,0,.28)}
 
-    /* Full-bleed hero: no white strip below the image. */
-    .right{overflow:hidden;background:#e9e3da}
-    .right img{width:100%;height:100%;display:block;object-fit:cover;object-position:center center}
+    /* STEP 3 — hero image and image presentation.
+       Use a darker, more atmospheric architectural project image and treat it as a true full-bleed editorial plate. */
+    .right{overflow:hidden;background:#24251f;isolation:isolate}
+    .right img{
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      display:block;
+      object-fit:cover;
+      object-position:50% 52%;
+      transform:scale(1.018);
+      transform-origin:center center;
+      filter:saturate(.90) contrast(1.04) brightness(.91);
+    }
+    .right:before{
+      content:"";
+      position:absolute;
+      inset:0;
+      z-index:2;
+      pointer-events:none;
+      background:
+        linear-gradient(180deg,rgba(22,23,19,.015) 0%,rgba(17,18,15,.07) 100%),
+        linear-gradient(90deg,rgba(19,20,17,.035) 0%,transparent 14%);
+    }
     .right:after{display:none}
 
     .status{margin:18px 0 0;text-align:center;color:#77736c;font-size:11px}
@@ -71,8 +93,8 @@
 </head>
 <body>
   <main class="stage">
-    <p class="label">PROJECTINTRO · STEP 2 · SPREADVERHOUDING & GEOMETRIE</p>
-    <section class="book" aria-label="Projectintro geometry review spread">
+    <p class="label">PROJECTINTRO · STEP 3 · HERO-AFBEELDING & BEELDPRESENTATIE</p>
+    <section class="book" aria-label="Projectintro hero image review spread">
       <article class="page left">
         <p class="kicker">01</p>
         <span class="rule" aria-hidden="true"></span>
@@ -82,11 +104,11 @@
         <span class="page-no">01</span>
       </article>
       <article class="page right">
-        <img src="https://raw.githubusercontent.com/ALKAVisuals/alkabouwadvies/main/images/website-2026/diensten/aanbouw-ontwerp-volledig-hout.webp" alt="Huidige Projectintro hero-afbeelding">
+        <img src="https://raw.githubusercontent.com/ALKAVisuals/alkabouwadvies/main/images/website-2026/projecten/illustratieve-case-aanbouw-rijwoning.webp" alt="Sfeervolle architectonische exterieurvisualisatie van een rijwoning met aanbouw">
         <span class="page-no">02</span>
       </article>
     </section>
-    <p class="status">Stap 2 actief op de style-lock branch. Main blijft ongemoeid. Beoordeel nu alleen verhouding, gutter, marges en full-bleed beeldvlak.</p>
+    <p class="status">Stap 3 actief op de style-lock branch. Main blijft ongemoeid. Beoordeel nu alleen beeldkeuze, sfeer, crop, full-bleed presentatie en aansluiting op de referentie.</p>
   </main>
 </body>
 </html>
