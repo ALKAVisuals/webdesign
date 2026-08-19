@@ -19,8 +19,8 @@ Alle visuele correcties voor Projectintro worden vanaf nu uitsluitend op deze br
 4. Chapter marker & titel — AFGEROND
 5. Bodycopy, witruimte & footer — AFGEROND
 6. Fysiek boekgevoel — AFGEROND
-7. Desktop + mobiel QA — ACTIEF / REVIEW
-8. Final reference pass + finale merge
+7. Desktop + mobiel QA — AFGEROND
+8. Final reference pass + finale merge — ACTIEF / EINDREVIEW
 
 ## Stap 2 — vastgelegde geometrie
 - Desktop tekstzone: 36.5%
@@ -40,47 +40,42 @@ Alle visuele correcties voor Projectintro worden vanaf nu uitsluitend op deze br
 
 ## Stap 4 — vastgelegde chapter marker & titel
 - Kleine bronzen `01`
-- Hairline 27 px en compact bij de chapter marker
 - Titel geforceerd naar twee regels: `PROJECT` / `INTRO`
-- Titelschaal max. 40 px op desktop
-- Line-height .96 en subtiele negatieve tracking
 - Libre Baskerville als rustige editorial serif
-- Mobiel dezelfde hiërarchie met 30 px titelmaat
 
 ## Stap 5 — vastgelegde bodycopy, witruimte & footer
-- Bodycopy max. 190 px / 74% van de linker pagina
-- Bodytekst 10.4 px met line-height 1.72
-- Copy inhoudelijk verkort voor een compactere editorial kolom
-- Titel → bodycopy afstand 29 px
-- Onderste witruimte bewust behouden als onderdeel van de compositie
-- `TECHNISCH BOUWADVIES` subtiel gezet op 7.2 px met ruime tracking
-- Footer boven de folio geplaatst zodat merknaam en paginanummer niet concurreren
-- Linker folio uitgelijnd met de hoofdinhoud en teruggebracht naar 8 px
+- Smalle editorial bodycopykolom
+- Grote onderste witruimte bewust behouden
+- `TECHNISCH BOUWADVIES` onderaan als stille footer
 
 ## Stap 6 — vastgelegd fysiek boekgevoel
-- Papierbasis: zachte ivory/off-white (`#f8f4ec`)
+- Zachte ivory/off-white papierbasis
 - Warme neutrale buitenachtergrond
-- Zachte 15 px gutter in plaats van een digitale 1 px lijn
-- Subtiele papierverdonkering richting de rug
-- Rustige page-stack onder het boek
-- Zachtere, dichter geplaatste contactschaduw
-- Buitenrand als nauwelijks zichtbare hairline
+- Zeer subtiele gutter, page-edge en contactschaduw
 - Mobiel geen 3D-gutter of zware fysieke effecten
 
-## Stap 7 — huidige desktop + mobiel QA
-- `viewport-fit=cover` toegevoegd voor correcte iPhone safe-area verwerking
-- Horizontale overflow hard voorkomen
-- `-webkit-text-size-adjust:100%` toegevoegd zodat iOS tekst niet onverwacht herschaalt
-- Tussenbreedte 761–980 px krijgt eigen desktop/laptop schaal voor titel, copy en marges
-- Mobiele permanente pagina blijft volledig 2D: geen perspective, transform of filter op het leesbare boekvlak
-- Rechterpagina op mobiel hard verborgen zodat nooit een lege tweede kolom kan ontstaan
-- Gutter op mobiel volledig uitgeschakeld
-- Mobiele schaduw/page-depth verder vereenvoudigd zonder blur-filter om Safari-rasterisatie te vermijden
-- Focus outline op het boekvlak mobiel hard onderdrukt; desktoptoegankelijkheid wordt niet globaal verwijderd
-- Extra breakpoint onder 420 px voor kleinere iPhones
-- Landscape-mobile krijgt een compacte, veilige enkel-paginaweergave
-- Safe-area paddings toegevoegd voor notch/home-indicator
-- Desktop spread, hero en fysieke behandeling inhoudelijk niet gewijzigd
+## Stap 7 — vastgelegde desktop + mobiel QA
+- `viewport-fit=cover` en iPhone safe-area verwerking
+- Horizontale overflow voorkomen
+- iOS tekstherschaalgedrag gestabiliseerd
+- Mobiele permanente pagina volledig 2D gehouden
+- Rechterpagina en gutter mobiel hard verborgen
+- Extra breakpoints voor kleinere iPhones en landscape-mobile
+
+## Stap 8 — huidige final reference pass
+- Linker contentmarge nauwkeuriger op de referentie gezet: 15.2% vanaf de linker paginarand
+- Chapter marker blijft hoog op de pagina; afstand `01` → hairline → titel vergroot voor dezelfde rustige verticale hiërarchie als de referentie
+- Hairline op 29 px gezet en titelregelafstand natuurlijker gemaakt (`line-height: 1.08`)
+- `PROJECT / INTRO` blijft maximaal 40 px, maar met minder agressieve negatieve tracking
+- Titel → bodycopy afstand vergroot naar 57 px zodat de tekst niet tegen de titel aankruipt
+- Bodycopy verbreed naar max. 225 px / 58% en teruggezet naar de volledige referentietekst met `Hiermee ontstaat een solide basis...`
+- Footer direct op de onderste contentmarge geplaatst en licht leesbaarder gemaakt
+- Extra folio `01` en `02` op deze Projectintro-spread verborgen, omdat de referentie alleen de chapter marker `01` toont
+- Buitenachtergrond en papier iets lichter gezet voor een zachtere warme monograph-look
+- Gutter teruggebracht van 15 px naar 7 px en veel transparanter gemaakt
+- Page-stack teruggebracht naar een enkele minimale papieredge
+- Boekschaduw en hero-rugschaduw verder verzacht zodat de spread minder digitaal oogt
+- Mobiele QA-regels behouden: single-page, 2D en zonder blur
 
 ## Vaste preview
-`projectintro-style-lock-preview.html` is de actuele branch-preview. Voor review gebruiken we daarnaast per stap een cache-veilige live wrapper.
+`projectintro-style-lock-preview.html` is de actuele branch-preview. Voor de finale review gebruiken we een aparte cache-veilige Step 8 live wrapper.
