@@ -10,6 +10,10 @@ const autoplayToggle = document.getElementById('autoplayToggle');
 const autoplayText = document.getElementById('autoplayText');
 const pageTurn = document.getElementById('pageTurn');
 const book = document.getElementById('book');
+const bookArea = document.getElementById('bookArea');
+const bookEnd = document.getElementById('bookEnd');
+const coverStart = document.getElementById('coverStart');
+const restartBookButton = document.getElementById('restartBook');
 const startBook = document.getElementById('startBook');
 const currentChapter = document.getElementById('currentChapter');
 const metaCount = document.getElementById('metaCount');
@@ -18,15 +22,18 @@ const versionBadge = document.getElementById('prototypeVersion');
 const coverEdition = document.getElementById('coverEdition');
 
 let currentPage = 0;
-let autoplay = true;
+let autoplay = false;
 let timer = null;
+let autoOpenTimer = null;
 let pointerStartX = null;
 let pointerStartY = null;
+let lifecycle = 'closed';
 let mobileState = window.matchMedia('(max-width: 760px)').matches;
 
 const isMobile = () => window.matchMedia('(max-width: 760px)').matches;
 const prefersReducedMotion = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const viewCount = () => isMobile() ? pages.length : Math.ceil(pages.length / 2);
+const stepSize = () => isMobile() ? 1 : 2;
 
 function escapeHtml(value = '') {
   return String(value)
@@ -71,46 +78,26 @@ function assetVisual(page) {
       .filter((item) => item?.src)
       .map((item, index) => {
         const label = escapeHtml(item.label || `Beeld ${index + 1}`);
-        return `<figure class="asset-tile">
-          ${imageMarkup(page, item)}
-          <figcaption class="asset-label">${label}</figcaption>
-        </figure>`;
+        return `<figure class="asset-tile">${imageMarkup(page, item)}<figcaption class="asset-label">${label}</figcaption></figure>`;
       })
       .join('');
-
     return `<div class="asset-gallery" style="--asset-columns:${columns}">${tiles}</div>`;
   }
 
   if (layout === 'full') {
     const label = escapeHtml(asset.label || 'Projectrender');
-    return `<div class="asset-full">
-      ${imageMarkup(page, asset)}
-      <span class="asset-label">${label}</span>
-    </div>`;
+    return `<div class="asset-full">${imageMarkup(page, asset)}<span class="asset-label">${label}</span></div>`;
   }
 
   const label = escapeHtml(asset.label || 'Echt projectbeeld');
-  return `<div class="asset-single visual-paper">
-    ${imageMarkup(page, asset)}
-    <span class="visual-caption">${label}</span>
-  </div>`;
+  return `<div class="asset-single visual-paper">${imageMarkup(page, asset)}<span class="visual-caption">${label}</span></div>`;
 }
 
 function pageTemplate(page, index) {
-  if (!page) {
-    return `<div class="page-heading"><span class="step-number">—</span><h2>EINDE</h2></div><p class="page-copy">Dit is het einde van het prototype.</p>`;
-  }
-
+  if (!page) return `<div class="page-heading"><span class="step-number">—</span><h2>EINDE</h2></div><p class="page-copy">Dit is het einde van het prototype.</p>`;
   const layout = assetLayout(resolvedAsset(page));
   const assetState = layout === 'demo' ? 'DEMO' : 'REAL-ASSET';
-
-  return `
-    <div class="page-heading">
-      <span class="step-number">${String(index + 1).padStart(2, '0')}</span>
-      <h2>${escapeHtml(page.title.toUpperCase())}</h2>
-    </div>
-    <p class="page-copy">${escapeHtml(page.copy)}</p>
-    <div class="visual" data-page-id="${escapeHtml(page.id)}" data-content-state="${assetState}" data-layout="${layout}">${assetVisual(page)}</div>`;
+  return `<div class="page-heading"><span class="step-number">${String(index + 1).padStart(2, '0')}</span><h2>${escapeHtml(page.title.toUpperCase())}</h2></div><p class="page-copy">${escapeHtml(page.copy)}</p><div class="visual" data-page-id="${escapeHtml(page.id)}" data-content-state="${assetState}" data-layout="${layout}">${assetVisual(page)}</div>`;
 }
 
 function bindAssetFallbacks() {
@@ -127,6 +114,18 @@ function bindAssetFallbacks() {
 }
 
 function updateMeta(activeIndex) {
+  if (lifecycle === 'closed' || lifecycle === 'opening') {
+    currentChapter.textContent = 'Ontwerpboek klaar om te openen';
+    metaCount.textContent = `0 / ${pages.length}`;
+    metaProgressBar.style.width = '0%';
+    return;
+  }
+  if (lifecycle === 'ended' || lifecycle === 'ending') {
+    currentChapter.textContent = 'Proces compleet';
+    metaCount.textContent = `${pages.length} / ${pages.length}`;
+    metaProgressBar.style.width = '100%';
+    return;
+  }
   const page = pages[activeIndex] || pages[pages.length - 1];
   currentChapter.textContent = `${String(activeIndex + 1).padStart(2, '0')} · ${page.title}`;
   metaCount.textContent = `${activeIndex + 1} / ${pages.length}`;
@@ -134,17 +133,15 @@ function updateMeta(activeIndex) {
 }
 
 function normalizedPage(pageIndex) {
-  const length = pages.length;
-  let normalized = ((pageIndex % length) + length) % length;
-  if (!isMobile()) normalized = Math.floor(normalized / 2) * 2;
-  return normalized;
+  const maxIndex = pages.length - 1;
+  const clamped = Math.max(0, Math.min(pageIndex, maxIndex));
+  return isMobile() ? clamped : Math.floor(clamped / 2) * 2;
 }
 
 function renderView() {
   currentPage = normalizedPage(currentPage);
   const leftIndex = currentPage;
   const rightIndex = leftIndex + 1;
-
   leftPage.innerHTML = pageTemplate(pages[leftIndex], leftIndex);
   rightPage.innerHTML = pageTemplate(pages[rightIndex], rightIndex);
   leftPage.dataset.page = String(leftIndex + 1).padStart(2, '0');
@@ -152,13 +149,60 @@ function renderView() {
   rightPage.hidden = isMobile();
   updateMeta(leftIndex);
   bindAssetFallbacks();
-
   const activeDot = isMobile() ? leftIndex : Math.floor(leftIndex / 2);
   [...dotsHost.children].forEach((dot, index) => {
     const active = index === activeDot;
     dot.classList.toggle('active', active);
     dot.setAttribute('aria-current', active ? 'true' : 'false');
   });
+}
+
+function setLifecycle(nextState) {
+  lifecycle = nextState;
+  bookArea.dataset.lifecycle = nextState;
+  bookArea.classList.remove('is-closed', 'is-opening', 'is-open', 'is-ending', 'is-ended');
+  bookArea.classList.add(`is-${nextState}`);
+  const interactive = nextState === 'open';
+  prevButton.disabled = !interactive;
+  nextButton.disabled = !interactive;
+  autoplayToggle.disabled = !interactive;
+  book.setAttribute('aria-hidden', String(nextState === 'closed'));
+  bookEnd.setAttribute('aria-hidden', String(nextState !== 'ended'));
+  updateMeta(currentPage);
+}
+
+function openBook({ userInitiated = false } = {}) {
+  if (lifecycle === 'open' || lifecycle === 'opening') return;
+  window.clearTimeout(autoOpenTimer);
+  window.clearInterval(timer);
+  currentPage = 0;
+  renderView();
+  setLifecycle('opening');
+  window.setTimeout(() => {
+    setLifecycle('open');
+    setAutoplay(true);
+    if (userInitiated) book.focus({ preventScroll: true });
+  }, prefersReducedMotion() ? 0 : 920);
+}
+
+function finishBook() {
+  if (lifecycle !== 'open') return;
+  window.clearInterval(timer);
+  autoplay = false;
+  syncAutoplayUi();
+  setLifecycle('ending');
+  window.setTimeout(() => {
+    setLifecycle('ended');
+    restartBookButton.focus({ preventScroll: true });
+  }, prefersReducedMotion() ? 0 : 720);
+}
+
+function restartExperience() {
+  window.clearInterval(timer);
+  currentPage = 0;
+  renderView();
+  setLifecycle('closed');
+  window.setTimeout(() => openBook({ userInitiated: true }), prefersReducedMotion() ? 0 : 360);
 }
 
 function animate(direction) {
@@ -169,6 +213,7 @@ function animate(direction) {
 }
 
 function goToPage(nextPageIndex, direction = 1, userInitiated = false) {
+  if (lifecycle !== 'open') return;
   const target = normalizedPage(nextPageIndex);
   if (target === currentPage) return;
   animate(direction);
@@ -179,24 +224,42 @@ function goToPage(nextPageIndex, direction = 1, userInitiated = false) {
   if (userInitiated) restartAutoplay();
 }
 
+function isLastView() {
+  return currentPage + stepSize() >= pages.length;
+}
+
 function next(userInitiated = false) {
-  goToPage(currentPage + (isMobile() ? 1 : 2), 1, userInitiated);
+  if (lifecycle === 'closed' || lifecycle === 'ended') {
+    openBook({ userInitiated });
+    return;
+  }
+  if (lifecycle !== 'open') return;
+  if (isLastView()) {
+    finishBook();
+    return;
+  }
+  goToPage(currentPage + stepSize(), 1, userInitiated);
 }
 
 function previous(userInitiated = false) {
-  goToPage(currentPage - (isMobile() ? 1 : 2), -1, userInitiated);
+  if (lifecycle !== 'open' || currentPage === 0) return;
+  goToPage(currentPage - stepSize(), -1, userInitiated);
 }
 
 function restartAutoplay() {
   window.clearInterval(timer);
-  if (autoplay) timer = window.setInterval(() => next(false), bookConfig.autoplayMs);
+  if (autoplay && lifecycle === 'open') timer = window.setInterval(() => next(false), bookConfig.autoplayMs);
+}
+
+function syncAutoplayUi() {
+  autoplayToggle.setAttribute('aria-pressed', String(autoplay));
+  autoplayText.textContent = autoplay ? 'Autoplay aan' : 'Autoplay uit';
+  autoplayToggle.querySelector('.play-icon').textContent = autoplay ? '▶' : 'Ⅱ';
 }
 
 function setAutoplay(value) {
   autoplay = value;
-  autoplayToggle.setAttribute('aria-pressed', String(value));
-  autoplayText.textContent = value ? 'Autoplay aan' : 'Autoplay uit';
-  autoplayToggle.querySelector('.play-icon').textContent = value ? '▶' : 'Ⅱ';
+  syncAutoplayUi();
   restartAutoplay();
 }
 
@@ -208,6 +271,7 @@ function buildDots() {
     dot.className = 'dot';
     dot.setAttribute('aria-label', isMobile() ? `Ga naar pagina ${i + 1}` : `Ga naar spread ${i + 1}`);
     dot.addEventListener('click', () => {
+      if (lifecycle !== 'open') return;
       const targetPage = isMobile() ? i : i * 2;
       goToPage(targetPage, targetPage >= currentPage ? 1 : -1, true);
     });
@@ -226,6 +290,7 @@ function handleResponsiveChange() {
   const nowMobile = isMobile();
   if (nowMobile === mobileState) return;
   mobileState = nowMobile;
+  currentPage = normalizedPage(currentPage);
   buildDots();
   renderView();
   restartAutoplay();
@@ -234,9 +299,11 @@ function handleResponsiveChange() {
 nextButton.addEventListener('click', () => next(true));
 prevButton.addEventListener('click', () => previous(true));
 autoplayToggle.addEventListener('click', () => setAutoplay(!autoplay));
+coverStart.addEventListener('click', () => openBook({ userInitiated: true }));
+restartBookButton.addEventListener('click', restartExperience);
 startBook.addEventListener('click', () => {
   document.getElementById('boek').scrollIntoView({ behavior: prefersReducedMotion() ? 'auto' : 'smooth', block: 'center' });
-  next(true);
+  openBook({ userInitiated: true });
 });
 
 book.addEventListener('mouseenter', () => window.clearInterval(timer));
@@ -248,7 +315,7 @@ book.addEventListener('pointerdown', (event) => {
   pointerStartY = event.clientY;
 });
 book.addEventListener('pointerup', (event) => {
-  if (pointerStartX === null || pointerStartY === null) return;
+  if (lifecycle !== 'open' || pointerStartX === null || pointerStartY === null) return;
   const deltaX = event.clientX - pointerStartX;
   const deltaY = event.clientY - pointerStartY;
   pointerStartX = null;
@@ -264,6 +331,7 @@ book.addEventListener('pointercancel', () => {
 window.addEventListener('keydown', (event) => {
   if (event.key === 'ArrowRight') next(true);
   if (event.key === 'ArrowLeft') previous(true);
+  if ((event.key === 'Enter' || event.key === ' ') && lifecycle === 'closed') openBook({ userInitiated: true });
 });
 window.addEventListener('resize', handleResponsiveChange);
 document.addEventListener('visibilitychange', () => {
@@ -273,4 +341,6 @@ document.addEventListener('visibilitychange', () => {
 applyBookConfig();
 buildDots();
 renderView();
-restartAutoplay();
+syncAutoplayUi();
+setLifecycle('closed');
+autoOpenTimer = window.setTimeout(() => openBook(), prefersReducedMotion() ? 400 : 1600);
