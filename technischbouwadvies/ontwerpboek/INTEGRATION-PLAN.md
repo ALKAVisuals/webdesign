@@ -1,27 +1,59 @@
 # Ontwerpboek — Integratieplan technischbouwadvies.nl
 
-**Status:** integratievoorbereiding. Nog geen productiecode wijzigen.
+**Status:** productie-repo bevestigd; geïsoleerde preview staat op een draft productiebranch. Nog niet mergen / live zetten.
 
-**Doel:** de goedgekeurde standalone boektool veilig omzetten naar een geïsoleerde websitecomponent zonder de bestaande Technisch Bouwadvies-site of styling te verstoren.
-
----
-
-## 1. Voorwaarde vóór productie-integratie
-
-Voordat code naar de echte website gaat, moet eerst het juiste productie-repository en de huidige frontendstack worden bevestigd.
-
-Niet aannemen dat `ALKAVisuals/webdesign` de productie-repo is.
-
-Bekend:
-- `ALKAVisuals/webdesign` = veilige prototype/testomgeving
-- `technischbouwadvies.nl` = productie
-- automatische Netlify-deploy was eerder bewust uitgeschakeld / beperkt
-
-Een nieuwe chat mag daarom niet zomaar naar een vermeende productie-repo schrijven.
+**Doel:** de goedgekeurde standalone boektool veilig integreren in technischbouwadvies.nl zonder bestaande styling, performance of deployment te verstoren.
 
 ---
 
-## 2. Vaste visuele bron
+## 1. Repo's en rollen
+
+### Prototype/testlab
+`ALKAVisuals/webdesign`
+
+Bron van waarheid voor:
+- goedgekeurde art direction
+- standalone interactie
+- documentatie
+- assetrichtlijnen
+
+### Productie
+`ALKAVisuals/alkabouwadvies`
+
+Bevestigd als repo van `https://technischbouwadvies.nl/`.
+
+### Niet verwarren met
+`ALKAVisuals/technischbouwadvies-dashboard` — dashboard, niet de publieke website.
+
+---
+
+## 2. Productiestack — bevestigd
+
+De productie is een statische website.
+
+Relevant:
+- homepage `index.html`
+- veel CSS/JS inline in homepage
+- bestaand font: Inter
+- gedeelde bestanden o.a. `site-header.css/js`, `site-responsive.css`, contact/footer bestanden
+- GSAP + ScrollTrigger aanwezig
+- Lenis aanwezig
+- `netlify.toml` aanwezig
+
+`netlify.toml` bevat onder andere:
+
+```toml
+[build]
+  publish = "."
+```
+
+plus headers en redirects voor technischbouwadvies.nl.
+
+**Veiligheidsregel:** een merge naar productie-`main` behandelen als potentieel live-impactvol. De gebruiker heeft eerder aangegeven dat automatische Netlify-updates bewust waren uitgeschakeld/beperkt; controleer de actuele Netlify-site-instelling opnieuw vóór uiteindelijke merge. Zet deploys niet automatisch aan.
+
+---
+
+## 3. Vaste visuele bron
 
 Niet opnieuw ontwerpen.
 
@@ -29,279 +61,227 @@ Leidend:
 - A+B art direction
 - goedgekeurde masterspread
 - Technical Line Art cover
-- 8 goedgekeurde spreadtypes
-- premium motion
+- 8 goedgekeurde spreads
+- premium page-turn
 - mobile single-page gedrag
 
-Bronbestanden in deze prototype-map blijven de referentie.
+---
+
+## 4. Homepageplaatsing — huidige keuze
+
+De actuele homepagevolgorde is geïnspecteerd.
+
+Relevante flow:
+- Hero
+- Toepassingen/projectcategorieën
+- USP-strip
+- Proces/Werkwijze
+- Diensten
+- overige commerciële secties
+
+**Plaats het ontwerpboek na de USP-strip en vóór Proces/Werkwijze.**
+
+Dit geeft de logica:
+
+`Waarmee helpen we? → Zo wordt een ontwerp zichtbaar → Zo werken we samen.`
 
 ---
 
-## 3. Productiecomponent
+## 5. Productiecomponent
 
-Werknaam:
-
-`DesignProcessBook`
-
-De productievariant krijgt één eigen wrapper:
+Root:
 
 ```html
-<section class="tba-designbook" data-designbook>
-  ...
-</section>
+<section class="tba-designbook" data-designbook></section>
 ```
 
-Alle styling en scripts moeten binnen deze root blijven.
-
----
-
-## 4. CSS-isolatie — verplicht
-
-De standalone prototype-CSS bevat nu bewust globale regels. Die mogen niet rechtstreeks de productie-site in.
-
-Voor productie:
-
-### Verwijderen / herschrijven
-- `body { ... }`
-- `html { ... }`
-- generieke `button { ... }`
-- generieke `a { ... }`
-- generieke `* { ... }` resets
-- globale `:root` variabelen
-
-### Namespacen
-
-Voorbeeld:
-
-```css
-.tba-designbook {
-  --tba-book-paper: #f7f3eb;
-  --tba-book-ink: #1f211f;
-  --tba-book-bronze: #a37332;
-}
-
-.tba-designbook .book { ... }
-.tba-designbook .book-page { ... }
-```
-
-Doel:
-- geen invloed op site-header
-- geen invloed op formulieren
-- geen invloed op CTA-knoppen elders
-- geen invloed op bestaande headings/links
-
----
-
-## 5. ID- en JS-isolatie
-
-Huidige prototype-ID's zijn globaal, bijvoorbeeld:
-- `book`
-- `leftPage`
-- `rightPage`
-- `nextPage`
-- `prevPage`
-
-Voor productie twee veilige opties:
-
-### Voorkeur
-Geen globale `document.getElementById`-afhankelijkheid meer.
-
-Gebruik:
-
-```js
-const root = document.querySelector('[data-designbook]');
-const book = root.querySelector('[data-book]');
-```
-
-Alle selectors blijven binnen `root`.
-
-### Alternatief
-Alle ID's prefixen met `tba-designbook-`.
-
-Root-scoped selectors hebben de voorkeur.
-
----
-
-## 6. Componentstructuur
-
-Aanbevolen productie-opbouw:
-
-```text
-DesignProcessBook/
-├── DesignProcessBook.*
-├── designbook.css
-├── designbook-motion.css
-├── designbook-mobile.css
-├── designbook-accessibility.css
-├── designbook-data.*
-├── designbook-assets.*
-└── assets/
-```
-
-Exacte extensies hangen af van de productiefrontendstack.
-
-Niet eerder kiezen tussen React/vanilla/etc. voordat de productie-repo is geïnspecteerd.
-
----
-
-## 7. Homepageplaatsing
-
-Eerder gekozen voorkeurspositie:
-
-**na diensten/toepassingen en vóór of rond de bestaande proces/werkwijze-sectie.**
-
-Doel:
-- bezoeker begrijpt eerst wat Technisch Bouwadvies aanbiedt
-- daarna ziet hij visueel hoe een ontwerp wordt uitgewerkt
-- daarna kan bestaande werkwijze/CTA logisch volgen
-
-Voorlopige sectiekop:
-
-**Bekijk hoe een ontwerp tot leven komt**
-
-Korte intro, geen lange uitleg.
-
----
-
-## 8. Productie-shell
-
-De standalone `presentation-header` hoort NIET mee naar de homepage.
-
-De productiecomponent bevat alleen:
-
-1. kleine sectie-intro
+De homepagevariant bevat alleen:
+1. korte sectie-intro
 2. boekobject
 3. minimale controls
-4. eventueel korte CTA onder het boek
+4. subtiele CTA
 
-De bestaande website-header/navigation blijft volledig leidend.
-
----
-
-## 9. Fontstrategie
-
-Prototype gebruikt:
-- Libre Baskerville
-- DM Sans
-
-Voor productie eerst controleren welke fonts technischbouwadvies.nl al gebruikt.
-
-Voorkeursvolgorde:
-
-1. bestaande sitefonts hergebruiken als de uitstraling voldoende overeenkomt
-2. alleen ontbrekende display-serif toevoegen
-3. maximaal noodzakelijke weights laden
-4. `font-display: swap`
-5. geen extra fontfamilies laden zonder zichtbare meerwaarde
-
-Doel: premium uitstraling zonder onnodige fontrequests.
+Geen tweede siteheader of prototype-uitleg.
 
 ---
 
-## 10. Assetstructuur productie
+## 6. CSS-isolatie — verplicht en al toegepast in preview
 
-Aanbevolen:
+Productie-CSS blijft volledig onder:
 
-```text
-/assets/designbook/
-├── projectintro/
-├── variants/
-├── technical/
-├── details/
-├── materials/
-└── renders/
+```css
+.tba-designbook { ... }
+.tba-designbook .db-book { ... }
 ```
 
-Bestandsoptimalisatie volgt `ASSET-GUIDELINES.md`.
+Verboden in component-CSS:
+- globale `body`
+- globale `html`
+- globale `button`
+- globale `a`
+- globale `*` reset buiten de component
+- globale `:root` variabelen
 
-Belangrijk:
-- geen bron-4K/8K rechtstreeks publiceren
-- technische lijntekeningen `contain`
-- renders `cover` waar goedgekeurd
-- duidelijke alt-tekst
+Doel: geen invloed op header, formulieren, bestaande CTA's of paginaopmaak.
 
 ---
 
-## 11. Loading / performance op homepage
+## 7. JavaScript-isolatie — al toegepast in preview
 
-De standalone tool mag niet automatisch alle assets laden zodra de homepage opent.
+Component wordt geïnitialiseerd via:
 
-Productieaanpak:
+```js
+const roots = document.querySelectorAll('[data-designbook]');
+```
 
-### Initial load
-- alleen sectie-shell
+Alle componentselecties gebeuren vervolgens binnen de root.
+
+Geen afhankelijkheid van globale homepage-ID's voor de boekinternals.
+
+---
+
+## 8. Productie-integratiebranch — ACTIEF
+
+Repo:
+`ALKAVisuals/alkabouwadvies`
+
+Branch:
+`agent/design-process-book-integration`
+
+Draft PR:
+**#7 — Prepare isolated designbook integration preview**
+
+Op deze branch zijn uitsluitend nieuwe bestanden toegevoegd:
+
+```text
+designbook-preview.html
+designbook/
+├── designbook-data.js
+├── designbook.css
+└── designbook.js
+```
+
+Nog NIET gewijzigd:
+- `index.html`
+- `site-header.js`
+- bestaande site-CSS
+- Netlify-config
+
+PR #7 blijft draft en mag nog niet worden gemerged.
+
+---
+
+## 9. Previewcomponent — huidige technische aanpak
+
+### `designbook-data.js`
+- 8 spreads / 16 pagina's
+- tijdelijke previewassets komen uit bestaande productie-assets
+- technische plattegrond/gevel/doorsnede deels als inline SVG
+- echte projectcontent later vervangbaar zonder componentarchitectuur te wijzigen
+
+### `designbook.css`
+- volledig namespaced
 - cover
-- eerste spread indien nodig
+- desktop dubbele spread
+- mobile single-page
+- editorial layouts
+- page-turn
+- controls
+- focus/reduced-motion states
 
-### Wanneer boek bijna in beeld komt
-Gebruik `IntersectionObserver`.
-
-Dan pas:
-- module initialiseren
-- eerste relevante assets laden
-
-### Tijdens gebruik
-- huidige spread laden
-- volgende spread idle-preloaden
-- geen preload bij `saveData`
-
-### Buiten viewport
-- autoplay pauzeren
-
-Dit is belangrijk omdat het boek op een bestaande homepage wordt toegevoegd en niet de Core Web Vitals van de rest van de pagina mag domineren.
-
----
-
-## 12. Autoplay in productie
-
-Standalone autoplaylogica blijft conceptueel behouden, maar productie krijgt extra viewportregels.
-
-Autoplay mag alleen lopen wanneer:
-- boek geopend is
-- sectie voldoende zichtbaar is
-- tab zichtbaar is
-- gebruiker autoplay niet heeft gepauzeerd
-
-Bij `prefers-reduced-motion`:
-- autoplay standaard uit
-- page-turn sterk gereduceerd / instant
-- gebruiker mag bewust autoplay inschakelen
-
----
-
-## 13. No-JS / foutfallback
-
-Als JavaScript niet laadt, mag de sectie niet leeg of kapot zijn.
-
-Fallback:
-- statische cover of eerste goedgekeurde spread
-- korte CTA naar contact/offerte
-
-Het boek is een presentatieverbetering, geen kritieke blokkade voor de homepage.
-
----
-
-## 14. Controls productie
-
-Behouden:
-- vorige
-- volgende
-- kleine spreadteller
-- minimale autoplayknop
+### `designbook.js`
+- root-scoped rendering
+- autoplay
+- previous/next
 - swipe
 - keyboard arrows
+- Escape pauze
+- `prefers-reduced-motion`
+- IntersectionObserver: autoplay alleen voldoende in viewport
+- pauze wanneer tab verborgen is
+- idle preload van volgende pagina/spread
+- respecteert `saveData`
 
-Niet toevoegen:
-- grote toolbar
-- zichtbare statusbadges
-- uitgebreide instructietekst
-- ontwikkelaarsinformatie
+### `designbook-preview.html`
+- `noindex,nofollow`
+- laadt productiecomponent los van homepage
+- bedoeld voor visuele/functionele QA
+
+---
+
+## 10. Fonts
+
+Productie heeft Inter al.
+
+Goedgekeurde boekstijl gebruikt aanvullend een editorial serif.
+Preview gebruikt:
+- Inter
+- Libre Baskerville 400/700
+
+Voor homepage-hook:
+- Inter niet dubbel laden
+- alleen Libre Baskerville toevoegen indien preview-QA de fontkeuze bevestigt
+- `display=swap`
+
+---
+
+## 11. Assets
+
+Zie `ASSET-GUIDELINES.md`.
+
+Productiepreview gebruikt voorlopig bestaande repo-assets zodat geen nieuwe zware renderbestanden nodig zijn voor integratietest.
+
+Definitieve projectassets later bij voorkeur onder bijvoorbeeld:
+
+```text
+images/designbook/
+```
+
+of een vergelijkbare eigen map.
+
+---
+
+## 12. Performance
+
+Voor uiteindelijke homepage:
+- componentinitialisatie pas wanneer relevant / nabij viewport waar praktisch
+- autoplay alleen wanneer boek open én sectie voldoende zichtbaar
+- volgende spread idle-preloaden
+- preload overslaan bij `saveData`
+- technische tekeningen `contain`
+- renders geoptimaliseerd
+- geen 4K/8K-bronbestanden rechtstreeks publiceren
+
+---
+
+## 13. Accessibility
+
+Behouden:
+- zichtbare pauze/autoplaycontrol
+- keyboard arrows
+- Escape pauze
+- focus-visible
+- centrale statusaankondiging
+- reduced motion standaard zonder autoplay
+- functionele alt-teksten
+
+---
+
+## 14. No-JS fallback
+
+Voor de definitieve homepage-hook moet er minimaal statische inhoud zichtbaar blijven als JS niet laadt.
+
+Opties:
+- cover + korte intro/CTA in HTML
+- of een statische eerste spread
+
+De preview mag voor nu JS vereisen; vóór homepage-merge moet fallback expliciet worden toegevoegd/gecontroleerd.
 
 ---
 
 ## 15. Analytics — optioneel
 
-Alleen indien bestaande analytics dit ondersteunt en privacyinstellingen kloppen.
+Alleen met bestaande analytics/privacyarchitectuur.
 
 Mogelijke events:
 - `designbook_open`
@@ -310,13 +290,13 @@ Mogelijke events:
 - `designbook_complete`
 - `designbook_cta_click`
 
-Geen analytics toevoegen als daarvoor een nieuw onnodig trackingpakket nodig is.
+Geen nieuw trackingpakket alleen voor deze tool.
 
 ---
 
-## 16. Integratietesten
+## 16. QA vóór homepage-hook
 
-Minimaal testen:
+Eerst draft PR #7 / Deploy Preview testen:
 
 ### Desktop
 - 1440px
@@ -324,87 +304,97 @@ Minimaal testen:
 - 1024px
 
 ### Mobile
-- circa 390px iPhoneformaat
-- circa 360px Androidformaat
-- korte schermhoogte
+- 390px
+- 360px
+- korte viewporthoogte
 
 ### Functioneel
-- openen
+- cover openen
 - autoplay
-- pauzeren
+- pauze
 - previous/next
 - swipe
 - keyboard
-- Escape pause
+- Escape
 - reduced motion
 - einde/CTA
+- viewport pause/resume
 
-### Website-integratie
-- bestaande header onveranderd
-- bestaande buttons onveranderd
-- geen horizontale overflow
-- geen CLS door boeksectie
-- geen scrolljank door page-turn
+### Visueel
+- boekverhouding t.o.v. goedgekeurde masterspread
+- technische tekeningen leesbaar
+- render crops correct
+- geen clipping
+- geen goedkope card/UI-look
 
 ---
 
-## 17. Productiebranch — later
+## 17. Minimale homepage-hook — PAS NA PREVIEW-QA
 
-Wanneer de productie-repo is bevestigd:
+De latere wijziging aan `index.html` moet zo klein mogelijk zijn:
 
-1. start vanaf actuele productie-`main`
-2. maak aparte branch, bijvoorbeeld:
-   `agent/design-process-book-integration`
-3. wijzig alleen noodzakelijke component/assets/styles
-4. geen automatische deployment activeren zonder bestaande deploystrategie te begrijpen
-5. lokaal/staging testen
-6. diff controleren
-7. pas daarna PR
+1. eventueel Libre Baskerville `<link>` toevoegen
+2. `designbook/designbook.css` laden
+3. sectieroot toevoegen na USP-strip en vóór Proces
+4. `designbook/designbook.js` als module laden
+
+Conceptueel:
+
+```html
+<link rel="stylesheet" href="designbook/designbook.css">
+...
+<section class="tba-designbook" data-designbook></section>
+...
+<script type="module" src="designbook/designbook.js"></script>
+```
+
+### Belangrijk
+`index.html` is groot. De GitHub connector vervangt bij update het volledige bestand. Daarom:
+- actuele SHA opnieuw ophalen
+- exacte invoegpunten opnieuw controleren
+- geen oude versie overschrijven
+- diff na wijziging zorgvuldig controleren
 
 ---
 
 ## 18. Rollback
 
-De component moet verwijderbaar blijven zonder restschade.
+Component blijft geïsoleerd.
 
-Daarom:
-- één geïsoleerde sectie
-- eigen CSS namespace
-- eigen JS-module
-- eigen assetsmap
-- geen globale site-reset
-- geen databaseafhankelijkheid
+Rollback van latere homepage-integratie:
+- sectieroot verwijderen
+- CSS-link verwijderen
+- JS-module verwijderen
+- eventueel serif-fontlink verwijderen
+- eigen `designbook/` bestanden kunnen blijven of apart verwijderd worden
 
-Rollback = sectie/import verwijderen + eigen assets verwijderen.
-
----
-
-## 19. Go/no-go vóór echte integratie
-
-**GO wanneer:**
-- productie-repo bevestigd
-- frontendstack geïnspecteerd
-- juiste homepagebestand/component bekend
-- bestaande fonts bekend
-- deploystrategie bekend
-- standalone versie functioneel genoeg bevonden
-
-**NO-GO wanneer:**
-- repo nog onduidelijk
-- wijziging globale CSS zou kunnen breken
-- deployment automatisch onverwacht live zou gaan
-- echte projectassets/publicatierechten nog niet klaar zijn
+Geen database- of globale CSS-afhankelijkheid.
 
 ---
 
-## 20. Exacte volgende technische actie
+## 19. Go/no-go
 
-De volgende chat die daadwerkelijk wil integreren moet NIET meteen code kopiëren.
+### Nu GO voor
+- productiepreview op branch
+- draft PR
+- Deploy Preview / browser-QA
+- bugs herstellen op branch
 
-Eerst:
+### Nu NO-GO voor
+- PR #7 mergen
+- homepage wijzigen vóór preview-QA
+- automatische Netlify-deployinstellingen wijzigen
+- echte site live zetten
 
-1. juiste productie-repo identificeren
-2. repo/stack/homepage inspecteren
-3. dit integratieplan naast de productiearchitectuur leggen
-4. concreet migratiebestandenschema maken
-5. pas daarna code wijzigen
+---
+
+## 20. Exacte volgende actie
+
+1. draft PR #7 status/checks inspecteren
+2. zoeken of Netlify een Deploy Preview heeft aangemaakt
+3. `designbook-preview.html` in die preview openen
+4. desktop/mobile QA
+5. bugs herstellen
+6. daarna pas minimale homepage-hook op dezelfde branch toevoegen
+7. opnieuw diff + deploycontrole
+8. pas na expliciete beoordeling mergebesluit nemen
