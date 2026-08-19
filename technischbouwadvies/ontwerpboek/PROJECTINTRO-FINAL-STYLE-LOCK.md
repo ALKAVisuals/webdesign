@@ -10,7 +10,7 @@ Status: WORKING BRANCH — NIET MERGEN NAAR MAIN ZONDER EXPLICIETE GOEDKEURING.
 - Live `technischbouwadvies.nl`: NIET WIJZIGEN
 
 ## Werkmethode
-Alle visuele correcties voor Projectintro worden uitsluitend op deze branch opgebouwd. Na iedere stap volgt gebruikersreview. Pas na expliciete eindgoedkeuring wordt één finale PR naar `webdesign/main` geopend en gemerged.
+Alle visuele correcties voor Projectintro worden uitsluitend op deze branch opgebouwd. Na iedere stap volgt gebruikersreview. Pas na expliciete eindgoedkeuring en controle van de echte interactieve boekimplementatie wordt één finale PR naar `webdesign/main` geopend en gemerged.
 
 ## Oorspronkelijke style-lock
 1. Baseline / veilige branch — AFGEROND
@@ -29,8 +29,8 @@ A3. Onderrand en boekdikte — AFGEROND ALS RICHTING
 B1. Echte middenrug — AFGEROND ALS RICHTING
 B2. Subtiele pagina-kromming — AFGEROND ALS RICHTING
 C1. Contactschaduw — AFGEROND ALS RICHTING
-C2. Papiergevoel — ACTIEF / REVIEW
-D. Projectintro-integratie
+C2. Papiergevoel — AFGEROND ALS RICHTING
+D. Projectintro-integratie — ACTIEF / REVIEW
 E. Mobile vertaling
 F. Finale vergelijking + merge
 
@@ -78,16 +78,27 @@ F. Finale vergelijking + merge
 - Generieke web-card box-shadow sterk teruggebracht
 - Desktop fysieke contactshadow blijft mobiel uitgeschakeld
 
-## C2 — huidig papiergevoel
-- Papierbasis verfijnd naar een warm ivory `#faf7ef` met een zachtere warme omgeving `#eee8de`
-- Linker leesbare pagina gebruikt alleen zeer subtiele tonale radial/linear gradients; er is bewust geen zichtbare korrel of patroontextuur toegevoegd
-- Bovenlinks krijgt het papier een lichte natuurlijke highlight, onder/rechts een nauwelijks zichtbare warmere toonval
-- Richting de middenrug loopt de papierkleur geleidelijk van licht ivory naar iets warmer papier, zodat materiaal en B1/B2-rug beter op elkaar aansluiten
-- Een minimale top-highlight en bottom tone-shift geven de pagina materiaalgevoel zonder het ontwerp vuil of vintage te maken
-- De hero-afbeelding blijft volledig schoon: er is geen papiertexture/filter over de foto gelegd
-- Page stack en bottom edge zijn qua ivoortonen iets warmer en zachter gemaakt zodat ze dezelfde papiersoort suggereren als de zichtbare pagina
-- De globale overlay over de spread is verder teruggenomen zodat de afbeelding niet melkachtig wordt
-- Mobiel behoudt in C2 bewust een vlakke uniforme papierkleur; de desktop materiaal-overlays worden daar uitgeschakeld om iOS scherpte en rust te behouden
+## C2 — vastgelegd papiergevoel
+- Papierbasis verfijnd naar warm ivory `#faf7ef`
+- Alleen subtiele tonale gradients; geen zichtbare korrel of vintage texture
+- Richting de middenrug loopt het papier iets warmer
+- Hero blijft schoon en krijgt geen papiertexture
+- Page stacks en onderrand gebruiken dezelfde warme ivoorfamilie
+- Mobiel blijft vlak en rustig voor iOS-scherpte
+
+## D — huidige Projectintro-integratie
+- De goedgekeurde fysieke richting is niet langer alleen een standalone stijlschets: `style-lock-m1c-projectintro-final.css` past de regels gericht toe op spread `01` van het echte interactieve boek
+- De daadwerkelijke `.book` krijgt op desktop alleen bij spread 01 de 36.5% / 63.5% masterspread
+- Bestaande `.page-stack`, `.book-spine`, `.book-shadow`, `.page-left` en `.page-right` van de echte boekengine worden gebruikt; er is geen tweede boekcomponent gebouwd
+- Linker en rechter page stacks volgen nu de asymmetrische spreadbreedtes en krijgen de fysieke laagopbouw uit A1–A3
+- De echte `book-spine` staat op de 36.5%-vouw en gebruikt de B1 spine-valley
+- De bestaande pages krijgen de B2 curvature als visuele overlay zonder transforms op tekst of hero
+- Projectintro gebruikt in `asset-manifest.js` nu het goedgekeurde beeld `projecten/illustratieve-case-aanbouw-rijwoning.webp`
+- Hero crop/treatment is geïntegreerd: 50% / 52%, schaal 1.018, lichte desaturatie, iets meer contrast en lagere helderheid
+- De inhoudelijke hiërarchie van de linkerpagina is opnieuw op de goedgekeurde masterspread afgestemd
+- De door gebruiker gewenste `02` blijft rechtsonder op de hero zichtbaar; de linker extra folio blijft verborgen
+- De huidige D-preview gebruikt de echte interactieve boekmarkup, book.js, asset-manifest en bestaande lifecyclebestanden via een cache-veilige branchwrapper
+- Mobile is in deze D-stap bewust niet opnieuw gestyled; bestaande iOS-safe single-page regels blijven leidend tot stap E
 
 ## Vaste preview
-`projectintro-style-lock-preview.html` is de actuele branch-preview. Per reviewstap gebruiken we daarnaast een nieuwe cache-veilige live wrapper.
+`projectintro-style-lock-preview.html` blijft de visuele stijlschets. `projectintro-integration-d-live.html` is vanaf stap D de belangrijkste reviewpreview omdat die de echte interactieve boekimplementatie laadt.
