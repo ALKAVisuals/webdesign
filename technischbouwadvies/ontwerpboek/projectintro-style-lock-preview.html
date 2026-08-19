@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Projectintro — Final Style Lock</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root{--bg:#eee9e1;--paper:#faf7f1;--ink:#242522;--muted:#747169;--bronze:#a97636}
+    *{box-sizing:border-box} html,body{margin:0;min-height:100%;background:var(--bg);color:var(--ink)}
+    body{font-family:"DM Sans",system-ui,sans-serif;padding:54px 24px 70px}
+    .stage{width:min(1080px,92vw);margin:0 auto}
+    .label{margin:0 0 18px;text-align:center;font-size:11px;letter-spacing:.16em;color:#77736c}
+    .book{display:grid;grid-template-columns:1fr 1fr;aspect-ratio:1.52;background:var(--paper);box-shadow:0 24px 45px rgba(53,43,32,.13),0 4px 7px rgba(53,43,32,.07);position:relative;overflow:hidden}
+    .book:after{content:"";position:absolute;left:50%;top:0;bottom:0;width:1px;background:rgba(70,58,42,.10)}
+    .page{position:relative;min-width:0;background:var(--paper)}
+    .left{padding:8.8% 8.4% 7.2%;display:flex;flex-direction:column}
+    .kicker{margin:0;color:var(--bronze);font-size:10px;letter-spacing:.14em;font-weight:600}
+    .rule{width:31px;height:1px;background:var(--bronze);margin:16px 0 36px}
+    h1{margin:0;font-family:"Libre Baskerville",Georgia,serif;font-weight:400;font-size:clamp(31px,3vw,47px);line-height:1.02;letter-spacing:-.035em}
+    .copy{width:78%;margin:34px 0 0;color:var(--muted);font-size:12px;line-height:1.75}
+    .brand{margin-top:auto;font-size:8px;letter-spacing:.14em;color:#77736c}
+    .page-no{position:absolute;bottom:3%;font-family:"Libre Baskerville",Georgia,serif;font-size:9px;color:#8a847b}
+    .left .page-no{left:5.5%}.right .page-no{right:5.5%}
+    .right{overflow:hidden;background:#e9e3da}
+    .right img{width:100%;height:91%;display:block;object-fit:cover;object-position:center center}
+    .right:after{content:"";position:absolute;left:0;right:0;bottom:0;height:9%;background:var(--paper)}
+    .status{margin:18px 0 0;text-align:center;color:#77736c;font-size:11px}
+    @media(max-width:760px){body{padding:24px 14px 50px}.stage{width:min(390px,94vw)}.book{display:block;aspect-ratio:.72}.right{display:none}.left{height:100%;padding:9% 8.5% 7.5%}.copy{width:84%;font-size:11px}h1{font-size:31px}.brand{font-size:7px}.book:after{display:none}}
+  </style>
+</head>
+<body>
+  <main class="stage">
+    <p class="label">PROJECTINTRO · BASELINE BEFORE FINAL STYLE LOCK</p>
+    <section class="book" aria-label="Projectintro baseline spread">
+      <article class="page left">
+        <p class="kicker">01</p>
+        <span class="rule" aria-hidden="true"></span>
+        <h1>PROJECT INTRO</h1>
+        <p class="copy">Een doordacht ontwerp begint met inzicht in de locatie, de wensen en de mogelijkheden. Hiermee ontstaat een solide basis voor een toekomstbestendig en haalbaar ontwerp.</p>
+        <span class="brand">TECHNISCH BOUWADVIES</span>
+        <span class="page-no">01</span>
+      </article>
+      <article class="page right">
+        <img src="https://raw.githubusercontent.com/ALKAVisuals/alkabouwadvies/main/images/website-2026/diensten/aanbouw-ontwerp-volledig-hout.webp" alt="Huidige Projectintro hero-afbeelding">
+        <span class="page-no">02</span>
+      </article>
+    </section>
+    <p class="status">Baseline vastgelegd op de aparte style-lock branch. Main blijft vanaf nu ongemoeid tot finale goedkeuring.</p>
+  </main>
+</body>
+</html>
