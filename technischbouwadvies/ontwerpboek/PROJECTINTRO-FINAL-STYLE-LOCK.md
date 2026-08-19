@@ -27,8 +27,8 @@ A1. Linker boekrug / buitenrand — AFGEROND ALS RICHTING
 A2. Rechter page stack — AFGEROND ALS RICHTING
 A3. Onderrand en boekdikte — AFGEROND ALS RICHTING
 B1. Echte middenrug — AFGEROND ALS RICHTING
-B2. Subtiele pagina-kromming — ACTIEF / REVIEW
-C1. Contactschaduw
+B2. Subtiele pagina-kromming — AFGEROND ALS RICHTING
+C1. Contactschaduw — ACTIEF / REVIEW
 C2. Papiergevoel
 D. Projectintro-integratie
 E. Mobile vertaling
@@ -65,15 +65,23 @@ F. Finale vergelijking + merge
 - Linkerpagina en hero krijgen zachte lokale rugschaaduw
 - `spine-foot` laat de middenrug in het bottom page block doorlopen
 
-## B2 — huidige subtiele pagina-kromming
+## B2 — vastgelegde pagina-kromming
 - Geen transforms toegepast op tekst, pagina of hero; alle leesbare content blijft geometrisch vlak en scherp
-- Linkerpagina krijgt in de laatste circa 62 px richting de rug een zachte elliptische schaduwcurve met een lichte papierhighlight vlak naast de vouw
-- Rechterpagina krijgt in de eerste circa 58 px een overeenkomstige maar iets donkerdere curve, passend bij de fotografische hero
-- Boven- en onderzijde van beide curves hebben afzonderlijke zeer zachte highlights/schaduwen zodat de pagina niet als een rechte verticale gradient leest
-- De B2-curves liggen als overlays boven de pagina's en vervormen de inhoud niet
-- Op 761–980 px worden de curves iets smaller zodat de rug niet te zwaar wordt
-- Mobiel blijft exact de veilige 2D single-page versie: alle B2 curvature overlays zijn daar uitgeschakeld
-- Contactschaduw en algemene papiermaterialiteit zijn bewust nog niet opnieuw ontworpen; die volgen in C1 en C2
+- Linkerpagina krijgt richting de rug een zachte elliptische schaduwcurve met lichte papierhighlight
+- Rechter hero krijgt een overeenkomstige maar donkerdere curve
+- Boven- en onderzijde hebben afzonderlijke zeer zachte highlights/schaduwen
+- Mobiel blijft de veilige 2D single-page versie; curvature overlays staan daar uit
+
+## C1 — huidige contactschaduw
+- De oude algemene grote drop-shadow is vervangen door een tweelaagse fysieke schaduwopbouw
+- Direct onder het boek ligt een korte, donkerdere contactschaduw die dicht tegen het bottom page block blijft
+- Links- en rechtsonder zit lokaal iets meer massa via zachte elliptische corner shadows; hierdoor voelt het boek aan de hoeken zwaarder zonder een donkere rechthoek te vormen
+- Daaronder ligt een veel bredere, lichtere secundaire schaduw met grotere blur en lagere opacity
+- De eigen `box-shadow` van de leesbare spread is sterk teruggebracht; de diepte komt nu vooral van de fysieke boekschaduwen in plaats van van een web-card shadow
+- Shadows van linker/rechter page stack en bottom edge zijn iets teruggenomen zodat ze niet dubbel tellen met de nieuwe contactschaduw
+- Het doel is dat het boek visueel op het oppervlak staat in plaats van als een kaart boven de achtergrond zweeft
+- Mobiel blijft inhoudelijk ongemoeid: de nieuwe desktop contact shadow is daar verborgen en de bestaande eenvoudige vlakke mobiele schaduw blijft actief
+- Papiermaterialiteit zelf is nog niet gewijzigd; dat volgt in C2
 
 ## Vaste preview
 `projectintro-style-lock-preview.html` is de actuele branch-preview. Per reviewstap gebruiken we daarnaast een nieuwe cache-veilige live wrapper.
