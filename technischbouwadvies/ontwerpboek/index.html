@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Interactief ontwerpboek prototype voor Technisch Bouwadvies — van tutorial naar praktijkontwerp.">
-  <title>Ontwerpboek V0.2 — Technisch Bouwadvies</title>
+  <title>Ontwerpboek V0.3 — Technisch Bouwadvies</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
@@ -23,7 +23,7 @@
       <a href="#over">Over prototype</a>
     </nav>
 
-    <span class="prototype-badge">Prototype V0.2</span>
+    <span class="prototype-badge" id="prototypeVersion">Prototype V0.3</span>
   </header>
 
   <main>
@@ -65,7 +65,7 @@
               <div class="cover-title">ONTWERP<br>BOEK</div>
               <div class="cover-subtitle">Van tutorial<br>naar praktijk</div>
               <div class="cover-rule"></div>
-              <span class="cover-edition">V0.2 · PROCESS EDITION</span>
+              <span class="cover-edition" id="coverEdition">V0.3 · CONTENT SYSTEM</span>
             </div>
           </div>
 
@@ -102,14 +102,14 @@
 
     <section class="demo-note" id="over">
       <div>
-        <p class="eyebrow">V0.2 — VISUELE PROTOTYPEFASE</p>
-        <h2>Het bladermechanisme blijft staan. De inhoud groeit mee met jouw echte project.</h2>
+        <p class="eyebrow">V0.3 — CONTENTSYSTEEM</p>
+        <h2>Vanaf nu zijn content en bladertechniek van elkaar gescheiden.</h2>
       </div>
-      <p>Elke demo-pagina is opgezet als vervangbaar hoofdstuk. Zodra er echte screenshots, AutoCAD Architecture-tekeningen of renders beschikbaar zijn, kunnen die per stap worden geplaatst zonder de boeklogica opnieuw te bouwen.</p>
+      <p>De hoofdstukken staan in <code>book-data.js</code>. Echte screenshots, AutoCAD Architecture-tekeningen en renders kunnen via <code>assets/project/</code> per stap worden toegevoegd. De animatie- en navigatielogica in <code>book.js</code> hoeft daarbij niet meer te worden gewijzigd.</p>
     </section>
   </main>
 
   <noscript>Voor het interactieve ontwerpboek is JavaScript nodig.</noscript>
-  <script src="book.js" defer></script>
+  <script type="module" src="book.js"></script>
 </body>
 </html>
