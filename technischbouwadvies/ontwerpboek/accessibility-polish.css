@@ -1,0 +1,50 @@
+/* Fase K — accessibility polish. Visual design stays unchanged. */
+
+.presentation-open:focus-visible,
+.presentation-link:focus-visible,
+.closed-cover:focus-visible,
+.minimal-arrow:focus-visible,
+.minimal-autoplay:focus-visible,
+.book:focus-visible {
+  outline: 2px solid var(--approved-ink);
+  outline-offset: 4px;
+}
+
+.closed-cover:focus-visible,
+.book:focus-visible {
+  outline-color: var(--approved-bronze);
+}
+
+.minimal-autoplay[aria-pressed="true"] {
+  color: var(--approved-ink);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .minimal-autoplay::after,
+  .minimal-autoplay.timer-running::after {
+    display: none !important;
+    animation: none !important;
+  }
+
+  .minimal-progress span {
+    transition: none !important;
+  }
+}
+
+@media (forced-colors: active) {
+  .presentation-open,
+  .presentation-link,
+  .minimal-arrow,
+  .minimal-autoplay,
+  .closed-cover,
+  .book {
+    forced-color-adjust: auto;
+  }
+
+  .minimal-progress,
+  .approved-cover-rule,
+  .editorial-rule {
+    border: 1px solid CanvasText;
+    background: Canvas;
+  }
+}
