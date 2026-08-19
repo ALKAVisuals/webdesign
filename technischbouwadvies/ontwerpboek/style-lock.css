@@ -1,11 +1,11 @@
 /* Fase M.1 — Style Lock
    M.1A: book geometry, proportions and viewport presence.
-   Cover reference correction requested before moving to the next subphase. */
+   V3: refine the closed cover against the user's approved VOLLEDIGE BOEKFLOW reference. */
 
 :root {
   --style-lock-page-ratio: .72;
   --style-lock-spread-ratio: 1.44;
-  --style-lock-cover-ratio: .86;
+  --style-lock-cover-ratio: .87;
 }
 
 /* Desktop: the open book is two portrait pages, not a wide web panel. */
@@ -51,50 +51,58 @@
 }
 
 /* --------------------------------------------------------------------------
-   Approved cover reference match
-   Visual source of truth: the user's VOLLEDIGE BOEKFLOW cover.
+   M.1A V3 — closed-cover reference match
+   Visual source of truth: user's VOLLEDIGE BOEKFLOW cover crop.
    -------------------------------------------------------------------------- */
 
 .closed-cover {
   left: 50%;
   top: 50%;
-  width: min(350px, 27vw);
+  width: min(352px, 27vw);
   height: auto;
   max-height: none;
   aspect-ratio: var(--style-lock-cover-ratio);
   transform: translate(-50%, -50%);
-  border: 1px solid rgba(80, 69, 54, .085);
+  border: 1px solid rgba(78, 68, 54, .075);
   border-radius: 1px;
   overflow: hidden;
   color: #242622;
   background:
-    linear-gradient(90deg, rgba(76, 63, 47, .045), transparent 7%, transparent 96%, rgba(76, 63, 47, .025)),
+    linear-gradient(90deg, rgba(74, 61, 46, .034), transparent 6.5%, transparent 97%, rgba(74, 61, 46, .022)),
     #f7f3ec;
   box-shadow:
-    -8px 13px 23px rgba(52, 43, 31, .09),
-    14px 18px 34px rgba(52, 43, 31, .10);
+    -4px 8px 14px rgba(50, 42, 31, .055),
+    8px 12px 24px rgba(50, 42, 31, .085),
+    18px 24px 42px rgba(50, 42, 31, .055);
 }
 
-/* Thin visible binding/spine, as in the approved cover board. */
+/* Remove the broad floating stage shadow while the cover is closed. */
+.book-area.is-closed .book-shadow {
+  opacity: 0 !important;
+}
+
+/* Finer visible binding: several narrow page/cover edges rather than broad stripes. */
 .closed-cover::before {
   content: "" !important;
   display: block !important;
   position: absolute;
   z-index: 3;
   inset: 0 auto 0 0;
-  width: 10px;
+  width: 9px;
   padding: 0;
   border: 0;
   border-radius: 0;
   transform: none;
-  opacity: 1;
+  opacity: .92;
   background:
     linear-gradient(90deg,
-      rgba(87, 73, 54, .16) 0%,
-      rgba(255, 255, 255, .42) 22%,
-      rgba(91, 76, 58, .09) 48%,
-      rgba(255, 255, 255, .28) 69%,
-      rgba(91, 76, 58, .045) 100%);
+      rgba(91, 77, 58, .14) 0 1px,
+      rgba(255, 255, 255, .52) 1px 2px,
+      rgba(111, 95, 73, .08) 2px 3px,
+      rgba(255, 255, 255, .44) 3px 4px,
+      rgba(97, 82, 63, .07) 4px 5px,
+      rgba(255, 255, 255, .30) 5px 7px,
+      rgba(85, 72, 55, .035) 7px 9px);
   pointer-events: none;
 }
 
@@ -103,11 +111,11 @@
   display: block !important;
   position: absolute;
   z-index: 2;
-  left: 10px;
+  left: 9px;
   top: 0;
   bottom: 0;
-  width: 3px;
-  background: rgba(80, 66, 50, .045);
+  width: 2px;
+  background: linear-gradient(90deg, rgba(80, 66, 50, .055), rgba(255,255,255,.18));
   pointer-events: none;
 }
 
@@ -115,7 +123,7 @@
   position: relative;
   z-index: 1;
   height: 100%;
-  padding: 8.5% 9% 7.2% 12.2%;
+  padding: 8.1% 8.5% 6.6% 11.5%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -124,72 +132,83 @@
 
 .approved-cover-kicker {
   margin: 0;
-  max-width: 92px;
-  color: #494a45;
+  max-width: 78px;
+  color: #4d4e49;
   font-family: "DM Sans", system-ui, sans-serif;
-  font-size: 7px;
+  font-size: 6.35px;
   font-weight: 500;
-  line-height: 1.45;
-  letter-spacing: .15em;
+  line-height: 1.42;
+  letter-spacing: .145em;
 }
 
 .approved-cover-rule {
-  width: 21px;
+  width: 18px;
   height: 1px;
-  margin-top: 11px;
+  margin-top: 9px;
   background: #ad7834;
 }
 
+/* V3: smaller title and tighter vertical rhythm, matching the board. */
 .approved-cover h2 {
-  margin: 28px 0 0;
-  max-width: 150px;
+  margin: 21px 0 0;
+  max-width: 138px;
   color: #242622;
   font-family: "Libre Baskerville", Georgia, serif;
-  font-size: clamp(25px, 2.25vw, 34px) !important;
+  font-size: clamp(22px, 1.92vw, 29px) !important;
   font-weight: 400;
-  line-height: .90 !important;
-  letter-spacing: -.052em !important;
+  line-height: .91 !important;
+  letter-spacing: -.045em !important;
   white-space: normal !important;
 }
 
 .approved-cover-subtitle {
-  margin: 11px 0 0;
-  max-width: 132px;
-  color: #aa7839;
+  margin: 8px 0 0;
+  max-width: 118px;
+  color: #a97538;
   font-family: "DM Sans", system-ui, sans-serif;
-  font-size: 6.3px !important;
+  font-size: 5.65px !important;
   font-weight: 500;
-  line-height: 1.45;
-  letter-spacing: .12em !important;
+  line-height: 1.43;
+  letter-spacing: .105em !important;
 }
 
-/* Architectural line drawing is large, pale and anchored to the lower-right. */
+/* V3: the architectural sketch now owns the lower half of the cover. */
 .approved-cover-lineart {
   position: absolute;
   z-index: 0;
-  left: 13%;
-  right: 5%;
-  bottom: 8.8%;
-  width: 84%;
-  height: 48%;
+  left: 4.5%;
+  bottom: 6.6%;
+  width: 94%;
+  height: 58%;
   margin: 0;
   overflow: visible;
   fill: none;
-  stroke: #716e67;
-  stroke-width: .72;
+  stroke: #66645f;
+  stroke-width: .78;
   stroke-linecap: round;
   stroke-linejoin: round;
-  opacity: .24;
+  opacity: .34;
+  mix-blend-mode: multiply;
+}
+
+.approved-cover-lineart .detail {
+  stroke-width: .55;
+  opacity: .88;
 }
 
 .approved-cover-lineart .thin {
   stroke-width: .42;
-  opacity: .75;
+  opacity: .70;
 }
 
 .approved-cover-lineart .faint {
-  stroke-width: .35;
-  opacity: .48;
+  stroke-width: .31;
+  opacity: .44;
+}
+
+.approved-cover-lineart .plant {
+  stroke-width: .48;
+  opacity: .72;
 }
 
 .approved-cover-footer {
@@ -205,18 +224,18 @@
 
 .approved-cover-brand {
   margin: 0;
-  color: #55554f;
-  font-size: 5.8px;
+  color: #5b5a55;
+  font-size: 5.2px;
   font-weight: 500;
-  letter-spacing: .11em;
+  letter-spacing: .105em;
 }
 
 .approved-cover-page {
   position: relative;
-  padding-left: 30px;
-  color: #41433f;
+  padding-left: 27px;
+  color: #454742;
   font-family: "Libre Baskerville", Georgia, serif;
-  font-size: 8px;
+  font-size: 7.2px;
   line-height: 1;
 }
 
@@ -225,7 +244,7 @@
   position: absolute;
   left: 0;
   top: 50%;
-  width: 21px;
+  width: 18px;
   height: 1px;
   transform: translateY(-50%);
   background: #ad7834;
@@ -241,7 +260,7 @@
   }
 
   .closed-cover {
-    width: min(330px, 30vw);
+    width: min(332px, 30vw);
   }
 }
 
@@ -255,7 +274,7 @@
   }
 
   .closed-cover {
-    width: min(310px, 35vw);
+    width: min(312px, 35vw);
   }
 }
 
@@ -281,30 +300,36 @@
 
   .book-area.is-closed .closed-cover,
   .book-area.is-opening .closed-cover {
-    width: min(292px, 76vw) !important;
+    width: min(294px, 76vw) !important;
     height: auto !important;
     aspect-ratio: var(--style-lock-cover-ratio) !important;
   }
 
   .closed-cover .cover-inner.approved-cover {
-    padding: 9% 9% 7.5% 12.5% !important;
+    padding: 8.6% 8.5% 7% 11.7% !important;
+  }
+
+  .approved-cover-kicker {
+    font-size: 6.05px;
   }
 
   .approved-cover h2 {
-    margin-top: 25px !important;
-    font-size: clamp(24px, 7.2vw, 30px) !important;
-    line-height: .91 !important;
+    margin-top: 19px !important;
+    font-size: clamp(21px, 6.45vw, 27px) !important;
+    line-height: .92 !important;
   }
 
   .approved-cover-subtitle {
-    font-size: 6.1px !important;
+    margin-top: 7px;
+    font-size: 5.45px !important;
   }
 
   .approved-cover-lineart {
-    left: 12%;
-    width: 85%;
-    height: 49%;
-    bottom: 8.5%;
+    left: 4%;
+    width: 95%;
+    height: 58%;
+    bottom: 6.8%;
+    opacity: .35;
   }
 
   .stack-left {
@@ -320,11 +345,11 @@
 
   .book-area.is-closed .closed-cover,
   .book-area.is-opening .closed-cover {
-    width: min(276px, 75vw) !important;
+    width: min(278px, 75vw) !important;
   }
 
   .approved-cover h2 {
-    font-size: clamp(23px, 7vw, 28px) !important;
+    font-size: clamp(20px, 6.25vw, 25px) !important;
   }
 }
 
@@ -335,6 +360,6 @@
 
   .book-area.is-closed .closed-cover,
   .book-area.is-opening .closed-cover {
-    width: min(250px, 70vw) !important;
+    width: min(252px, 70vw) !important;
   }
 }
