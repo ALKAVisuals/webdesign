@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="robots" content="noindex,nofollow">
-  <title>Projectintro — Final Style Lock · Stap 3</title>
+  <title>Projectintro — Final Style Lock · Stap 4</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
@@ -38,18 +38,50 @@
       z-index:4;
     }
     .page{position:relative;min-width:0;background:var(--paper)}
-    .left{padding:8.5% 10.2% 7.2%;display:flex;flex-direction:column}
-    .kicker{margin:0;color:var(--bronze);font-size:10px;letter-spacing:.14em;font-weight:600}
-    .rule{width:31px;height:1px;background:var(--bronze);margin:16px 0 36px}
-    h1{margin:0;font-family:"Libre Baskerville",Georgia,serif;font-weight:400;font-size:clamp(31px,3vw,47px);line-height:1.02;letter-spacing:-.035em}
+    .left{padding:8.35% 10.2% 7.2%;display:flex;flex-direction:column}
+
+    /* STEP 4 — chapter marker + title only.
+       Match the reference hierarchy: small bronze 01, short hairline, then a restrained two-line serif title. */
+    .kicker{
+      margin:0;
+      color:var(--bronze);
+      font-family:"DM Sans",system-ui,sans-serif;
+      font-size:9px;
+      line-height:1;
+      letter-spacing:.12em;
+      font-weight:600;
+    }
+    .rule{
+      width:27px;
+      height:1px;
+      background:var(--bronze);
+      margin:14px 0 31px;
+      opacity:.92;
+    }
+    h1{
+      margin:0;
+      width:max-content;
+      max-width:100%;
+      display:flex;
+      flex-direction:column;
+      align-items:flex-start;
+      font-family:"Libre Baskerville",Georgia,serif;
+      font-weight:400;
+      font-size:clamp(29px,2.55vw,40px);
+      line-height:.96;
+      letter-spacing:-.042em;
+      color:var(--ink);
+    }
+    h1 span{display:block;white-space:nowrap}
+
+    /* Step 5 values are intentionally still untouched. */
     .copy{width:88%;margin:34px 0 0;color:var(--muted);font-size:12px;line-height:1.75}
     .brand{margin-top:auto;font-size:8px;letter-spacing:.14em;color:#77736c}
     .page-no{position:absolute;bottom:3%;font-family:"Libre Baskerville",Georgia,serif;font-size:9px;color:#8a847b;z-index:5}
     .left .page-no{left:6.1%}
     .right .page-no{right:3.2%;color:rgba(250,247,241,.94);text-shadow:0 1px 5px rgba(0,0,0,.28)}
 
-    /* STEP 3 — hero image and image presentation.
-       Use a darker, more atmospheric architectural project image and treat it as a true full-bleed editorial plate. */
+    /* STEP 3 — locked hero presentation. */
     .right{overflow:hidden;background:#24251f;isolation:isolate}
     .right img{
       position:absolute;
@@ -77,15 +109,16 @@
 
     .status{margin:18px 0 0;text-align:center;color:#77736c;font-size:11px}
 
-    /* Mobile remains the already approved single-page geometry in this step. */
     @media(max-width:760px){
       body{padding:24px 14px 50px}
       .stage{width:min(390px,94vw)}
       .book{display:block;aspect-ratio:.72}
       .right{display:none}
       .left{height:100%;padding:9% 8.5% 7.5%}
+      .kicker{font-size:8px}
+      .rule{width:25px;margin:14px 0 31px}
+      h1{font-size:30px;line-height:.97;letter-spacing:-.043em}
       .copy{width:84%;font-size:11px}
-      h1{font-size:31px}
       .brand{font-size:7px}
       .book:after{display:none}
     }
@@ -93,12 +126,12 @@
 </head>
 <body>
   <main class="stage">
-    <p class="label">PROJECTINTRO · STEP 3 · HERO-AFBEELDING & BEELDPRESENTATIE</p>
-    <section class="book" aria-label="Projectintro hero image review spread">
+    <p class="label">PROJECTINTRO · STEP 4 · CHAPTER MARKER & TITEL</p>
+    <section class="book" aria-label="Projectintro title hierarchy review spread">
       <article class="page left">
         <p class="kicker">01</p>
         <span class="rule" aria-hidden="true"></span>
-        <h1>PROJECT INTRO</h1>
+        <h1><span>PROJECT</span><span>INTRO</span></h1>
         <p class="copy">Een doordacht ontwerp begint met inzicht in de locatie, de wensen en de mogelijkheden. Hiermee ontstaat een solide basis voor een toekomstbestendig en haalbaar ontwerp.</p>
         <span class="brand">TECHNISCH BOUWADVIES</span>
         <span class="page-no">01</span>
@@ -108,7 +141,7 @@
         <span class="page-no">02</span>
       </article>
     </section>
-    <p class="status">Stap 3 actief op de style-lock branch. Main blijft ongemoeid. Beoordeel nu alleen beeldkeuze, sfeer, crop, full-bleed presentatie en aansluiting op de referentie.</p>
+    <p class="status">Stap 4 actief op de style-lock branch. Main blijft ongemoeid. Beoordeel nu alleen 01, bronzen hairline, titelpositie, tweeregelige opbouw en serif-finesse.</p>
   </main>
 </body>
 </html>
