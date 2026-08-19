@@ -74,8 +74,23 @@
     will-change: auto !important;
   }
 
+  /* Mobile cover typography must stay fully inside the physical cover. */
+  .approved-cover {
+    padding: 10% 9% 8% !important;
+  }
+
   .approved-cover h2 {
-    font-size: clamp(36px, 10.5vw, 46px) !important;
+    max-width: 100%;
+    margin-top: 16% !important;
+    font-size: clamp(27px, 7.7vw, 32px) !important;
+    line-height: 1 !important;
+    letter-spacing: -.045em !important;
+    white-space: nowrap;
+  }
+
+  .approved-cover-subtitle {
+    font-size: 8px !important;
+    letter-spacing: .13em !important;
   }
 }
 
@@ -83,5 +98,9 @@
   .book-area.is-closed .closed-cover,
   .book-area.is-opening .closed-cover {
     width: min(310px, 78vw) !important;
+  }
+
+  .approved-cover h2 {
+    font-size: clamp(26px, 7.45vw, 29px) !important;
   }
 }
