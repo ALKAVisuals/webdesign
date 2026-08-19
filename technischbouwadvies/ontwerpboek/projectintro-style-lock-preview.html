@@ -2,9 +2,9 @@
 <html lang="nl">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="robots" content="noindex,nofollow">
-  <title>Projectintro — Final Style Lock · Stap 6</title>
+  <title>Projectintro — Final Style Lock · Stap 7</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
@@ -19,227 +19,124 @@
       --bronze:#a97636;
     }
     *{box-sizing:border-box}
-    html,body{margin:0;min-height:100%;background:var(--bg);color:var(--ink)}
-    body{font-family:"DM Sans",system-ui,sans-serif;padding:54px 24px 70px}
+    html,body{margin:0;min-height:100%;background:var(--bg);color:var(--ink);overflow-x:hidden}
+    body{
+      font-family:"DM Sans",system-ui,sans-serif;
+      padding:54px 24px 70px;
+      -webkit-text-size-adjust:100%;
+      text-rendering:optimizeLegibility;
+    }
     .stage{width:min(1080px,92vw);margin:0 auto}
     .label{margin:0 0 18px;text-align:center;font-size:11px;letter-spacing:.16em;color:#77736c}
 
-    /* STEP 6 — physical book treatment.
-       Keep the object quiet: warm paper, close contact shadow, restrained page depth and a soft gutter instead of a digital divider. */
-    .book-shell{
-      position:relative;
-      isolation:isolate;
-    }
+    /* STEP 6 — locked physical book treatment. */
+    .book-shell{position:relative;isolation:isolate}
     .book-shell::before{
-      content:"";
-      position:absolute;
-      z-index:-1;
-      left:1.25%;
-      right:1.05%;
-      bottom:-5px;
-      height:7px;
-      border-radius:0 0 2px 2px;
-      background:
-        linear-gradient(180deg,
-          rgba(247,242,234,.96) 0 24%,
-          rgba(224,216,205,.78) 25% 38%,
-          rgba(246,240,232,.94) 39% 66%,
-          rgba(219,210,199,.62) 67% 78%,
-          rgba(241,235,226,.80) 79% 100%);
-      box-shadow:0 2px 2px rgba(54,44,34,.06);
+      content:"";position:absolute;z-index:-1;left:1.25%;right:1.05%;bottom:-5px;height:7px;border-radius:0 0 2px 2px;
+      background:linear-gradient(180deg,rgba(247,242,234,.96) 0 24%,rgba(224,216,205,.78) 25% 38%,rgba(246,240,232,.94) 39% 66%,rgba(219,210,199,.62) 67% 78%,rgba(241,235,226,.80) 79% 100%);
+      box-shadow:0 2px 2px rgba(54,44,34,.06)
     }
     .book-shell::after{
-      content:"";
-      position:absolute;
-      z-index:-2;
-      left:4%;
-      right:3.2%;
-      bottom:-15px;
-      height:22px;
-      border-radius:50%;
-      background:rgba(63,50,37,.16);
-      filter:blur(11px);
-      opacity:.62;
+      content:"";position:absolute;z-index:-2;left:4%;right:3.2%;bottom:-15px;height:22px;border-radius:50%;
+      background:rgba(63,50,37,.16);filter:blur(11px);opacity:.62
     }
 
     /* STEP 2 — locked spread geometry. */
     .book{
-      display:grid;
-      grid-template-columns:36.5% 63.5%;
-      aspect-ratio:1.46;
-      position:relative;
-      overflow:hidden;
-      background:var(--paper);
+      display:grid;grid-template-columns:36.5% 63.5%;aspect-ratio:1.46;position:relative;overflow:hidden;background:var(--paper);
       border:1px solid rgba(83,68,50,.055);
-      box-shadow:
-        0 16px 30px rgba(55,43,31,.105),
-        0 4px 9px rgba(55,43,31,.055),
-        0 1px 1px rgba(55,43,31,.04);
+      box-shadow:0 16px 30px rgba(55,43,31,.105),0 4px 9px rgba(55,43,31,.055),0 1px 1px rgba(55,43,31,.04)
     }
     .book::before{
-      content:"";
-      position:absolute;
-      inset:0;
-      z-index:6;
-      pointer-events:none;
-      background:
-        radial-gradient(circle at 18% 12%,rgba(255,255,255,.17),transparent 29%),
-        linear-gradient(180deg,rgba(255,255,255,.08),transparent 24%,rgba(92,73,51,.015) 100%);
-      opacity:.42;
+      content:"";position:absolute;inset:0;z-index:6;pointer-events:none;
+      background:radial-gradient(circle at 18% 12%,rgba(255,255,255,.17),transparent 29%),linear-gradient(180deg,rgba(255,255,255,.08),transparent 24%,rgba(92,73,51,.015) 100%);
+      opacity:.42
     }
     .gutter{
-      position:absolute;
-      z-index:7;
-      pointer-events:none;
-      top:0;
-      bottom:0;
-      left:36.5%;
-      width:15px;
-      transform:translateX(-50%);
-      background:
-        linear-gradient(90deg,
-          rgba(76,59,40,.045) 0%,
-          rgba(76,59,40,.012) 24%,
-          rgba(255,255,255,.13) 48%,
-          rgba(71,54,37,.052) 72%,
-          rgba(71,54,37,.012) 100%);
-      opacity:.72;
+      position:absolute;z-index:7;pointer-events:none;top:0;bottom:0;left:36.5%;width:15px;transform:translateX(-50%);
+      background:linear-gradient(90deg,rgba(76,59,40,.045) 0%,rgba(76,59,40,.012) 24%,rgba(255,255,255,.13) 48%,rgba(71,54,37,.052) 72%,rgba(71,54,37,.012) 100%);
+      opacity:.72
     }
 
     .page{position:relative;min-width:0}
     .left{
-      padding:8.35% 10.2% 6.3%;
-      display:flex;
-      flex-direction:column;
-      background:
-        linear-gradient(90deg,var(--paper) 0%,var(--paper) 89%,var(--paper-soft) 100%);
-      box-shadow:inset -1px 0 rgba(77,62,44,.025);
+      padding:8.35% 10.2% 6.3%;display:flex;flex-direction:column;
+      background:linear-gradient(90deg,var(--paper) 0%,var(--paper) 89%,var(--paper-soft) 100%);
+      box-shadow:inset -1px 0 rgba(77,62,44,.025)
     }
 
     /* STEP 4 — locked chapter marker + title. */
-    .kicker{
-      margin:0;
-      color:var(--bronze);
-      font-family:"DM Sans",system-ui,sans-serif;
-      font-size:9px;
-      line-height:1;
-      letter-spacing:.12em;
-      font-weight:600;
-    }
-    .rule{
-      width:27px;
-      height:1px;
-      background:var(--bronze);
-      margin:14px 0 31px;
-      opacity:.92;
-    }
+    .kicker{margin:0;color:var(--bronze);font-family:"DM Sans",system-ui,sans-serif;font-size:9px;line-height:1;letter-spacing:.12em;font-weight:600}
+    .rule{width:27px;height:1px;background:var(--bronze);margin:14px 0 31px;opacity:.92}
     h1{
-      margin:0;
-      width:max-content;
-      max-width:100%;
-      display:flex;
-      flex-direction:column;
-      align-items:flex-start;
-      font-family:"Libre Baskerville",Georgia,serif;
-      font-weight:400;
-      font-size:clamp(29px,2.55vw,40px);
-      line-height:.96;
-      letter-spacing:-.042em;
-      color:var(--ink);
+      margin:0;width:max-content;max-width:100%;display:flex;flex-direction:column;align-items:flex-start;
+      font-family:"Libre Baskerville",Georgia,serif;font-weight:400;font-size:clamp(29px,2.55vw,40px);line-height:.96;letter-spacing:-.042em;color:var(--ink)
     }
     h1 span{display:block;white-space:nowrap}
 
     /* STEP 5 — locked bodycopy, whitespace, footer and folio. */
     .copy{
-      width:min(74%,190px);
-      margin:29px 0 0;
-      color:#6e6b64;
-      font-family:"DM Sans",system-ui,sans-serif;
-      font-size:10.4px;
-      font-weight:400;
-      line-height:1.72;
-      letter-spacing:.002em;
+      width:min(74%,190px);margin:29px 0 0;color:#6e6b64;font-family:"DM Sans",system-ui,sans-serif;
+      font-size:10.4px;font-weight:400;line-height:1.72;letter-spacing:.002em
     }
     .brand{
-      margin-top:auto;
-      margin-bottom:18px;
-      color:#6f6c65;
-      font-family:"DM Sans",system-ui,sans-serif;
-      font-size:7.2px;
-      font-weight:500;
-      line-height:1;
-      letter-spacing:.145em;
-      white-space:nowrap;
+      margin-top:auto;margin-bottom:18px;color:#6f6c65;font-family:"DM Sans",system-ui,sans-serif;
+      font-size:7.2px;font-weight:500;line-height:1;letter-spacing:.145em;white-space:nowrap
     }
-    .page-no{
-      position:absolute;
-      bottom:3.05%;
-      font-family:"Libre Baskerville",Georgia,serif;
-      font-size:8px;
-      line-height:1;
-      color:#8b857c;
-      z-index:8;
-    }
+    .page-no{position:absolute;bottom:3.05%;font-family:"Libre Baskerville",Georgia,serif;font-size:8px;line-height:1;color:#8b857c;z-index:8}
     .left .page-no{left:10.2%}
     .right .page-no{right:3.2%;color:rgba(250,247,241,.94);text-shadow:0 1px 5px rgba(0,0,0,.28)}
 
     /* STEP 3 — locked hero presentation. */
     .right{overflow:hidden;background:#24251f;isolation:isolate}
     .right img{
-      position:absolute;
-      inset:0;
-      width:100%;
-      height:100%;
-      display:block;
-      object-fit:cover;
-      object-position:50% 52%;
-      transform:scale(1.018);
-      transform-origin:center center;
-      filter:saturate(.90) contrast(1.04) brightness(.91);
+      position:absolute;inset:0;width:100%;height:100%;display:block;object-fit:cover;object-position:50% 52%;
+      transform:scale(1.018);transform-origin:center center;filter:saturate(.90) contrast(1.04) brightness(.91)
     }
     .right::before{
-      content:"";
-      position:absolute;
-      inset:0;
-      z-index:2;
-      pointer-events:none;
-      background:
-        linear-gradient(180deg,rgba(22,23,19,.015) 0%,rgba(17,18,15,.07) 100%),
-        linear-gradient(90deg,rgba(19,20,17,.04) 0%,transparent 13%);
+      content:"";position:absolute;inset:0;z-index:2;pointer-events:none;
+      background:linear-gradient(180deg,rgba(22,23,19,.015) 0%,rgba(17,18,15,.07) 100%),linear-gradient(90deg,rgba(19,20,17,.04) 0%,transparent 13%)
     }
     .right::after{
-      content:"";
-      position:absolute;
-      z-index:3;
-      left:0;
-      top:0;
-      bottom:0;
-      width:12px;
-      pointer-events:none;
-      background:linear-gradient(90deg,rgba(19,17,14,.105),rgba(19,17,14,.025) 44%,transparent 100%);
-      opacity:.56;
+      content:"";position:absolute;z-index:3;left:0;top:0;bottom:0;width:12px;pointer-events:none;
+      background:linear-gradient(90deg,rgba(19,17,14,.105),rgba(19,17,14,.025) 44%,transparent 100%);opacity:.56
     }
 
     .status{margin:18px 0 0;text-align:center;color:#77736c;font-size:11px}
 
+    /* STEP 7 — desktop QA for normal browser zoom and mid-size laptops. */
+    @media (min-width:761px) and (max-width:980px){
+      body{padding-left:18px;padding-right:18px}
+      .stage{width:min(940px,95vw)}
+      .left{padding-left:9.4%;padding-right:9.4%}
+      h1{font-size:34px}
+      .copy{width:min(78%,180px);font-size:10px}
+      .brand{font-size:6.9px}
+    }
+
+    /* STEP 7 — iPhone/mobile QA. Permanent readable page stays purely 2D. */
     @media(max-width:760px){
-      body{padding:24px 14px 50px}
-      .stage{width:min(390px,94vw)}
-      .book-shell::before{left:2%;right:2%;bottom:-3px;height:4px;opacity:.55}
-      .book-shell::after{left:7%;right:7%;bottom:-9px;height:14px;filter:blur(8px);opacity:.40}
-      .book{
-        display:block;
-        aspect-ratio:.72;
-        box-shadow:0 11px 22px rgba(55,43,31,.09),0 2px 5px rgba(55,43,31,.045);
+      html,body{min-height:100dvh}
+      body{
+        padding:calc(22px + env(safe-area-inset-top)) max(14px,env(safe-area-inset-right)) calc(44px + env(safe-area-inset-bottom)) max(14px,env(safe-area-inset-left));
       }
-      .book::before{opacity:.25}
+      .stage{width:min(390px,94vw)}
+      .label{margin-bottom:14px;font-size:9px;letter-spacing:.12em}
+      .book-shell{transform:none;filter:none;perspective:none}
+      .book-shell::before{left:2%;right:2%;bottom:-3px;height:4px;opacity:.42;box-shadow:none}
+      .book-shell::after{left:7%;right:7%;bottom:-7px;height:10px;filter:none;opacity:.18;border-radius:50%;background:rgba(63,50,37,.12)}
+      .book{
+        display:block;width:100%;aspect-ratio:.72;transform:none!important;filter:none!important;perspective:none!important;
+        box-shadow:0 8px 18px rgba(55,43,31,.075),0 1px 4px rgba(55,43,31,.035);
+        outline:0!important;-webkit-transform:none!important
+      }
+      .book:focus,.book:focus-visible,.page:focus,.page:focus-visible{outline:0!important}
+      .book::before{opacity:.18}
       .gutter{display:none}
-      .right{display:none}
+      .right{display:none!important}
       .left{
-        height:100%;
-        padding:9% 8.5% 6.8%;
-        background:var(--paper);
-        box-shadow:none;
+        width:100%;height:100%;padding:9% 8.5% 6.8%;background:var(--paper);box-shadow:none;
+        transform:none!important;filter:none!important;-webkit-transform:none!important
       }
       .kicker{font-size:8px}
       .rule{width:25px;margin:14px 0 31px}
@@ -247,14 +144,30 @@
       .copy{width:min(76%,220px);margin-top:28px;font-size:10.2px;line-height:1.68;color:#716e67}
       .brand{margin-bottom:18px;font-size:6.8px;letter-spacing:.14em}
       .left .page-no{left:8.5%;bottom:3.2%;font-size:7.5px}
+      .status{font-size:9px;line-height:1.45;margin-top:15px}
+    }
+
+    @media(max-width:420px){
+      .stage{width:min(365px,95vw)}
+      .left{padding:9.2% 8.3% 6.9%}
+      h1{font-size:28px}
+      .copy{width:min(78%,205px);font-size:9.9px;line-height:1.67;margin-top:26px}
+      .brand{font-size:6.5px}
+      .left .page-no{left:8.3%}
+    }
+
+    @media(max-width:760px) and (orientation:landscape){
+      .stage{width:min(330px,70vh)}
+      .label{display:none}
+      .status{display:none}
     }
   </style>
 </head>
 <body>
   <main class="stage">
-    <p class="label">PROJECTINTRO · STEP 6 · FYSIEK BOEKGEVOEL</p>
+    <p class="label">PROJECTINTRO · STEP 7 · DESKTOP + MOBIEL QA</p>
     <div class="book-shell">
-      <section class="book" aria-label="Projectintro physical book review spread">
+      <section class="book" aria-label="Projectintro desktop en mobile QA spread" tabindex="-1">
         <article class="page left">
           <p class="kicker">01</p>
           <span class="rule" aria-hidden="true"></span>
@@ -270,7 +183,7 @@
         <span class="gutter" aria-hidden="true"></span>
       </section>
     </div>
-    <p class="status">Stap 6 actief op de style-lock branch. Main blijft ongemoeid. Beoordeel nu alleen papierwarmte, gutter, page-depth en boekschaduw.</p>
+    <p class="status">Stap 7 actief op de style-lock branch. Main blijft ongemoeid. Controleer desktop op 100% zoom en mobiel in Safari: scherpte, marges, enkel-paginaweergave en typografische balans.</p>
   </main>
 </body>
 </html>
