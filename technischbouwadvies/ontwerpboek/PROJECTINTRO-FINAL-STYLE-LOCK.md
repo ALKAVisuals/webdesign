@@ -15,8 +15,8 @@ Alle visuele correcties voor Projectintro worden vanaf nu uitsluitend op deze br
 ## Stappen
 1. Baseline / veilige branch — AFGEROND
 2. Spreadverhouding & geometrie — AFGEROND
-3. Hero-afbeelding & beeldpresentatie — ACTIEF / REVIEW
-4. Chapter marker & titel
+3. Hero-afbeelding & beeldpresentatie — AFGEROND
+4. Chapter marker & titel — ACTIEF / REVIEW
 5. Bodycopy, witruimte & footer
 6. Fysiek boekgevoel
 7. Desktop + mobiel QA
@@ -31,14 +31,23 @@ Alle visuele correcties voor Projectintro worden vanaf nu uitsluitend op deze br
 - Linker binnenmarges afgestemd op de smallere editorial kolom
 - Mobiele single-page geometrie inhoudelijk niet gewijzigd
 
-## Stap 3 — huidige hero-presentatie
-- Hero vervangen door `images/website-2026/projecten/illustratieve-case-aanbouw-rijwoning.webp`
+## Stap 3 — vastgelegde hero-presentatie
+- Hero gebruikt `images/website-2026/projecten/illustratieve-case-aanbouw-rijwoning.webp`
 - Bestaande productie-asset wordt alleen read-only gebruikt; productie-repo zelf is niet gewijzigd
-- Beeld blijft volledig full-bleed in de 63.5%-herozone
+- Beeld volledig full-bleed in de 63.5%-herozone
 - Crop gecentreerd op 50% / 52% en subtiel ingezoomd met schaal 1.018
-- Kleurbehandeling rustiger gemaakt: lichte desaturatie, iets meer contrast en lagere helderheid
-- Zeer subtiele donkere overlay toegevoegd om het avond-/monograph-gevoel dichter bij de referentie te brengen
-- Mobiele tekstpagina blijft in deze stap ongemoeid
+- Rustige kleurbehandeling: lichte desaturatie, iets meer contrast en lagere helderheid
+- Zeer subtiele donkere overlay voor meer architectural-monograph sfeer
+
+## Stap 4 — huidige chapter marker & titel
+- Chapter marker teruggebracht naar een kleine bronzen `01`
+- Hairline verkort naar 27 px en dichter bij de marker geplaatst
+- Titel geforceerd naar twee regels: `PROJECT` / `INTRO`
+- Titelschaal teruggebracht naar max. 40 px op desktop
+- Line-height aangescherpt naar .96 voor een compactere editorial titelvorm
+- Serif blijft Libre Baskerville om de rustige architectuurmonografie-richting te behouden
+- Mobiel gebruikt dezelfde tweeregelige hiërarchie met een aparte 30 px schaal
+- Bodycopy, footer, papier en schaduw zijn in deze stap bewust niet aangepast
 
 ## Vaste preview
 `projectintro-style-lock-preview.html` is de visuele branch-preview. Deze wordt gedurende de style-lock steeds bijgewerkt zodat dezelfde link kan worden gebruikt voor review.
