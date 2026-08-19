@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="description" content="Fase M.1A V4 preview van het interactieve ontwerpboek van Technisch Bouwadvies.">
+  <title>Fase M.1A V4 — Editorial cover finesse</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500&family=DM+Sans:wght@400;500;600&family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=20260819-1934">
+  <link rel="stylesheet" href="content-layouts.css?v=20260819-1934">
+  <link rel="stylesheet" href="book-lifecycle.css?v=20260819-1934">
+  <link rel="stylesheet" href="approved-book.css?v=20260819-1934">
+  <link rel="stylesheet" href="approved-book-fixes.css?v=20260819-1934">
+  <link rel="stylesheet" href="motion-polish.css?v=20260819-1934">
+  <link rel="stylesheet" href="mobile-polish.css?v=20260819-1934">
+  <link rel="stylesheet" href="accessibility-polish.css?v=20260819-1934">
+  <link rel="stylesheet" href="phase-m-visual-qa.css?v=20260819-1934">
+  <link rel="stylesheet" href="phase-m-mobile-repair.css?v=20260819-1934">
+  <link rel="stylesheet" href="phase-m-mobile-clarity.css?v=20260819-1934">
+  <link rel="stylesheet" href="phase-m-mobile-state.css?v=20260819-1934">
+  <link rel="stylesheet" href="phase-m-cover-fit.css?v=20260819-1934">
+  <link rel="stylesheet" href="style-lock.css?v=20260819-1934">
+  <link rel="stylesheet" href="style-lock-v4.css?v=20260819-1934">
+</head>
+<body>
+  <header class="presentation-header">
+    <a class="presentation-brand" href="#boek" aria-label="Technisch Bouwadvies ontwerpboek">
+      <span class="presentation-brand-mark" aria-hidden="true">TB</span>
+      <span><strong>TECHNISCH</strong><small>BOUWADVIES</small></span>
+    </a>
+    <span class="presentation-label">PROJECTVISUALISATIE</span>
+  </header>
+
+  <main class="presentation-main">
+    <section class="presentation-intro" id="boek">
+      <p class="presentation-eyebrow">VAN CONCEPT NAAR TECHNISCH ONTWERP</p>
+      <h1>Bekijk hoe een ontwerp<br>tot leven komt.</h1>
+      <p>Een rustig, beeldgedreven ontwerpverhaal waarin technische tekeningen, materiaalkeuzes en visualisaties samen één geheel vormen.</p>
+      <button class="presentation-open" id="startBook" type="button" aria-controls="book">Open ontwerpboek <span>→</span></button>
+    </section>
+
+    <section class="book-area is-closed" id="bookArea" data-lifecycle="closed" aria-label="Interactief ontwerpboek">
+      <div class="visually-hidden" aria-live="polite" aria-atomic="true">
+        <strong id="currentChapter">Ontwerpboek klaar om te openen</strong>
+        <div><span id="metaProgressBar"></span></div>
+      </div>
+
+      <div class="book-stage">
+        <div class="book-shadow" aria-hidden="true"></div>
+
+        <button class="closed-cover" id="coverStart" type="button" aria-label="Open het ontwerpboek" aria-controls="book">
+          <div class="cover-inner approved-cover">
+            <p class="approved-cover-kicker">TECHNISCH<br>ONTWERP</p>
+            <span class="approved-cover-rule" aria-hidden="true"></span>
+            <h2>ONTWERP<br>BOEK</h2>
+            <p class="approved-cover-subtitle">VAN CONCEPT NAAR<br>TECHNISCH ONTWERP</p>
+
+            <svg class="approved-cover-lineart" viewBox="0 0 820 560" aria-hidden="true">
+              <!-- terrein en perspectief -->
+              <path d="M36 481H781" class="thin"/>
+              <path d="M47 501L375 374M111 511L406 391M186 519L443 410M278 523L486 430M389 525L540 453" class="faint"/>
+              <path d="M74 460L652 214M121 483L704 244M238 500L657 325M303 511L710 352" class="faint"/>
+
+              <!-- hoofdvolume achterzijde -->
+              <path d="M409 373V179L561 104L700 173V409" class="outline"/>
+              <path d="M409 179L561 247L700 173" class="outline"/>
+              <path d="M561 104V247" class="detail"/>
+              <path d="M391 194L561 88L720 166" class="detail"/>
+              <path d="M400 210L561 113L709 181" class="thin"/>
+              <path d="M377 209L560 73M699 160L757 129M704 174L769 145" class="faint"/>
+
+              <!-- verdieping en ritme -->
+              <path d="M410 246L561 311L700 242M410 313L561 375L700 305" class="thin"/>
+              <path d="M437 191V383M466 204V391M496 217V398M527 232V404" class="detail"/>
+              <path d="M590 233V406M618 220V407M647 206V408M676 191V409" class="detail"/>
+
+              <!-- ramen hoofdvolume -->
+              <path d="M439 224L478 241V283L439 267ZM492 247L532 264V306L492 289Z" class="detail"/>
+              <path d="M440 296L479 312V355L440 340ZM493 318L533 334V377L493 361Z" class="detail"/>
+              <path d="M590 265L621 251V295L590 309ZM638 242L670 227V271L638 286Z" class="detail"/>
+              <path d="M590 331L622 316V360L590 375ZM638 307L671 292V337L638 352Z" class="detail"/>
+              <path d="M459 232V275M512 255V298M460 304V348M513 326V370M606 258V302M654 235V279M606 323V367M654 300V345" class="faint"/>
+
+              <!-- lange uitbouw / glazen gevel -->
+              <path d="M90 443V320L374 349V468" class="outline"/>
+              <path d="M90 320L241 264L481 302L374 349" class="outline"/>
+              <path d="M104 332L239 284L452 317" class="thin"/>
+              <path d="M114 343V446M151 347V450M188 351V454M225 355V458M262 359V461M299 363V464M336 367V467" class="detail"/>
+              <path d="M109 388L366 407M108 421L368 441" class="thin"/>
+
+              <!-- glasvakken -->
+              <path d="M124 351L177 356V418L124 412ZM184 357L238 362V424L184 419ZM245 363L299 368V431L245 425ZM306 369L359 374V437L306 432Z" class="detail"/>
+              <path d="M150 354V415M211 360V421M272 366V428M332 372V434" class="faint"/>
+
+              <!-- aansluiting uitbouw op hoofdgebouw -->
+              <path d="M374 349L481 302V434L374 468" class="outline"/>
+              <path d="M400 338V460M427 327V451M454 315V442" class="detail"/>
+              <path d="M375 391L481 356M375 430L481 394" class="thin"/>
+
+              <!-- terras / traptreden / plint -->
+              <path d="M82 446L371 472M73 456L366 484M66 467L356 495" class="detail"/>
+              <path d="M121 452L105 467M183 458L167 474M246 464L229 480M309 470L292 486" class="faint"/>
+
+              <!-- schetsmatige contourvarianten -->
+              <path d="M86 313L239 254L489 295M98 326L242 274L469 310" class="faint"/>
+              <path d="M398 172L561 94L710 165M417 188L561 121L691 181" class="faint"/>
+              <path d="M551 105V66M533 115V78M578 113V76" class="faint"/>
+
+              <!-- constructielijnen / verlengde assen -->
+              <path d="M91 319L34 294M241 264L211 223M481 302L548 277M700 173L779 142" class="faint"/>
+              <path d="M90 443L31 459M374 468L429 494M700 409L768 430" class="faint"/>
+
+              <!-- linker vegetatie -->
+              <path d="M70 469c3-36 15-65 35-85 16-16 37-25 59-25-24 9-41 24-50 45 23 0 41 12 53 34-30-14-60-4-97 31Z" class="plant"/>
+              <path d="M104 480c0-36-3-72-9-108M116 480c2-30 4-57 3-84" class="faint"/>
+              <path d="M88 397l-22-20M103 381l-5-29M120 388l15-29M135 409l28-11" class="faint"/>
+
+              <!-- rechter boom, fijner en verticaler zoals referentie -->
+              <path d="M711 448c-3-58 6-103 27-135 14-22 34-36 58-42-19 18-29 39-31 63 18-8 35-7 51 4-22 8-39 22-52 42 16 6 29 18 39 36-30-9-58 2-92 32Z" class="plant"/>
+              <path d="M748 468c4-49 3-96-3-142M759 468c8-41 14-79 18-114" class="faint"/>
+              <path d="M746 337l-29-29M758 320l7-34M770 344l30-30M779 374l34-8M731 388l-27-13" class="faint"/>
+
+              <!-- tuin / omgevingslijnen -->
+              <path d="M54 476c89-19 174-16 255 5M335 484c87-8 174-4 262 11M578 467c43-17 83-22 121-14" class="faint"/>
+            </svg>
+
+            <div class="approved-cover-footer">
+              <span class="approved-cover-brand">TECHNISCH BOUWADVIES</span>
+              <span class="approved-cover-page">01</span>
+            </div>
+          </div>
+        </button>
+
+        <div class="book" id="book" tabindex="0" role="region" aria-label="Blader door het ontwerpboek met de pijltjestoetsen of swipe">
+          <div class="page-stack stack-left" aria-hidden="true"></div>
+          <div class="page-stack stack-right" aria-hidden="true"></div>
+          <div class="book-spine" aria-hidden="true"></div>
+          <article class="book-page page-left" id="leftPage" aria-live="off"></article>
+          <article class="book-page page-right" id="rightPage" aria-live="off"></article>
+          <div class="page-turn" id="pageTurn" aria-hidden="true"><div class="turn-back"></div></div>
+        </div>
+
+        <div class="book-end" id="bookEnd" aria-hidden="true">
+          <p class="presentation-eyebrow">ONTWERPVERHAAL COMPLEET</p>
+          <h3>Van eerste idee naar een helder uitgewerkt ontwerp.</h3>
+          <p>Bekijk het verhaal opnieuw of ga verder naar Technisch Bouwadvies.</p>
+          <div class="book-end-actions">
+            <button class="presentation-open" id="restartBook" type="button" aria-controls="book">Bekijk opnieuw <span>↻</span></button>
+            <a class="presentation-link" href="https://technischbouwadvies.nl/">Technisch Bouwadvies <span>→</span></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="minimal-controls" aria-label="Boekbediening">
+        <button class="minimal-arrow" id="prevPage" type="button" aria-label="Vorige pagina" aria-controls="book">←</button>
+        <div class="minimal-position">
+          <span id="metaCount">00 / 08</span>
+          <div class="minimal-progress" aria-hidden="true"><span id="minimalProgress"></span></div>
+        </div>
+        <button class="minimal-arrow" id="nextPage" type="button" aria-label="Volgende pagina" aria-controls="book">→</button>
+        <button class="minimal-autoplay" id="autoplayToggle" type="button" aria-pressed="false" aria-label="Start automatisch bladeren" aria-controls="book">
+          <span class="play-icon" aria-hidden="true">▶</span>
+          <span class="visually-hidden" id="autoplayText">Autoplay uit</span>
+        </button>
+        <div class="visually-hidden" id="pageDots" aria-hidden="true"></div>
+      </div>
+    </section>
+  </main>
+
+  <noscript>Voor het interactieve ontwerpboek is JavaScript nodig.</noscript>
+  <script src="phase-m-mobile-behavior.js?v=20260819-1934"></script>
+  <script type="module" src="book.js?v=20260819-1934"></script>
+  <script type="module" src="motion-polish.js?v=20260819-1934"></script>
+  <script type="module" src="accessibility-performance.js?v=20260819-1934"></script>
+</body>
+</html>
