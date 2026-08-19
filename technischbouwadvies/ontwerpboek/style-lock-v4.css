@@ -1,0 +1,221 @@
+/* M.1A V4 — editorial cover finesse
+   Loaded after style-lock.css so older previews stay unchanged.
+   Scope: closed cover only; open spreads and mobile iOS behavior are untouched. */
+
+:root {
+  --v4-cover-ink: #282824;
+  --v4-cover-muted: #5d5b54;
+  --v4-cover-bronze: #a66f31;
+  --v4-cover-line: #5e5b55;
+  --v4-cover-paper: #f6f1e9;
+}
+
+/* Slightly calmer physical object, closer to the reference monograph. */
+.closed-cover {
+  width: min(354px, 27vw);
+  aspect-ratio: .874;
+  border-color: rgba(72, 61, 48, .07);
+  background: var(--v4-cover-paper);
+  box-shadow:
+    -2px 5px 9px rgba(48, 40, 30, .045),
+    8px 11px 20px rgba(48, 40, 30, .075),
+    15px 19px 30px rgba(48, 40, 30, .045);
+}
+
+/* More believable bound edge: narrow cover lip + paper leaves. */
+.closed-cover::before {
+  width: 10px;
+  opacity: .88;
+  background:
+    linear-gradient(90deg,
+      rgba(69, 58, 44, .14) 0 1px,
+      rgba(248, 244, 237, .86) 1px 2px,
+      rgba(95, 79, 59, .08) 2px 3px,
+      rgba(255, 255, 255, .58) 3px 4px,
+      rgba(94, 79, 60, .065) 4px 5px,
+      rgba(255,255,255,.46) 5px 6px,
+      rgba(96, 80, 60, .055) 6px 7px,
+      rgba(255,255,255,.30) 7px 9px,
+      rgba(70,59,45,.035) 9px 10px);
+}
+
+.closed-cover::after {
+  left: 10px;
+  width: 2px;
+  background: linear-gradient(90deg, rgba(75, 63, 49, .055), rgba(255,255,255,.24));
+}
+
+.closed-cover .cover-inner.approved-cover {
+  padding: 7.8% 8.2% 6.4% 11.7%;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.13), transparent 21%),
+    var(--v4-cover-paper);
+}
+
+/* Fine paper grain. It should be felt, not seen. */
+.closed-cover .cover-inner.approved-cover::after {
+  content: "";
+  position: absolute;
+  z-index: 4;
+  inset: 0;
+  pointer-events: none;
+  opacity: .16;
+  mix-blend-mode: multiply;
+  background-image:
+    radial-gradient(circle, rgba(82,68,50,.22) .32px, transparent .45px),
+    radial-gradient(circle, rgba(82,68,50,.14) .28px, transparent .42px);
+  background-size: 8px 8px, 13px 13px;
+  background-position: 0 0, 4px 6px;
+}
+
+.approved-cover-kicker {
+  max-width: 72px;
+  color: #55564f;
+  font-size: 5.95px;
+  line-height: 1.38;
+  letter-spacing: .14em;
+}
+
+.approved-cover-rule {
+  width: 17px;
+  margin-top: 9px;
+  background: var(--v4-cover-bronze);
+}
+
+/* Reference title is narrower, higher contrast and more monograph-like. */
+.approved-cover h2 {
+  margin-top: 25px;
+  max-width: 124px;
+  color: var(--v4-cover-ink);
+  font-family: "Cormorant Garamond", "Libre Baskerville", Georgia, serif;
+  font-size: clamp(25px, 2.08vw, 31px) !important;
+  font-weight: 500;
+  line-height: .82 !important;
+  letter-spacing: -.035em !important;
+}
+
+.approved-cover-subtitle {
+  margin-top: 9px;
+  max-width: 105px;
+  color: var(--v4-cover-bronze);
+  font-size: 5.15px !important;
+  font-weight: 500;
+  line-height: 1.38;
+  letter-spacing: .095em !important;
+}
+
+/* V4: drawing is a long architectural perspective rather than two diagrammatic blocks. */
+.approved-cover-lineart {
+  left: 5.5%;
+  bottom: 5.8%;
+  width: 94%;
+  height: 59%;
+  stroke: var(--v4-cover-line);
+  stroke-width: .72;
+  opacity: .40;
+  mix-blend-mode: multiply;
+}
+
+.approved-cover-lineart .outline {
+  stroke-width: .92;
+  opacity: .94;
+}
+
+.approved-cover-lineart .detail {
+  stroke-width: .55;
+  opacity: .82;
+}
+
+.approved-cover-lineart .thin {
+  stroke-width: .38;
+  opacity: .60;
+}
+
+.approved-cover-lineart .faint {
+  stroke-width: .27;
+  opacity: .34;
+}
+
+.approved-cover-lineart .plant {
+  stroke-width: .42;
+  opacity: .66;
+}
+
+.approved-cover-footer {
+  gap: 10px;
+}
+
+.approved-cover-brand {
+  color: var(--v4-cover-muted);
+  font-size: 4.85px;
+  letter-spacing: .10em;
+}
+
+.approved-cover-page {
+  padding-left: 25px;
+  color: #474741;
+  font-family: "Cormorant Garamond", "Libre Baskerville", Georgia, serif;
+  font-size: 7px;
+  font-weight: 500;
+}
+
+.approved-cover-page::before {
+  width: 17px;
+  background: var(--v4-cover-bronze);
+}
+
+@media (max-width: 1180px) {
+  .closed-cover { width: min(334px, 30vw); }
+}
+
+@media (max-width: 900px) and (min-width: 761px) {
+  .closed-cover { width: min(314px, 35vw); }
+}
+
+@media (max-width: 760px) {
+  .book-area.is-closed .closed-cover,
+  .book-area.is-opening .closed-cover {
+    width: min(294px, 76vw) !important;
+    aspect-ratio: .874 !important;
+  }
+
+  .closed-cover .cover-inner.approved-cover {
+    padding: 8.1% 8.2% 6.7% 11.8% !important;
+  }
+
+  .approved-cover h2 {
+    margin-top: 22px !important;
+    font-size: clamp(23px, 6.8vw, 28px) !important;
+    line-height: .83 !important;
+  }
+
+  .approved-cover-subtitle {
+    font-size: 5px !important;
+  }
+
+  .approved-cover-lineart {
+    left: 5%;
+    width: 95%;
+    height: 59%;
+    bottom: 5.9%;
+    opacity: .41;
+  }
+}
+
+@media (max-width: 420px) {
+  .book-area.is-closed .closed-cover,
+  .book-area.is-opening .closed-cover {
+    width: min(278px, 75vw) !important;
+  }
+
+  .approved-cover h2 {
+    font-size: clamp(22px, 6.6vw, 26px) !important;
+  }
+}
+
+@media (max-width: 760px) and (max-height: 700px) {
+  .book-area.is-closed .closed-cover,
+  .book-area.is-opening .closed-cover {
+    width: min(252px, 70vw) !important;
+  }
+}
