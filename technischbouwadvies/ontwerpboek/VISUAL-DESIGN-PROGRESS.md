@@ -6,57 +6,54 @@
 
 ---
 
-## 1. Vaste beslissingen
+## 1. Vaste beslissingen — NIET OPNIEUW ONTWERPEN
 
-- Het ontwerpboek is publiek **geen leeromgeving**.
-- Publiek geen tutorial/TD Vision U, prototype V0.x, DEMO/IN UITWERKING/DEFINITIEF, ontwikkelaarsstatus of asset-pipelinecopy.
-- Doel: een **premium interactieve projectvisualisatie / digitaal architectuurboek** voor latere integratie in technischbouwadvies.nl.
-- De goedgekeurde art direction wordt niet opnieuw ontworpen tenzij de gebruiker dat expliciet vraagt.
-- Standalone werkmap: `ALKAVisuals/webdesign/technischbouwadvies/ontwerpboek/`.
-- De echte productie-site wordt pas gewijzigd via een aparte integratiebranch nadat de juiste productie-repo en stack zijn bevestigd.
+Het ontwerpboek is publiek **geen leeromgeving**.
 
----
+Niet tonen:
+- tutorial / TD Vision U / leerfase
+- prototype V0.x
+- DEMO / IN UITWERKING / DEFINITIEF
+- ontwikkelaarsstatus / asset-pipelinecopy
+- grote toolbar / dashboardachtige UI
 
-## 2. Definitieve art direction — GOEDGEKEURD
+Doel: een **premium interactieve projectvisualisatie / digitaal architectuurboek** voor Technisch Bouwadvies.
 
-### A+B
+### Goedgekeurde art direction
+**A+B**
 - ca. 65% Swiss / Architectural Editorial
 - ca. 25% Warm Architectural Monograph
 - ca. 10% subtiele digitale motion
 
-Vaste kenmerken:
+Vast:
 - warm off-white papier
 - charcoal tekst
-- subtiel bronsaccent
+- subtiel brons
 - editorial serif + neutrale sans
-- ruime marges en streng grid
-- rustige gutter/rug
-- subtiele paginadikte en contactschaduw
+- ruim grid / veel witruimte
+- subtiele gutter, paginadikte en contactschaduw
 - technische tekeningen groot en helder
 - renders groot / bijna full bleed waar passend
-- minimale publieke UI
+- minimale publieke bediening
 
-De goedgekeurde `06 — Plattegrond`-masterspread blijft de design foundation.
+De goedgekeurde `06 — Plattegrond`-masterspread is de visuele bron van waarheid.
 
 ---
 
-## 3. Cover — GOEDGEKEURD
+## 2. Cover — GOEDGEKEURD
 
 **Technical Line Art + rust van Pure Typography**
 
-- warm off-white cover
-- grote rustige titel `ONTWERPBOEK`
+- titel `ONTWERPBOEK`
 - subtitel `VAN CONCEPT NAAR TECHNISCH ONTWERP`
 - zeer subtiele architectuurlijntekening
-- charcoal typografie
-- één klein bronsaccent
-- onderaan subtiel `TECHNISCH BOUWADVIES`
-- geen render als coverbasis
-- geen prototype-/statusinformatie
+- warm off-white cover
+- charcoal + klein bronsaccent
+- subtiel `TECHNISCH BOUWADVIES`
 
 ---
 
-## 4. Definitief spread system — GOEDGEKEURD
+## 3. Definitief spread system — GOEDGEKEURD
 
 1. Projectintro / hero
 2. Variantenvergelijking
@@ -73,177 +70,263 @@ Vaste flow:
 
 ---
 
-## 5. Afgeronde fasen
+## 4. Prototype/testlab — `ALKAVisuals/webdesign`
 
-- **Fase A — Visual audit: AFGEROND**
-- **Fase B — Online reference research: AFGEROND**
-- **Fase C — Visuele richtingen: AFGEROND**
-- **Fase D — Masterspread: AFGEROND + GOEDGEKEURD**
-- **Fase E — Cover redesign: AFGEROND + GOEDGEKEURD**
-- **Fase F — Spread template system: AFGEROND + GOEDGEKEURD**
-- **Fase G — Volledige statische boekflow: AFGEROND + GOEDGEKEURD**
-- **Fase H — Visueel systeem implementeren: MAIN via PR #12**
-- **Fase I — Page-turn & motion polish: MAIN via PR #13**
-- **Fase J — Mobile visual polish: MAIN via PR #14**
-- **Fase K — Performance & accessibility: MAIN via PR #15**
+Werkmap:
 
----
+`technischbouwadvies/ontwerpboek/`
 
-## 6. Wat nu op `main` staat
+Afgerond en op `main`:
+- Fase A — Visual audit
+- Fase B — Online reference research
+- Fase C — Visuele richtingen
+- Fase D — Masterspread
+- Fase E — Cover redesign
+- Fase F — Spread template system
+- Fase G — Volledige statische boekflow
+- Fase H — Visueel systeem implementeren — PR #12
+- Fase I — Page-turn / motion polish — PR #13
+- Fase J — Mobile visual polish — PR #14
+- Fase K — Performance & accessibility — PR #15
+- Fase L — Integratieplan — PR #16
 
-- nieuwe publieke A+B-shell
-- goedgekeurde Technical Line Art cover
-- 8 spreads / 16 boekpagina's
-- editorial text/gallery/technical/materials/visual/CTA layouts
-- minimale controls
-- desktop dubbele spread
-- mobiel single-page
-- autoplay + spreadtimings
-- swipe + keyboard navigation
-- premium motion/page-turn
-- mobiele responsive polish
-- accessibility/focus polish
-- reduced-motion autoplaybehandeling
-- next-spread idle preload
-- asset manifest + image fallback
-- assetoptimalisatierichtlijnen
+Belangrijke bestanden:
+- `VISUAL-DESIGN-ROADMAP.md`
+- `VISUAL-DESIGN-PROGRESS.md`
+- `ASSET-GUIDELINES.md`
+- `INTEGRATION-PLAN.md`
+
+De standalone tool bevat desktop dubbele spread, mobiel single-page, swipe, keyboard, autoplay, reduced motion, premium page-turn, next-spread preload en image fallback.
 
 ---
 
-## 7. Fase K — Performance & accessibility — OP MAIN
+## 5. Productie-repo — BEVESTIGD
 
-Via PR #15 toegevoegd:
+De publieke website-repo is:
 
-### `accessibility-polish.css`
-- duidelijke `:focus-visible` states
-- reduced-motion timerprogress uit
-- forced-colors fallback
+**`ALKAVisuals/alkabouwadvies`**
 
-### `accessibility-performance.js`
-- dynamisch toegankelijk autoplaylabel
-- `prefers-reduced-motion` pauzeert autoplay standaard
-- bewuste opt-in blijft mogelijk
-- `Escape` pauzeert autoplay
-- automatische eindfocus wordt niet gestolen zonder bewuste interactie
-- volgende pagina/spread idle-preload
-- geen preload bij `saveData`
+Niet verwarren met:
+- `ALKAVisuals/webdesign` — prototype/testlab
+- `ALKAVisuals/technischbouwadvies-dashboard` — dashboard, niet de publieke site
 
-### `index.html`
-- `display=swap` voor fonts
-- centrale `aria-live` statusregion
-- dynamische boekpagina's zelf niet meer live-announcen
-- boek als expliciete region
-- controls gekoppeld via `aria-controls`
+### Productiestack
+- statische HTML
+- homepage: `index.html`
+- veel bestaande homepage-CSS/JS staat inline
+- bestaand sitefont: Inter
+- gedeelde bestanden o.a. `site-header.css/js`, `site-responsive.css`, contact/footer bestanden
+- GSAP + ScrollTrigger en Lenis staan al op de homepage
 
-### `ASSET-GUIDELINES.md`
-Vaste afspraken voor:
-- AVIF/WebP renders
-- SVG/WebP technische tekeningen
-- resolutie
-- crop
-- bestandsnamen
-- alt-tekst
-- loading
-- publicatiecheck
+### Deploy
+De productie-repo bevat `netlify.toml` met:
+- `[build] publish = "."`
+- Netlify headers / redirects
+- redirects naar `https://technischbouwadvies.nl/`
+
+Daarom een merge naar productie-`main` behandelen als **potentieel live-impactvol**.
+
+De gebruiker heeft eerder aangegeven dat automatische Netlify-updates bewust waren uitgeschakeld/beperkt. Controleer vóór een uiteindelijke productie-merge nogmaals de actuele Netlify deployinstelling; zet niets automatisch aan.
 
 ---
 
-## 8. Open QA-punt
+## 6. Huidige homepage-structuur
 
-De openbare GitHub Pages-route kon vanuit de huidige browsertool niet betrouwbaar worden geladen en de container heeft geen DNS-toegang tot GitHub.
+De actuele productie-homepage is geïnspecteerd.
 
-Daarom:
-- code-/structuur-QA: uitgevoerd
-- live screenshot-QA desktop/mobile: **nog open**
+Relevante volgorde:
+- Hero
+- Toepassingen / projectcategorieën
+- USP-strip
+- Proces / werkwijze
+- Diensten
+- Trust
+- Prijzen
+- Calculator
+- Gallery
+- 3D-visualisatiedienst
+- overige informatie / FAQ / contact
 
-Dit is een implementatie-QA-punt en geen reden om de art direction opnieuw te ontwerpen.
+### Aanbevolen boekpositie
+
+**Na de USP-strip en vóór de bestaande Proces/Werkwijze-sectie.**
+
+Reden:
+1. bezoeker begrijpt eerst waarvoor Technisch Bouwadvies helpt
+2. daarna ziet hij het ontwerp visueel ontstaan
+3. daarna volgt logisch de operationele werkwijze
+
+Dit is de huidige integratiekeuze tenzij de gebruiker expliciet anders vraagt.
 
 ---
 
-## 9. Fase L — Integratievoorbereiding — HUIDIGE BRANCH
+## 7. Productie-integratiebranch — ACTIEF, NIET GEMERGED
+
+Productierepo:
+
+`ALKAVisuals/alkabouwadvies`
 
 Branch:
 
-`agent/integration-plan`
+`agent/design-process-book-integration`
 
-Nieuw document:
+Draft PR:
 
-`INTEGRATION-PLAN.md`
+**PR #7 — `Prepare isolated designbook integration preview`**
 
-Daarin staat vastgelegd:
-- juiste productie-repo eerst bevestigen
-- prototype-CSS niet rechtstreeks kopiëren
-- productiecomponent namespacen onder `.tba-designbook`
-- globale `body/html/button/a/:root` regels verwijderen of root-scopen
-- JS-selectors root-scopen in plaats van globale IDs
-- productiecomponentstructuur
-- homepageplaatsing
-- fontstrategie
-- productie-assetsmap
-- IntersectionObserver / lazy initialisatie
-- autoplay alleen in viewport
-- no-JS fallback
-- controls
-- optionele analytics
-- integratietesten
-- aparte productiebranch
-- rollbackstrategie
-- go/no-go checklist
+Status bij deze update:
+- OPEN
+- DRAFT
+- NIET GEMERGED
+- branch stond 0 commits achter op productie-`main`
+- homepage `index.html` is NIET gewijzigd
+- gedeelde site-header/site-CSS zijn NIET gewijzigd
 
-Belangrijkste technische conclusie:
+### Nieuwe bestanden op de productiebranch
 
-**De standalone tool is visueel/technisch de bron, maar niet rechtstreeks copy-paste-ready voor productie vanwege globale prototype-CSS en globale selectors.** De productie-integratie wordt een geïsoleerde component.
+`designbook/designbook-data.js`
+- 8-spread productiecontent
+- gebruikt voorlopig alleen assets die al in de productie-repo bestaan
+- echte projectassets worden later vervangen
 
----
+`designbook/designbook.css`
+- volledig namespaced onder `.tba-designbook`
+- geen globale `body`, `html`, `button`, `a` of `:root` overrides
+- desktop + mobile + cover + page-turn + controls
 
-## 10. Productierepo-status
+`designbook/designbook.js`
+- root-scoped selectors
+- injecteert component in `[data-designbook]`
+- autoplay
+- swipe
+- keyboard
+- reduced-motion
+- autoplay pauze buiten viewport
+- idle preload volgende pagina/spread
+- `saveData` respecteren
 
-Binnen de GitHub-connector is wel `ALKAVisuals/technischbouwadvies-dashboard` gevonden, maar dat is een dashboardrepo en wordt **niet** automatisch als publieke website-repo behandeld.
+`designbook-preview.html`
+- noindex/nofollow integratiepreview
+- staat los van de homepage
+- bedoeld voor QA vóór de homepage-hook
 
-De juiste productie-repo voor technischbouwadvies.nl moet dus eerst expliciet worden geïdentificeerd voordat integratiecode wordt geschreven.
-
----
-
-## 11. Eerstvolgende stap
-
-Na merge van Fase L:
-
-1. gebruiker / repo-context gebruiken om de echte productie-repo te identificeren
-2. frontendstack en homepagebestand/component inspecteren
-3. bestaande fonts, CSS-architectuur en deploystrategie inspecteren
-4. `INTEGRATION-PLAN.md` vertalen naar een exact migratiebestandenschema
-5. aparte productiebranch maken
-6. pas daarna het boek daadwerkelijk integreren
-
-Geen productiecode aanpassen zolang stap 1–4 niet zijn afgerond.
+### Belangrijk
+**Deze PR NIET mergen naar `main` voordat de preview visueel/functioneel is beoordeeld.**
 
 ---
 
-## 12. Overdracht naar nieuwe chat
+## 8. CSS/JS-integratieregel — VAST
 
-> We gaan verder met het premium interactieve ontwerpboek voor Technisch Bouwadvies. Open in `ALKAVisuals/webdesign` eerst `technischbouwadvies/ontwerpboek/VISUAL-DESIGN-ROADMAP.md`, daarna `VISUAL-DESIGN-PROGRESS.md`, `ASSET-GUIDELINES.md` en `INTEGRATION-PLAN.md`. Lees ze volledig. De A+B art direction, masterspread, Technical Line Art cover en 8-spread boekflow zijn al goedgekeurd en mogen niet opnieuw worden ontworpen tenzij de gebruiker dat expliciet vraagt. Fase H t/m K staan op `main` via PR #12–#15. Fase L integratievoorbereiding staat op branch `agent/integration-plan`; controleer of die al is gemerged. De volgende echte stap is de correcte productie-repo voor technischbouwadvies.nl identificeren en de stack/homepage/deploystrategie inspecteren. Niet aannemen dat `technischbouwadvies-dashboard` de publieke website-repo is en nog geen productiecode wijzigen voordat dit bevestigd is.
+Productiecomponent gebruikt:
+
+```html
+<section class="tba-designbook" data-designbook></section>
+```
+
+Alle CSS blijft onder `.tba-designbook`.
+Alle JavaScript-selectors blijven binnen de componentroot.
+
+De standalone prototype-CSS mag nooit rechtstreeks naar de homepage worden gekopieerd.
 
 ---
 
-## 13. Snelle status
+## 9. Fonts
+
+Productiesite gebruikt al Inter.
+
+Voor het goedgekeurde editorial karakter gebruikt de preview aanvullend **Libre Baskerville** als display-serif.
+
+Voor uiteindelijke homepage-integratie:
+- Inter hergebruiken
+- alleen Libre Baskerville 400/700 toevoegen als visuele QA bevestigt dat dit nodig blijft
+- `display=swap`
+
+---
+
+## 10. Assets
+
+Zie `ASSET-GUIDELINES.md`.
+
+Voor echte projectcontent later:
+- renders: AVIF/WebP
+- technische tekeningen: SVG waar schoon mogelijk, anders scherpe WebP/PNG
+- technische tekeningen = `contain`
+- renders = `cover` waar goedgekeurd
+- geen ruwe 4K/8K bronbestanden publiceren
+- alt-tekst en mobile crop controleren
+
+---
+
+## 11. Open QA
+
+Nog NIET afgerond:
+- echte browser/screenshot-QA van productiepreview
+- desktop 1440 / 1280 / 1024
+- mobile 390 / 360 / korte schermhoogte
+- controleren tegen bestaande productie-CSS
+- autoplay + swipe + keyboard + Escape + reduced motion
+- Netlify Deploy Preview controleren indien beschikbaar
+
+De huidige omgeving kon eerdere GitHub Pages/raw-browserroutes niet betrouwbaar openen. Claim dus niet dat de preview visueel live is goedgekeurd zonder nieuwe controle.
+
+---
+
+## 12. Exacte volgende stap
+
+**Niet mergen. Niet de homepage wijzigen.**
+
+Eerst:
+1. draft PR #7 opnieuw inspecteren
+2. bepalen of Netlify een Deploy Preview voor PR #7 heeft gemaakt
+3. previewpagina `designbook-preview.html` visueel/functioneel testen
+4. eventuele previewbugs herstellen op dezelfde productiebranch
+5. daarna pas een minimale homepage-hook ontwerpen
+
+De latere homepage-hook moet zo klein mogelijk zijn:
+- stylesheet/font include
+- `<section class="tba-designbook" data-designbook>` na USP en vóór Proces
+- module include voor `designbook/designbook.js`
+
+Omdat `index.html` groot is, moet de wijziging vooraf exact worden gecontroleerd; geen grote ongecontroleerde whole-file rewrite.
+
+---
+
+## 13. Overdracht naar nieuwe chat
+
+Gebruik:
+
+> We gaan verder met het premium interactieve ontwerpboek voor Technisch Bouwadvies. Open in `ALKAVisuals/webdesign` eerst `technischbouwadvies/ontwerpboek/VISUAL-DESIGN-ROADMAP.md`, daarna `VISUAL-DESIGN-PROGRESS.md`, `ASSET-GUIDELINES.md` en `INTEGRATION-PLAN.md`. Lees alles volledig. De A+B art direction, masterspread, Technical Line Art cover en 8-spread boekflow zijn definitief goedgekeurd en mogen niet opnieuw worden ontworpen tenzij ik dat expliciet vraag. Het prototype/testlab staat op `ALKAVisuals/webdesign`. De bevestigde productie-repo is `ALKAVisuals/alkabouwadvies`, een statische site met Netlify-configuratie. Op productiebranch `agent/design-process-book-integration` staat draft PR #7 met vier uitsluitend nieuwe bestanden: `designbook-preview.html`, `designbook/designbook.css`, `designbook/designbook.js` en `designbook/designbook-data.js`. `index.html` is nog niet gewijzigd en PR #7 mag nog niet worden gemerged. De eerstvolgende taak is preview/Deploy Preview QA uitvoeren, bugs herstellen en pas daarna een minimale homepage-hook voorbereiden na de USP-strip en vóór Proces/Werkwijze. Zet niets automatisch live en controleer de actuele Netlify-deployinstelling vóór een productie-merge.
+
+---
+
+## 14. Snelle status
 
 **GOEDGEKEURD**
 - A+B art direction
 - masterspread
 - Technical Line Art cover
 - 8 spreadtypes
-- volledige boekflow
+- complete boekflow
 
-**OP MAIN**
-- desktopvisuals
-- motion polish
-- mobile polish
+**PROTOTYPE OP MAIN (`webdesign`)**
+- visuals
+- motion
+- mobile
 - performance/accessibility
+- integratieplan
 
-**HUIDIGE BRANCH**
-- `agent/integration-plan`
+**PRODUCTIE VOORBEREID**
+- repo `ALKAVisuals/alkabouwadvies` bevestigd
+- Netlify-config bevestigd
+- productiebranch gemaakt
+- draft PR #7 gemaakt
+- geïsoleerde component + preview toegevoegd
 
-**VOLGENDE ECHTE STAP**
-- productie-repo identificeren
-- stack/homepage/deploy inspecteren
-- dan pas aparte integratiebranch
+**NIET GEDAAN**
+- productiehomepage aanpassen
+- PR #7 mergen
+- live zetten
+
+**NU**
+- preview QA
+- daarna minimale homepage-hook
