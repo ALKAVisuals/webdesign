@@ -1,0 +1,220 @@
+/* M.1A V5 — reference reset
+   Goal: move back toward the calm approved bookflow reference.
+   Loaded after style-lock.css; V3/V4 previews remain untouched. */
+
+:root {
+  --v5-paper: #f7f3ec;
+  --v5-ink: #292a27;
+  --v5-muted: #5c5b55;
+  --v5-bronze: #aa7433;
+  --v5-line: #77736c;
+}
+
+.closed-cover {
+  width: min(352px, 27vw);
+  aspect-ratio: .868;
+  border: 1px solid rgba(73, 62, 49, .065);
+  border-radius: 1px;
+  background: var(--v5-paper);
+  box-shadow:
+    -2px 5px 9px rgba(51, 43, 32, .035),
+    7px 11px 20px rgba(51, 43, 32, .065),
+    13px 18px 30px rgba(51, 43, 32, .04);
+}
+
+.book-area.is-closed .book-shadow {
+  opacity: 0 !important;
+}
+
+/* Narrower, quieter bound edge like the reference crop. */
+.closed-cover::before {
+  width: 9px;
+  opacity: .78;
+  background:
+    linear-gradient(90deg,
+      rgba(73,61,46,.13) 0 1px,
+      rgba(255,255,255,.55) 1px 2px,
+      rgba(97,80,60,.065) 2px 3px,
+      rgba(255,255,255,.42) 3px 4px,
+      rgba(91,76,57,.05) 4px 5px,
+      rgba(255,255,255,.28) 5px 7px,
+      rgba(77,65,49,.03) 7px 9px);
+}
+
+.closed-cover::after {
+  left: 9px;
+  width: 2px;
+  background: linear-gradient(90deg, rgba(72,61,48,.045), rgba(255,255,255,.20));
+}
+
+.closed-cover .cover-inner.approved-cover {
+  padding: 7.7% 8.3% 6.4% 11.6%;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.10), transparent 18%),
+    var(--v5-paper);
+}
+
+/* Almost imperceptible paper variation. */
+.closed-cover .cover-inner.approved-cover::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  pointer-events: none;
+  opacity: .055;
+  background-image: radial-gradient(circle, rgba(89,74,55,.28) .28px, transparent .42px);
+  background-size: 11px 11px;
+}
+
+.approved-cover-kicker {
+  max-width: 70px;
+  color: #565750;
+  font-size: 5.8px;
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: .14em;
+}
+
+.approved-cover-rule {
+  width: 17px;
+  margin-top: 9px;
+  background: var(--v5-bronze);
+}
+
+/* Return to the calmer serif character of the approved board. */
+.approved-cover h2 {
+  margin-top: 20px;
+  max-width: 128px;
+  color: var(--v5-ink);
+  font-family: "Libre Baskerville", Georgia, serif;
+  font-size: clamp(22px, 1.88vw, 28px) !important;
+  font-weight: 400;
+  line-height: .93 !important;
+  letter-spacing: -.035em !important;
+}
+
+.approved-cover-subtitle {
+  margin-top: 8px;
+  max-width: 108px;
+  color: var(--v5-bronze);
+  font-size: 5.2px !important;
+  font-weight: 500;
+  line-height: 1.42;
+  letter-spacing: .095em !important;
+}
+
+/* Reference-like architectural drawing: broad, low and airy. */
+.approved-cover-lineart {
+  left: 1.5%;
+  bottom: 5.1%;
+  width: 99%;
+  height: 61%;
+  stroke: var(--v5-line);
+  stroke-width: .62;
+  opacity: .31;
+  mix-blend-mode: multiply;
+}
+
+.approved-cover-lineart .outline {
+  stroke-width: .76;
+  opacity: .88;
+}
+
+.approved-cover-lineart .detail {
+  stroke-width: .46;
+  opacity: .76;
+}
+
+.approved-cover-lineart .thin {
+  stroke-width: .32;
+  opacity: .56;
+}
+
+.approved-cover-lineart .faint {
+  stroke-width: .23;
+  opacity: .34;
+}
+
+.approved-cover-lineart .plant {
+  stroke-width: .36;
+  opacity: .58;
+}
+
+.approved-cover-footer {
+  gap: 10px;
+}
+
+.approved-cover-brand {
+  color: var(--v5-muted);
+  font-size: 5px;
+  letter-spacing: .10em;
+}
+
+.approved-cover-page {
+  padding-left: 25px;
+  color: #494943;
+  font-family: "Libre Baskerville", Georgia, serif;
+  font-size: 7px;
+  font-weight: 400;
+}
+
+.approved-cover-page::before {
+  width: 17px;
+  background: var(--v5-bronze);
+}
+
+@media (max-width: 1180px) {
+  .closed-cover { width: min(332px, 30vw); }
+}
+
+@media (max-width: 900px) and (min-width: 761px) {
+  .closed-cover { width: min(312px, 35vw); }
+}
+
+@media (max-width: 760px) {
+  .book-area.is-closed .closed-cover,
+  .book-area.is-opening .closed-cover {
+    width: min(292px, 76vw) !important;
+    aspect-ratio: .868 !important;
+  }
+
+  .closed-cover .cover-inner.approved-cover {
+    padding: 8.1% 8.3% 6.7% 11.7% !important;
+  }
+
+  .approved-cover h2 {
+    margin-top: 18px !important;
+    font-size: clamp(20px, 6.2vw, 25px) !important;
+    line-height: .94 !important;
+  }
+
+  .approved-cover-subtitle {
+    font-size: 5px !important;
+  }
+
+  .approved-cover-lineart {
+    left: 1%;
+    width: 100%;
+    height: 61%;
+    bottom: 5.2%;
+    opacity: .32;
+  }
+}
+
+@media (max-width: 420px) {
+  .book-area.is-closed .closed-cover,
+  .book-area.is-opening .closed-cover {
+    width: min(276px, 75vw) !important;
+  }
+
+  .approved-cover h2 {
+    font-size: clamp(19px, 6vw, 24px) !important;
+  }
+}
+
+@media (max-width: 760px) and (max-height: 700px) {
+  .book-area.is-closed .closed-cover,
+  .book-area.is-opening .closed-cover {
+    width: min(250px, 70vw) !important;
+  }
+}
