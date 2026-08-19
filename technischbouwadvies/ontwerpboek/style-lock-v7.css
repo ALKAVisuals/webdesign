@@ -1,1 +1,83 @@
-/* placeholder */
+/* M.1A V7 — final cover sketch refinement.
+   Loaded after style-lock-v6.css. Scope: closed cover only.
+   Goal: keep V6 typography/object styling, refine only the sketch field and micro-balance. */
+
+:root {
+  --v7-line: #625f59;
+}
+
+/* Keep V6 cover geometry intact. Only micro-balance the title block. */
+.approved-cover h2 {
+  margin-top: 23px;
+  max-width: 108px;
+  font-size: clamp(18.5px, 1.56vw, 23px) !important;
+  line-height: .95 !important;
+}
+
+.approved-cover-subtitle {
+  margin-top: 6.5px;
+}
+
+/* V7: a larger, slightly higher architectural sketch with stronger line hierarchy. */
+.approved-cover-lineart {
+  left: .5%;
+  bottom: 5.5%;
+  width: 101%;
+  height: 61.5%;
+  stroke: var(--v7-line);
+  stroke-width: .58;
+  opacity: .41;
+  mix-blend-mode: multiply;
+}
+
+.approved-cover-lineart .outline {
+  stroke-width: .84;
+  opacity: .93;
+}
+
+.approved-cover-lineart .detail {
+  stroke-width: .46;
+  opacity: .76;
+}
+
+.approved-cover-lineart .thin {
+  stroke-width: .30;
+  opacity: .50;
+}
+
+.approved-cover-lineart .faint {
+  stroke-width: .20;
+  opacity: .24;
+}
+
+.approved-cover-lineart .plant {
+  stroke-width: .34;
+  opacity: .52;
+}
+
+.approved-cover-lineart .ghost {
+  stroke-width: .18;
+  opacity: .18;
+}
+
+@media (max-width: 760px) {
+  .approved-cover h2 {
+    margin-top: 22px !important;
+    max-width: 101px;
+    font-size: clamp(17px, 5.15vw, 20.5px) !important;
+  }
+
+  .approved-cover-lineart {
+    left: 0;
+    width: 102%;
+    height: 62.5%;
+    bottom: 5.35%;
+    opacity: .42;
+  }
+}
+
+@media (max-width: 420px) {
+  .approved-cover h2 {
+    font-size: clamp(16.7px, 5.05vw, 19.9px) !important;
+  }
+}
