@@ -1,0 +1,219 @@
+/* M.1A V6 — precision match against the approved VOLLEDIGE BOEKFLOW cover.
+   Loaded after style-lock.css. Scope: closed cover only; open spreads remain untouched. */
+
+:root {
+  --v6-paper: #f7f3ec;
+  --v6-ink: #2c2c29;
+  --v6-muted: #5a5953;
+  --v6-bronze: #aa7536;
+  --v6-line: #6e6b65;
+}
+
+/* Keep the physical proportions that already match, but make the object calmer. */
+.closed-cover {
+  width: min(348px, 26.7vw);
+  aspect-ratio: .872;
+  border: 1px solid rgba(72, 61, 49, .055);
+  background: var(--v6-paper);
+  box-shadow:
+    -1px 4px 8px rgba(50, 42, 32, .03),
+    6px 9px 17px rgba(50, 42, 32, .055),
+    11px 15px 26px rgba(50, 42, 32, .035);
+}
+
+.book-area.is-closed .book-shadow { opacity: 0 !important; }
+
+/* Reference has a thin but readable bound edge, not decorative stripes. */
+.closed-cover::before {
+  width: 8px;
+  opacity: .74;
+  background:
+    linear-gradient(90deg,
+      rgba(70, 59, 45, .12) 0 1px,
+      rgba(255,255,255,.58) 1px 2px,
+      rgba(93,78,59,.055) 2px 3px,
+      rgba(255,255,255,.40) 3px 4px,
+      rgba(91,76,57,.04) 4px 5px,
+      rgba(255,255,255,.24) 5px 7px,
+      rgba(72,61,47,.025) 7px 8px);
+}
+
+.closed-cover::after {
+  left: 8px;
+  width: 2px;
+  background: linear-gradient(90deg, rgba(72,61,48,.04), rgba(255,255,255,.17));
+}
+
+.closed-cover .cover-inner.approved-cover {
+  padding: 7.55% 7.9% 6.2% 11.6%;
+  background: var(--v6-paper);
+}
+
+/* Remove visible digital grain: the approved reference reads as clean warm stock. */
+.closed-cover .cover-inner.approved-cover::after {
+  content: none;
+}
+
+/* Small technical metadata, exactly subordinate to the title. */
+.approved-cover-kicker {
+  max-width: 68px;
+  color: #55564f;
+  font-size: 5.45px;
+  font-weight: 500;
+  line-height: 1.42;
+  letter-spacing: .145em;
+}
+
+.approved-cover-rule {
+  width: 16px;
+  margin-top: 8px;
+  background: var(--v6-bronze);
+}
+
+/* V6: substantially smaller title, lower on the page and less dominant. */
+.approved-cover h2 {
+  margin-top: 24px;
+  max-width: 112px;
+  color: var(--v6-ink);
+  font-family: "Libre Baskerville", Georgia, serif;
+  font-size: clamp(19px, 1.62vw, 24px) !important;
+  font-weight: 400;
+  line-height: .94 !important;
+  letter-spacing: -.032em !important;
+}
+
+.approved-cover-subtitle {
+  margin-top: 7px;
+  max-width: 102px;
+  color: var(--v6-bronze);
+  font-size: 4.75px !important;
+  font-weight: 500;
+  line-height: 1.44;
+  letter-spacing: .09em !important;
+}
+
+/* The drawing should read as a single architectural sketch field.
+   Stronger principal lines, very pale construction lines, and almost no visual noise. */
+.approved-cover-lineart {
+  left: 2.2%;
+  bottom: 4.8%;
+  width: 99%;
+  height: 57%;
+  stroke: var(--v6-line);
+  stroke-width: .60;
+  opacity: .38;
+  mix-blend-mode: multiply;
+}
+
+.approved-cover-lineart .outline {
+  stroke-width: .78;
+  opacity: .90;
+}
+
+.approved-cover-lineart .detail {
+  stroke-width: .43;
+  opacity: .70;
+}
+
+.approved-cover-lineart .thin {
+  stroke-width: .30;
+  opacity: .52;
+}
+
+.approved-cover-lineart .faint {
+  stroke-width: .21;
+  opacity: .28;
+}
+
+.approved-cover-lineart .plant {
+  stroke-width: .34;
+  opacity: .54;
+}
+
+.approved-cover-footer { gap: 9px; }
+
+.approved-cover-brand {
+  color: var(--v6-muted);
+  font-size: 4.75px;
+  letter-spacing: .10em;
+}
+
+.approved-cover-page {
+  padding-left: 24px;
+  color: #4b4a44;
+  font-family: "Libre Baskerville", Georgia, serif;
+  font-size: 6.7px;
+  font-weight: 400;
+}
+
+.approved-cover-page::before {
+  width: 16px;
+  background: var(--v6-bronze);
+}
+
+@media (max-width: 1180px) {
+  .closed-cover { width: min(329px, 29.7vw); }
+}
+
+@media (max-width: 900px) and (min-width: 761px) {
+  .closed-cover { width: min(308px, 34.5vw); }
+}
+
+@media (max-width: 760px) {
+  /* Slightly calmer phone presence and a modest upward correction in the closed state. */
+  .book-area.is-closed .closed-cover,
+  .book-area.is-opening .closed-cover {
+    width: min(282px, 73vw) !important;
+    aspect-ratio: .872 !important;
+    top: 47.5% !important;
+  }
+
+  .closed-cover .cover-inner.approved-cover {
+    padding: 7.7% 7.9% 6.35% 11.6% !important;
+  }
+
+  .approved-cover-kicker {
+    font-size: 5.25px;
+  }
+
+  .approved-cover h2 {
+    margin-top: 23px !important;
+    max-width: 105px;
+    font-size: clamp(17.5px, 5.35vw, 21.5px) !important;
+    line-height: .95 !important;
+  }
+
+  .approved-cover-subtitle {
+    margin-top: 7px;
+    font-size: 4.55px !important;
+  }
+
+  .approved-cover-lineart {
+    left: 1.8%;
+    width: 100%;
+    height: 58%;
+    bottom: 4.7%;
+    opacity: .39;
+  }
+
+  .approved-cover-brand { font-size: 4.55px; }
+  .approved-cover-page { font-size: 6.45px; }
+}
+
+@media (max-width: 420px) {
+  .book-area.is-closed .closed-cover,
+  .book-area.is-opening .closed-cover {
+    width: min(270px, 72vw) !important;
+  }
+
+  .approved-cover h2 {
+    font-size: clamp(17px, 5.15vw, 20.5px) !important;
+  }
+}
+
+@media (max-width: 760px) and (max-height: 700px) {
+  .book-area.is-closed .closed-cover,
+  .book-area.is-opening .closed-cover {
+    width: min(246px, 68vw) !important;
+  }
+}

@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="description" content="Fase M.1A V6 preview van het interactieve ontwerpboek van Technisch Bouwadvies.">
+  <title>Fase M.1A V6 — Precision match</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=20260819-2004">
+  <link rel="stylesheet" href="content-layouts.css?v=20260819-2004">
+  <link rel="stylesheet" href="book-lifecycle.css?v=20260819-2004">
+  <link rel="stylesheet" href="approved-book.css?v=20260819-2004">
+  <link rel="stylesheet" href="approved-book-fixes.css?v=20260819-2004">
+  <link rel="stylesheet" href="motion-polish.css?v=20260819-2004">
+  <link rel="stylesheet" href="mobile-polish.css?v=20260819-2004">
+  <link rel="stylesheet" href="accessibility-polish.css?v=20260819-2004">
+  <link rel="stylesheet" href="phase-m-visual-qa.css?v=20260819-2004">
+  <link rel="stylesheet" href="phase-m-mobile-repair.css?v=20260819-2004">
+  <link rel="stylesheet" href="phase-m-mobile-clarity.css?v=20260819-2004">
+  <link rel="stylesheet" href="phase-m-mobile-state.css?v=20260819-2004">
+  <link rel="stylesheet" href="phase-m-cover-fit.css?v=20260819-2004">
+  <link rel="stylesheet" href="style-lock.css?v=20260819-2004">
+  <link rel="stylesheet" href="style-lock-v6.css?v=20260819-2004">
+</head>
+<body>
+  <header class="presentation-header">
+    <a class="presentation-brand" href="#boek" aria-label="Technisch Bouwadvies ontwerpboek">
+      <span class="presentation-brand-mark" aria-hidden="true">TB</span>
+      <span><strong>TECHNISCH</strong><small>BOUWADVIES</small></span>
+    </a>
+    <span class="presentation-label">PROJECTVISUALISATIE</span>
+  </header>
+
+  <main class="presentation-main">
+    <section class="presentation-intro" id="boek">
+      <p class="presentation-eyebrow">VAN CONCEPT NAAR TECHNISCH ONTWERP</p>
+      <h1>Bekijk hoe een ontwerp<br>tot leven komt.</h1>
+      <p>Een rustig, beeldgedreven ontwerpverhaal waarin technische tekeningen, materiaalkeuzes en visualisaties samen één geheel vormen.</p>
+      <button class="presentation-open" id="startBook" type="button" aria-controls="book">Open ontwerpboek <span>→</span></button>
+    </section>
+
+    <section class="book-area is-closed" id="bookArea" data-lifecycle="closed" aria-label="Interactief ontwerpboek">
+      <div class="visually-hidden" aria-live="polite" aria-atomic="true">
+        <strong id="currentChapter">Ontwerpboek klaar om te openen</strong>
+        <div><span id="metaProgressBar"></span></div>
+      </div>
+
+      <div class="book-stage">
+        <div class="book-shadow" aria-hidden="true"></div>
+
+        <button class="closed-cover" id="coverStart" type="button" aria-label="Open het ontwerpboek" aria-controls="book">
+          <div class="cover-inner approved-cover">
+            <p class="approved-cover-kicker">TECHNISCH<br>ONTWERP</p>
+            <span class="approved-cover-rule" aria-hidden="true"></span>
+            <h2>ONTWERP<br>BOEK</h2>
+            <p class="approved-cover-subtitle">VAN CONCEPT NAAR<br>TECHNISCH ONTWERP</p>
+
+            <svg class="approved-cover-lineart" viewBox="0 0 920 520" aria-hidden="true">
+              <!-- quiet perspective ground -->
+              <path d="M34 462H866" class="thin"/>
+              <path d="M43 486L332 395M111 496L382 408M191 503L435 425M286 507L492 443M398 510L558 465" class="faint"/>
+              <path d="M74 447L668 220M128 466L734 248M252 486L695 329" class="faint"/>
+
+              <!-- long glazed extension, dominant foreground form -->
+              <path d="M88 431V326L437 354V469" class="outline"/>
+              <path d="M88 326L258 267L558 310L437 354" class="outline"/>
+              <path d="M105 338L258 286L528 324" class="thin"/>
+              <path d="M111 347V436M157 351V440M203 355V444M249 359V448M295 363V452M341 367V456M387 371V461" class="detail"/>
+              <path d="M105 389L426 409M104 420L431 442" class="thin"/>
+
+              <!-- restrained glass panel rhythm -->
+              <path d="M124 357L193 362V420L124 414ZM207 364L276 369V427L207 421ZM290 371L359 376V434L290 428" class="detail"/>
+              <path d="M159 360V417M242 367V424M325 374V431" class="faint"/>
+
+              <!-- connection volume -->
+              <path d="M437 354L558 310V438L437 469" class="outline"/>
+              <path d="M467 343V461M497 332V453M527 321V444" class="detail"/>
+              <path d="M438 392L558 354M438 431L558 393" class="thin"/>
+
+              <!-- two-storey house behind, quieter and offset right -->
+              <path d="M462 351V207L618 139L760 198V403" class="outline"/>
+              <path d="M462 207L618 268L760 198" class="outline"/>
+              <path d="M618 139V268" class="detail"/>
+              <path d="M445 219L618 122L781 190" class="thin"/>
+              <path d="M454 231L618 148L769 205" class="faint"/>
+              <path d="M463 267L618 326L760 257M463 322L618 380L760 313" class="thin"/>
+              <path d="M488 218V365M520 231V373M552 244V381M585 257V389" class="detail"/>
+              <path d="M648 256V394M679 244V397M711 231V400M738 219V402" class="detail"/>
+
+              <!-- windows: enough detail to read as architecture, not a diagram -->
+              <path d="M495 245L532 259V293L495 279ZM548 266L586 281V315L548 300Z" class="detail"/>
+              <path d="M496 304L533 318V353L496 338ZM549 325L587 339V374L549 359Z" class="detail"/>
+              <path d="M649 278L681 265V300L649 313ZM696 260L728 247V282L696 295Z" class="detail"/>
+              <path d="M649 333L682 320V355L649 368ZM697 315L729 302V337L697 350Z" class="detail"/>
+
+              <!-- terrace / plinth -->
+              <path d="M81 434L432 472M74 446L426 484M68 458L416 496" class="thin"/>
+
+              <!-- hand-drawn construction doubles, deliberately sparse -->
+              <path d="M82 319L258 259L566 303M99 333L262 280L544 318" class="faint"/>
+              <path d="M449 201L618 130L770 191M470 214L618 155L750 207" class="faint"/>
+              <path d="M618 123V90M600 132V101M637 131V98" class="faint"/>
+              <path d="M87 327L41 306M258 267L228 232M558 310L616 284M760 198L835 171" class="faint"/>
+
+              <!-- left planting -->
+              <path d="M58 450c5-35 17-62 36-80 15-14 34-21 54-20-21 8-36 21-44 39 19 0 34 10 44 28-25-11-51-3-90 33Z" class="plant"/>
+              <path d="M91 466c0-34-3-68-8-101M102 466c2-27 3-52 2-78" class="faint"/>
+
+              <!-- right tree, fine vertical silhouette -->
+              <path d="M777 439c-2-55 7-98 27-129 14-21 33-35 56-41-18 16-28 36-30 59 17-7 33-5 47 4-21 8-36 21-48 40 15 6 28 17 37 34-28-8-55 2-89 33Z" class="plant"/>
+              <path d="M812 461c4-48 3-93-3-137M823 461c7-39 13-75 17-109" class="faint"/>
+              <path d="M810 335l-25-25M822 320l6-31M834 341l27-27M842 369l30-8" class="faint"/>
+
+              <!-- calm site lines -->
+              <path d="M48 457c100-17 194-13 280 7M349 465c95-7 189-3 282 10M614 452c48-16 92-20 133-12" class="faint"/>
+            </svg>
+
+            <div class="approved-cover-footer">
+              <span class="approved-cover-brand">TECHNISCH BOUWADVIES</span>
+              <span class="approved-cover-page">01</span>
+            </div>
+          </div>
+        </button>
+
+        <div class="book" id="book" tabindex="0" role="region" aria-label="Blader door het ontwerpboek met de pijltjestoetsen of swipe">
+          <div class="page-stack stack-left" aria-hidden="true"></div>
+          <div class="page-stack stack-right" aria-hidden="true"></div>
+          <div class="book-spine" aria-hidden="true"></div>
+          <article class="book-page page-left" id="leftPage" aria-live="off"></article>
+          <article class="book-page page-right" id="rightPage" aria-live="off"></article>
+          <div class="page-turn" id="pageTurn" aria-hidden="true"><div class="turn-back"></div></div>
+        </div>
+
+        <div class="book-end" id="bookEnd" aria-hidden="true">
+          <p class="presentation-eyebrow">ONTWERPVERHAAL COMPLEET</p>
+          <h3>Van eerste idee naar een helder uitgewerkt ontwerp.</h3>
+          <p>Bekijk het verhaal opnieuw of ga verder naar Technisch Bouwadvies.</p>
+          <div class="book-end-actions">
+            <button class="presentation-open" id="restartBook" type="button" aria-controls="book">Bekijk opnieuw <span>↻</span></button>
+            <a class="presentation-link" href="https://technischbouwadvies.nl/">Technisch Bouwadvies <span>→</span></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="minimal-controls" aria-label="Boekbediening">
+        <button class="minimal-arrow" id="prevPage" type="button" aria-label="Vorige pagina" aria-controls="book">←</button>
+        <div class="minimal-position">
+          <span id="metaCount">00 / 08</span>
+          <div class="minimal-progress" aria-hidden="true"><span id="minimalProgress"></span></div>
+        </div>
+        <button class="minimal-arrow" id="nextPage" type="button" aria-label="Volgende pagina" aria-controls="book">→</button>
+        <button class="minimal-autoplay" id="autoplayToggle" type="button" aria-pressed="false" aria-label="Start automatisch bladeren" aria-controls="book">
+          <span class="play-icon" aria-hidden="true">▶</span>
+          <span class="visually-hidden" id="autoplayText">Autoplay uit</span>
+        </button>
+        <div class="visually-hidden" id="pageDots" aria-hidden="true"></div>
+      </div>
+    </section>
+  </main>
+
+  <noscript>Voor het interactieve ontwerpboek is JavaScript nodig.</noscript>
+  <script src="phase-m-mobile-behavior.js?v=20260819-2004"></script>
+  <script type="module" src="book.js?v=20260819-2004"></script>
+  <script type="module" src="motion-polish.js?v=20260819-2004"></script>
+  <script type="module" src="accessibility-performance.js?v=20260819-2004"></script>
+</body>
+</html>
