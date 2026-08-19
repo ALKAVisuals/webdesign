@@ -25,8 +25,8 @@ Alle visuele correcties voor Projectintro worden uitsluitend op deze branch opge
 ## Nieuwe fysieke boek-pass
 A1. Linker boekrug / buitenrand — AFGEROND ALS RICHTING
 A2. Rechter page stack — AFGEROND ALS RICHTING
-A3. Onderrand en boekdikte — ACTIEF / REVIEW
-B1. Echte middenrug
+A3. Onderrand en boekdikte — AFGEROND ALS RICHTING
+B1. Echte middenrug — ACTIEF / REVIEW
 B2. Subtiele pagina-kromming
 C1. Contactschaduw
 C2. Papiergevoel
@@ -47,19 +47,27 @@ F. Finale vergelijking + merge
 - Linker extra folio blijft verborgen
 - Mobiele permanente pagina blijft volledig 2D
 
-## A1 + A2 — verfijnde buitenranden
-- Linker rand compacter en donkerder gemaakt zodat deze meer als rug/boekblok leest en minder als een regelmatig lijnpatroon
-- Rechter page stack rijker en iets luchtiger gemaakt met onregelmatiger laagdiktes
-- Links en rechts zijn bewust niet meer symmetrisch
-- De buitenranden blijven achter het leesbare boekvlak en wijzigen de 36.5/63.5 compositie niet
+## A1 + A2 — vastgelegde buitenranden
+- Linker rand compacter en donkerder gemaakt zodat deze meer als rug/boekblok leest en minder als regelmatig lijnpatroon
+- Rechter page stack rijker en luchtiger gemaakt met onregelmatiger laagdiktes
+- Links en rechts bewust asymmetrisch gehouden
 
-## A3 — huidige onderrand en boekdikte
-- Nieuw doorlopend bottom page block toegevoegd zodat linker en rechter zijranden niet meer abrupt stoppen
+## A3 — vastgelegde onderrand en boekdikte
+- Doorlopend bottom page block toegevoegd zodat linker en rechter zijranden fysiek met elkaar verbonden zijn
 - Onderrand opgebouwd uit meerdere lichte papierlagen met wisselende dikte en contrast
-- Extra onderste laag toegevoegd met iets afwijkende inspringing zodat de dikte niet als één rechte grijze balk oogt
-- Buitenhoeken subtiel afgerond zodat het boek minder mathematisch vlak voelt
-- Contactschaduw onder de onderrand blijft bewust zeer beperkt; volledige schaduwbehandeling volgt pas in C1
-- Mobiel blijft voor deze stap ongewijzigd; alle desktop fysieke edges zijn daar nog verborgen
+- Extra onderste laag met afwijkende inspringing voorkomt het effect van één rechte grijze balk
+- Buitenhoeken subtiel afgerond
+- Volledige contactschaduwbehandeling blijft gereserveerd voor C1
+
+## B1 — huidige echte middenrug
+- Oude smalle digitale gutter vervangen door een 24 px brede, zeer zachte spine valley
+- In het hart van de rug staat slechts één dunne donkere kern in plaats van een harde scheidingslijn
+- Direct naast de kern zit een minimale lichte rebound/highlight, zoals licht op papier vlak naast een vouw
+- Linkerpagina krijgt in de laatste circa 22 px richting rug een zeer zachte donkere overgang
+- Hero krijgt in de eerste circa 18 px een iets diepere rugschaaduw zodat het beeld niet vlak tegen de tekstpagina plakt
+- Nieuwe `spine-foot` laat de middenrug onderaan visueel doorlopen in het eerder gebouwde bottom page block
+- Er zijn bewust nog geen page transforms of echte vervormingen toegevoegd; subtiele pagina-kromming volgt pas in B2
+- Mobiel blijft volledig ongemoeid: gutter, spine-foot en desktop fysieke randeffecten zijn daar verborgen
 
 ## Vaste preview
 `projectintro-style-lock-preview.html` is de actuele branch-preview. Per reviewstap gebruiken we daarnaast een nieuwe cache-veilige live wrapper.
