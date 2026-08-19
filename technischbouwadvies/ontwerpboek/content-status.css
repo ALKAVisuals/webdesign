@@ -1,0 +1,82 @@
+/* V0.8 — contentstatus: demo / in uitwerking / definitief. */
+.content-status {
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 7px;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  font-size: 7px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: .08em;
+  white-space: nowrap;
+}
+.content-status::before {
+  content: "";
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: currentColor;
+}
+.content-status.status-demo { color: #8a8379; background: rgba(138,131,121,.06); }
+.content-status.status-progress { color: #9a6b25; background: rgba(167,119,50,.09); }
+.content-status.status-final { color: #45674f; background: rgba(69,103,79,.08); }
+
+.status-overview {
+  margin: 0 2% 12px 20%;
+  display: grid;
+  grid-template-columns: minmax(150px, 1fr) auto;
+  gap: 12px 18px;
+  align-items: center;
+  font-size: 9px;
+  color: var(--muted);
+  transition: opacity .4s ease;
+}
+.status-overview strong { color: var(--ink); font-size: 9px; font-weight: 600; }
+.status-counts { display: flex; flex-wrap: wrap; gap: 10px; justify-content: flex-end; }
+.status-counts span { display: inline-flex; align-items: center; gap: 5px; white-space: nowrap; }
+.status-counts i { width: 6px; height: 6px; border-radius: 50%; display: inline-block; }
+.status-counts .demo i { background: #aaa399; }
+.status-counts .progress i { background: var(--bronze); }
+.status-counts .final i { background: #557861; }
+.status-track {
+  grid-column: 1 / -1;
+  height: 4px;
+  display: flex;
+  overflow: hidden;
+  border-radius: 999px;
+  background: rgba(96,88,75,.08);
+}
+.status-track span { height: 100%; min-width: 0; transition: flex-basis .35s ease; }
+.status-track .demo { background: #b8b0a5; }
+.status-track .progress { background: var(--bronze); }
+.status-track .final { background: #557861; }
+
+.dot { position: relative; }
+.dot.status-demo { box-shadow: inset 0 0 0 1px rgba(110,103,94,.16); }
+.dot.status-progress { box-shadow: inset 0 0 0 1px rgba(167,119,50,.46); }
+.dot.status-final { box-shadow: inset 0 0 0 1px rgba(69,103,79,.50); }
+.dot.status-progress::after,
+.dot.status-final::after {
+  content: "";
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  right: -1px;
+  top: -1px;
+  background: var(--bronze);
+}
+.dot.status-final::after { background: #557861; }
+
+.book-area.is-closed .status-overview,
+.book-area.is-opening .status-overview { opacity: .46; }
+
+@media (max-width: 760px) {
+  .status-overview { margin: 0 2% 10px; grid-template-columns: 1fr; }
+  .status-counts { justify-content: flex-start; }
+  .page-heading { flex-wrap: wrap; }
+  .content-status { margin-left: 0; }
+}
