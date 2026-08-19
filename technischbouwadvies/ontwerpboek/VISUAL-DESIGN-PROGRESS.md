@@ -89,217 +89,103 @@ Afgerond en op `main`:
 - Fase J — Mobile visual polish — PR #14
 - Fase K — Performance & accessibility — PR #15
 - Fase L — Integratieplan — PR #16
+- **Fase M — Visual QA & perfectionering — eerste pass op main via PR #18**
 
 Belangrijke bestanden:
 - `VISUAL-DESIGN-ROADMAP.md`
 - `VISUAL-DESIGN-PROGRESS.md`
 - `ASSET-GUIDELINES.md`
 - `INTEGRATION-PLAN.md`
-
-De standalone tool bevat desktop dubbele spread, mobiel single-page, swipe, keyboard, autoplay, reduced motion, premium page-turn, next-spread preload en image fallback.
+- `phase-m-visual-qa.css`
 
 ---
 
-## 5. Productie-repo — BEVESTIGD
+## 5. Fase M — huidige status
 
-De publieke website-repo is:
+### Eerste QA-bevinding
+De technische A+B-styling was aanwezig, maar belangrijke beeldspreads gebruikten nog eenvoudige placeholder-SVG's. Daardoor leek de browserimplementatie veel minder op de goedgekeurde visuele mockups.
+
+### PR #18 — gemerged naar `webdesign/main`
+Fase-M-pass 1 bevat:
+- echte architectuurbeelden voor Projectintro, Varianten, Interieur/ruimtelijke visualisatie, Exterieur en Resultaat
+- plattegrond blijft een technische `contain`-tekening
+- groter, dominanter boek
+- rustiger papierpatroon, gutter en contactschaduw
+- minder dominante controls
+- sterkere editorial witruimte
+- verbeterde variantengalerij
+- mobile varianten worden niet microscopisch weergegeven
+- extra stylesheet `phase-m-visual-qa.css`
+- cacheversies in `index.html` vernieuwd
+
+### Veilige live testomgeving
+Gebruik voor beoordeling uitsluitend:
+
+`https://alkavisuals.github.io/webdesign/technischbouwadvies/ontwerpboek/`
+
+Voeg bij twijfel een nieuwe querystring toe om lokale browsercache te omzeilen.
+
+---
+
+## 6. Productie — BEWUST GEPARKEERD
+
+Bevestigde productie-repo:
 
 **`ALKAVisuals/alkabouwadvies`**
 
-Niet verwarren met:
-- `ALKAVisuals/webdesign` — prototype/testlab
-- `ALKAVisuals/technischbouwadvies-dashboard` — dashboard, niet de publieke site
+Belangrijk:
+- productiehomepage `index.html` is niet aangepast voor het ontwerpboek
+- eerder aangemaakte integratiebranch `agent/design-process-book-integration` bestaat alleen als technisch referentiepunt
+- draft PR #7 is op 2026-08-19 **GESLOTEN ZONDER MERGE**
+- geen ontwerpboekcode is naar productie-`main` gegaan
+- geen wijzigingen aan de ALKA Visuals-website
 
-### Productiestack
-- statische HTML
-- homepage: `index.html`
-- veel bestaande homepage-CSS/JS staat inline
-- bestaand sitefont: Inter
-- gedeelde bestanden o.a. `site-header.css/js`, `site-responsive.css`, contact/footer bestanden
-- GSAP + ScrollTrigger en Lenis staan al op de homepage
-
-### Deploy
-De productie-repo bevat `netlify.toml` met:
-- `[build] publish = "."`
-- Netlify headers / redirects
-- redirects naar `https://technischbouwadvies.nl/`
-
-Daarom een merge naar productie-`main` behandelen als **potentieel live-impactvol**.
-
-De gebruiker heeft eerder aangegeven dat automatische Netlify-updates bewust waren uitgeschakeld/beperkt. Controleer vóór een uiteindelijke productie-merge nogmaals de actuele Netlify deployinstelling; zet niets automatisch aan.
+Vanaf nu alle ontwerpiteratie uitsluitend in `ALKAVisuals/webdesign` totdat de gebruiker het visueel expliciet goedkeurt.
 
 ---
 
-## 6. Huidige homepage-structuur
+## 7. Open QA in Fase M
 
-De actuele productie-homepage is geïnspecteerd.
-
-Relevante volgorde:
-- Hero
-- Toepassingen / projectcategorieën
-- USP-strip
-- Proces / werkwijze
-- Diensten
-- Trust
-- Prijzen
-- Calculator
-- Gallery
-- 3D-visualisatiedienst
-- overige informatie / FAQ / contact
-
-### Aanbevolen boekpositie
-
-**Na de USP-strip en vóór de bestaande Proces/Werkwijze-sectie.**
-
-Reden:
-1. bezoeker begrijpt eerst waarvoor Technisch Bouwadvies helpt
-2. daarna ziet hij het ontwerp visueel ontstaan
-3. daarna volgt logisch de operationele werkwijze
-
-Dit is de huidige integratiekeuze tenzij de gebruiker expliciet anders vraagt.
-
----
-
-## 7. Productie-integratiebranch — ACTIEF, NIET GEMERGED
-
-Productierepo:
-
-`ALKAVisuals/alkabouwadvies`
-
-Branch:
-
-`agent/design-process-book-integration`
-
-Draft PR:
-
-**PR #7 — `Prepare isolated designbook integration preview`**
-
-Status bij deze update:
-- OPEN
-- DRAFT
-- NIET GEMERGED
-- branch stond 0 commits achter op productie-`main`
-- homepage `index.html` is NIET gewijzigd
-- gedeelde site-header/site-CSS zijn NIET gewijzigd
-
-### Nieuwe bestanden op de productiebranch
-
-`designbook/designbook-data.js`
-- 8-spread productiecontent
-- gebruikt voorlopig alleen assets die al in de productie-repo bestaan
-- echte projectassets worden later vervangen
-
-`designbook/designbook.css`
-- volledig namespaced onder `.tba-designbook`
-- geen globale `body`, `html`, `button`, `a` of `:root` overrides
-- desktop + mobile + cover + page-turn + controls
-
-`designbook/designbook.js`
-- root-scoped selectors
-- injecteert component in `[data-designbook]`
-- autoplay
-- swipe
-- keyboard
-- reduced-motion
-- autoplay pauze buiten viewport
-- idle preload volgende pagina/spread
-- `saveData` respecteren
-
-`designbook-preview.html`
-- noindex/nofollow integratiepreview
-- staat los van de homepage
-- bedoeld voor QA vóór de homepage-hook
+Nog beoordelen op de live testpagina:
+- coververhouding en typografie
+- boekgrootte op desktop
+- projectintro
+- varianten
+- plattegrond
+- gevel & doorsnede
+- bouwdetail
+- interieur/materialen
+- exterieurrender
+- resultaat/CTA
+- paper/gutter/shadow
+- page-turn
+- controls
+- mobiel 390px / 360px / korte schermhoogte
 
 ### Belangrijk
-**Deze PR NIET mergen naar `main` voordat de preview visueel/functioneel is beoordeeld.**
+Fase M is pas klaar wanneer de gebruiker expliciet bevestigt dat de browserversie visueel overeenkomt met de goedgekeurde richting.
 
 ---
 
-## 8. CSS/JS-integratieregel — VAST
+## 8. Eerstvolgende stap
 
-Productiecomponent gebruikt:
+1. nieuwste GitHub Pages testversie openen
+2. cover + geopende spreads visueel beoordelen
+3. concrete verschillen met de goedgekeurde mockups per spread herstellen in `webdesign`
+4. indien nodig Fase-M-pass 2 / 3 uitvoeren
+5. pas na expliciete visuele goedkeuring opnieuw over productie-integratie praten
 
-```html
-<section class="tba-designbook" data-designbook></section>
-```
-
-Alle CSS blijft onder `.tba-designbook`.
-Alle JavaScript-selectors blijven binnen de componentroot.
-
-De standalone prototype-CSS mag nooit rechtstreeks naar de homepage worden gekopieerd.
+Geen productiebranch openen of homepage-hook opnieuw activeren vóór die goedkeuring.
 
 ---
 
-## 9. Fonts
+## 9. Overdracht naar nieuwe chat
 
-Productiesite gebruikt al Inter.
-
-Voor het goedgekeurde editorial karakter gebruikt de preview aanvullend **Libre Baskerville** als display-serif.
-
-Voor uiteindelijke homepage-integratie:
-- Inter hergebruiken
-- alleen Libre Baskerville 400/700 toevoegen als visuele QA bevestigt dat dit nodig blijft
-- `display=swap`
+> We gaan verder met het premium interactieve ontwerpboek voor Technisch Bouwadvies. Open in `ALKAVisuals/webdesign` eerst `technischbouwadvies/ontwerpboek/VISUAL-DESIGN-ROADMAP.md`, daarna `VISUAL-DESIGN-PROGRESS.md`, `ASSET-GUIDELINES.md` en `INTEGRATION-PLAN.md`. De A+B art direction, masterspread, Technical Line Art cover en 8-spread flow zijn definitief goedgekeurd. Fase M is actief. De eerste Fase-M-pass staat op `webdesign/main` via PR #18 en vervangt belangrijke placeholdervisuals door echte architectuurbeelden, vergroot het boek en verfijnt papier, controls en mobile. Alle verdere iteratie gebeurt uitsluitend in `webdesign`. Productie-repo `ALKAVisuals/alkabouwadvies` is bevestigd, maar draft PR #7 is gesloten zonder merge en productie moet onaangeraakt blijven totdat de gebruiker de testversie expliciet visueel goedkeurt.
 
 ---
 
-## 10. Assets
-
-Zie `ASSET-GUIDELINES.md`.
-
-Voor echte projectcontent later:
-- renders: AVIF/WebP
-- technische tekeningen: SVG waar schoon mogelijk, anders scherpe WebP/PNG
-- technische tekeningen = `contain`
-- renders = `cover` waar goedgekeurd
-- geen ruwe 4K/8K bronbestanden publiceren
-- alt-tekst en mobile crop controleren
-
----
-
-## 11. Open QA
-
-Nog NIET afgerond:
-- echte browser/screenshot-QA van productiepreview
-- desktop 1440 / 1280 / 1024
-- mobile 390 / 360 / korte schermhoogte
-- controleren tegen bestaande productie-CSS
-- autoplay + swipe + keyboard + Escape + reduced motion
-- Netlify Deploy Preview controleren indien beschikbaar
-
-De huidige omgeving kon eerdere GitHub Pages/raw-browserroutes niet betrouwbaar openen. Claim dus niet dat de preview visueel live is goedgekeurd zonder nieuwe controle.
-
----
-
-## 12. Exacte volgende stap
-
-**Niet mergen. Niet de homepage wijzigen.**
-
-Eerst:
-1. draft PR #7 opnieuw inspecteren
-2. bepalen of Netlify een Deploy Preview voor PR #7 heeft gemaakt
-3. previewpagina `designbook-preview.html` visueel/functioneel testen
-4. eventuele previewbugs herstellen op dezelfde productiebranch
-5. daarna pas een minimale homepage-hook ontwerpen
-
-De latere homepage-hook moet zo klein mogelijk zijn:
-- stylesheet/font include
-- `<section class="tba-designbook" data-designbook>` na USP en vóór Proces
-- module include voor `designbook/designbook.js`
-
-Omdat `index.html` groot is, moet de wijziging vooraf exact worden gecontroleerd; geen grote ongecontroleerde whole-file rewrite.
-
----
-
-## 13. Overdracht naar nieuwe chat
-
-Gebruik:
-
-> We gaan verder met het premium interactieve ontwerpboek voor Technisch Bouwadvies. Open in `ALKAVisuals/webdesign` eerst `technischbouwadvies/ontwerpboek/VISUAL-DESIGN-ROADMAP.md`, daarna `VISUAL-DESIGN-PROGRESS.md`, `ASSET-GUIDELINES.md` en `INTEGRATION-PLAN.md`. Lees alles volledig. De A+B art direction, masterspread, Technical Line Art cover en 8-spread boekflow zijn definitief goedgekeurd en mogen niet opnieuw worden ontworpen tenzij ik dat expliciet vraag. Het prototype/testlab staat op `ALKAVisuals/webdesign`. De bevestigde productie-repo is `ALKAVisuals/alkabouwadvies`, een statische site met Netlify-configuratie. Op productiebranch `agent/design-process-book-integration` staat draft PR #7 met vier uitsluitend nieuwe bestanden: `designbook-preview.html`, `designbook/designbook.css`, `designbook/designbook.js` en `designbook/designbook-data.js`. `index.html` is nog niet gewijzigd en PR #7 mag nog niet worden gemerged. De eerstvolgende taak is preview/Deploy Preview QA uitvoeren, bugs herstellen en pas daarna een minimale homepage-hook voorbereiden na de USP-strip en vóór Proces/Werkwijze. Zet niets automatisch live en controleer de actuele Netlify-deployinstelling vóór een productie-merge.
-
----
-
-## 14. Snelle status
+## 10. Snelle status
 
 **GOEDGEKEURD**
 - A+B art direction
@@ -308,25 +194,17 @@ Gebruik:
 - 8 spreadtypes
 - complete boekflow
 
-**PROTOTYPE OP MAIN (`webdesign`)**
-- visuals
+**OP TEST MAIN (`webdesign`)**
+- desktopvisuals
 - motion
 - mobile
 - performance/accessibility
-- integratieplan
+- Fase-M-pass 1
 
-**PRODUCTIE VOORBEREID**
-- repo `ALKAVisuals/alkabouwadvies` bevestigd
-- Netlify-config bevestigd
-- productiebranch gemaakt
-- draft PR #7 gemaakt
-- geïsoleerde component + preview toegevoegd
-
-**NIET GEDAAN**
-- productiehomepage aanpassen
-- PR #7 mergen
-- live zetten
+**PRODUCTIE**
+- niet aangepast
+- PR #7 gesloten zonder merge
 
 **NU**
-- preview QA
-- daarna minimale homepage-hook
+- live visuele QA op de GitHub Pages testversie
+- daarna gerichte Fase-M-correcties
