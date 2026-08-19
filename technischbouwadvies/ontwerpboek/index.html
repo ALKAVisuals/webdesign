@@ -15,6 +15,7 @@
   <link rel="stylesheet" href="approved-book-fixes.css">
   <link rel="stylesheet" href="motion-polish.css">
   <link rel="stylesheet" href="mobile-polish.css">
+  <link rel="stylesheet" href="accessibility-polish.css">
 </head>
 <body>
   <header class="presentation-header">
@@ -30,11 +31,11 @@
       <p class="presentation-eyebrow">VAN CONCEPT NAAR TECHNISCH ONTWERP</p>
       <h1>Bekijk hoe een ontwerp<br>tot leven komt.</h1>
       <p>Een rustig, beeldgedreven ontwerpverhaal waarin technische tekeningen, materiaalkeuzes en visualisaties samen één geheel vormen.</p>
-      <button class="presentation-open" id="startBook" type="button">Open ontwerpboek <span>→</span></button>
+      <button class="presentation-open" id="startBook" type="button" aria-controls="book">Open ontwerpboek <span>→</span></button>
     </section>
 
     <section class="book-area is-closed" id="bookArea" data-lifecycle="closed" aria-label="Interactief ontwerpboek">
-      <div class="visually-hidden" aria-live="polite">
+      <div class="visually-hidden" aria-live="polite" aria-atomic="true">
         <strong id="currentChapter">Ontwerpboek klaar om te openen</strong>
         <div><span id="metaProgressBar"></span></div>
       </div>
@@ -42,7 +43,7 @@
       <div class="book-stage">
         <div class="book-shadow" aria-hidden="true"></div>
 
-        <button class="closed-cover" id="coverStart" type="button" aria-label="Open het ontwerpboek">
+        <button class="closed-cover" id="coverStart" type="button" aria-label="Open het ontwerpboek" aria-controls="book">
           <div class="cover-inner approved-cover">
             <p class="approved-cover-kicker">TECHNISCH ONTWERP</p>
             <h2>ONTWERPBOEK</h2>
@@ -58,12 +59,12 @@
           </div>
         </button>
 
-        <div class="book" id="book" tabindex="0" aria-label="Blader door het ontwerpboek met de pijltjestoetsen of swipe">
+        <div class="book" id="book" tabindex="0" role="region" aria-label="Blader door het ontwerpboek met de pijltjestoetsen of swipe">
           <div class="page-stack stack-left" aria-hidden="true"></div>
           <div class="page-stack stack-right" aria-hidden="true"></div>
           <div class="book-spine" aria-hidden="true"></div>
-          <article class="book-page page-left" id="leftPage" aria-live="polite"></article>
-          <article class="book-page page-right" id="rightPage" aria-live="polite"></article>
+          <article class="book-page page-left" id="leftPage" aria-live="off"></article>
+          <article class="book-page page-right" id="rightPage" aria-live="off"></article>
           <div class="page-turn" id="pageTurn" aria-hidden="true"><div class="turn-back"></div></div>
         </div>
 
@@ -72,20 +73,20 @@
           <h3>Van eerste idee naar een helder uitgewerkt ontwerp.</h3>
           <p>Bekijk het verhaal opnieuw of ga verder naar Technisch Bouwadvies.</p>
           <div class="book-end-actions">
-            <button class="presentation-open" id="restartBook" type="button">Bekijk opnieuw <span>↻</span></button>
+            <button class="presentation-open" id="restartBook" type="button" aria-controls="book">Bekijk opnieuw <span>↻</span></button>
             <a class="presentation-link" href="https://technischbouwadvies.nl/">Technisch Bouwadvies <span>→</span></a>
           </div>
         </div>
       </div>
 
       <div class="minimal-controls" aria-label="Boekbediening">
-        <button class="minimal-arrow" id="prevPage" type="button" aria-label="Vorige spread">←</button>
+        <button class="minimal-arrow" id="prevPage" type="button" aria-label="Vorige spread" aria-controls="book">←</button>
         <div class="minimal-position">
           <span id="metaCount">0 / 08</span>
-          <div class="minimal-progress"><span id="minimalProgress"></span></div>
+          <div class="minimal-progress" aria-hidden="true"><span id="minimalProgress"></span></div>
         </div>
-        <button class="minimal-arrow" id="nextPage" type="button" aria-label="Volgende spread">→</button>
-        <button class="minimal-autoplay" id="autoplayToggle" type="button" aria-pressed="false" aria-label="Autoplay aan of uit">
+        <button class="minimal-arrow" id="nextPage" type="button" aria-label="Volgende spread" aria-controls="book">→</button>
+        <button class="minimal-autoplay" id="autoplayToggle" type="button" aria-pressed="false" aria-label="Start automatisch bladeren" aria-controls="book">
           <span class="play-icon" aria-hidden="true">Ⅱ</span>
           <span class="visually-hidden" id="autoplayText">Autoplay uit</span>
         </button>
@@ -97,5 +98,6 @@
   <noscript>Voor het interactieve ontwerpboek is JavaScript nodig.</noscript>
   <script type="module" src="book.js"></script>
   <script type="module" src="motion-polish.js"></script>
+  <script type="module" src="accessibility-performance.js"></script>
 </body>
 </html>
