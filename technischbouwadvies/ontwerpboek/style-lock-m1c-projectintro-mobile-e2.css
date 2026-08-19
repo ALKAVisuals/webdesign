@@ -1,0 +1,136 @@
+/* E2 — Projectintro mobile composition correction after real iPhone review.
+   Scope: mobile only. Keep the readable sheet permanently 2D and crisp; refine
+   lifecycle spacing, editorial scale and physical paper edges without touching desktop. */
+
+@media (max-width: 760px) {
+  /* Once the real book starts opening, the landing CTA must no longer reserve space. */
+  body:has(.book-area.is-opening) .presentation-intro,
+  body:has(.book-area.is-open) .presentation-intro,
+  body:has(.book-area.is-turning-next) .presentation-intro,
+  body:has(.book-area.is-turning-prev) .presentation-intro,
+  body:has(.book-area.is-ending) .presentation-intro,
+  body:has(.book-area.is-ended) .presentation-intro {
+    display: none !important;
+  }
+
+  body:has(.book-area.is-opening) .book-area,
+  body:has(.book-area.is-open) .book-area,
+  body:has(.book-area.is-turning-next) .book-area,
+  body:has(.book-area.is-turning-prev) .book-area {
+    padding-top: max(8px, env(safe-area-inset-top)) !important;
+  }
+
+  /* Keep the stage centred in the space that becomes available after the CTA disappears. */
+  body:has(.book-area.is-open) .book-stage,
+  body:has(.book-area.is-turning-next) .book-stage,
+  body:has(.book-area.is-turning-prev) .book-stage {
+    margin-top: 0 !important;
+  }
+
+  /* Make the paper packet less mechanically even: small offsets, mixed layer values
+     and a narrow right-hand outer edge instead of three perfect horizontal stripes. */
+  .book:has(.editorial-layout[data-spread="01"]) .stack-left {
+    top: 3px !important;
+    bottom: -7px !important;
+    transform: translate(1px, 3px) !important;
+    border-color: rgba(82, 69, 54, .045) !important;
+    border-radius: 2px 3px 5px 4px !important;
+    box-shadow:
+      0 1px 0 rgba(250,247,239,.98),
+      1px 3px 0 rgba(236,227,216,.86),
+      -1px 5px 0 rgba(246,239,230,.92),
+      2px 7px 0 rgba(211,200,187,.66),
+      3px 1px 0 rgba(170,156,140,.23) !important;
+  }
+
+  .book:has(.editorial-layout[data-spread="01"]) .stack-left::before {
+    content: "";
+    position: absolute;
+    z-index: 0;
+    top: 4px;
+    right: -3px;
+    bottom: 6px;
+    width: 3px;
+    border-radius: 0 2px 3px 0;
+    background: linear-gradient(90deg,
+      rgba(126,111,94,.22) 0%,
+      rgba(247,241,232,.88) 42%,
+      rgba(159,145,129,.22) 100%);
+    pointer-events: none;
+  }
+
+  /* The visible page keeps a clean print surface rather than a web-card shadow. */
+  .page-left:has(.editorial-text-page[data-spread="01"]),
+  .page-left:has(.editorial-visual-page[data-spread="01"]) {
+    border-color: rgba(78,66,51,.043) !important;
+    border-radius: 2px 2px 3px 2px !important;
+  }
+
+  /* Editorial hierarchy: slightly quieter than E1 after the real-device review. */
+  .editorial-text-page[data-spread="01"] .editorial-kicker {
+    margin-bottom: 29px !important;
+  }
+
+  .editorial-text-page[data-spread="01"] .editorial-title {
+    width: 156px !important;
+    max-width: 100% !important;
+  }
+
+  .editorial-text-page[data-spread="01"] .editorial-title::before {
+    font-size: 27.5px !important;
+    line-height: 1 !important;
+    letter-spacing: -.033em !important;
+  }
+
+  .editorial-text-page[data-spread="01"] .editorial-copy {
+    width: min(210px, 73%) !important;
+    max-width: min(210px, 73%) !important;
+    margin-top: 31px !important;
+  }
+
+  .editorial-text-page[data-spread="01"] .editorial-copy::before {
+    font-size: 9.55px !important;
+    line-height: 1.72 !important;
+    color: #716e67 !important;
+  }
+
+  .editorial-text-page[data-spread="01"] .editorial-footer-label {
+    font-size: 6.55px !important;
+    letter-spacing: .135em !important;
+  }
+
+  .minimal-controls {
+    margin-top: 10px !important;
+  }
+}
+
+@media (max-width: 420px) {
+  .editorial-text-page[data-spread="01"] .editorial-title {
+    width: 147px !important;
+  }
+
+  .editorial-text-page[data-spread="01"] .editorial-title::before {
+    font-size: 26px !important;
+  }
+
+  .editorial-text-page[data-spread="01"] .editorial-copy {
+    width: min(202px, 74%) !important;
+    max-width: min(202px, 74%) !important;
+    margin-top: 29px !important;
+  }
+
+  .editorial-text-page[data-spread="01"] .editorial-copy::before {
+    font-size: 9.35px !important;
+    line-height: 1.71 !important;
+  }
+}
+
+@media (max-width: 760px) and (orientation: landscape) {
+  .editorial-text-page[data-spread="01"] .editorial-title::before {
+    font-size: 24.5px !important;
+  }
+
+  .editorial-text-page[data-spread="01"] .editorial-copy {
+    margin-top: 21px !important;
+  }
+}
