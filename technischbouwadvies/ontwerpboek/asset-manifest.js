@@ -1,13 +1,15 @@
 export const pipelineConfig = {
-  version: 'APPROVED',
-  edition: 'A+B VISUAL SYSTEM'
+  version: 'PHASE-M',
+  edition: 'A+B VISUAL QA'
 };
+
+const prodAsset = (path) => `https://raw.githubusercontent.com/ALKAVisuals/alkabouwadvies/main/images/website-2026/${path}`;
 
 export const assetManifest = {
   '01-projectintro-visual': {
     type: 'full',
-    src: 'assets/project/12-exterieur-render.svg',
-    alt: 'Architectonische projectvisualisatie als introductie van het ontwerpverhaal',
+    src: prodAsset('projecten/voor-en-na-aanbouw-woning.webp'),
+    alt: 'Woning waarin de bestaande situatie overgaat naar een nieuw ontworpen aanbouw',
     fit: 'cover',
     label: 'Projectintro'
   },
@@ -17,21 +19,21 @@ export const assetManifest = {
     label: 'Ontwerpvarianten',
     items: [
       {
-        src: 'assets/project/04-variant-a.svg',
-        alt: 'Ontwerpvariant A',
-        fit: 'contain',
+        src: prodAsset('diensten/aanbouw-ontwerp-antraciet.webp'),
+        alt: 'Ontwerpvariant met een rustige antraciete materialisering',
+        fit: 'cover',
         label: 'Variant A'
       },
       {
-        src: 'assets/project/04-variant-b.svg',
-        alt: 'Ontwerpvariant B',
-        fit: 'contain',
+        src: prodAsset('diensten/aanbouw-ontwerp-houten-lamellen.webp'),
+        alt: 'Ontwerpvariant met houten lamellen',
+        fit: 'cover',
         label: 'Variant B'
       },
       {
-        src: 'assets/project/04-variant-c.svg',
-        alt: 'Ontwerpvariant C',
-        fit: 'contain',
+        src: prodAsset('diensten/aanbouw-ontwerp-metselwerk-hout.webp'),
+        alt: 'Ontwerpvariant met metselwerk en houtaccenten',
+        fit: 'cover',
         label: 'Variant C'
       }
     ]
@@ -43,17 +45,24 @@ export const assetManifest = {
     fit: 'contain',
     label: 'Plattegrond'
   },
+  '06-interieur-visual': {
+    type: 'full',
+    src: prodAsset('3d-visualisatie-aanbouw-schets-naar-realisatie.webp'),
+    alt: 'Architectonische 3D-visualisatie van een woningaanbouw',
+    fit: 'cover',
+    label: 'Ruimtelijke visualisatie'
+  },
   '07-exterieur-visual': {
     type: 'full',
-    src: 'assets/project/12-exterieur-render.svg',
-    alt: 'Exterieurvisualisatie van het ontwerp',
+    src: prodAsset('projecten/illustratieve-case-aanbouw-rijwoning.webp'),
+    alt: 'Architectonische exterieurvisualisatie van een woning met aanbouw',
     fit: 'cover',
     label: 'Exterieur impressie'
   },
   '08-resultaat-visual': {
     type: 'full',
-    src: 'assets/project/12-exterieur-render.svg',
-    alt: 'Eindvisualisatie van het uitgewerkte ontwerp',
+    src: prodAsset('homepage-hero-ontwerp-naar-realisatie.webp'),
+    alt: 'Van technische ontwerpschets naar een overtuigende architectonische eindvisualisatie',
     fit: 'cover',
     label: 'Projectresultaat'
   }
