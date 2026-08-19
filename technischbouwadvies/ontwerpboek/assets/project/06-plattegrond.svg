@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 820" role="img" aria-labelledby="title desc">
+  <title id="title">Technisch Bouwadvies V0.4 testplattegrond</title>
+  <desc id="desc">Een maatvaste schematische beganegrondplattegrond met bestaande woning en nieuwe uitbouw voor het testen van de ontwerpboek assetpijplijn.</desc>
+  <rect width="1200" height="820" fill="#fbfaf7"/>
+  <g fill="none" stroke="#202629" stroke-width="7" stroke-linejoin="miter">
+    <rect x="180" y="150" width="620" height="470"/>
+    <path d="M180 340h620M420 150v190M620 150v190M360 340v280M600 340v280"/>
+    <rect x="800" y="340" width="250" height="280" stroke="#aa7b35" stroke-width="10"/>
+    <path d="M800 410h250M855 410v210M925 410v210M995 410v210" stroke="#aa7b35" stroke-width="5"/>
+    <path d="M420 340a80 80 0 0 1 80 80M360 470a68 68 0 0 0-68 68" stroke-width="4"/>
+  </g>
+  <g fill="#596066" font-family="Arial, sans-serif" font-size="24">
+    <text x="205" y="190">WOONKAMER</text>
+    <text x="445" y="190">KEUKEN</text>
+    <text x="650" y="190">HAL</text>
+    <text x="815" y="375" fill="#8f682e">NIEUWE UITBOUW</text>
+  </g>
+  <g fill="none" stroke="#78736b" stroke-width="3">
+    <path d="M180 690h870M180 675v30M1050 675v30"/>
+    <path d="M110 150v470M95 150h30M95 620h30"/>
+  </g>
+  <g fill="#67625b" font-family="Arial, sans-serif" font-size="22">
+    <text x="565" y="730">10.200 mm</text>
+    <text x="72" y="410" transform="rotate(-90 72 410)">5.400 mm</text>
+  </g>
+  <g fill="#8f682e" font-family="Arial, sans-serif">
+    <text x="180" y="90" font-size="25" font-weight="700">BEGANE GROND · V0.4 PIPELINE TEST</text>
+    <text x="180" y="120" font-size="18">Tijdelijke technische asset — wordt later vervangen door jouw echte tekening</text>
+  </g>
+  <g fill="#777168" font-family="Arial, sans-serif" font-size="17">
+    <text x="180" y="780">Schaalindicatie 1:100 · demo voor asset-integratie</text>
+  </g>
+</svg>
