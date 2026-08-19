@@ -1,0 +1,60 @@
+/* E3 — mobile real-device correction after iPhone E2 review.
+   Fixes the bronze focus frame and removes the site header while the book is open,
+   preserving the 2D iOS-safe page and all E1/E2 visual rules. */
+
+@media (max-width: 760px) {
+  /* The bronze rectangle in the E2 screenshot is the accessibility focus ring on
+     the .book region. Keep button focus styles, but never frame the whole physical
+     page on mobile. */
+  .book:focus,
+  .book:focus-visible {
+    outline: none !important;
+    outline-offset: 0 !important;
+  }
+
+  /* Once the book is open it should read as the primary object, not as content
+     underneath the website masthead. Closed-cover state keeps the header intact. */
+  body:has(.book-area.is-opening) .presentation-header,
+  body:has(.book-area.is-open) .presentation-header,
+  body:has(.book-area.is-turning-next) .presentation-header,
+  body:has(.book-area.is-turning-prev) .presentation-header,
+  body:has(.book-area.is-ending) .presentation-header,
+  body:has(.book-area.is-ended) .presentation-header {
+    display: none !important;
+  }
+
+  body:has(.book-area.is-opening) .presentation-main,
+  body:has(.book-area.is-open) .presentation-main,
+  body:has(.book-area.is-turning-next) .presentation-main,
+  body:has(.book-area.is-turning-prev) .presentation-main {
+    min-height: 100svh !important;
+  }
+
+  body:has(.book-area.is-opening) .book-area,
+  body:has(.book-area.is-open) .book-area,
+  body:has(.book-area.is-turning-next) .book-area,
+  body:has(.book-area.is-turning-prev) .book-area {
+    padding-top: max(6px, env(safe-area-inset-top)) !important;
+  }
+
+  /* Reclaim the header height without making the book touch Safari chrome. */
+  body:has(.book-area.is-open) .book-stage,
+  body:has(.book-area.is-turning-next) .book-stage,
+  body:has(.book-area.is-turning-prev) .book-stage {
+    height: min(690px, calc(100svh - 92px)) !important;
+  }
+
+  /* Keep the physical page edge neutral after removing the focus ring. */
+  .page-left:has(.editorial-text-page[data-spread="01"]),
+  .page-left:has(.editorial-visual-page[data-spread="01"]) {
+    border-color: rgba(78,66,51,.045) !important;
+  }
+}
+
+@media (max-width: 420px) {
+  body:has(.book-area.is-open) .book-stage,
+  body:has(.book-area.is-turning-next) .book-stage,
+  body:has(.book-area.is-turning-prev) .book-stage {
+    height: min(650px, calc(100svh - 84px)) !important;
+  }
+}
