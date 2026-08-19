@@ -28,8 +28,8 @@ A2. Rechter page stack — AFGEROND ALS RICHTING
 A3. Onderrand en boekdikte — AFGEROND ALS RICHTING
 B1. Echte middenrug — AFGEROND ALS RICHTING
 B2. Subtiele pagina-kromming — AFGEROND ALS RICHTING
-C1. Contactschaduw — ACTIEF / REVIEW
-C2. Papiergevoel
+C1. Contactschaduw — AFGEROND ALS RICHTING
+C2. Papiergevoel — ACTIEF / REVIEW
 D. Projectintro-integratie
 E. Mobile vertaling
 F. Finale vergelijking + merge
@@ -72,16 +72,22 @@ F. Finale vergelijking + merge
 - Boven- en onderzijde hebben afzonderlijke zeer zachte highlights/schaduwen
 - Mobiel blijft de veilige 2D single-page versie; curvature overlays staan daar uit
 
-## C1 — huidige contactschaduw
-- De oude algemene grote drop-shadow is vervangen door een tweelaagse fysieke schaduwopbouw
-- Direct onder het boek ligt een korte, donkerdere contactschaduw die dicht tegen het bottom page block blijft
-- Links- en rechtsonder zit lokaal iets meer massa via zachte elliptische corner shadows; hierdoor voelt het boek aan de hoeken zwaarder zonder een donkere rechthoek te vormen
-- Daaronder ligt een veel bredere, lichtere secundaire schaduw met grotere blur en lagere opacity
-- De eigen `box-shadow` van de leesbare spread is sterk teruggebracht; de diepte komt nu vooral van de fysieke boekschaduwen in plaats van van een web-card shadow
-- Shadows van linker/rechter page stack en bottom edge zijn iets teruggenomen zodat ze niet dubbel tellen met de nieuwe contactschaduw
-- Het doel is dat het boek visueel op het oppervlak staat in plaats van als een kaart boven de achtergrond zweeft
-- Mobiel blijft inhoudelijk ongemoeid: de nieuwe desktop contact shadow is daar verborgen en de bestaande eenvoudige vlakke mobiele schaduw blijft actief
-- Papiermaterialiteit zelf is nog niet gewijzigd; dat volgt in C2
+## C1 — vastgelegde contactschaduw
+- Tweelaagse schaduwopbouw: korte donkere contactschaduw direct onder het boek plus brede zachte secundaire schaduw
+- Hoeken krijgen lokaal iets meer massa zonder een donkere rechthoek te vormen
+- Generieke web-card box-shadow sterk teruggebracht
+- Desktop fysieke contactshadow blijft mobiel uitgeschakeld
+
+## C2 — huidig papiergevoel
+- Papierbasis verfijnd naar een warm ivory `#faf7ef` met een zachtere warme omgeving `#eee8de`
+- Linker leesbare pagina gebruikt alleen zeer subtiele tonale radial/linear gradients; er is bewust geen zichtbare korrel of patroontextuur toegevoegd
+- Bovenlinks krijgt het papier een lichte natuurlijke highlight, onder/rechts een nauwelijks zichtbare warmere toonval
+- Richting de middenrug loopt de papierkleur geleidelijk van licht ivory naar iets warmer papier, zodat materiaal en B1/B2-rug beter op elkaar aansluiten
+- Een minimale top-highlight en bottom tone-shift geven de pagina materiaalgevoel zonder het ontwerp vuil of vintage te maken
+- De hero-afbeelding blijft volledig schoon: er is geen papiertexture/filter over de foto gelegd
+- Page stack en bottom edge zijn qua ivoortonen iets warmer en zachter gemaakt zodat ze dezelfde papiersoort suggereren als de zichtbare pagina
+- De globale overlay over de spread is verder teruggenomen zodat de afbeelding niet melkachtig wordt
+- Mobiel behoudt in C2 bewust een vlakke uniforme papierkleur; de desktop materiaal-overlays worden daar uitgeschakeld om iOS scherpte en rust te behouden
 
 ## Vaste preview
 `projectintro-style-lock-preview.html` is de actuele branch-preview. Per reviewstap gebruiken we daarnaast een nieuwe cache-veilige live wrapper.
