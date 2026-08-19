@@ -1,0 +1,161 @@
+/* Phase M — visual QA polish. Loaded last; safe test environment only. */
+
+/* The book should dominate the composition, not the surrounding interface. */
+.presentation-header {
+  min-height: 68px;
+  padding-block: 13px;
+  background: rgba(247,243,235,.72);
+  border-bottom-color: rgba(31,33,31,.055);
+}
+.presentation-brand-mark { width: 38px; height: 38px; }
+.presentation-label { opacity: .58; }
+.presentation-intro {
+  max-width: 700px;
+  padding-top: clamp(42px,5vw,70px);
+  padding-bottom: 10px;
+}
+.presentation-intro h1 { font-size: clamp(39px,4.65vw,66px); }
+.presentation-intro > p:not(.presentation-eyebrow) { max-width: 530px; }
+.presentation-open { margin-top: 22px; }
+
+.book-area {
+  width: min(1540px,100%);
+  padding-top: 0;
+  padding-bottom: 58px;
+}
+.book-stage {
+  height: clamp(610px,61vw,800px);
+}
+.book {
+  width: min(1240px,94%);
+  height: min(650px,80%);
+  filter: drop-shadow(0 29px 28px rgba(47,39,29,.14));
+}
+.book-shadow {
+  width: min(1100px,80%);
+  height: 82px;
+  bottom: 7.5%;
+  opacity: .82;
+  filter: blur(34px);
+}
+
+/* Paper should read as refined physical stock, not a visible digital pattern. */
+.book-page::before {
+  opacity: .055;
+  background-size: 5px 5px;
+}
+.book-spine { opacity: .42; width: 15px; }
+.page-left { box-shadow: inset -13px 0 21px rgba(73,59,42,.042); }
+.page-right { box-shadow: inset 13px 0 21px rgba(73,59,42,.038); }
+.page-stack { opacity: .74; }
+
+/* Editorial rhythm: more air, fewer visually competing labels. */
+.editorial-kicker { margin-bottom: 25px; }
+.editorial-title { max-width: 420px; }
+.editorial-copy { max-width: 315px; font-size: 10.5px; line-height: 1.8; }
+.editorial-rule { margin-top: 24px; margin-bottom: 27px; }
+.editorial-facts,
+.editorial-legend { max-width: 330px; }
+.editorial-footer-label { opacity: .72; }
+
+/* Real architecture imagery now gets the visual authority approved in the mockups. */
+.editorial-visual-page .asset-full,
+.editorial-visual-page .asset-full img,
+.editorial-visual-page .visual { width:100%; height:100%; }
+.editorial-visual-page .asset-full img {
+  object-position:center;
+  transform: scale(1.002);
+}
+.editorial-gallery-page .visual { flex:1; min-height:0; }
+.editorial-gallery-page .asset-gallery {
+  gap: 11px;
+}
+.editorial-gallery-page .asset-tile {
+  grid-template-rows: minmax(0,1fr) 26px;
+}
+.editorial-gallery-page .asset-tile img {
+  object-fit:cover !important;
+  object-position:center;
+  border-color: rgba(83,72,58,.12);
+}
+.editorial-gallery-page .asset-label {
+  padding-top: 9px;
+  color:#797268;
+  font-size:6.5px;
+  letter-spacing:.11em;
+}
+
+/* Technical pages stay quiet and precisely contained. */
+.editorial-technical-page .asset-single {
+  display:grid;
+  place-items:center;
+  padding: 10px 4px 2px;
+}
+.editorial-technical-page .asset-single img {
+  width:100%;
+  height:100%;
+  object-fit:contain !important;
+}
+.editorial-technical-page svg { stroke-width:.95; }
+.editorial-technical-page svg .thin { stroke-width:.48; }
+
+/* Controls should almost disappear until used. */
+.minimal-controls {
+  opacity:.68;
+  transition:opacity .25s ease;
+}
+.book-area:hover .minimal-controls,
+.minimal-controls:focus-within { opacity:1; }
+.minimal-arrow,
+.minimal-autoplay { border-color:rgba(31,33,31,.13); }
+.minimal-position { color:#817a71; }
+
+/* Closed cover: a little more physical presence, still restrained. */
+.closed-cover {
+  width:min(420px,72vw);
+  height:min(610px,79vh);
+  box-shadow:
+    -7px 20px 31px rgba(46,39,30,.14),
+    18px 30px 48px rgba(46,39,30,.15),
+    inset 5px 0 8px rgba(76,60,42,.04);
+}
+.approved-cover-lineart { opacity:.24; }
+
+@media (max-width: 900px) {
+  .book-stage { height:clamp(560px,72vw,690px); }
+  .book { width:96%; height:min(610px,82%); }
+}
+
+@media (max-width: 760px) {
+  .presentation-header { min-height:58px; padding:10px 18px; }
+  .presentation-brand-mark { width:34px; height:34px; }
+  .presentation-intro { padding:34px 22px 2px; }
+  .presentation-intro h1 { font-size:clamp(34px,10.4vw,48px); }
+  .presentation-intro > p:not(.presentation-eyebrow) { font-size:13px; line-height:1.7; }
+  .book-area { padding-inline:12px; padding-bottom:38px; }
+  .book-stage { height:min(74vh,670px); min-height:530px; }
+  .book {
+    width:min(430px,94vw);
+    height:min(610px,78vh);
+  }
+  .book-page { padding:32px 29px; }
+  .book-page::after { bottom:15px; }
+  .page-left::after { left:29px; }
+  .editorial-copy { font-size:10.5px; }
+  .editorial-gallery-page .asset-gallery {
+    grid-template-columns:1fr !important;
+    grid-auto-rows:minmax(0,1fr);
+    gap:10px;
+  }
+  .editorial-gallery-page .asset-tile { min-height:0; }
+  .editorial-gallery-page .asset-tile:nth-child(n+3) { display:none; }
+  .minimal-controls { opacity:.9; }
+}
+
+@media (max-width: 420px) {
+  .presentation-label { display:none; }
+  .presentation-brand > span:last-child { letter-spacing:.12em; }
+  .closed-cover { width:min(360px,82vw); height:min(535px,70vh); }
+  .book-stage { min-height:500px; }
+  .book { width:94vw; height:min(570px,74vh); }
+}
