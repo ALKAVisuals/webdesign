@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Fase M.1C V2 — Projectintro precision match</title>
+</head>
+<body>
+  <script>
+    fetch('fase-m-m1b-v1.html?v=20260819-2056', { cache: 'no-store' })
+      .then((response) => response.text())
+      .then((html) => {
+        html = html
+          .replaceAll('Fase M.1B V1', 'Fase M.1C V2')
+          .replace('</head>', '<link rel="stylesheet" href="style-lock-m1c-projectintro-v1.css?v=20260819-2056"><link rel="stylesheet" href="style-lock-m1c-projectintro-v2.css?v=20260819-2056"></head>')
+          .replaceAll('20260819-2028', '20260819-2056');
+        document.open();
+        document.write(html);
+        document.close();
+      })
+      .catch(() => {
+        document.body.innerHTML = '<p style="font-family:system-ui;padding:2rem">Preview kon niet worden geladen. Vernieuw de pagina.</p>';
+      });
+  </script>
+</body>
+</html>
