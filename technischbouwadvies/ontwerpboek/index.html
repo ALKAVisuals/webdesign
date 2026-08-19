@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Interactief ontwerpboek prototype voor Technisch Bouwadvies.">
-  <title>Ontwerpboek V0.1 — Technisch Bouwadvies</title>
+  <meta name="description" content="Interactief ontwerpboek prototype voor Technisch Bouwadvies — van tutorial naar praktijkontwerp.">
+  <title>Ontwerpboek V0.2 — Technisch Bouwadvies</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
@@ -12,16 +12,18 @@
 </head>
 <body>
   <header class="site-header">
-    <a class="brand" href="#" aria-label="Technisch Bouwadvies ontwerpboek demo">
+    <a class="brand" href="#boek" aria-label="Technisch Bouwadvies ontwerpboek prototype">
       <span class="brand-mark" aria-hidden="true"><i></i><i></i></span>
       <span class="brand-copy"><strong>TECHNISCH</strong><span>BOUWADVIES</span></span>
     </a>
+
     <nav class="nav" aria-label="Hoofdnavigatie">
       <a href="#boek">Ontwerpboek</a>
-      <a href="#proces">Proces</a>
-      <a href="#over">Over deze demo</a>
+      <a href="#proces">Werkwijze</a>
+      <a href="#over">Over prototype</a>
     </nav>
-    <span class="prototype-badge">Prototype V0.1</span>
+
+    <span class="prototype-badge">Prototype V0.2</span>
   </header>
 
   <main>
@@ -29,51 +31,81 @@
       <div class="hero-copy">
         <p class="eyebrow">TECHNISCH TEKENWERK &amp; VISUALISATIE</p>
         <h1>Van tutorial<br>naar echt ontwerp</h1>
-        <p class="lead">Alle ontwerpstappen in één automatisch bladerend boek.</p>
-        <p class="intro">Van leren en oefenen met TD Vision U naar een eigen praktijkontwerp, technische tekeningen en realistische interieur- en exterieurrenders.</p>
+        <p class="lead">Een automatisch bladerend ontwerpverhaal van eerste leerstap tot technisch en visueel eindresultaat.</p>
+        <p class="intro">De demo laat zien hoe kennis uit een TD Vision U-traject later kan worden vertaald naar een eigen praktijkproject met schetsen, bouwkundige tekeningen, materiaalkeuzes en interieur- en exterieurrenders.</p>
+
         <div class="hero-actions">
-          <button class="button button-dark" id="startBook" type="button">Bekijk proces <span>→</span></button>
-          <a class="button button-light" href="#proces">Bekijk hoofdstukken <span>↓</span></a>
+          <button class="button button-dark" id="startBook" type="button">Start het boek <span>→</span></button>
+          <a class="button button-light" href="#proces">Bekijk de opbouw <span>↓</span></a>
         </div>
-        <div class="trust-line"><span class="trust-icon">✓</span><span>Los prototype · technischbouwadvies.nl blijft onaangeraakt</span></div>
+
+        <div class="trust-line">
+          <span class="trust-icon">✓</span>
+          <span>Los testprototype · geen koppeling met technischbouwadvies.nl</span>
+        </div>
       </div>
 
-      <div class="book-stage" aria-label="Interactief ontwerpboek">
-        <div class="book-shadow" aria-hidden="true"></div>
-        <div class="closed-cover" aria-hidden="true">
-          <div class="cover-mark"><span></span><span></span></div>
-          <div class="cover-title">ONTWERPBOEK</div>
-          <div class="cover-subtitle">Van tutorial<br>naar praktijk</div>
-          <div class="cover-rule"></div>
+      <div class="book-area">
+        <div class="book-meta" aria-live="polite">
+          <div>
+            <span class="meta-label">Huidig hoofdstuk</span>
+            <strong id="currentChapter">01 · Referentie & briefing</strong>
+          </div>
+          <div class="meta-progress" aria-hidden="true"><span id="metaProgressBar"></span></div>
+          <span class="meta-count" id="metaCount">1 / 14</span>
         </div>
 
-        <div class="book" id="book">
-          <div class="book-spine" aria-hidden="true"></div>
-          <article class="book-page page-left" id="leftPage" aria-live="polite"></article>
-          <article class="book-page page-right" id="rightPage" aria-live="polite"></article>
-          <div class="page-turn" id="pageTurn" aria-hidden="true"></div>
+        <div class="book-stage" aria-label="Interactief ontwerpboek">
+          <div class="book-shadow" aria-hidden="true"></div>
+
+          <div class="closed-cover" aria-hidden="true">
+            <div class="cover-inner">
+              <div class="cover-mark"><span></span><span></span></div>
+              <p class="cover-kicker">TECHNISCH BOUWADVIES</p>
+              <div class="cover-title">ONTWERP<br>BOEK</div>
+              <div class="cover-subtitle">Van tutorial<br>naar praktijk</div>
+              <div class="cover-rule"></div>
+              <span class="cover-edition">V0.2 · PROCESS EDITION</span>
+            </div>
+          </div>
+
+          <div class="book" id="book" tabindex="0" aria-label="Blader door het ontwerpboek met de pijltjestoetsen of swipe">
+            <div class="page-stack stack-left" aria-hidden="true"></div>
+            <div class="page-stack stack-right" aria-hidden="true"></div>
+            <div class="book-spine" aria-hidden="true"></div>
+            <article class="book-page page-left" id="leftPage" aria-live="polite"></article>
+            <article class="book-page page-right" id="rightPage" aria-live="polite"></article>
+            <div class="page-turn" id="pageTurn" aria-hidden="true"><div class="turn-back"></div></div>
+          </div>
         </div>
 
-        <div class="book-controls">
-          <button class="circle-button" id="prevPage" type="button" aria-label="Vorige pagina">←</button>
+        <div class="book-toolbar">
+          <button class="circle-button" id="prevPage" type="button" aria-label="Vorige spread">←</button>
           <div class="dots" id="pageDots" aria-label="Paginanavigatie"></div>
-          <button class="circle-button" id="nextPage" type="button" aria-label="Volgende pagina">→</button>
+          <button class="circle-button" id="nextPage" type="button" aria-label="Volgende spread">→</button>
+          <button class="autoplay-toggle" id="autoplayToggle" type="button" aria-pressed="true">
+            <span class="play-icon" aria-hidden="true">▶</span>
+            <span id="autoplayText">Autoplay aan</span>
+          </button>
         </div>
-        <button class="autoplay-toggle" id="autoplayToggle" type="button" aria-pressed="true"><span class="play-icon">▶</span><span id="autoplayText">Autoplay aan</span></button>
+
+        <p class="interaction-hint">Sleep of swipe over het boek · gebruik ← → · autoplay elke 5 seconden</p>
       </div>
     </section>
 
-    <section class="process-strip" id="proces" aria-label="Onderdelen van het ontwerpboek">
-      <article><span class="process-icon">01</span><div><h2>Stap voor stap</h2><p>Van tutorial tot realisatie</p></div></article>
-      <article><span class="process-icon">02</span><div><h2>Technisch uitgewerkt</h2><p>Plattegrond, gevel en detail</p></div></article>
-      <article><span class="process-icon">03</span><div><h2>Visueel overtuigend</h2><p>Interieur- en exterieurrenders</p></div></article>
-      <article><span class="process-icon">04</span><div><h2>Makkelijk vervangbaar</h2><p>Later jouw echte projectbeelden</p></div></article>
+    <section class="process-strip" id="proces" aria-label="Opbouw van het ontwerpboek">
+      <article><span class="process-icon">01</span><div><h2>Leren &amp; modelleren</h2><p>Tutorial, referentie en basismodel</p></div></article>
+      <article><span class="process-icon">02</span><div><h2>Ontwerpen</h2><p>Schets, variant en materiaalkeuze</p></div></article>
+      <article><span class="process-icon">03</span><div><h2>Technisch uitwerken</h2><p>Plattegrond, gevel, doorsnede en detail</p></div></article>
+      <article><span class="process-icon">04</span><div><h2>Visualiseren</h2><p>Interieur, exterieur en eindpresentatie</p></div></article>
     </section>
 
     <section class="demo-note" id="over">
-      <p class="eyebrow">V0.1 — FUNCTIONEEL PROTOTYPE</p>
-      <h2>De techniek staat los van de uiteindelijke content.</h2>
-      <p>De pagina's hieronder zijn demo-inhoud. Zodra jouw echte ontwerp vordert, kunnen we per hoofdstuk de tijdelijke illustratie vervangen zonder het bladermechanisme opnieuw te bouwen.</p>
+      <div>
+        <p class="eyebrow">V0.2 — VISUELE PROTOTYPEFASE</p>
+        <h2>Het bladermechanisme blijft staan. De inhoud groeit mee met jouw echte project.</h2>
+      </div>
+      <p>Elke demo-pagina is opgezet als vervangbaar hoofdstuk. Zodra er echte screenshots, AutoCAD Architecture-tekeningen of renders beschikbaar zijn, kunnen die per stap worden geplaatst zonder de boeklogica opnieuw te bouwen.</p>
     </section>
   </main>
 
