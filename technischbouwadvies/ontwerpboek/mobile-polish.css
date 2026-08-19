@@ -1,0 +1,380 @@
+/* Fase J — mobile visual polish for the approved A+B book.
+   Desktop art direction stays untouched; this file only optimizes the single-page mobile experience. */
+
+@media (max-width: 760px) {
+  html,
+  body {
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  body {
+    overscroll-behavior-x: contain;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  .presentation-header {
+    padding-left: max(17px, env(safe-area-inset-left));
+    padding-right: max(17px, env(safe-area-inset-right));
+  }
+
+  .presentation-brand-mark {
+    width: 38px;
+    height: 38px;
+  }
+
+  .presentation-intro {
+    max-width: 560px;
+    padding: 34px 22px 6px;
+  }
+
+  .presentation-eyebrow {
+    margin-bottom: 14px;
+    font-size: 9px;
+  }
+
+  .presentation-intro h1 {
+    font-size: clamp(33px, 10vw, 42px);
+    line-height: 1.04;
+  }
+
+  .presentation-intro > p:not(.presentation-eyebrow) {
+    max-width: 440px;
+    margin-top: 18px;
+    font-size: 11.5px;
+    line-height: 1.65;
+  }
+
+  .presentation-open {
+    margin-top: 21px;
+    min-height: 44px;
+  }
+
+  .book-area {
+    padding: 0 max(10px, env(safe-area-inset-right)) calc(28px + env(safe-area-inset-bottom)) max(10px, env(safe-area-inset-left));
+  }
+
+  .book-stage {
+    height: min(650px, calc(100svh - 175px));
+    min-height: 490px;
+    perspective-origin: 50% 45%;
+  }
+
+  .closed-cover {
+    width: min(354px, 82vw);
+    height: auto;
+    aspect-ratio: .69;
+    max-height: min(72svh, 520px);
+  }
+
+  .approved-cover {
+    padding: 9% 10% 8%;
+  }
+
+  .approved-cover h2 {
+    margin-top: 15%;
+    font-size: clamp(35px, 11vw, 47px);
+  }
+
+  .approved-cover-lineart {
+    width: 96%;
+    margin-left: 1%;
+  }
+
+  .book {
+    width: min(430px, 90vw);
+    height: min(560px, calc(100svh - 220px), 126vw);
+    min-height: 430px;
+    grid-template-columns: 1fr;
+    touch-action: pan-y pinch-zoom;
+  }
+
+  .book-page {
+    padding: clamp(24px, 7.2vw, 31px) clamp(22px, 6.8vw, 29px);
+  }
+
+  .page-left,
+  .page-right {
+    border-radius: 4px;
+    box-shadow:
+      0 15px 34px rgba(44, 36, 27, .12),
+      inset 0 0 0 1px rgba(78, 67, 53, .035);
+  }
+
+  .page-left::after,
+  .page-right::after {
+    bottom: 13px;
+    font-size: 7px;
+  }
+
+  .page-left::after { left: 24px; }
+  .page-right::after { right: 24px; }
+
+  .stack-left {
+    width: 100%;
+    left: 0;
+    transform: translate(0, 4px);
+  }
+
+  .stack-right,
+  .book-spine,
+  .page-right[hidden] {
+    display: none;
+  }
+
+  .editorial-kicker {
+    margin-bottom: 14px;
+    font-size: 7.5px;
+    letter-spacing: .14em;
+  }
+
+  .editorial-title {
+    font-size: clamp(24px, 7.6vw, 30px);
+    line-height: 1.07;
+  }
+
+  .editorial-title.large {
+    font-size: clamp(28px, 8.8vw, 36px);
+  }
+
+  .editorial-rule {
+    width: 27px;
+    margin: 16px 0 18px;
+  }
+
+  .editorial-copy {
+    max-width: none;
+    font-size: 9.5px;
+    line-height: 1.65;
+  }
+
+  .editorial-footer-label {
+    padding-bottom: 0;
+    font-size: 6.5px;
+  }
+
+  .editorial-facts,
+  .editorial-legend {
+    padding-top: 12px;
+    gap: 5px 12px;
+    font-size: 7.2px;
+  }
+
+  .editorial-technical-page .visual {
+    flex: 1 1 auto;
+    min-height: 52%;
+    margin-top: 9px;
+  }
+
+  .editorial-technical-page svg {
+    min-height: 100%;
+    overflow: visible;
+  }
+
+  .editorial-gallery-page .variation-intro {
+    margin-bottom: 12px;
+  }
+
+  .editorial-gallery-page .visual {
+    flex: 1 1 auto;
+    min-height: 0;
+  }
+
+  .asset-gallery {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+  }
+
+  .asset-tile {
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-rows: 1fr;
+    align-items: stretch;
+    gap: 9px;
+    min-height: 0;
+  }
+
+  .asset-tile img {
+    min-width: 0;
+    min-height: 0;
+    object-fit: contain !important;
+  }
+
+  .asset-label {
+    width: 66px;
+    padding: 5px 0 0;
+    display: flex;
+    align-items: flex-start;
+    font-size: 6px;
+    line-height: 1.35;
+  }
+
+  .editorial-visual-page {
+    margin: calc(clamp(24px, 7.2vw, 31px) * -1) calc(clamp(22px, 6.8vw, 29px) * -1);
+  }
+
+  .editorial-visual-page .visual,
+  .asset-full,
+  .asset-full img,
+  .interior-scene {
+    width: 100%;
+    height: 100%;
+  }
+
+  .asset-full img {
+    object-position: center center;
+  }
+
+  .editorial-materials-page .material-swatches {
+    gap: 5px;
+  }
+
+  .material-swatches span {
+    height: 31px;
+  }
+
+  .material-swatches-labels {
+    gap: 5px;
+    font-size: 5.4px;
+  }
+
+  .editorial-materials-page .editorial-footer-label {
+    margin-top: 16px;
+  }
+
+  .editorial-cta-page .editorial-cta {
+    margin-top: 22px;
+    min-height: 44px;
+  }
+
+  .minimal-controls {
+    width: min(340px, 92%);
+    margin-top: 0;
+    gap: 8px;
+    padding-bottom: max(2px, env(safe-area-inset-bottom));
+  }
+
+  .minimal-arrow,
+  .minimal-autoplay {
+    width: 44px;
+    height: 44px;
+    flex: 0 0 44px;
+  }
+
+  .minimal-position {
+    width: 124px;
+    gap: 9px;
+    font-size: 7.5px;
+  }
+
+  .minimal-progress {
+    min-width: 64px;
+  }
+
+  .book-end {
+    width: min(360px, 88%);
+    padding: 34px 25px;
+  }
+
+  .book-end h3 {
+    font-size: clamp(27px, 8vw, 35px);
+  }
+
+  .book-end > p:not(.presentation-eyebrow) {
+    font-size: 10.5px;
+  }
+
+  .book-end-actions {
+    gap: 12px 20px;
+  }
+}
+
+@media (max-width: 390px) {
+  .presentation-intro {
+    padding-top: 28px;
+  }
+
+  .book-stage {
+    min-height: 455px;
+  }
+
+  .book {
+    width: 92vw;
+    min-height: 410px;
+  }
+
+  .book-page {
+    padding: 23px 21px;
+  }
+
+  .editorial-title {
+    font-size: 24px;
+  }
+
+  .editorial-copy {
+    font-size: 9px;
+  }
+
+  .editorial-facts,
+  .editorial-legend {
+    font-size: 6.8px;
+  }
+
+  .asset-label {
+    width: 57px;
+    font-size: 5.5px;
+  }
+
+  .material-swatches-labels {
+    display: none;
+  }
+
+  .minimal-controls {
+    gap: 4px;
+  }
+}
+
+@media (max-width: 760px) and (max-height: 700px) {
+  .presentation-intro {
+    padding-top: 24px;
+  }
+
+  .presentation-intro > p:not(.presentation-eyebrow) {
+    display: none;
+  }
+
+  .presentation-open {
+    margin-top: 13px;
+  }
+
+  .book-stage {
+    height: calc(100svh - 150px);
+    min-height: 455px;
+  }
+
+  .book {
+    height: min(500px, calc(100svh - 195px), 124vw);
+    min-height: 405px;
+  }
+
+  .editorial-title {
+    font-size: 23px;
+  }
+
+  .editorial-copy {
+    line-height: 1.55;
+  }
+
+  .editorial-facts,
+  .editorial-legend {
+    margin-top: 16px;
+  }
+}
+
+@media (hover: none) and (pointer: coarse) {
+  .minimal-arrow:hover,
+  .minimal-autoplay:hover {
+    background: transparent;
+    transform: none;
+  }
+}
