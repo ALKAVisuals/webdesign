@@ -17,8 +17,8 @@ Alle visuele correcties voor Projectintro worden vanaf nu uitsluitend op deze br
 2. Spreadverhouding & geometrie — AFGEROND
 3. Hero-afbeelding & beeldpresentatie — AFGEROND
 4. Chapter marker & titel — AFGEROND
-5. Bodycopy, witruimte & footer — ACTIEF / REVIEW
-6. Fysiek boekgevoel
+5. Bodycopy, witruimte & footer — AFGEROND
+6. Fysiek boekgevoel — ACTIEF / REVIEW
 7. Desktop + mobiel QA
 8. Final reference pass + finale merge
 
@@ -48,17 +48,30 @@ Alle visuele correcties voor Projectintro worden vanaf nu uitsluitend op deze br
 - Libre Baskerville als rustige editorial serif
 - Mobiel dezelfde hiërarchie met 30 px titelmaat
 
-## Stap 5 — huidige bodycopy, witruimte & footer
-- Bodycopy versmald naar max. 190 px / 74% van de linker pagina
-- Bodytekst iets kleiner en lichter gemaakt: 10.4 px, line-height 1.72
-- Tekst inhoudelijk iets ingekort zodat de kolom rustiger en editorialer valt
-- Afstand titel → bodycopy teruggebracht naar 29 px
-- Grote onderste witruimte bewust behouden als onderdeel van de compositie
-- `TECHNISCH BOUWADVIES` subtieler gezet op 7.2 px met meer letterspacing
-- Footer iets boven de folio gezet zodat merknaam en paginanummer niet concurreren
+## Stap 5 — vastgelegde bodycopy, witruimte & footer
+- Bodycopy max. 190 px / 74% van de linker pagina
+- Bodytekst 10.4 px met line-height 1.72
+- Copy inhoudelijk verkort voor een compactere editorial kolom
+- Titel → bodycopy afstand 29 px
+- Onderste witruimte bewust behouden als onderdeel van de compositie
+- `TECHNISCH BOUWADVIES` subtiel gezet op 7.2 px met ruime tracking
+- Footer boven de folio geplaatst zodat merknaam en paginanummer niet concurreren
 - Linker folio uitgelijnd met de hoofdinhoud en teruggebracht naar 8 px
-- Mobiel eigen smallere copykolom, 10.2 px bodytekst en subtielere footer/folio
-- Papier, gutter, page-stack en boekschaduw zijn in deze stap bewust niet gewijzigd
+- Mobiel eigen smallere copykolom en subtielere footer/folio
+
+## Stap 6 — huidig fysiek boekgevoel
+- Papier warmer gemaakt naar een zachte ivory/off-white basis (`#f8f4ec`)
+- Buitenachtergrond iets warmer en neutraler gemaakt zodat boek en omgeving loskomen zonder hard contrast
+- Digitale 1 px middenlijn vervangen door een zachte 15 px gutter met subtiele licht-/schaduwverloop
+- Linker pagina krijgt een nauwelijks zichtbare donkerder papierzone richting de rug
+- Rechter hero krijgt langs de rug een subtiele contactschaduw zodat beeld en tekstpagina als één fysieke spread samenkomen
+- Boekschaduw dichter tegen het object gebracht en veel zachter gemaakt
+- Onder het boek een zeer beperkte page-stack toegevoegd: enkele lichte papierlagen in plaats van opvallende gestapelde lijnen
+- Zachte contactschaduw onder de paginalagen toegevoegd voor een fysiek objectgevoel
+- Buitenrand teruggebracht tot een bijna onzichtbare hairline
+- Papier krijgt alleen zeer subtiele lichtvariatie; geen zware texture
+- Mobiel blijft volledig 2D: geen 3D-transforms, geen zichtbare gutter en alleen een zachte vlakke schaduw/page-edge
+- Typografie, copy, geometrie en hero-crop zijn in deze stap inhoudelijk niet gewijzigd
 
 ## Vaste preview
 `projectintro-style-lock-preview.html` is de visuele branch-preview. Deze wordt gedurende de style-lock steeds bijgewerkt zodat dezelfde link kan worden gebruikt voor review.
