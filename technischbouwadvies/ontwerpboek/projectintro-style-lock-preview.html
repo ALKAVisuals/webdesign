@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="robots" content="noindex,nofollow">
-  <title>Projectintro — Physical Book Pass · A1 + A2 + A3</title>
+  <title>Projectintro — Physical Book Pass · B1</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
@@ -16,69 +16,36 @@
     .stage{width:min(1080px,92vw);margin:0 auto}
     .label{margin:0 0 18px;text-align:center;font-size:11px;letter-spacing:.16em;color:#77736c}
 
-    /* PHYSICAL BOOK PASS A1 + A2 + A3 */
     .book-shell{position:relative;isolation:isolate}
     .book-shell::after{content:"";position:absolute;z-index:-3;left:4.5%;right:4%;bottom:-14px;height:20px;border-radius:50%;background:rgba(63,50,37,.12);filter:blur(10px);opacity:.46}
-
     .outer-edge{position:absolute;top:3px;bottom:3px;pointer-events:none;z-index:1}
 
-    /* A1 refinement — compact, slightly darker spine instead of a repeated stripe pattern. */
-    .outer-edge-left{
-      left:-8px;width:10px;border-radius:3px 0 0 3px;
-      background:linear-gradient(90deg,
-        rgba(72,61,50,.82) 0 1px,
-        rgba(226,217,207,.88) 1px 2.4px,
-        rgba(249,246,239,.98) 2.4px 4.8px,
-        rgba(166,154,140,.56) 4.8px 5.5px,
-        rgba(248,244,237,.96) 5.5px 8px,
-        rgba(112,98,84,.47) 8px 8.8px,
-        rgba(239,232,223,.76) 8.8px 10px);
-      box-shadow:-2px 2px 5px rgba(58,47,36,.10)
-    }
+    .outer-edge-left{left:-8px;width:10px;border-radius:3px 0 0 3px;background:linear-gradient(90deg,rgba(72,61,50,.82) 0 1px,rgba(226,217,207,.88) 1px 2.4px,rgba(249,246,239,.98) 2.4px 4.8px,rgba(166,154,140,.56) 4.8px 5.5px,rgba(248,244,237,.96) 5.5px 8px,rgba(112,98,84,.47) 8px 8.8px,rgba(239,232,223,.76) 8.8px 10px);box-shadow:-2px 2px 5px rgba(58,47,36,.10)}
     .outer-edge-left::before{content:"";position:absolute;left:-2px;top:7px;bottom:5px;width:2px;border-radius:2px 0 0 2px;background:linear-gradient(90deg,rgba(75,64,53,.48),rgba(232,224,214,.76));opacity:.70}
     .outer-edge-left::after{content:"";position:absolute;left:2.5px;top:2px;bottom:1px;width:1px;background:rgba(255,255,255,.45);opacity:.78}
 
-    /* A2 refinement — richer but less regular right-side page stack. */
-    .outer-edge-right{
-      right:-12px;width:14px;border-radius:0 3px 3px 0;
-      background:linear-gradient(90deg,
-        rgba(247,243,235,.99) 0 1.6px,
-        rgba(183,171,157,.52) 1.6px 2.2px,
-        rgba(250,247,240,.99) 2.2px 4.9px,
-        rgba(218,208,196,.70) 4.9px 5.5px,
-        rgba(246,241,233,.98) 5.5px 7.7px,
-        rgba(139,126,112,.46) 7.7px 8.5px,
-        rgba(250,246,239,.98) 8.5px 10.6px,
-        rgba(198,187,174,.65) 10.6px 11.3px,
-        rgba(240,233,224,.92) 11.3px 13px,
-        rgba(88,76,64,.64) 13px 14px);
-      box-shadow:3px 2px 6px rgba(58,47,36,.11)
-    }
+    .outer-edge-right{right:-12px;width:14px;border-radius:0 3px 3px 0;background:linear-gradient(90deg,rgba(247,243,235,.99) 0 1.6px,rgba(183,171,157,.52) 1.6px 2.2px,rgba(250,247,240,.99) 2.2px 4.9px,rgba(218,208,196,.70) 4.9px 5.5px,rgba(246,241,233,.98) 5.5px 7.7px,rgba(139,126,112,.46) 7.7px 8.5px,rgba(250,246,239,.98) 8.5px 10.6px,rgba(198,187,174,.65) 10.6px 11.3px,rgba(240,233,224,.92) 11.3px 13px,rgba(88,76,64,.64) 13px 14px);box-shadow:3px 2px 6px rgba(58,47,36,.11)}
     .outer-edge-right::before{content:"";position:absolute;right:-2px;top:8px;bottom:6px;width:2px;border-radius:0 2px 2px 0;background:linear-gradient(90deg,rgba(228,219,209,.76),rgba(91,79,67,.45));opacity:.66}
     .outer-edge-right::after{content:"";position:absolute;right:4.4px;top:3px;bottom:2px;width:1px;background:rgba(255,255,255,.46)}
 
-    /* A3 — bottom book block connects both outer edges into one physical object. */
-    .bottom-edge{
-      position:absolute;left:-5px;right:-7px;bottom:-8px;height:10px;z-index:1;pointer-events:none;border-radius:0 0 3px 3px;
-      background:linear-gradient(180deg,
-        rgba(250,247,240,.99) 0 1.4px,
-        rgba(205,194,181,.58) 1.4px 2.1px,
-        rgba(248,244,236,.98) 2.1px 4.2px,
-        rgba(228,218,207,.72) 4.2px 4.9px,
-        rgba(246,241,233,.96) 4.9px 7px,
-        rgba(175,161,146,.48) 7px 7.8px,
-        rgba(237,229,220,.86) 7.8px 10px);
-      box-shadow:0 3px 5px rgba(58,47,36,.09)
-    }
+    .bottom-edge{position:absolute;left:-5px;right:-7px;bottom:-8px;height:10px;z-index:1;pointer-events:none;border-radius:0 0 3px 3px;background:linear-gradient(180deg,rgba(250,247,240,.99) 0 1.4px,rgba(205,194,181,.58) 1.4px 2.1px,rgba(248,244,236,.98) 2.1px 4.2px,rgba(228,218,207,.72) 4.2px 4.9px,rgba(246,241,233,.96) 4.9px 7px,rgba(175,161,146,.48) 7px 7.8px,rgba(237,229,220,.86) 7.8px 10px);box-shadow:0 3px 5px rgba(58,47,36,.09)}
     .bottom-edge::before{content:"";position:absolute;left:1.6%;right:3.4%;top:-1px;height:1px;background:rgba(255,255,255,.68)}
     .bottom-edge::after{content:"";position:absolute;left:3px;right:9px;bottom:-2px;height:2px;border-radius:0 0 4px 4px;background:linear-gradient(90deg,rgba(205,194,181,.46),rgba(247,242,234,.78) 18%,rgba(215,204,192,.50) 61%,rgba(239,232,223,.74));opacity:.86}
 
+    /* B1 — physical center spine: a soft valley with a restrained dark core, not a flat divider line. */
+    .spine-foot{position:absolute;left:36.5%;bottom:-9px;width:18px;height:11px;transform:translateX(-50%);z-index:1;pointer-events:none;border-radius:0 0 8px 8px;background:radial-gradient(ellipse at 50% 0,rgba(72,58,44,.30) 0%,rgba(117,101,85,.18) 30%,rgba(234,226,216,.10) 62%,transparent 78%);opacity:.76}
+
     .book{display:grid;grid-template-columns:36.5% 63.5%;aspect-ratio:1.46;position:relative;z-index:2;overflow:hidden;background:var(--paper);border:1px solid rgba(83,68,50,.04);border-radius:1px 1px 2px 2px;box-shadow:0 13px 25px rgba(55,43,31,.085),0 3px 7px rgba(55,43,31,.045),0 1px 1px rgba(55,43,31,.025)}
     .book::before{content:"";position:absolute;inset:0;z-index:6;pointer-events:none;background:linear-gradient(180deg,rgba(255,255,255,.06),transparent 26%,rgba(92,73,51,.01) 100%);opacity:.34}
-    .gutter{position:absolute;z-index:7;pointer-events:none;top:0;bottom:0;left:36.5%;width:7px;transform:translateX(-50%);background:linear-gradient(90deg,rgba(76,59,40,.025),rgba(255,255,255,.08) 48%,rgba(71,54,37,.03));opacity:.42}
+
+    .gutter{position:absolute;z-index:9;pointer-events:none;top:0;bottom:0;left:36.5%;width:24px;transform:translateX(-50%);background:linear-gradient(90deg,transparent 0%,rgba(79,61,43,.020) 14%,rgba(68,52,36,.070) 38%,rgba(54,41,29,.125) 48%,rgba(48,36,25,.155) 50%,rgba(72,56,40,.080) 56%,rgba(255,255,255,.095) 70%,rgba(255,255,255,.035) 84%,transparent 100%);opacity:.86}
+    .gutter::before{content:"";position:absolute;top:0;bottom:0;left:50%;width:1px;transform:translateX(-50%);background:rgba(46,35,24,.24);box-shadow:-2px 0 4px rgba(54,41,29,.08),2px 0 4px rgba(255,255,255,.07);opacity:.76}
+    .gutter::after{content:"";position:absolute;top:0;bottom:0;left:calc(50% + 2px);width:1px;background:rgba(255,255,255,.13);opacity:.62}
 
     .page{position:relative;min-width:0}
     .left{padding:7.9% 9.5% 6.8% 15.2%;display:flex;flex-direction:column;background:linear-gradient(90deg,var(--paper) 0%,var(--paper) 91%,var(--paper-soft) 100%);box-shadow:inset -1px 0 rgba(77,62,44,.018)}
+    .left::after{content:"";position:absolute;z-index:5;pointer-events:none;top:0;right:0;bottom:0;width:22px;background:linear-gradient(90deg,transparent 0%,rgba(83,65,46,.012) 34%,rgba(70,53,37,.048) 78%,rgba(61,46,32,.072) 100%);opacity:.72}
+
     .kicker{margin:0;color:var(--bronze);font-family:"DM Sans",system-ui,sans-serif;font-size:9px;line-height:1;letter-spacing:.12em;font-weight:600}
     .rule{width:29px;height:1px;background:var(--bronze);margin:30px 0 53px;opacity:.9}
     h1{margin:0;width:max-content;max-width:100%;display:flex;flex-direction:column;align-items:flex-start;font-family:"Libre Baskerville",Georgia,serif;font-weight:400;font-size:clamp(29px,2.55vw,40px);line-height:1.08;letter-spacing:-.025em;color:var(--ink)}
@@ -87,30 +54,24 @@
     .brand{margin-top:auto;margin-bottom:0;color:#6e6b64;font-family:"DM Sans",system-ui,sans-serif;font-size:7.6px;font-weight:500;line-height:1;letter-spacing:.12em;white-space:nowrap}
 
     .page-no{display:none}
-    .right .page-no{display:block;position:absolute;right:3.2%;bottom:3.05%;z-index:8;font-family:"Libre Baskerville",Georgia,serif;font-size:8px;line-height:1;color:rgba(250,247,241,.94);text-shadow:0 1px 5px rgba(0,0,0,.28)}
+    .right .page-no{display:block;position:absolute;right:3.2%;bottom:3.05%;z-index:10;font-family:"Libre Baskerville",Georgia,serif;font-size:8px;line-height:1;color:rgba(250,247,241,.94);text-shadow:0 1px 5px rgba(0,0,0,.28)}
     .right{overflow:hidden;background:#24251f;isolation:isolate}
     .right img{position:absolute;inset:0;width:100%;height:100%;display:block;object-fit:cover;object-position:50% 52%;transform:scale(1.018);transform-origin:center center;filter:saturate(.90) contrast(1.04) brightness(.91)}
-    .right::before{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;background:linear-gradient(180deg,rgba(22,23,19,.01) 0%,rgba(17,18,15,.055) 100%),linear-gradient(90deg,rgba(19,20,17,.025) 0%,transparent 11%)}
-    .right::after{content:"";position:absolute;z-index:3;left:0;top:0;bottom:0;width:7px;pointer-events:none;background:linear-gradient(90deg,rgba(19,17,14,.07),rgba(19,17,14,.012) 55%,transparent);opacity:.42}
+    .right::before{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;background:linear-gradient(180deg,rgba(22,23,19,.01) 0%,rgba(17,18,15,.055) 100%)}
+    .right::after{content:"";position:absolute;z-index:4;left:0;top:0;bottom:0;width:18px;pointer-events:none;background:linear-gradient(90deg,rgba(22,17,12,.145) 0%,rgba(25,20,15,.070) 34%,rgba(25,20,15,.018) 70%,transparent 100%);opacity:.58}
 
     .status{margin:21px 0 0;text-align:center;color:#77736c;font-size:11px}
 
-    @media (min-width:761px) and (max-width:980px){
-      body{padding-left:18px;padding-right:18px}.stage{width:min(940px,95vw)}
-      .outer-edge-left{left:-7px;width:9px}.outer-edge-right{right:-10px;width:12px}.bottom-edge{left:-4px;right:-5px;bottom:-7px;height:9px}
-      .left{padding-left:14.4%;padding-right:9.2%}.rule{margin-top:24px;margin-bottom:42px}h1{font-size:34px}.copy{width:min(62%,205px);font-size:10.3px;margin-top:44px}.brand{font-size:7px}
-    }
+    @media (min-width:761px) and (max-width:980px){body{padding-left:18px;padding-right:18px}.stage{width:min(940px,95vw)}.outer-edge-left{left:-7px;width:9px}.outer-edge-right{right:-10px;width:12px}.bottom-edge{left:-4px;right:-5px;bottom:-7px;height:9px}.gutter{width:20px}.left{padding-left:14.4%;padding-right:9.2%}.rule{margin-top:24px;margin-bottom:42px}h1{font-size:34px}.copy{width:min(62%,205px);font-size:10.3px;margin-top:44px}.brand{font-size:7px}}
 
-    /* Mobile remains the approved crisp single-page view; physical desktop edges are still disabled. */
     @media(max-width:760px){
       html,body{min-height:100dvh}
       body{padding:calc(22px + env(safe-area-inset-top)) max(14px,env(safe-area-inset-right)) calc(44px + env(safe-area-inset-bottom)) max(14px,env(safe-area-inset-left))}
       .stage{width:min(390px,94vw)}.label{margin-bottom:14px;font-size:9px;letter-spacing:.12em}
-      .outer-edge,.bottom-edge{display:none}
-      .book-shell{transform:none;filter:none;perspective:none}.book-shell::after{left:8%;right:8%;bottom:-6px;height:9px;filter:none;opacity:.13;border-radius:50%;background:rgba(63,50,37,.10)}
+      .outer-edge,.bottom-edge,.spine-foot{display:none}.book-shell{transform:none;filter:none;perspective:none}.book-shell::after{left:8%;right:8%;bottom:-6px;height:9px;filter:none;opacity:.13;border-radius:50%;background:rgba(63,50,37,.10)}
       .book{display:block;width:100%;aspect-ratio:.72;transform:none!important;filter:none!important;perspective:none!important;box-shadow:0 7px 16px rgba(55,43,31,.065),0 1px 3px rgba(55,43,31,.03);outline:0!important;-webkit-transform:none!important}
       .book:focus,.book:focus-visible,.page:focus,.page:focus-visible{outline:0!important}.book::before{opacity:.12}.gutter{display:none}.right{display:none!important}
-      .left{width:100%;height:100%;padding:9% 8.5% 6.8%;background:var(--paper);box-shadow:none;transform:none!important;filter:none!important;-webkit-transform:none!important}
+      .left{width:100%;height:100%;padding:9% 8.5% 6.8%;background:var(--paper);box-shadow:none;transform:none!important;filter:none!important;-webkit-transform:none!important}.left::after{display:none}
       .kicker{font-size:8px}.rule{width:25px;margin:14px 0 31px}h1{font-size:30px;line-height:.97;letter-spacing:-.043em}.copy{width:min(76%,220px);margin-top:28px;font-size:10.2px;line-height:1.68;color:#716e67}.brand{margin-bottom:0;font-size:6.8px;letter-spacing:.14em}.status{font-size:9px;line-height:1.45;margin-top:15px}
     }
     @media(max-width:420px){.stage{width:min(365px,95vw)}.left{padding:9.2% 8.3% 6.9%}h1{font-size:28px}.copy{width:min(78%,205px);font-size:9.9px;line-height:1.67;margin-top:26px}.brand{font-size:6.5px}}
@@ -119,12 +80,13 @@
 </head>
 <body>
   <main class="stage">
-    <p class="label">PROJECTINTRO · PHYSICAL BOOK PASS · A1 + A2 + A3</p>
+    <p class="label">PROJECTINTRO · PHYSICAL BOOK PASS · B1 MIDDENRUG</p>
     <div class="book-shell">
       <span class="outer-edge outer-edge-left" aria-hidden="true"></span>
       <span class="outer-edge outer-edge-right" aria-hidden="true"></span>
       <span class="bottom-edge" aria-hidden="true"></span>
-      <section class="book" aria-label="Projectintro physical outer-edge and bottom-depth review spread" tabindex="-1">
+      <span class="spine-foot" aria-hidden="true"></span>
+      <section class="book" aria-label="Projectintro physical center-spine review spread" tabindex="-1">
         <article class="page left">
           <p class="kicker">01</p>
           <span class="rule" aria-hidden="true"></span>
@@ -140,7 +102,7 @@
         <span class="gutter" aria-hidden="true"></span>
       </section>
     </div>
-    <p class="status">A3 staat klaar voor review. Beoordeel nu de onderrand, boekdikte en aansluiting op de linker/rechter page stack; main blijft ongemoeid.</p>
+    <p class="status">B1 staat klaar voor review. Beoordeel nu alleen de middenrug: kern, diepte en overgang tussen linkerpagina en hero; main blijft ongemoeid.</p>
   </main>
 </body>
 </html>
