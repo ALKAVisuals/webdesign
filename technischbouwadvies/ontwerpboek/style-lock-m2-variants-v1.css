@@ -1,0 +1,300 @@
+/* M2 — Variantenvergelijking V1.
+   Scope: spread 02 desktop only. Bring the existing comparison spread into the
+   approved warm architectural-monograph system without changing content data,
+   assets, navigation or the mobile single-page implementation. */
+
+:root {
+  --m2-paper: #faf7ef;
+  --m2-paper-warm: #f5efe5;
+  --m2-ink: #242522;
+  --m2-muted: #716e67;
+  --m2-bronze: #a97636;
+}
+
+@media (min-width: 761px) {
+  /* Keep spread 02 as a classical equal-page opening, but give it the same
+     physical-book weight and proportions as the approved Projectintro spread. */
+  .book:has(.editorial-layout[data-spread="02"]) {
+    grid-template-columns: 50% 50% !important;
+    aspect-ratio: 1.46 !important;
+    filter:
+      drop-shadow(0 4px 4px rgba(54,42,31,.07))
+      drop-shadow(0 16px 22px rgba(63,50,37,.07)) !important;
+  }
+
+  .book:has(.editorial-layout[data-spread="02"]) .stack-left,
+  .book:has(.editorial-layout[data-spread="02"]) .stack-right {
+    width: 50% !important;
+    top: 3px !important;
+    bottom: -8px !important;
+    background: #f3ede4 !important;
+  }
+
+  .book:has(.editorial-layout[data-spread="02"]) .stack-left {
+    left: 0 !important;
+    right: auto !important;
+    transform: translate(-8px, 3px) !important;
+    border-radius: 3px 0 0 4px !important;
+    box-shadow:
+      -1px 0 0 rgba(74,62,50,.38),
+      -3px 0 0 #e7dfd4,
+      -5px 0 0 rgba(248,244,236,.94),
+      -7px 0 0 rgba(104,91,77,.32),
+      0 2px 0 #f8f4ec,
+      0 4px 0 #e9e1d6,
+      0 6px 0 #f4ede4,
+      0 8px 0 rgba(174,160,145,.38) !important;
+  }
+
+  .book:has(.editorial-layout[data-spread="02"]) .stack-right {
+    right: 0 !important;
+    left: auto !important;
+    transform: translate(9px, 3px) !important;
+    border-radius: 0 3px 4px 0 !important;
+    box-shadow:
+      1px 0 0 #faf6ef,
+      3px 0 0 rgba(188,176,162,.55),
+      5px 0 0 #f8f3eb,
+      7px 0 0 rgba(139,126,112,.34),
+      9px 0 0 rgba(89,77,65,.44),
+      0 2px 0 #f8f4ec,
+      0 4px 0 #e8e0d5,
+      0 6px 0 #f5eee5,
+      0 8px 0 rgba(176,162,147,.38) !important;
+  }
+
+  .book:has(.editorial-layout[data-spread="02"]) .book-spine {
+    left: 50% !important;
+    width: 24px !important;
+    transform: translateX(-50%) !important;
+    border-radius: 0 !important;
+    opacity: .84 !important;
+    background: linear-gradient(90deg,
+      transparent 0%,
+      rgba(79,61,43,.02) 15%,
+      rgba(68,52,36,.065) 38%,
+      rgba(48,36,25,.145) 50%,
+      rgba(72,56,40,.075) 58%,
+      rgba(255,255,255,.095) 72%,
+      transparent 100%) !important;
+  }
+
+  .book:has(.editorial-layout[data-spread="02"]) .book-spine::after {
+    top: 0 !important;
+    bottom: 0 !important;
+    background: rgba(46,35,24,.22) !important;
+    box-shadow: -2px 0 4px rgba(54,41,29,.075), 2px 0 4px rgba(255,255,255,.065) !important;
+  }
+
+  .book-stage:has(.book .editorial-layout[data-spread="02"]) .book-shadow {
+    width: min(980px, 78%) !important;
+    height: 38px !important;
+    bottom: 9.2% !important;
+    border-radius: 50% !important;
+    background: rgba(63,50,37,.09) !important;
+    filter: blur(18px) !important;
+    opacity: .40 !important;
+  }
+
+  /* Both pages share one warm print stock. The centre edges receive only local
+     curvature shading; no transform is applied to readable content. */
+  .page-left:has(.editorial-text-page[data-spread="02"]),
+  .page-right:has(.editorial-gallery-page[data-spread="02"]) {
+    border-color: rgba(83,68,50,.045) !important;
+    background:
+      radial-gradient(ellipse at 18% 12%, rgba(255,255,255,.28), transparent 42%),
+      linear-gradient(135deg, rgba(255,255,255,.045), transparent 48%, rgba(111,88,60,.015) 100%),
+      var(--m2-paper) !important;
+  }
+
+  .page-left:has(.editorial-text-page[data-spread="02"]) {
+    padding: 8.4% 10.5% 6.8% 9.8% !important;
+    border-radius: 2px 0 2px 3px !important;
+    box-shadow: inset -10px 0 18px rgba(63,50,35,.026) !important;
+  }
+
+  .page-right:has(.editorial-gallery-page[data-spread="02"]) {
+    padding: 7.6% 8.6% 6.8% 8.8% !important;
+    border-radius: 0 2px 3px 2px !important;
+    box-shadow: inset 10px 0 18px rgba(63,50,35,.022) !important;
+  }
+
+  .page-left:has(.editorial-text-page[data-spread="02"])::before {
+    opacity: .66 !important;
+    background: radial-gradient(ellipse 70% 104% at 100% 50%, rgba(54,40,27,.072) 0%, rgba(72,55,38,.036) 24%, transparent 68%) !important;
+  }
+
+  .page-right:has(.editorial-gallery-page[data-spread="02"])::before {
+    opacity: .62 !important;
+    background: radial-gradient(ellipse 70% 104% at 0% 50%, rgba(54,40,27,.064) 0%, rgba(72,55,38,.032) 24%, transparent 68%) !important;
+  }
+
+  /* Left narrative page: compact Swiss/monograph hierarchy with generous silence. */
+  .editorial-text-page[data-spread="02"] {
+    min-height: 100% !important;
+    align-items: flex-start !important;
+    justify-content: flex-start !important;
+  }
+
+  .editorial-text-page[data-spread="02"] .editorial-kicker {
+    margin: 0 0 34px !important;
+    padding: 0 !important;
+    color: var(--m2-bronze) !important;
+    font-family: "DM Sans", system-ui, sans-serif !important;
+    font-size: 8px !important;
+    font-weight: 600 !important;
+    line-height: 1 !important;
+    letter-spacing: .12em !important;
+  }
+
+  .editorial-text-page[data-spread="02"] .editorial-title {
+    width: min(290px, 82%) !important;
+    max-width: min(290px, 82%) !important;
+    margin: 0 !important;
+    color: var(--m2-ink) !important;
+    font-family: "Libre Baskerville", Georgia, serif !important;
+    font-size: clamp(28px, 2.15vw, 36px) !important;
+    font-weight: 400 !important;
+    line-height: 1.08 !important;
+    letter-spacing: -.035em !important;
+  }
+
+  .editorial-text-page[data-spread="02"] .editorial-rule {
+    display: block !important;
+    width: 28px !important;
+    height: 1px !important;
+    margin: 28px 0 34px !important;
+    background: var(--m2-bronze) !important;
+  }
+
+  .editorial-text-page[data-spread="02"] .editorial-copy {
+    width: min(265px, 78%) !important;
+    max-width: min(265px, 78%) !important;
+    margin: 0 !important;
+    color: var(--m2-muted) !important;
+    font-family: "DM Sans", system-ui, sans-serif !important;
+    font-size: 10px !important;
+    font-weight: 400 !important;
+    line-height: 1.72 !important;
+    letter-spacing: .002em !important;
+  }
+
+  .editorial-text-page[data-spread="02"] .editorial-footer-label {
+    margin-top: auto !important;
+    padding: 0 !important;
+    color: #706d66 !important;
+    font-family: "DM Sans", system-ui, sans-serif !important;
+    font-size: 6.8px !important;
+    font-weight: 500 !important;
+    line-height: 1 !important;
+    letter-spacing: .13em !important;
+  }
+
+  /* Comparison page: typography retreats so the three alternatives lead. */
+  .editorial-gallery-page[data-spread="02"] {
+    min-height: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+  }
+
+  .editorial-gallery-page[data-spread="02"] .editorial-kicker {
+    margin: 0 0 22px !important;
+    color: var(--m2-bronze) !important;
+    font-family: "DM Sans", system-ui, sans-serif !important;
+    font-size: 7.8px !important;
+    font-weight: 600 !important;
+    line-height: 1 !important;
+    letter-spacing: .13em !important;
+  }
+
+  .editorial-gallery-page[data-spread="02"] .editorial-title {
+    margin: 0 !important;
+    color: var(--m2-ink) !important;
+    font-family: "Libre Baskerville", Georgia, serif !important;
+    font-size: clamp(27px, 2vw, 34px) !important;
+    font-weight: 400 !important;
+    line-height: 1.05 !important;
+    letter-spacing: -.035em !important;
+  }
+
+  .editorial-gallery-page[data-spread="02"] .variation-intro {
+    width: 82% !important;
+    max-width: 340px !important;
+    margin: 8px 0 22px !important;
+    color: var(--m2-muted) !important;
+    font-family: "DM Sans", system-ui, sans-serif !important;
+    font-size: 9.2px !important;
+    line-height: 1.55 !important;
+  }
+
+  .editorial-gallery-page[data-spread="02"] .visual {
+    flex: 1 1 auto !important;
+    min-height: 0 !important;
+    height: auto !important;
+    overflow: visible !important;
+  }
+
+  .editorial-gallery-page[data-spread="02"] .asset-gallery {
+    height: 100% !important;
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 12px !important;
+  }
+
+  .editorial-gallery-page[data-spread="02"] .asset-tile {
+    display: grid !important;
+    grid-template-rows: minmax(0, 1fr) auto !important;
+    min-width: 0 !important;
+    overflow: hidden !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+  }
+
+  .editorial-gallery-page[data-spread="02"] .asset-tile img {
+    width: 100% !important;
+    height: 100% !important;
+    min-height: 0 !important;
+    display: block !important;
+    object-fit: cover !important;
+    object-position: 50% 50% !important;
+    border: 1px solid rgba(83,68,50,.08) !important;
+    filter: saturate(.90) contrast(1.025) brightness(.96) !important;
+  }
+
+  .editorial-gallery-page[data-spread="02"] .asset-tile:nth-child(1) img { object-position: 47% 50% !important; }
+  .editorial-gallery-page[data-spread="02"] .asset-tile:nth-child(2) img { object-position: 50% 50% !important; }
+  .editorial-gallery-page[data-spread="02"] .asset-tile:nth-child(3) img { object-position: 53% 50% !important; }
+
+  .editorial-gallery-page[data-spread="02"] .asset-label {
+    position: static !important;
+    inset: auto !important;
+    margin: 8px 0 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+    background: transparent !important;
+    color: #747069 !important;
+    font-family: "DM Sans", system-ui, sans-serif !important;
+    font-size: 6.7px !important;
+    font-weight: 500 !important;
+    line-height: 1 !important;
+    letter-spacing: .12em !important;
+    text-transform: uppercase !important;
+  }
+
+  /* Folios remain present but quiet, like printed book furniture. */
+  .page-left:has(.editorial-text-page[data-spread="02"])::after,
+  .page-right:has(.editorial-gallery-page[data-spread="02"])::after {
+    display: block !important;
+    bottom: 3.05% !important;
+    color: rgba(82,78,71,.68) !important;
+    font-family: "Libre Baskerville", Georgia, serif !important;
+    font-size: 7px !important;
+    line-height: 1 !important;
+    letter-spacing: 0 !important;
+  }
+
+  .page-left:has(.editorial-text-page[data-spread="02"])::after { left: 6.2% !important; }
+  .page-right:has(.editorial-gallery-page[data-spread="02"])::after { right: 6.2% !important; }
+}
