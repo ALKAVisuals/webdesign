@@ -1,24 +1,80 @@
 const svgElevation = `
-<svg viewBox="0 0 520 330" role="img" aria-label="Technisch gevelaanzicht">
-  <path d="M58 268V128L210 59l151 69v140z"/>
-  <path d="M361 268v-90h104v90z"/>
-  <rect x="90" y="157" width="58" height="66"/><rect x="250" y="157" width="58" height="66"/>
-  <rect x="169" y="192" width="61" height="76"/>
-  <path d="M379 192h68v76h-68zM401 192v76M425 192v76"/>
-  <line x1="35" y1="268" x2="485" y2="268" class="thin"/>
-  <path d="M58 292h407M58 285v14M465 285v14" class="thin"/>
-  <text x="220" y="313" font-size="9" fill="#777168" stroke="none">GEVEL ZUID · NIEUWE SITUATIE</text>
+<svg viewBox="0 0 620 380" role="img" aria-label="Technisch gevelaanzicht van de nieuwe situatie">
+  <path d="M72 286V151L239 76l164 75v135" class="section-cut"/>
+  <path d="M403 286v-92h136v92" class="section-cut"/>
+  <path d="M72 151l167-75 164 75M403 194l68-30 68 30"/>
+
+  <rect x="108" y="177" width="61" height="70"/>
+  <rect x="306" y="177" width="61" height="70"/>
+  <rect x="205" y="209" width="67" height="77"/>
+  <path d="M122 177v70M155 177v70M320 177v70M353 177v70" class="thin"/>
+  <path d="M420 207h101v79M445 207v79M470 207v79M495 207v79" class="accent"/>
+
+  <path d="M82 163h312M82 170h312M82 264h312" class="ghost"/>
+  <path d="M415 198h111M415 205h111" class="ghost"/>
+  <path d="M72 286h467" class="section-cut"/>
+  <path d="M47 297h520" class="thin"/>
+
+  <path d="M72 322h467M72 314v16M539 314v16" class="thin"/>
+  <path d="M72 347h331M72 339v16M403 339v16" class="thin"/>
+  <path d="M403 347h136M403 339v16M539 339v16" class="thin"/>
+  <text x="286" y="318" font-size="9">10.200</text>
+  <text x="222" y="343" font-size="8">7.400</text>
+  <text x="458" y="343" font-size="8">2.800</text>
+
+  <path d="M43 286V76M35 286h16M35 151h16M35 76h16" class="thin"/>
+  <text x="27" y="192" font-size="8" transform="rotate(-90 27 192)">+ 6.300</text>
+  <path d="M554 286V194M547 286h14M547 194h14" class="thin"/>
+  <text x="574" y="245" font-size="8" transform="rotate(-90 574 245)">+ 2.850</text>
+
+  <path d="M55 286h12M55 243h12M55 194h12M55 151h12" class="accent"/>
+  <text x="75" y="302" font-size="7" class="accent-text">± 0.000</text>
+  <text x="75" y="146" font-size="7" class="accent-text">+ 3.150</text>
+
+  <text x="72" y="35" font-size="9" class="accent-text">GEVEL ZUID · NIEUWE SITUATIE</text>
+  <text x="72" y="52" font-size="7">SCHAALINDICATIE 1:100 · MAATVOERING IN MM</text>
+  <text x="416" y="185" font-size="7" class="accent-text">NIEUWE UITBOUW</text>
 </svg>`;
 
 const svgSection = `
-<svg viewBox="0 0 520 330" role="img" aria-label="Technische doorsnede">
-  <path d="M70 270V132L211 64l140 68v138M351 270v-88h101v88"/>
-  <path d="M70 132l141 68 140-68M211 64v206"/>
-  <path d="M351 182h101v88M351 182l48-31 53 31"/>
-  <path d="M49 270h422M47 285h427" class="thin"/>
-  <path d="M101 270v-59h72v59M254 270v-59h60v59"/>
-  <path d="M482 63v207M474 63h15M474 270h15" class="thin"/>
-  <text x="497" y="185" font-size="9" fill="#777168" stroke="none" transform="rotate(-90 497 185)">+ 6.300</text>
+<svg viewBox="0 0 620 380" role="img" aria-label="Technische doorsnede A-A van de nieuwe situatie">
+  <path d="M82 286V153L242 78l158 75v133" class="section-cut"/>
+  <path d="M400 286v-94h139v94" class="section-cut"/>
+  <path d="M82 153l160 66 158-66M242 78v208"/>
+  <path d="M400 192h139M400 192l66-31 73 31"/>
+
+  <path d="M82 286h457" class="section-cut"/>
+  <path d="M58 298h510" class="thin"/>
+  <path d="M73 306h476" class="ghost"/>
+
+  <path d="M112 286v-62h74v62M288 286v-62h67v62"/>
+  <path d="M118 224h62M294 224h55" class="thin"/>
+  <path d="M416 286v-62h105v62M451 224v62M486 224v62" class="accent"/>
+
+  <path d="M91 157l151 62 149-62M99 164l143 59 141-59" class="ghost"/>
+  <path d="M242 219h158M242 227h158" class="thin"/>
+  <path d="M400 191v95M409 191v95" class="ghost"/>
+
+  <path d="M73 286v25h-18v20h36v-20h-18M391 286v25h-18v20h36v-20h-18M530 286v25h-17v20h34v-20h-17" class="section-cut"/>
+  <path d="M52 331h500" class="ghost"/>
+
+  <path d="M45 286V78M37 286h16M37 219h16M37 153h16M37 78h16" class="thin"/>
+  <text x="28" y="190" font-size="8" transform="rotate(-90 28 190)">+ 6.300</text>
+  <text x="60" y="217" font-size="7" class="accent-text">+ 2.850</text>
+  <text x="60" y="150" font-size="7" class="accent-text">+ 3.150</text>
+  <text x="60" y="302" font-size="7" class="accent-text">± 0.000</text>
+
+  <path d="M565 286V192M557 286h16M557 192h16" class="thin"/>
+  <text x="585" y="245" font-size="8" transform="rotate(-90 585 245)">2.850</text>
+
+  <path d="M82 348h318M82 340v16M400 340v16" class="thin"/>
+  <path d="M400 348h139M400 340v16M539 340v16" class="thin"/>
+  <text x="228" y="344" font-size="8">7.400</text>
+  <text x="456" y="344" font-size="8">2.800</text>
+
+  <text x="82" y="35" font-size="9" class="accent-text">DOORSNEDE A–A · NIEUWE SITUATIE</text>
+  <text x="82" y="52" font-size="7">SCHAALINDICATIE 1:100 · NIVEAUS EN HOOFDMAATVOERING</text>
+  <text x="414" y="183" font-size="7" class="accent-text">UITBREIDING</text>
 </svg>`;
 
 const svgDetail = `
