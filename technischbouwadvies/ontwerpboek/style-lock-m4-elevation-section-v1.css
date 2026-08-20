@@ -1,0 +1,249 @@
+/* M4 — Gevel & Doorsnede V1.
+   Scope: spread 04 desktop only. A true technical double-spread: elevation left,
+   section right, with the drawings leading and the physical-book language kept calm. */
+
+:root {
+  --m4-paper: #faf7ef;
+  --m4-paper-warm: #f5efe5;
+  --m4-ink: #242522;
+  --m4-muted: #716e67;
+  --m4-bronze: #a97636;
+  --m4-line: #393936;
+  --m4-fine: #8b857d;
+}
+
+@media (min-width: 761px) {
+  .book:has(.editorial-layout[data-spread="04"]) {
+    grid-template-columns: 50% 50% !important;
+    aspect-ratio: 1.46 !important;
+    filter:
+      drop-shadow(0 4px 4px rgba(54,42,31,.07))
+      drop-shadow(0 16px 22px rgba(63,50,37,.07)) !important;
+  }
+
+  .book:has(.editorial-layout[data-spread="04"]) .stack-left,
+  .book:has(.editorial-layout[data-spread="04"]) .stack-right {
+    width: 50% !important;
+    top: 3px !important;
+    bottom: -8px !important;
+    background: #f3ede4 !important;
+  }
+
+  .book:has(.editorial-layout[data-spread="04"]) .stack-left {
+    left: 0 !important;
+    right: auto !important;
+    transform: translate(-8px,3px) !important;
+    border-radius: 3px 0 0 4px !important;
+    box-shadow:
+      -1px 0 0 rgba(74,62,50,.38),
+      -3px 0 0 #e7dfd4,
+      -5px 0 0 rgba(248,244,236,.94),
+      -7px 0 0 rgba(104,91,77,.32),
+      0 2px 0 #f8f4ec,
+      0 4px 0 #e9e1d6,
+      0 6px 0 #f4ede4,
+      0 8px 0 rgba(174,160,145,.38) !important;
+  }
+
+  .book:has(.editorial-layout[data-spread="04"]) .stack-right {
+    right: 0 !important;
+    left: auto !important;
+    transform: translate(9px,3px) !important;
+    border-radius: 0 3px 4px 0 !important;
+    box-shadow:
+      1px 0 0 #faf6ef,
+      3px 0 0 rgba(188,176,162,.55),
+      5px 0 0 #f8f3eb,
+      7px 0 0 rgba(139,126,112,.34),
+      9px 0 0 rgba(89,77,65,.44),
+      0 2px 0 #f8f4ec,
+      0 4px 0 #e8e0d5,
+      0 6px 0 #f5eee5,
+      0 8px 0 rgba(176,162,147,.38) !important;
+  }
+
+  .book:has(.editorial-layout[data-spread="04"]) .book-spine {
+    left: 50% !important;
+    width: 21px !important;
+    transform: translateX(-50%) !important;
+    border-radius: 0 !important;
+    opacity: .78 !important;
+    background: linear-gradient(90deg,
+      transparent 0%,
+      rgba(79,61,43,.018) 16%,
+      rgba(68,52,36,.058) 39%,
+      rgba(48,36,25,.135) 50%,
+      rgba(72,56,40,.068) 58%,
+      rgba(255,255,255,.09) 72%,
+      transparent 100%) !important;
+  }
+
+  .book:has(.editorial-layout[data-spread="04"]) .book-spine::after {
+    top: 0 !important;
+    bottom: 0 !important;
+    background: rgba(46,35,24,.20) !important;
+    box-shadow: -2px 0 4px rgba(54,41,29,.065), 2px 0 4px rgba(255,255,255,.055) !important;
+  }
+
+  .book-stage:has(.book .editorial-layout[data-spread="04"]) .book-shadow {
+    width: min(980px,78%) !important;
+    height: 38px !important;
+    bottom: 9.2% !important;
+    border-radius: 50% !important;
+    background: rgba(63,50,37,.09) !important;
+    filter: blur(18px) !important;
+    opacity: .40 !important;
+  }
+
+  .page-left:has(.editorial-technical-page[data-spread="04"]),
+  .page-right:has(.editorial-technical-page[data-spread="04"]) {
+    padding: 6.7% 6.5% 6.0% !important;
+    border-color: rgba(83,68,50,.045) !important;
+    background:
+      radial-gradient(ellipse at 18% 12%, rgba(255,255,255,.27), transparent 42%),
+      linear-gradient(135deg, rgba(255,255,255,.045), transparent 48%, rgba(111,88,60,.015) 100%),
+      var(--m4-paper) !important;
+  }
+
+  .page-left:has(.editorial-technical-page[data-spread="04"]) {
+    padding-left: 7.2% !important;
+    padding-right: 7.0% !important;
+    border-radius: 2px 0 2px 3px !important;
+    box-shadow: inset -10px 0 18px rgba(63,50,35,.024) !important;
+  }
+
+  .page-right:has(.editorial-technical-page[data-spread="04"]) {
+    padding-left: 7.0% !important;
+    padding-right: 7.2% !important;
+    border-radius: 0 2px 3px 2px !important;
+    box-shadow: inset 10px 0 18px rgba(63,50,35,.021) !important;
+  }
+
+  .page-left:has(.editorial-technical-page[data-spread="04"])::before {
+    opacity: .68 !important;
+    background:
+      radial-gradient(ellipse 72% 104% at 100% 50%, rgba(54,40,27,.073) 0%, rgba(72,55,38,.035) 24%, transparent 69%),
+      linear-gradient(90deg, transparent 79%, rgba(255,255,255,.095) 97%, rgba(255,255,255,.13) 100%) !important;
+  }
+
+  .page-right:has(.editorial-technical-page[data-spread="04"])::before {
+    opacity: .66 !important;
+    background:
+      radial-gradient(ellipse 72% 104% at 0% 50%, rgba(54,40,27,.069) 0%, rgba(72,55,38,.033) 24%, transparent 69%),
+      linear-gradient(90deg, rgba(255,255,255,.11) 0%, rgba(255,255,255,.06) 4%, transparent 22%) !important;
+  }
+
+  .editorial-technical-page[data-spread="04"] {
+    min-height: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+  }
+
+  .editorial-technical-page[data-spread="04"] .editorial-kicker {
+    margin: 0 0 15px !important;
+    color: var(--m4-bronze) !important;
+    font-family: "DM Sans", system-ui, sans-serif !important;
+    font-size: 7.1px !important;
+    font-weight: 600 !important;
+    line-height: 1 !important;
+    letter-spacing: .145em !important;
+  }
+
+  .editorial-technical-page[data-spread="04"] .editorial-title {
+    margin: 0 !important;
+    color: var(--m4-ink) !important;
+    font-family: "Libre Baskerville", Georgia, serif !important;
+    font-size: clamp(24px,1.68vw,29px) !important;
+    font-weight: 400 !important;
+    line-height: 1.04 !important;
+    letter-spacing: -.03em !important;
+  }
+
+  .editorial-technical-page[data-spread="04"] .editorial-copy {
+    width: min(320px,72%) !important;
+    max-width: min(320px,72%) !important;
+    margin: 8px 0 0 !important;
+    color: var(--m4-muted) !important;
+    font-family: "DM Sans", system-ui, sans-serif !important;
+    font-size: 8.2px !important;
+    font-weight: 400 !important;
+    line-height: 1.55 !important;
+    letter-spacing: .002em !important;
+  }
+
+  .editorial-technical-page[data-spread="04"] .visual {
+    flex: 1 1 auto !important;
+    width: 100% !important;
+    height: auto !important;
+    min-height: 0 !important;
+    margin-top: 18px !important;
+    overflow: visible !important;
+    display: grid !important;
+    place-items: center !important;
+  }
+
+  .editorial-technical-page[data-spread="04"] .visual > svg {
+    width: 100% !important;
+    height: 100% !important;
+    max-width: 100% !important;
+    max-height: 100% !important;
+    display: block !important;
+    overflow: visible !important;
+  }
+
+  .editorial-technical-page[data-spread="04"] .visual > svg path,
+  .editorial-technical-page[data-spread="04"] .visual > svg rect,
+  .editorial-technical-page[data-spread="04"] .visual > svg line,
+  .editorial-technical-page[data-spread="04"] .visual > svg polyline {
+    fill: none !important;
+    stroke: var(--m4-line) !important;
+    stroke-width: 1.25 !important;
+    vector-effect: non-scaling-stroke !important;
+  }
+
+  .editorial-technical-page[data-spread="04"] .visual > svg .thin {
+    stroke: var(--m4-fine) !important;
+    stroke-width: .72 !important;
+  }
+
+  .editorial-technical-page[data-spread="04"] .visual > svg .ghost {
+    stroke: #b5ada3 !important;
+    stroke-width: .62 !important;
+  }
+
+  .editorial-technical-page[data-spread="04"] .visual > svg .accent {
+    stroke: var(--m4-bronze) !important;
+    stroke-width: 1.05 !important;
+  }
+
+  .editorial-technical-page[data-spread="04"] .visual > svg .section-cut {
+    stroke: #252622 !important;
+    stroke-width: 2.45 !important;
+  }
+
+  .editorial-technical-page[data-spread="04"] .visual > svg text {
+    fill: #777168 !important;
+    stroke: none !important;
+    font-family: "DM Sans", Arial, sans-serif !important;
+    letter-spacing: .06em !important;
+  }
+
+  .editorial-technical-page[data-spread="04"] .visual > svg text.accent-text {
+    fill: var(--m4-bronze) !important;
+  }
+
+  .page-left:has(.editorial-technical-page[data-spread="04"])::after,
+  .page-right:has(.editorial-technical-page[data-spread="04"])::after {
+    display: block !important;
+    bottom: 3.0% !important;
+    color: rgba(82,78,71,.58) !important;
+    font-family: "Libre Baskerville", Georgia, serif !important;
+    font-size: 6.6px !important;
+    line-height: 1 !important;
+    letter-spacing: 0 !important;
+  }
+
+  .page-left:has(.editorial-technical-page[data-spread="04"])::after { left: 5.6% !important; }
+  .page-right:has(.editorial-technical-page[data-spread="04"])::after { right: 5.6% !important; }
+}
