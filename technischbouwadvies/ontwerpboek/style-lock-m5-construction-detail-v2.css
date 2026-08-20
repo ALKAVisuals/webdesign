@@ -1,0 +1,128 @@
+/* M5 — Bouwdetail V2.
+   Precision pass for spread 05 desktop. The left page recedes further and the
+   revised near-square technical plate now fills the right sheet almost completely. */
+
+@media (min-width: 761px) {
+  .book:has(.editorial-layout[data-spread="05"]) {
+    grid-template-columns: 35.8% 64.2% !important;
+  }
+
+  .book:has(.editorial-layout[data-spread="05"]) .stack-left {
+    width: 35.8% !important;
+  }
+
+  .book:has(.editorial-layout[data-spread="05"]) .stack-right {
+    width: 64.2% !important;
+  }
+
+  .book:has(.editorial-layout[data-spread="05"]) .book-spine {
+    left: 35.8% !important;
+    width: 18px !important;
+    opacity: .70 !important;
+  }
+
+  .book:has(.editorial-layout[data-spread="05"]) .book-spine::after {
+    background: rgba(46,35,24,.16) !important;
+    box-shadow: -1px 0 3px rgba(54,41,29,.05), 1px 0 3px rgba(255,255,255,.05) !important;
+  }
+
+  .page-left:has(.editorial-text-page[data-spread="05"]) {
+    padding: 7.7% 9.4% 6.6% 11.0% !important;
+  }
+
+  .editorial-text-page[data-spread="05"] .editorial-kicker {
+    margin-bottom: 28px !important;
+    font-size: 7.2px !important;
+  }
+
+  .editorial-text-page[data-spread="05"] .editorial-title {
+    width: min(238px,86%) !important;
+    max-width: min(238px,86%) !important;
+    font-size: clamp(25px,1.82vw,30px) !important;
+    line-height: 1.065 !important;
+  }
+
+  .editorial-text-page[data-spread="05"] .editorial-rule {
+    width: 23px !important;
+    margin: 25px 0 27px !important;
+  }
+
+  .editorial-text-page[data-spread="05"] .editorial-copy {
+    width: min(232px,80%) !important;
+    max-width: min(232px,80%) !important;
+    font-size: 9.05px !important;
+    line-height: 1.69 !important;
+  }
+
+  .editorial-text-page[data-spread="05"] .editorial-facts {
+    width: min(220px,80%) !important;
+    margin-top: 36px !important;
+    padding-top: 12px !important;
+    grid-template-columns: 66px minmax(0,1fr) !important;
+    row-gap: 9px !important;
+  }
+
+  .editorial-text-page[data-spread="05"] .editorial-facts dt,
+  .editorial-text-page[data-spread="05"] .editorial-facts dd {
+    font-size: 6.5px !important;
+    line-height: 1.32 !important;
+    letter-spacing: .085em !important;
+  }
+
+  .page-right:has(.editorial-technical-page[data-spread="05"]) {
+    padding: 4.25% 3.8% 4.6% 5.1% !important;
+  }
+
+  .editorial-technical-page[data-spread="05"] .editorial-kicker {
+    margin-bottom: 9px !important;
+    font-size: 6.55px !important;
+    letter-spacing: .145em !important;
+  }
+
+  .editorial-technical-page[data-spread="05"] .editorial-title {
+    font-size: clamp(21px,1.46vw,25px) !important;
+    line-height: 1.03 !important;
+  }
+
+  .editorial-technical-page[data-spread="05"] .visual {
+    margin-top: 5px !important;
+    min-height: 0 !important;
+    overflow: visible !important;
+  }
+
+  .editorial-technical-page[data-spread="05"] .asset-single {
+    align-items: stretch !important;
+    justify-items: stretch !important;
+  }
+
+  .editorial-technical-page[data-spread="05"] .asset-single img {
+    width: 100% !important;
+    height: 100% !important;
+    max-width: none !important;
+    max-height: none !important;
+    object-fit: contain !important;
+    object-position: 51% 50% !important;
+  }
+
+  /* Keep the page fold calm around fine technical linework. */
+  .page-left:has(.editorial-text-page[data-spread="05"])::before {
+    opacity: .60 !important;
+  }
+
+  .page-right:has(.editorial-technical-page[data-spread="05"])::before {
+    opacity: .54 !important;
+    background:
+      radial-gradient(ellipse 68% 102% at 0% 50%, rgba(54,40,27,.052) 0%, rgba(72,55,38,.025) 22%, transparent 68%),
+      linear-gradient(90deg, rgba(255,255,255,.09) 0%, rgba(255,255,255,.045) 4%, transparent 19%) !important;
+  }
+
+  .page-left:has(.editorial-text-page[data-spread="05"])::after,
+  .page-right:has(.editorial-technical-page[data-spread="05"])::after {
+    font-size: 6.35px !important;
+    color: rgba(82,78,71,.52) !important;
+  }
+
+  .page-right:has(.editorial-technical-page[data-spread="05"])::after {
+    right: 4.1% !important;
+  }
+}
