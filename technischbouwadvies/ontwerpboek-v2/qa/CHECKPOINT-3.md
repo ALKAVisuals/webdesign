@@ -1,6 +1,6 @@
 # Checkpoint 3 — interactie, mobiel en finale QA
 
-Datum: 20 augustus 2026
+Datum: 21 augustus 2026
 
 ## Opgeleverd
 
@@ -90,3 +90,24 @@ Aanvullend gecontroleerd op 1440 × 900 en 390 × 844:
 - na openen en sluiten blijven geen tijdelijke visuele kopieën achter;
 - focus eindigt na openen op de boeksequentie en na sluiten op de knop `Open het ontwerpboek`;
 - tijdens de overgang zijn de tijdelijke en nog niet actieve toestanden niet interactief.
+
+## Volledige sequentiële regressie
+
+Na de verfijning van de book-shell is het boek nogmaals zonder onderbreking van begin tot einde doorlopen.
+
+Desktop op 1440 × 900:
+
+- alle acht spreads hebben per resolutie exact dezelfde boekmaat en verticale positie;
+- alle zeven vooruitgaande overgangen houden het draaiende blad en de onderliggende pagina binnen die vaste boekmaat;
+- een aanvullende terugwaartse overgang van spread 08 naar 07 is op dezelfde maatvastheid gecontroleerd;
+- eerste en laatste spread tonen de juiste geblokkeerde navigatierichting;
+- na iedere wissel blijven nul tijdelijke animatielagen achter.
+
+Mobiel op 390 × 844:
+
+- alle zestien pagina's hebben exact dezelfde maat: 343,55 × 467,41 pixels;
+- alle vijftien overgangen blijven exact tussen 107,14 en 574,55 pixels in de viewport;
+- iedere eindtoestand toont precies één actieve mobiele pagina;
+- de hashes lopen correct per spreadpaar van `#spread-01` tot en met `#spread-08`;
+- de eerste pagina blokkeert terugbladeren en de laatste pagina blokkeert verderbladeren;
+- geen horizontale overflow, achtergebleven animatielagen of browserfouten aangetroffen.
