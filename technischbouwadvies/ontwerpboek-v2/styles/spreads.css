@@ -545,3 +545,7 @@
   color: var(--color-muted);
   letter-spacing: 0.07em;
 }
+
+.mobile-canvas-page {
+  display: none;
+}

@@ -3,18 +3,19 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Desktopdesign van het interactieve ontwerpboek van Technisch Bouwadvies.">
-  <title>Ontwerpboek V2 — volledig desktopboek</title>
+  <meta name="description" content="Interactief ontwerpboek van Technisch Bouwadvies voor het project De Houtkavel.">
+  <title>Ontwerpboek — De Houtkavel</title>
   <link rel="stylesheet" href="styles/tokens.css">
   <link rel="stylesheet" href="styles/base.css">
   <link rel="stylesheet" href="styles/book.css">
   <link rel="stylesheet" href="styles/spreads.css">
+  <link rel="stylesheet" href="styles/motion.css">
   <link rel="stylesheet" href="styles/responsive.css">
 </head>
 <body>
   <main class="preview-stage" aria-labelledby="preview-title">
     <header class="preview-header">
-      <a class="brand" href="#spread-01" aria-label="Naar het begin van het ontwerpboek">
+      <a class="brand" href="#cover" data-action="cover" aria-label="Naar de omslag van het ontwerpboek">
         <span class="brand__monogram" aria-hidden="true">
           <span>T</span><span>B</span>
         </span>
@@ -26,12 +27,57 @@
         <p class="eyebrow">De Houtkavel · conceptpresentatie</p>
       </div>
 
-      <p class="preview-status">Desktopboek · 08 spreads</p>
+      <p class="preview-status" id="preview-status">Interactief ontwerpboek · 08 spreads</p>
     </header>
 
-    <div class="book-sequence" id="book-sequence" aria-label="Acht spreads van het ontwerpboek"></div>
+    <section class="cover-state" id="book-cover" aria-labelledby="cover-title">
+      <div class="closed-book">
+        <div class="closed-book__pages"></div>
+        <div class="closed-book__cover">
+          <div class="cover-monogram"><span>T</span><span>B</span></div>
+          <div class="cover-copy">
+            <p>Ontwerpboek · 2026</p>
+            <h2 id="cover-title">De Houtkavel</h2>
+            <span></span>
+            <p>Concept · techniek · visualisatie</p>
+          </div>
+          <p class="cover-folio">Technisch Bouwadvies</p>
+        </div>
+      </div>
+
+      <button class="cover-open" id="open-book" type="button">
+        <span>Open het ontwerpboek</span>
+        <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M5 12h13M14 7l5 5-5 5"/></svg>
+      </button>
+    </section>
+
+    <section class="reader" id="book-reader" aria-label="Interactief ontwerpboek" hidden>
+      <div class="book-sequence" id="book-sequence" aria-label="Acht spreads van het ontwerpboek"></div>
+
+      <nav class="reader-controls" aria-label="Navigatie door het ontwerpboek">
+        <button class="reader-control reader-control--icon" id="previous-page" type="button" aria-label="Vorige pagina">
+          <svg aria-hidden="true" viewBox="0 0 24 24"><path d="m14 6-6 6 6 6"/></svg>
+        </button>
+
+        <div class="reader-progress" aria-hidden="true">
+          <div class="reader-progress__meta">
+            <span id="progress-label">Spread</span>
+            <span id="progress-value">01 / 08</span>
+          </div>
+          <div class="reader-progress__track"><i id="progress-bar"></i></div>
+        </div>
+
+        <button class="reader-control reader-control--icon" id="next-page" type="button" aria-label="Volgende pagina">
+          <svg aria-hidden="true" viewBox="0 0 24 24"><path d="m10 6 6 6-6 6"/></svg>
+        </button>
+
+        <button class="reader-control reader-control--text" type="button" data-action="cover">Sluiten</button>
+      </nav>
+    </section>
+
+    <p class="visually-hidden" id="reader-live" aria-live="polite"></p>
   </main>
 
-  <script type="module" src="scripts/content.js"></script>
+  <script type="module" src="scripts/book.js"></script>
 </body>
 </html>

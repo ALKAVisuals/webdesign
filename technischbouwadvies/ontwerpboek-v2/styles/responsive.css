@@ -1,6 +1,6 @@
 @media (max-width: 74rem) {
   :root {
-    --book-width: min(86vw, 70rem);
+    --book-width: min(88vw, 70rem);
   }
 
   .preview-stage {
@@ -9,16 +9,445 @@
 }
 
 @media (max-width: 56rem) {
+  :root {
+    --book-width: min(93vw, 52rem);
+  }
+
   .preview-stage {
-    min-width: 52rem;
+    padding-inline: 1.3rem;
+  }
+
+  .preview-header,
+  .cover-state,
+  .reader {
+    width: 100%;
+  }
+}
+
+@media (max-width: 48rem) {
+  :root {
+    --book-width: min(88vw, 27rem);
+    --book-ratio: 0.735 / 1;
+    --page-padding-x: clamp(1.55rem, 7vw, 2rem);
+    --page-padding-y: clamp(1.65rem, 7vw, 2.2rem);
+  }
+
+  body {
+    background:
+      radial-gradient(circle at 50% 15%, rgba(255, 255, 255, 0.6), transparent 24rem),
+      linear-gradient(135deg, var(--color-stage-light), var(--color-stage));
+  }
+
+  .preview-stage {
+    min-height: 100svh;
+    padding: 1rem 0.9rem max(1.15rem, env(safe-area-inset-bottom));
   }
 
   .preview-header {
-    width: 48rem;
+    grid-template-columns: 1fr auto;
+    row-gap: 0.8rem;
+    padding-bottom: 1rem;
+    margin-bottom: clamp(1.1rem, 3.5vh, 1.8rem);
+  }
+
+  .preview-header::after {
+    left: 0;
+    width: 2.4rem;
+    translate: 0 0;
+  }
+
+  .brand__name {
+    display: none;
+  }
+
+  .brand__monogram {
+    width: 1.75rem;
+    height: 2.05rem;
+    font-size: 1.35rem;
+  }
+
+  .preview-heading {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    text-align: left;
+  }
+
+  .preview-heading h1 {
+    font-size: clamp(1.35rem, 7vw, 1.85rem);
+  }
+
+  .preview-heading .eyebrow {
+    font-size: 0.68rem;
+  }
+
+  .preview-status {
+    grid-column: 2;
+    grid-row: 1;
+    align-self: center;
+    max-width: 13rem;
+    padding-top: 0;
+    font-size: 0.5rem;
+    line-height: 1.45;
+  }
+
+  .cover-state {
+    min-height: auto;
+    padding-top: clamp(0.4rem, 2vh, 1.2rem);
+    gap: 1.2rem;
+  }
+
+  .closed-book {
+    width: min(63vw, 19.5rem);
+    min-width: 14.5rem;
+  }
+
+  .closed-book__cover {
+    padding: 2rem 1.8rem 1.55rem;
+  }
+
+  .cover-monogram {
+    width: 2.25rem;
+    height: 2.8rem;
+    font-size: 1.75rem;
+  }
+
+  .cover-copy h2 {
+    font-size: clamp(2rem, 9vw, 2.65rem);
+  }
+
+  .cover-open {
+    font-size: 0.62rem;
+  }
+
+  .reader {
+    gap: clamp(1.1rem, 3vh, 1.6rem);
+  }
+
+  .book-sequence {
+    touch-action: pan-y;
+  }
+
+  .spread-heading {
+    width: var(--book-width);
+    grid-template-columns: auto auto 1fr;
+    gap: 0.5rem;
+    font-size: 0.48rem;
+  }
+
+  .spread-heading__rule {
+    width: 1.45rem;
+  }
+
+  .spread-heading__number {
+    font-size: 0.95rem;
+  }
+
+  .spread-heading h2 {
+    font-size: 0.66rem;
+  }
+
+  .spread-heading__type {
+    display: none;
   }
 
   .book-scene {
-    width: 48rem;
+    width: var(--book-width);
+    aspect-ratio: var(--book-ratio);
+    margin-top: 0.75rem;
+  }
+
+  .book-scene::before {
+    right: -0.45%;
+    left: -0.45%;
+  }
+
+  .page-stack--left {
+    display: none;
+  }
+
+  .page-stack--right {
+    right: -0.8%;
+    width: 100%;
+    border-radius: 0 0.28rem 0.28rem 0;
+  }
+
+  .book-spread,
+  .book-spread--plan,
+  .book-spread--detail,
+  .book-spread--materials,
+  .book-spread--result {
+    display: block;
+    border-radius: 0.24rem 0.34rem 0.12rem 0.12rem;
+  }
+
+  .book-spread > .book-page {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .book-spread > .book-page.is-mobile-active {
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .book-gutter {
+    display: none;
+  }
+
+  .page-topline,
+  .page-footer,
+  .technical-sheet__head,
+  .technical-sheet__foot,
+  .technical-plate__label {
+    font-size: 0.5rem;
+  }
+
+  .folio--visual {
+    right: 1.5rem;
+    bottom: 1.45rem;
+    font-size: 0.5rem;
+  }
+
+  .intro-copy h3 {
+    font-size: clamp(2rem, 10vw, 2.7rem);
+  }
+
+  .intro-lead,
+  .intro-body {
+    max-width: 24em;
+    font-size: clamp(0.7rem, 3.2vw, 0.82rem);
+  }
+
+  .title-rule {
+    margin: 1.2rem 0 1rem;
+  }
+
+  .technical-copy h3,
+  .material-copy__content h3,
+  .result-copy__content h3 {
+    font-size: clamp(1.8rem, 9vw, 2.45rem);
+  }
+
+  .technical-copy > p:last-child,
+  .material-copy__content > p,
+  .result-copy__content > p:last-child {
+    max-width: 25em;
+    font-size: clamp(0.68rem, 3vw, 0.78rem);
+  }
+
+  .technical-kicker {
+    font-size: 0.53rem;
+  }
+
+  .plan-legend,
+  .detail-facts {
+    gap: 0.42rem;
+    margin-bottom: 1rem;
+    font-size: 0.53rem;
+  }
+
+  .plan-legend div,
+  .detail-facts div {
+    gap: 0.45rem;
+  }
+
+  .technical-plate,
+  .technical-sheet {
+    padding: 1.9rem 1.55rem 1.45rem;
+  }
+
+  .technical-plate > img,
+  .technical-sheet > img {
+    scale: 1;
+  }
+
+  .technical-sheet + .technical-sheet {
+    border-left: 0;
+  }
+
+  .material-samples {
+    gap: 0.6rem;
+    margin-top: 1.3rem;
+  }
+
+  .material-samples p,
+  .material-samples h4,
+  .material-samples span {
+    font-size: 0.46rem;
+  }
+
+  .result-signature {
+    font-size: 0.49rem;
+  }
+
+  .book-spread--canvas > :not(.mobile-canvas-page) {
+    display: none;
+  }
+
+  .book-spread--canvas > .mobile-canvas-page {
+    position: absolute;
+    inset: 0;
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .book-spread--canvas > .mobile-canvas-page.is-mobile-active {
+    display: grid;
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .mobile-compare-page {
+    grid-template-rows: auto 1fr auto auto;
+    padding: var(--page-padding-y) var(--page-padding-x) 1.45rem;
+    background: #f7f3eb;
+  }
+
+  .mobile-variant-list {
+    align-self: center;
+    display: grid;
+    gap: 1.15rem;
+  }
+
+  .mobile-variant-list--single {
+    padding-top: 1.25rem;
+  }
+
+  .mobile-variant {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.7fr);
+    column-gap: 1rem;
+    padding-bottom: 0.9rem;
+    border-bottom: 1px solid rgba(74, 65, 54, 0.15);
+  }
+
+  .mobile-variant > div p {
+    color: var(--color-bronze);
+    font-family: var(--font-editorial);
+    font-size: 0.75rem;
+  }
+
+  .mobile-variant h3 {
+    margin-top: 0.12rem;
+    color: #504b45;
+    font-size: 0.55rem;
+    font-weight: 600;
+    letter-spacing: var(--tracking-label);
+    text-transform: uppercase;
+  }
+
+  .mobile-variant img {
+    grid-row: 1 / span 2;
+    grid-column: 2;
+    width: 100%;
+    height: 5.3rem;
+    object-fit: contain;
+  }
+
+  .mobile-variant > p {
+    grid-column: 1 / -1;
+    margin-top: 0.6rem;
+    color: #625d56;
+    font-size: 0.62rem;
+    line-height: 1.5;
+  }
+
+  .mobile-compare-note {
+    margin-bottom: 1rem;
+    color: var(--color-muted);
+    font-size: 0.62rem;
+    line-height: 1.55;
+  }
+
+  .mobile-visual-page {
+    overflow: hidden;
+    background: #20241f;
+  }
+
+  .mobile-visual-page > img {
+    position: absolute;
+    inset: 0;
+    width: 200%;
+    height: 100%;
+    max-width: none;
+    object-fit: cover;
+    filter: saturate(0.88) contrast(0.98) brightness(0.93);
+  }
+
+  .mobile-visual-page--left > img {
+    left: 0;
+    object-position: 44% 52%;
+  }
+
+  .mobile-visual-page--right > img {
+    left: -100%;
+    object-position: 56% 52%;
+  }
+
+  .mobile-visual-page::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, rgba(12, 13, 11, 0.4), transparent 60%);
+  }
+
+  .mobile-visual-page .full-visual-spread__label {
+    z-index: 2;
+    top: 2.8rem;
+    left: 2rem;
+  }
+
+  .mobile-visual-page .full-visual-spread__label h3 {
+    font-size: clamp(1.8rem, 9vw, 2.5rem);
+  }
+
+  .reader-controls {
+    width: min(92vw, 27rem);
+    grid-template-columns: auto 1fr auto;
+    gap: 0.75rem;
+  }
+
+  .reader-control {
+    min-width: 2.55rem;
+    height: 2.55rem;
+  }
+
+  .reader-control--text {
+    grid-column: 1 / -1;
+    justify-self: center;
+    min-width: auto;
+    height: auto;
+    padding: 0.2rem 0.6rem;
+  }
+
+  .reader-progress__meta {
+    font-size: 0.5rem;
+  }
+
+  .page-turn-layer {
+    width: 100%;
+  }
+}
+
+@media (max-width: 24rem) {
+  :root {
+    --book-width: 92vw;
+  }
+
+  .preview-stage {
+    padding-inline: 0.6rem;
+  }
+
+  .preview-status {
+    max-width: 10rem;
   }
 }
 
@@ -27,5 +456,8 @@
   *::before,
   *::after {
     scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
   }
 }

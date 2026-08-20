@@ -44,7 +44,7 @@ const spreadOne = shell({
         <div class="page-footer"><p>Technisch Bouwadvies</p>${folio('004')}</div>
       </section>
       <figure class="book-page book-page--visual">
-        ${image('assets/images/de-houtkavel-projectintro-v3.png', 'Eigentijdse houten woning in een Nederlands landschap')}
+        ${image('assets/images/de-houtkavel-projectintro-v3.webp', 'Eigentijdse houten woning in een Nederlands landschap')}
         ${folio('005', 'folio--visual')}
       </figure>
       <div class="book-gutter" aria-hidden="true"></div>
@@ -88,6 +88,14 @@ const variantsMarkup = variants.map((variant) => `
   </article>
 `).join('');
 
+const mobileVariantMarkup = (selection) => selection.map((variant) => `
+  <article class="mobile-variant">
+    <div><p>${variant.number}</p><h3>${variant.name}</h3></div>
+    ${image(variant.image, `Schematische ontwerptekening van variant ${variant.name}`)}
+    <p>${variant.copy}</p>
+  </article>
+`).join('');
+
 const spreadTwo = shell({
   number: '02',
   title: 'Varianten',
@@ -98,6 +106,17 @@ const spreadTwo = shell({
       <div class="variant-grid">${variantsMarkup}</div>
       <div class="canvas-footer"><p>Conceptfase · schematische presentatie</p><div>${folio('006')}${folio('007')}</div></div>
       <div class="book-gutter" aria-hidden="true"></div>
+      <section class="mobile-canvas-page mobile-compare-page">
+        ${chapterLabel('02', 'Variantenvergelijking')}
+        <div class="mobile-variant-list">${mobileVariantMarkup(variants.slice(0, 2))}</div>
+        <div class="page-footer"><p>Conceptfase</p>${folio('006')}</div>
+      </section>
+      <section class="mobile-canvas-page mobile-compare-page">
+        ${chapterLabel('02', 'Voorkeursrichting')}
+        <div class="mobile-variant-list mobile-variant-list--single">${mobileVariantMarkup(variants.slice(2))}</div>
+        <p class="mobile-compare-note">De varianten tonen verschillende ruimtelijke en materiële richtingen. De vervolgstap is het combineren en technisch toetsen van de gekozen kwaliteiten.</p>
+        <div class="page-footer"><p>Schematische presentatie</p>${folio('007')}</div>
+      </section>
     </article>
   `
 });
@@ -203,7 +222,7 @@ const spreadSix = shell({
         <div class="page-footer"><p>Materiaalstudie</p>${folio('014')}</div>
       </section>
       <figure class="book-page book-page--visual book-page--interior">
-        ${image('assets/images/de-houtkavel-interior.png', 'Warm interieur van de houten woning met uitzicht over het landschap')}
+        ${image('assets/images/de-houtkavel-interior.webp', 'Warm interieur van de houten woning met uitzicht over het landschap')}
         ${folio('015', 'folio--visual')}
       </figure>
       <div class="book-gutter" aria-hidden="true"></div>
@@ -217,10 +236,19 @@ const spreadSeven = shell({
   archetype: 'Full visual',
   pages: `
     <article class="book-spread book-spread--canvas full-visual-spread">
-      ${image('assets/images/de-houtkavel-exterior-dusk.png', 'Houten woning in het landschap tijdens de avondschemering')}
+      ${image('assets/images/de-houtkavel-exterior-dusk.webp', 'Houten woning in het landschap tijdens de avondschemering')}
       <div class="full-visual-spread__label"><p>07</p><h3>Architectuur<br>in context.</h3></div>
       <div class="full-visual-spread__folios">${folio('016')}${folio('017')}</div>
       <div class="book-gutter book-gutter--on-dark" aria-hidden="true"></div>
+      <figure class="mobile-canvas-page mobile-visual-page mobile-visual-page--left">
+        ${image('assets/images/de-houtkavel-exterior-dusk.webp', 'Linker aanzicht van de houten woning in de avondschemering')}
+        <div class="full-visual-spread__label"><p>07</p><h3>Architectuur<br>in context.</h3></div>
+        ${folio('016', 'folio--visual')}
+      </figure>
+      <figure class="mobile-canvas-page mobile-visual-page mobile-visual-page--right">
+        ${image('assets/images/de-houtkavel-exterior-dusk.webp', 'Rechter aanzicht van de houten woning in de avondschemering')}
+        ${folio('017', 'folio--visual')}
+      </figure>
     </article>
   `
 });
@@ -232,7 +260,7 @@ const spreadEight = shell({
   pages: `
     <article class="book-spread book-spread--result">
       <figure class="book-page result-visual">
-        ${image('assets/images/de-houtkavel-projectintro-v3.png', 'De Houtkavel als uitgewerkt architectonisch ontwerp')}
+        ${image('assets/images/de-houtkavel-projectintro-v3.webp', 'De Houtkavel als uitgewerkt architectonisch ontwerp')}
         ${folio('018', 'folio--visual')}
       </figure>
       <section class="book-page result-copy">

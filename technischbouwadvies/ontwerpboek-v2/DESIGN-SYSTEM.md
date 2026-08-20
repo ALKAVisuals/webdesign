@@ -28,7 +28,7 @@ Kleur, typografie, boekmaat, paginamarges en schaduwsterkte staan in `styles/tok
 3. Comparison spread — varianten in één rustig raster.
 4. Full visual — beeldvullend en vrijwel zonder interface.
 
-Checkpoint 1 implementeerde archetype 1 als Style Lock. Checkpoint 2 bouwt alle
+Checkpoint 1 implementeerde archetype 1 als Style Lock. Checkpoint 2 bouwde alle
 vier archetypen binnen hetzelfde centrale systeem uit:
 
 - Projectintro en Interieur gebruiken de editorial-intro-opbouw;
@@ -43,7 +43,7 @@ book-shell blijft uitsluitend in `styles/book.css`.
 
 ## Scherpte en rendering
 
-De definitieve pagina's gebruiken geen permanente `transform`, `perspective` of CSS-3D. Een latere pagina-omslag mag een tijdelijke animatielaag krijgen, waarna de scherpe 2D-pagina terugkeert.
+De definitieve pagina's gebruiken geen permanente `transform`, `perspective` of CSS-3D. De pagina-omslag gebruikt uitsluitend een tijdelijke laag uit `styles/motion.css`; na de animatie blijft de definitieve pagina gewone scherpe 2D-content.
 
 ## Premium boek-shell
 
@@ -62,3 +62,28 @@ Projectintro, interieur en exterieur vertellen één woningconcept. Materialen,
 raamverhoudingen, landschappelijke context en kleurtemperatuur zijn bewust op
 elkaar afgestemd. De beelden blijven redactioneel en rustig; zij bevatten geen
 tekst, logo's, personen of commerciële elementen.
+
+## Reader en interactie
+
+`scripts/book.js` beheert één centrale reader-state. Het systeem bevat:
+
+- een gesloten fysieke omslag als rustige entree;
+- precies één actieve spread op desktop;
+- vorige/volgende, Home/End en Escape;
+- horizontale swipe met verticale-scrollbescherming;
+- een tekstuele en visuele voortgangsindicator;
+- deep links via `#spread-01` tot en met `#spread-08`;
+- een live-regio voor schermlezers;
+- een `prefers-reduced-motion`-route zonder omslaganimatie.
+
+De bediening staat buiten de inhoudelijke spreads en blijft visueel ondergeschikt aan het boek.
+
+## Mobiele paginering
+
+Onder 48 rem verandert het boek in zestien afzonderlijke boekpagina's. Iedere viewport toont exact één pagina. De technische tekeningen blijven echte SVG's; comparison- en full-visualspreads krijgen een eigen mobiele paginaverdeling zodat tekst en beeld niet worden verkleind tot een onleesbare dubbelspread.
+
+De viewport gebruikt `svh`, veilige ondermarges en geen permanente 3D-transforms. Dit voorkomt bekende iOS/Safari-problemen met onstabiele viewporthoogte en onscherpe tekst.
+
+## Beeldperformance
+
+De drie actieve rasterbeelden worden als WebP geladen. De bron-PNG's blijven beschikbaar, maar worden niet door de reader opgehaald. De gezamenlijke overdracht daalde van 7.896.351 naar 845.012 bytes, een reductie van 89,3%.

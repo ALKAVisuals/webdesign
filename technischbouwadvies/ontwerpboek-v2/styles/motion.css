@@ -1,0 +1,58 @@
+.page-turn-layer {
+  position: absolute;
+  z-index: 20;
+  top: 0;
+  bottom: 0;
+  width: 50.15%;
+  overflow: hidden;
+  pointer-events: none;
+  perspective: 90rem;
+}
+
+.page-turn-layer i {
+  position: absolute;
+  inset: 0;
+  display: block;
+  border: 1px solid rgba(91, 77, 60, 0.2);
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.3), transparent 22%, rgba(66, 52, 39, 0.08)),
+    var(--color-paper);
+  box-shadow: 0 0.7rem 1.5rem rgba(37, 29, 21, 0.2);
+  backface-visibility: hidden;
+}
+
+.page-turn-layer--next {
+  right: 0;
+}
+
+.page-turn-layer--next i {
+  transform-origin: left center;
+  animation: turn-next 610ms cubic-bezier(0.6, 0.02, 0.35, 1) both;
+}
+
+.page-turn-layer--previous {
+  left: 0;
+}
+
+.page-turn-layer--previous i {
+  transform-origin: right center;
+  animation: turn-previous 610ms cubic-bezier(0.6, 0.02, 0.35, 1) both;
+}
+
+@keyframes turn-next {
+  0% { transform: rotateY(0deg); filter: brightness(1); }
+  48% { filter: brightness(0.84); }
+  100% { transform: rotateY(-180deg); filter: brightness(1); }
+}
+
+@keyframes turn-previous {
+  0% { transform: rotateY(0deg); filter: brightness(1); }
+  48% { filter: brightness(0.84); }
+  100% { transform: rotateY(180deg); filter: brightness(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-turn-layer {
+    display: none;
+  }
+}
