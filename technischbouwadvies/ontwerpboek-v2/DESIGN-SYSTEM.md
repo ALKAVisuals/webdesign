@@ -4,6 +4,8 @@
 
 De visuele bron van waarheid is `assets/reference/binnenwerk-spread-system.png`. Het systeem combineert een Zwitsers/architectonisch raster met de warmte van een gedrukte projectmonografie.
 
+De lokaal meegeleverde lettertypen zijn Bodoni Moda voor redactionele koppen en Manrope voor technische informatie. Daardoor blijft de typografische kwaliteit consistent op Windows, Safari en andere platformen zonder afhankelijkheid van een externe fontdienst.
+
 De vaste ontwerpprincipes zijn:
 
 - beeld draagt het verhaal; tekst ondersteunt;

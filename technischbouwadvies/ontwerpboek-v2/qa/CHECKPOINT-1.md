@@ -14,6 +14,13 @@ De Projectintro gebruikt dezelfde kernverhoudingen en hiërarchie als `assets/re
 
 De buitenste previewkop is bewust ondergeschikt aan het boek. Binnen de spread is geen commerciële CTA of bedieningsinterface aanwezig.
 
+Na een tweede directe vergelijking met de Style Lock zijn vier verfijningen doorgevoerd:
+
+- lokaal meegeleverde Bodoni Moda vervangt de te zware systeemfallback;
+- de projecttitel staat kleiner en op één regel zoals in de referentie;
+- dubbele hoofdstukinformatie en de beeldcaption zijn verwijderd;
+- paginalagen en middenrug zijn zachter en minder grafisch gemaakt.
+
 ## Browser-QA
 
 | Viewport | Boekmaat | Documentmaat | Resultaat |
@@ -23,6 +30,8 @@ De buitenste previewkop is bewust ondergeschikt aan het boek. Binnen de spread i
 | 2560 × 1440 | 1400 × 725 | 2560 × 1440 | Bewuste maximale boekmaat; tekst en beeld passen. |
 
 De browserconsole bevatte op de geteste viewports geen waarschuwingen of fouten.
+
+Bodoni Moda en Manrope zijn op beide hoofdviewports als lokale webfonts geladen; de titel blijft volledig binnen de linkerpagina.
 
 ## Scherpte
 

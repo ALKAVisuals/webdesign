@@ -1,3 +1,19 @@
+@font-face {
+  font-family: "Bodoni Moda";
+  src: url("../assets/fonts/bodoni-moda-variable.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 400 900;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Manrope";
+  src: url("../assets/fonts/manrope-variable.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 200 800;
+  font-display: swap;
+}
+
 :root {
   color-scheme: light;
 
@@ -11,8 +27,8 @@
   --color-bronze: #a77d4e;
   --color-bronze-soft: #c3a17b;
 
-  --font-editorial: "Bodoni 72", Didot, "Bodoni MT", "Times New Roman", serif;
-  --font-technical: "Avenir Next", Avenir, "Helvetica Neue", Arial, sans-serif;
+  --font-editorial: "Bodoni Moda", "Bodoni 72", Didot, "Bodoni MT", serif;
+  --font-technical: "Manrope", "Avenir Next", Avenir, "Helvetica Neue", Arial, sans-serif;
 
   --tracking-label: 0.14em;
   --tracking-technical: 0.08em;

@@ -1,6 +1,5 @@
 .page-topline,
-.page-footer,
-.image-caption {
+.page-footer {
   position: relative;
   z-index: 2;
   display: flex;
@@ -27,31 +26,18 @@
   color: var(--color-bronze);
 }
 
-.page-edition {
-  letter-spacing: 0.08em;
-}
-
 .intro-copy {
   align-self: center;
-  width: min(22rem, 88%);
-  padding-top: 1.5rem;
-}
-
-.intro-index {
-  margin-bottom: clamp(1.1rem, 1.8vw, 2.2rem);
-  color: var(--color-bronze);
-  font-family: var(--font-editorial);
-  font-size: clamp(0.76rem, 0.85vw, 1.05rem);
-  letter-spacing: 0.08em;
+  width: min(26rem, 100%);
 }
 
 .intro-copy h2 {
-  max-width: 8ch;
+  white-space: nowrap;
   font-family: var(--font-editorial);
-  font-size: clamp(2.6rem, 4.1vw, 5.05rem);
+  font-size: clamp(2rem, 2.7vw, 3.35rem);
   font-weight: 400;
-  letter-spacing: -0.035em;
-  line-height: 0.9;
+  letter-spacing: -0.025em;
+  line-height: 1;
   text-transform: uppercase;
 }
 
@@ -88,23 +74,6 @@
   color: var(--color-ink);
   font-variant-numeric: tabular-nums;
   letter-spacing: 0.1em;
-}
-
-.image-caption {
-  position: absolute;
-  z-index: 3;
-  left: clamp(1.5rem, 2.2vw, 2.8rem);
-  right: clamp(1.5rem, 2.2vw, 2.8rem);
-  bottom: clamp(1.45rem, 2.2vw, 2.75rem);
-  justify-content: flex-start;
-  gap: 0.8rem;
-  color: rgba(255, 255, 255, 0.82);
-}
-
-.image-caption span + span::before {
-  content: "/";
-  margin-right: 0.8rem;
-  color: var(--color-bronze-soft);
 }
 
 .folio--visual {
