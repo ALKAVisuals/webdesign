@@ -1,0 +1,140 @@
+/* M2 — Variantenvergelijking V2.
+   Precision pass for spread 02 desktop. Keeps the V1 physical-book foundation,
+   but gives the comparison page more visual authority and a quieter editorial hierarchy. */
+
+@media (min-width: 761px) {
+  /* Keep a believable equal-page book opening; improve optical balance inside it. */
+  .book:has(.editorial-layout[data-spread="02"]) {
+    aspect-ratio: 1.46 !important;
+  }
+
+  /* Left narrative page: slightly more compact and deliberate. */
+  .page-left:has(.editorial-text-page[data-spread="02"]) {
+    padding: 8.1% 9.4% 6.7% 10.2% !important;
+  }
+
+  .editorial-text-page[data-spread="02"] .editorial-kicker {
+    margin-bottom: 31px !important;
+    font-size: 7.7px !important;
+    letter-spacing: .135em !important;
+  }
+
+  .editorial-text-page[data-spread="02"] .editorial-title {
+    width: min(275px, 80%) !important;
+    max-width: min(275px, 80%) !important;
+    font-size: clamp(27px, 2vw, 33px) !important;
+    line-height: 1.07 !important;
+    letter-spacing: -.032em !important;
+  }
+
+  .editorial-text-page[data-spread="02"] .editorial-rule {
+    width: 26px !important;
+    margin: 27px 0 31px !important;
+  }
+
+  .editorial-text-page[data-spread="02"] .editorial-copy {
+    width: min(250px, 74%) !important;
+    max-width: min(250px, 74%) !important;
+    font-size: 9.6px !important;
+    line-height: 1.74 !important;
+    color: #74716a !important;
+  }
+
+  .editorial-text-page[data-spread="02"] .editorial-footer-label {
+    font-size: 6.45px !important;
+    letter-spacing: .135em !important;
+  }
+
+  /* Right page: reclaim space for the actual alternatives. */
+  .page-right:has(.editorial-gallery-page[data-spread="02"]) {
+    padding: 7.1% 6.4% 6.6% 7.6% !important;
+  }
+
+  .editorial-gallery-page[data-spread="02"] .editorial-kicker {
+    margin-bottom: 18px !important;
+    font-size: 7.35px !important;
+    letter-spacing: .14em !important;
+  }
+
+  .editorial-gallery-page[data-spread="02"] .editorial-title {
+    font-size: clamp(26px, 1.85vw, 31px) !important;
+    line-height: 1.04 !important;
+    letter-spacing: -.03em !important;
+  }
+
+  .editorial-gallery-page[data-spread="02"] .variation-intro {
+    width: 74% !important;
+    max-width: 300px !important;
+    margin: 7px 0 18px !important;
+    font-size: 8.7px !important;
+    line-height: 1.52 !important;
+  }
+
+  /* The gallery itself becomes the dominant object on the page. */
+  .editorial-gallery-page[data-spread="02"] .visual {
+    min-height: 0 !important;
+    flex: 1 1 auto !important;
+  }
+
+  .editorial-gallery-page[data-spread="02"] .asset-gallery {
+    gap: 9px !important;
+    align-items: stretch !important;
+  }
+
+  .editorial-gallery-page[data-spread="02"] .asset-tile {
+    grid-template-rows: minmax(0, 1fr) 18px !important;
+  }
+
+  .editorial-gallery-page[data-spread="02"] .asset-tile img {
+    border-color: rgba(72,60,47,.075) !important;
+    filter: saturate(.88) contrast(1.03) brightness(.965) !important;
+  }
+
+  /* Slightly different crops keep the three options comparable without looking cloned. */
+  .editorial-gallery-page[data-spread="02"] .asset-tile:nth-child(1) img {
+    object-position: 46% 52% !important;
+  }
+
+  .editorial-gallery-page[data-spread="02"] .asset-tile:nth-child(2) img {
+    object-position: 50% 52% !important;
+  }
+
+  .editorial-gallery-page[data-spread="02"] .asset-tile:nth-child(3) img {
+    object-position: 54% 52% !important;
+  }
+
+  .editorial-gallery-page[data-spread="02"] .asset-label {
+    align-self: end !important;
+    margin-top: 7px !important;
+    color: #77736c !important;
+    font-size: 6.25px !important;
+    letter-spacing: .135em !important;
+  }
+
+  /* Make the centre fold read a little more like curved paper than a separator. */
+  .page-left:has(.editorial-text-page[data-spread="02"])::before {
+    opacity: .73 !important;
+    background:
+      radial-gradient(ellipse 74% 106% at 100% 50%, rgba(54,40,27,.082) 0%, rgba(72,55,38,.041) 24%, transparent 69%),
+      linear-gradient(90deg, transparent 78%, rgba(255,255,255,.10) 97%, rgba(255,255,255,.14) 100%) !important;
+  }
+
+  .page-right:has(.editorial-gallery-page[data-spread="02"])::before {
+    opacity: .70 !important;
+    background:
+      radial-gradient(ellipse 74% 106% at 0% 50%, rgba(54,40,27,.078) 0%, rgba(72,55,38,.038) 24%, transparent 69%),
+      linear-gradient(90deg, rgba(255,255,255,.12) 0%, rgba(255,255,255,.07) 4%, transparent 22%) !important;
+  }
+
+  .book:has(.editorial-layout[data-spread="02"]) .book-spine {
+    width: 22px !important;
+    opacity: .80 !important;
+  }
+
+  /* Printed furniture stays present but recedes. */
+  .page-left:has(.editorial-text-page[data-spread="02"])::after,
+  .page-right:has(.editorial-gallery-page[data-spread="02"])::after {
+    font-size: 6.7px !important;
+    color: rgba(82,78,71,.60) !important;
+  }
+}
