@@ -1,0 +1,98 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" role="img" aria-labelledby="title desc">
+  <title id="title">Bouwdetail D1 — aansluiting dakkapel op bestaand dak</title>
+  <desc id="desc">Technisch detail op schaalindicatie 1 op 10 met dakbedekking, isolatie, houten opstand, kozijn, loodslabbe en maatvoering.</desc>
+
+  <defs>
+    <pattern id="insulation" width="28" height="28" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <path d="M0 14h28" stroke="#b0a89e" stroke-width="2"/>
+    </pattern>
+    <pattern id="timber" width="22" height="22" patternUnits="userSpaceOnUse">
+      <path d="M0 5h22M0 16h22" stroke="#b8afa4" stroke-width="1.4"/>
+    </pattern>
+  </defs>
+
+  <g fill="none" stroke="#242522" stroke-linejoin="miter" stroke-linecap="square">
+    <!-- bestaand hellend dak -->
+    <path d="M88 620L482 260" stroke-width="10"/>
+    <path d="M101 639L496 279" stroke-width="4"/>
+    <path d="M118 658L513 299" stroke="#8d877f" stroke-width="3"/>
+    <path d="M143 683L538 323" stroke="#a97636" stroke-width="5"/>
+    <path d="M167 708L562 348" stroke="#8d877f" stroke-width="2.8"/>
+
+    <!-- dakkapel opstand / wand -->
+    <path d="M482 260V676" stroke-width="10"/>
+    <path d="M508 283V676" stroke-width="3.5"/>
+    <path d="M538 323V676" stroke="#a97636" stroke-width="4.5"/>
+    <path d="M570 352V676" stroke-width="3"/>
+    <path d="M608 352V676" stroke-width="8"/>
+
+    <!-- dak dakkapel -->
+    <path d="M482 260H860" stroke-width="10"/>
+    <path d="M508 284H852" stroke-width="4"/>
+    <path d="M538 312H844" stroke="#a97636" stroke-width="5"/>
+    <path d="M570 341H836" stroke-width="3"/>
+
+    <!-- kozijn / aansluiting -->
+    <path d="M608 420H770V676H608" stroke-width="8"/>
+    <path d="M628 440H750V676" stroke-width="3.2"/>
+    <path d="M640 452H738V676" stroke="#8d877f" stroke-width="2.2"/>
+    <path d="M770 420h42v256h-42" stroke-width="4"/>
+
+    <!-- lood / waterkering -->
+    <path d="M435 333l72 32 78-16 40 18" stroke="#a97636" stroke-width="6"/>
+    <path d="M447 347l60 27 77-15" stroke="#a97636" stroke-width="2.6"/>
+
+    <!-- vloer / binnenafwerking -->
+    <path d="M454 676H832" stroke-width="9"/>
+    <path d="M464 701H842" stroke-width="3"/>
+    <path d="M482 725H858" stroke="#8d877f" stroke-width="2.4"/>
+  </g>
+
+  <!-- materiaalvlakken -->
+  <path d="M513 299L538 323V652H513Z" fill="url(#insulation)" opacity=".72"/>
+  <rect x="570" y="352" width="38" height="324" fill="url(#timber)" opacity=".82"/>
+  <path d="M143 683L167 708L538 370V343Z" fill="url(#insulation)" opacity=".62"/>
+  <rect x="538" y="312" width="32" height="340" fill="#f1e7d9" opacity=".82"/>
+
+  <!-- maatvoering -->
+  <g fill="none" stroke="#837d75" stroke-width="2">
+    <path d="M922 260v416M908 260h28M908 676h28"/>
+    <path d="M882 260v92M868 260h28M868 352h28"/>
+    <path d="M482 782h378M482 768v28M860 768v28"/>
+    <path d="M608 744h162M608 732v24M770 732v24"/>
+  </g>
+  <g fill="#6f6a63" font-family="Arial, sans-serif" font-size="20" letter-spacing="1">
+    <text x="948" y="482" transform="rotate(-90 948 482)">416 mm</text>
+    <text x="902" y="317" transform="rotate(-90 902 317)">92 mm</text>
+    <text x="646" y="817">378 mm</text>
+    <text x="656" y="738">162 mm</text>
+  </g>
+
+  <!-- leaders -->
+  <g fill="none" stroke="#918a81" stroke-width="2">
+    <path d="M520 286L924 108h90"/>
+    <path d="M551 333L924 166h90"/>
+    <path d="M587 492L924 226h90"/>
+    <path d="M614 419L924 286h90"/>
+    <path d="M462 348L924 346h90"/>
+    <path d="M690 704L924 406h90"/>
+  </g>
+  <g font-family="Arial, sans-serif" font-size="18" letter-spacing="1.15">
+    <text x="1030" y="113" fill="#8e652f">01</text><text x="1070" y="113" fill="#68635d">EPDM DAKBEDEKKING</text>
+    <text x="1030" y="171" fill="#8e652f">02</text><text x="1070" y="171" fill="#68635d">PIR ISOLATIE</text>
+    <text x="1030" y="231" fill="#8e652f">03</text><text x="1070" y="231" fill="#68635d">HOUTEN OPSTAND</text>
+    <text x="1030" y="291" fill="#8e652f">04</text><text x="1070" y="291" fill="#68635d">KOZIJN / STELKOZIJN</text>
+    <text x="1030" y="351" fill="#8e652f">05</text><text x="1070" y="351" fill="#68635d">LOODSLABBE / WATERKERING</text>
+    <text x="1030" y="411" fill="#8e652f">06</text><text x="1070" y="411" fill="#68635d">BINNENAFWERKING</text>
+  </g>
+
+  <g font-family="Arial, sans-serif">
+    <text x="86" y="72" fill="#9a6e32" font-size="24" font-weight="700" letter-spacing="3">DETAIL D1 · DAKKAPEL / DAKAANSLUITING</text>
+    <text x="86" y="106" fill="#747069" font-size="17" letter-spacing="1.6">SCHAALINDICATIE 1:10 · MAATVOERING IN MM</text>
+  </g>
+
+  <g fill="#777168" font-family="Arial, sans-serif" font-size="16" letter-spacing="1.1">
+    <text x="86" y="862">TECHNISCH DETAIL · CONSTRUCTIE &amp; AANSLUITING</text>
+    <text x="1114" y="862" text-anchor="end">TECHNISCH BOUWADVIES</text>
+  </g>
+</svg>
