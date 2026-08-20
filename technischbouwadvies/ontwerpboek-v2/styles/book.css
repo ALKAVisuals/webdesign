@@ -2,8 +2,9 @@
   position: relative;
   width: var(--book-width);
   aspect-ratio: var(--book-ratio);
-  align-self: center;
+  align-self: start;
   justify-self: center;
+  margin-top: clamp(1.25rem, 2.5vh, 2rem);
   isolation: isolate;
 }
 
@@ -131,8 +132,12 @@
 }
 
 .book-page--visual img {
-  width: 100%;
-  height: 100%;
+  position: absolute;
+  top: -6%;
+  left: -6%;
+  width: 112%;
+  height: 112%;
+  max-width: none;
   object-fit: cover;
   object-position: 50% 54%;
 }
@@ -156,4 +161,26 @@
     );
   pointer-events: none;
   mix-blend-mode: multiply;
+}
+
+.book-gutter::before,
+.book-gutter::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  width: 360%;
+  height: clamp(0.55rem, 0.85vw, 1rem);
+  border-radius: 50%;
+  translate: -50% 0;
+  pointer-events: none;
+}
+
+.book-gutter::before {
+  top: -0.42rem;
+  background: radial-gradient(ellipse at center, rgba(48, 38, 28, 0.13), transparent 67%);
+}
+
+.book-gutter::after {
+  bottom: -0.42rem;
+  background: radial-gradient(ellipse at center, rgba(48, 38, 28, 0.16), transparent 67%);
 }

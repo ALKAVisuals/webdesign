@@ -44,7 +44,7 @@ a {
   padding: clamp(1.4rem, 3vh, 2.5rem) clamp(1.5rem, 3.25vw, 4.5rem) clamp(1.25rem, 2.5vh, 2rem);
   display: grid;
   grid-template-rows: auto 1fr;
-  gap: clamp(1.5rem, 3vh, 3.25rem);
+  gap: clamp(1rem, 2vh, 2rem);
   overflow: hidden;
 }
 
