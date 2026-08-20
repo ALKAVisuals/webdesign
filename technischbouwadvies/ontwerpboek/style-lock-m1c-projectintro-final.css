@@ -1,5 +1,5 @@
 /* D — Projectintro final integration into the real interactive book.
-   Scope: spread 01 desktop presentation. Mobile remains governed by the existing safe 2D rules until step E. */
+   Scope: spread 01 desktop presentation plus the desktop open-book lifecycle shell. */
 
 :root {
   --pi-paper: #faf7ef;
@@ -10,6 +10,40 @@
 }
 
 @media (min-width: 761px) {
+  /* Once the book is opening/open, remove the landing copy and masthead from the
+     reading canvas. The screenshots showed the old CTA still floating above the
+     book, which made the spread feel embedded in a web page instead of presented
+     as a self-contained architectural book. */
+  body:has(.book-area.is-opening) .presentation-header,
+  body:has(.book-area.is-open) .presentation-header,
+  body:has(.book-area.is-turning-next) .presentation-header,
+  body:has(.book-area.is-turning-prev) .presentation-header,
+  body:has(.book-area.is-ending) .presentation-header,
+  body:has(.book-area.is-ended) .presentation-header,
+  body:has(.book-area.is-opening) .presentation-intro,
+  body:has(.book-area.is-open) .presentation-intro,
+  body:has(.book-area.is-turning-next) .presentation-intro,
+  body:has(.book-area.is-turning-prev) .presentation-intro,
+  body:has(.book-area.is-ending) .presentation-intro,
+  body:has(.book-area.is-ended) .presentation-intro {
+    display: none !important;
+  }
+
+  body:has(.book-area.is-opening) .presentation-main,
+  body:has(.book-area.is-open) .presentation-main,
+  body:has(.book-area.is-turning-next) .presentation-main,
+  body:has(.book-area.is-turning-prev) .presentation-main {
+    min-height: 100svh !important;
+  }
+
+  body:has(.book-area.is-opening) .book-area,
+  body:has(.book-area.is-open) .book-area,
+  body:has(.book-area.is-turning-next) .book-area,
+  body:has(.book-area.is-turning-prev) .book-area {
+    min-height: 100svh !important;
+    padding-top: clamp(18px, 2.4vh, 34px) !important;
+  }
+
   /* Approved 36.5 / 63.5 masterspread, only while spread 01 is visible. */
   .book:has(.editorial-layout[data-spread="01"]) {
     grid-template-columns: 36.5% 63.5% !important;
@@ -227,5 +261,4 @@
   }
 }
 
-/* Step E will deliberately translate the approved physical style to mobile.
-   Until then, do not override the existing iOS-safe single-page rules here. */
+/* Mobile translation lives in the dedicated E/E2/E3 stylesheets. */
