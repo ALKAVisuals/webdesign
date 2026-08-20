@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Designrichting voor het interactieve ontwerpboek van Technisch Bouwadvies.">
-  <title>Ontwerpboek V2 — Projectintro</title>
+  <meta name="description" content="Desktopdesign van het interactieve ontwerpboek van Technisch Bouwadvies.">
+  <title>Ontwerpboek V2 — volledig desktopboek</title>
   <link rel="stylesheet" href="styles/tokens.css">
   <link rel="stylesheet" href="styles/base.css">
   <link rel="stylesheet" href="styles/book.css">
@@ -14,7 +14,7 @@
 <body>
   <main class="preview-stage" aria-labelledby="preview-title">
     <header class="preview-header">
-      <a class="brand" href="#projectintro" aria-label="Technisch Bouwadvies ontwerpboek">
+      <a class="brand" href="#spread-01" aria-label="Naar het begin van het ontwerpboek">
         <span class="brand__monogram" aria-hidden="true">
           <span>T</span><span>B</span>
         </span>
@@ -22,49 +22,16 @@
       </a>
 
       <div class="preview-heading">
-        <h1 id="preview-title">Binnenwerk spread system</h1>
-        <p class="eyebrow">Projectintro binnen de architectonische boekstijl</p>
+        <h1 id="preview-title">Het ontwerpboek</h1>
+        <p class="eyebrow">De Houtkavel · conceptpresentatie</p>
       </div>
 
-      <p class="preview-status">Spread 01 / 08</p>
+      <p class="preview-status">Desktopboek · 08 spreads</p>
     </header>
 
-    <section class="book-scene" id="projectintro" aria-label="Open ontwerpboek met projectintro">
-      <div class="book-shadow" aria-hidden="true"></div>
-      <div class="page-stack page-stack--left" aria-hidden="true"></div>
-      <div class="page-stack page-stack--right" aria-hidden="true"></div>
-
-      <article class="book-spread">
-        <section class="book-page book-page--editorial" aria-labelledby="project-title">
-          <div class="page-topline">
-            <p class="chapter-label">Projectintro</p>
-          </div>
-
-          <div class="intro-copy">
-            <h2 id="project-title">De Houtkavel</h2>
-            <span class="title-rule" aria-hidden="true"></span>
-            <p class="intro-lead">Een eigentijdse woning in balans met context, licht en materiaal.</p>
-            <p class="intro-body">Technische helderheid vormt de basis voor een duurzame toekomst.</p>
-          </div>
-
-          <div class="page-footer">
-            <p>Technisch Bouwadvies</p>
-            <p class="folio">004</p>
-          </div>
-        </section>
-
-        <figure class="book-page book-page--visual">
-          <img
-            src="assets/images/de-houtkavel-projectintro-v3.png"
-            alt="Eigentijdse woning met houten gevel in een Nederlands landschap"
-          >
-          <p class="folio folio--visual">005</p>
-        </figure>
-
-        <div class="book-gutter" aria-hidden="true"></div>
-      </article>
-    </section>
-
+    <div class="book-sequence" id="book-sequence" aria-label="Acht spreads van het ontwerpboek"></div>
   </main>
+
+  <script type="module" src="scripts/content.js"></script>
 </body>
 </html>

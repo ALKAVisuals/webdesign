@@ -1,5 +1,10 @@
 .page-topline,
-.page-footer {
+.page-footer,
+.canvas-topline,
+.canvas-footer,
+.technical-sheet__head,
+.technical-sheet__foot,
+.technical-plate__label {
   position: relative;
   z-index: 2;
   display: flex;
@@ -12,7 +17,10 @@
   text-transform: uppercase;
 }
 
-.page-topline {
+.page-topline,
+.canvas-topline,
+.technical-sheet__head,
+.technical-plate__label {
   color: var(--color-muted);
 }
 
@@ -22,23 +30,32 @@
   gap: 0.65rem;
 }
 
-.chapter-label span {
+.chapter-label span,
+.canvas-topline span,
+.technical-sheet__head span {
   color: var(--color-bronze);
 }
 
-.intro-copy {
-  align-self: center;
-  width: min(26rem, 100%);
+.page-footer,
+.canvas-footer,
+.technical-sheet__foot {
+  color: var(--color-muted);
 }
 
-.intro-copy h2 {
-  white-space: nowrap;
-  font-family: var(--font-editorial);
-  font-size: clamp(1.72rem, 2.3vw, 2.85rem);
-  font-weight: 400;
-  letter-spacing: -0.025em;
-  line-height: 1;
-  text-transform: uppercase;
+.folio {
+  color: var(--color-ink);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.1em;
+}
+
+.folio--visual {
+  position: absolute;
+  z-index: 3;
+  right: clamp(1.5rem, 2.2vw, 2.8rem);
+  bottom: clamp(1.45rem, 2.2vw, 2.75rem);
+  color: rgba(255, 255, 255, 0.9);
+  font-family: var(--font-technical);
+  font-size: clamp(0.43rem, 0.47vw, 0.61rem);
 }
 
 .title-rule {
@@ -47,6 +64,23 @@
   height: 1px;
   margin: clamp(1.15rem, 1.8vw, 2.1rem) 0 clamp(1rem, 1.45vw, 1.75rem);
   background: var(--color-bronze);
+}
+
+/* 01 — Projectintro */
+
+.intro-copy {
+  align-self: center;
+  width: min(26rem, 100%);
+}
+
+.intro-copy h3 {
+  white-space: nowrap;
+  font-family: var(--font-editorial);
+  font-size: clamp(1.72rem, 2.3vw, 2.85rem);
+  font-weight: 400;
+  letter-spacing: -0.025em;
+  line-height: 1;
+  text-transform: uppercase;
 }
 
 .intro-lead,
@@ -66,22 +100,448 @@
   color: var(--color-muted);
 }
 
-.page-footer {
+/* 02 — Varianten */
+
+.comparison-spread {
+  padding: clamp(2.2rem, 3.4vw, 4.4rem) clamp(2.4rem, 4.1vw, 5.2rem) clamp(1.8rem, 2.7vw, 3.4rem);
+}
+
+.canvas-topline {
+  margin-bottom: clamp(1.5rem, 2.2vw, 2.8rem);
+}
+
+.canvas-topline p:first-child {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.variant-grid {
+  height: 76%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.variant-item {
+  display: grid;
+  grid-template-rows: auto auto minmax(0, 1fr) auto auto;
+  min-width: 0;
+  padding: 0 clamp(1.2rem, 2.3vw, 2.8rem);
+}
+
+.variant-item:first-child {
+  padding-left: 0;
+}
+
+.variant-item:last-child {
+  padding-right: 0;
+}
+
+.variant-item + .variant-item {
+  border-left: 1px solid rgba(74, 65, 54, 0.15);
+}
+
+.variant-index {
+  color: var(--color-bronze);
+  font-family: var(--font-editorial);
+  font-size: clamp(0.75rem, 0.82vw, 1rem);
+}
+
+.variant-item h3 {
+  margin-top: 0.2rem;
+  color: #504b45;
+  font-size: clamp(0.48rem, 0.48vw, 0.62rem);
+  font-weight: 500;
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+}
+
+.variant-item img {
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  object-fit: contain;
+}
+
+.variant-copy {
+  min-height: 3.8em;
+  color: #625d56;
+  font-size: clamp(0.5rem, 0.51vw, 0.66rem);
+  line-height: 1.55;
+}
+
+.variant-copy::after {
+  content: "";
+  display: block;
+  width: 2.5rem;
+  height: 1px;
+  margin: clamp(0.65rem, 0.9vw, 1rem) 0;
+  background: var(--color-bronze-soft);
+}
+
+.variant-facts {
+  display: grid;
+  gap: 0.18rem;
+  margin: 0;
+  color: #817a70;
+  font-size: clamp(0.4rem, 0.41vw, 0.54rem);
+  line-height: 1.4;
+}
+
+.variant-facts div {
+  display: grid;
+  grid-template-columns: 5.8rem 1fr;
+  gap: 0.5rem;
+}
+
+.variant-facts dt,
+.variant-facts dd {
+  margin: 0;
+}
+
+.variant-facts dd {
+  color: #514c45;
+}
+
+.canvas-footer {
+  position: absolute;
+  right: clamp(2.4rem, 4.1vw, 5.2rem);
+  bottom: clamp(1.6rem, 2.3vw, 2.9rem);
+  left: clamp(2.4rem, 4.1vw, 5.2rem);
+}
+
+.canvas-footer div {
+  width: 50.5%;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* 03 / 05 — Technical narrative */
+
+.book-spread--plan,
+.book-spread--detail {
+  grid-template-columns: 39% 61%;
+}
+
+.plan-copy,
+.detail-copy,
+.material-copy,
+.result-copy {
+  display: grid;
+  grid-template-rows: auto 1fr auto auto;
+  padding: var(--page-padding-y) var(--page-padding-x) clamp(1.5rem, 2.2vw, 2.8rem);
+  background:
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.2), transparent 8%, transparent 91%, rgba(80, 65, 48, 0.03)),
+    var(--color-paper);
+}
+
+.technical-copy {
+  align-self: center;
+}
+
+.technical-kicker {
+  margin-bottom: clamp(0.8rem, 1vw, 1.2rem);
+  color: var(--color-bronze);
+  font-size: clamp(0.45rem, 0.47vw, 0.62rem);
+  font-weight: 600;
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+}
+
+.technical-copy h3,
+.material-copy__content h3,
+.result-copy__content h3 {
+  font-family: var(--font-editorial);
+  font-size: clamp(1.6rem, 2vw, 2.55rem);
+  font-weight: 400;
+  letter-spacing: -0.025em;
+  line-height: 1.03;
+}
+
+.technical-copy > p:last-child,
+.material-copy__content > p,
+.result-copy__content > p:last-child {
+  max-width: 27em;
+  margin-top: clamp(1rem, 1.3vw, 1.6rem);
+  color: #686159;
+  font-size: clamp(0.54rem, 0.56vw, 0.72rem);
+  line-height: 1.62;
+}
+
+.plan-legend,
+.detail-facts {
+  display: grid;
+  gap: 0.48rem;
+  margin: 0 0 clamp(1rem, 1.4vw, 1.8rem);
+  font-size: clamp(0.43rem, 0.45vw, 0.6rem);
+}
+
+.plan-legend div,
+.detail-facts div {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+  padding-top: 0.45rem;
+  border-top: 1px solid rgba(77, 67, 55, 0.14);
+}
+
+.plan-legend dt,
+.plan-legend dd,
+.detail-facts dt,
+.detail-facts dd {
+  margin: 0;
+}
+
+.plan-legend dt {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.plan-legend dd,
+.detail-facts dd {
   color: var(--color-muted);
 }
 
-.folio {
-  color: var(--color-ink);
-  font-variant-numeric: tabular-nums;
-  letter-spacing: 0.1em;
+.legend-line {
+  width: 1.5rem;
+  height: 1px;
+  display: inline-block;
+  background: #282621;
 }
 
-.folio--visual {
+.legend-line--bronze {
+  background: var(--color-bronze);
+}
+
+.legend-line--fine {
+  height: 0;
+  border-top: 1px dashed #898278;
+  background: transparent;
+}
+
+.technical-plate {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  padding: clamp(2rem, 3vw, 3.8rem) clamp(2rem, 3.1vw, 4rem) clamp(1.5rem, 2.2vw, 2.8rem);
+  background: #f7f3eb;
+}
+
+.technical-plate > img {
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  object-fit: contain;
+}
+
+.technical-plate > .folio {
+  justify-self: end;
+  align-self: end;
+  font-size: clamp(0.43rem, 0.47vw, 0.61rem);
+}
+
+.technical-plate--plan > img {
+  scale: 1.04;
+}
+
+.technical-plate--detail > img {
+  scale: 0.94;
+}
+
+/* 04 — Gevel & doorsnede */
+
+.technical-sheet {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  padding: clamp(2.1rem, 3vw, 3.8rem) clamp(2.2rem, 3.3vw, 4.2rem) clamp(1.5rem, 2.2vw, 2.8rem);
+  background: #f7f3eb;
+}
+
+.technical-sheet + .technical-sheet {
+  border-left: 1px solid rgba(78, 68, 56, 0.08);
+}
+
+.technical-sheet > img {
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  object-fit: contain;
+}
+
+/* 06 — Interieur & materialen */
+
+.book-spread--materials {
+  grid-template-columns: 49% 51%;
+}
+
+.material-copy__content {
+  align-self: center;
+}
+
+.material-samples {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(0.7rem, 1vw, 1.2rem);
+  margin-top: clamp(1.5rem, 2vw, 2.6rem);
+}
+
+.material-samples article {
+  min-width: 0;
+}
+
+.sample {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1.38 / 1;
+  margin-bottom: 0.65rem;
+  border: 1px solid rgba(66, 57, 47, 0.12);
+}
+
+.sample--oak {
+  background:
+    repeating-linear-gradient(90deg, rgba(73, 49, 29, 0.14) 0 1px, transparent 1px 8px),
+    #b8966d;
+}
+
+.sample--stone {
+  background:
+    radial-gradient(circle at 24% 30%, rgba(102, 92, 80, 0.12) 0 1px, transparent 1.5px),
+    radial-gradient(circle at 70% 64%, rgba(102, 92, 80, 0.1) 0 1px, transparent 1.5px),
+    #d6cfc1;
+  background-size: 13px 11px, 17px 15px, auto;
+}
+
+.sample--bronze {
+  background: linear-gradient(135deg, #2f2d2a, #575047 54%, #292824);
+}
+
+.material-samples p,
+.material-samples h4,
+.material-samples span {
+  font-size: clamp(0.38rem, 0.4vw, 0.53rem);
+  line-height: 1.4;
+}
+
+.material-samples p {
+  color: var(--color-bronze);
+}
+
+.material-samples h4 {
+  color: #49453f;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.material-samples span {
+  color: var(--color-muted);
+}
+
+/* 07 — Full visual */
+
+.full-visual-spread {
+  background: #20241f;
+}
+
+.full-visual-spread > img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 52%;
+  filter: saturate(0.88) contrast(0.98) brightness(0.93);
+}
+
+.full-visual-spread::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(12, 13, 11, 0.42), transparent 34%, transparent 76%, rgba(12, 13, 11, 0.08));
+  pointer-events: none;
+}
+
+.full-visual-spread__label {
+  position: absolute;
+  z-index: 2;
+  top: clamp(3rem, 5vw, 6rem);
+  left: clamp(3.2rem, 5.5vw, 6.8rem);
+  color: #f5f0e7;
+}
+
+.full-visual-spread__label p {
+  margin-bottom: clamp(0.9rem, 1.2vw, 1.4rem);
+  color: #d1aa7b;
+  font-family: var(--font-editorial);
+  font-size: clamp(0.8rem, 0.9vw, 1.1rem);
+}
+
+.full-visual-spread__label h3 {
+  font-family: var(--font-editorial);
+  font-size: clamp(1.8rem, 2.6vw, 3.4rem);
+  font-weight: 400;
+  line-height: 1.02;
+}
+
+.full-visual-spread__folios {
   position: absolute;
   z-index: 3;
   right: clamp(1.5rem, 2.2vw, 2.8rem);
   bottom: clamp(1.45rem, 2.2vw, 2.75rem);
+  left: clamp(1.5rem, 2.2vw, 2.8rem);
+  display: flex;
+  justify-content: space-between;
+}
+
+.full-visual-spread__folios .folio {
   color: rgba(255, 255, 255, 0.88);
-  font-family: var(--font-technical);
   font-size: clamp(0.43rem, 0.47vw, 0.61rem);
+}
+
+.book-gutter--on-dark {
+  opacity: 0.62;
+}
+
+/* 08 — Resultaat */
+
+.book-spread--result {
+  grid-template-columns: 48% 52%;
+}
+
+.result-visual {
+  background: #807a6e;
+}
+
+.result-visual img {
+  position: absolute;
+  inset: -5%;
+  width: 110%;
+  height: 110%;
+  max-width: none;
+  object-fit: cover;
+  object-position: 54% 50%;
+  filter: saturate(0.82) contrast(0.98) brightness(0.94);
+}
+
+.result-copy__content {
+  align-self: center;
+}
+
+.result-copy__content .title-rule {
+  margin-top: clamp(1rem, 1.4vw, 1.6rem);
+}
+
+.result-signature {
+  margin-bottom: clamp(1.2rem, 1.6vw, 2rem);
+  padding-top: 0.8rem;
+  border-top: 1px solid rgba(74, 64, 52, 0.16);
+  color: #4f4a43;
+  font-size: clamp(0.44rem, 0.46vw, 0.6rem);
+  letter-spacing: 0.1em;
+  line-height: 1.5;
+  text-transform: uppercase;
+}
+
+.result-signature span {
+  color: var(--color-muted);
+  letter-spacing: 0.07em;
 }

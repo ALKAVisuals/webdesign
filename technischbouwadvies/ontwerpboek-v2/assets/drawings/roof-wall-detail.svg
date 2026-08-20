@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 760" role="img" aria-labelledby="title desc">
+  <title id="title">Schematisch bouwdetail dak en gevel</title><desc id="desc">Schematische technische presentatie van de dakrand, houtskeletwand en glazen pui.</desc>
+  <defs><pattern id="ins" width="18" height="18" patternUnits="userSpaceOnUse"><path d="m0 14 7-10 7 10 7-10" fill="none" stroke="#aaa49a" stroke-width=".8"/></pattern><style>.cut{fill:none;stroke:#24231f;stroke-width:4}.main{fill:none;stroke:#24231f;stroke-width:2}.thin{fill:none;stroke:#817b72;stroke-width:.8}.accent{fill:none;stroke:#9a7449;stroke-width:1.2}.txt{fill:#5e5a53;font:15px Arial,sans-serif}.num{fill:#9a7449;font:bold 14px Arial,sans-serif}</style></defs>
+  <g transform="translate(110 72)">
+    <path fill="url(#ins)" stroke="#24231f" stroke-width="3" d="M218 92h258v75H315v395h-97z"/>
+    <path class="cut" d="M188 76h318v22H218v488h-30zM315 167h38v395h-38"/>
+    <path class="main" d="M353 192h116v370H353M385 217v345M417 217v345M449 217v345M506 98v81h-72M188 586h302"/>
+    <path class="accent" d="M204 98v488M469 192v370M506 98H218"/>
+    <path class="thin" d="M147 76v510M137 76h20M137 586h20M188 624h302M188 614v20M490 614v20"/>
+    <g class="thin"><path d="M520 106h92M353 230h259M353 331h259M353 447h259M353 550h259"/></g>
+    <g class="num"><text x="630" y="111">01</text><text x="630" y="235">02</text><text x="630" y="336">03</text><text x="630" y="452">04</text><text x="630" y="555">05</text></g>
+    <g class="txt"><text x="670" y="111">DAKBEDEKKING</text><text x="670" y="235">HOUTVEZELISOLATIE</text><text x="670" y="336">DAMPREMMENDE LAAG</text><text x="670" y="452">HOUTSKELETWAND</text><text x="670" y="555">ALUMINIUM PUIPROFIEL</text></g>
+    <text class="txt" x="188" y="677">SCHEMATISCHE TECHNISCHE PRESENTATIE · GEEN UITVOERINGSBEREKENING</text>
+  </g>
+</svg>

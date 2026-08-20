@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 720" role="img" aria-labelledby="title desc">
+  <title id="title">Gevelaanzicht zuid</title><desc id="desc">Technisch gevelaanzicht van de tweelaagse houten woning met glazen tuinvolume.</desc>
+  <defs><style>.main{fill:none;stroke:#25241f;stroke-width:2}.thin{fill:none;stroke:#7d776f;stroke-width:.85}.accent{fill:none;stroke:#9a7449;stroke-width:1.1}.txt{fill:#666159;font:14px Arial,sans-serif}.dim{fill:#9a7449;font:12px Arial,sans-serif}</style></defs>
+  <g transform="translate(88 92)">
+    <path class="main" d="M96 474V145h435v119h281v210zM96 145h435M531 264h281"/>
+    <path class="thin" d="M96 474h716M121 145v329M146 145v329M171 145v329M196 145v329M221 145v329M246 145v329M271 145v329M296 145v329M321 145v329M346 145v329M371 145v329M396 145v329M421 145v329M446 145v329M471 145v329M496 145v329" opacity=".65"/>
+    <g class="main"><rect x="150" y="219" width="78" height="126"/><rect x="274" y="219" width="78" height="126"/><rect x="398" y="219" width="78" height="126"/><rect x="144" y="376" width="130" height="98"/><rect x="320" y="376" width="160" height="98"/><rect x="559" y="313" width="223" height="161"/></g>
+    <path class="thin" d="M615 313v161M670 313v161M726 313v161M782 313v161M70 500h770M96 536h716M96 526v20M812 526v20M51 145v329M41 145h20M41 474h20"/>
+    <path class="accent" d="M531 264h281v210H531"/>
+    <g class="dim"><text x="425" y="563">13.800</text><text x="18" y="332" transform="rotate(-90 18 332)">6.300</text></g>
+    <g class="txt"><text x="96" y="595">VERTICALE HOUTEN GEVELBEKLEDING</text><text x="612" y="595">SLANKE ALUMINIUM PUIEN</text></g>
+  </g>
+</svg>

@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" role="img" aria-labelledby="title desc">
+  <title id="title">Ontwerpvariant C — paviljoen</title>
+  <desc id="desc">Schematische perspectieftekening van een brede woning met transparant paviljoen en beschutte patio.</desc>
+  <g fill="none" stroke="#292722" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke">
+    <path stroke-width="1.7" d="M64 318 224 235l280 58-165 88zM224 235V144l142 29 51 69M64 318V228l160-84M339 381V263l165-72"/>
+    <path stroke-width=".85" d="m64 228 160 35 142-90M224 263V144M339 263l-115-28M96 310v-61M130 293v-37M165 275v-13M265 352v-73M301 365v-80M374 362v-86M412 342v-84M451 321v-82M489 301v-77"/>
+    <path stroke="#aa7b4a" stroke-width="1.4" d="M339 263v118M504 293V191M339 263l165 30M224 235l115 28"/>
+    <path stroke-width=".7" d="m43 337 291 63 207-111M53 347l281 62M334 400v8M541 289v10" opacity=".48"/>
+  </g>
+</svg>

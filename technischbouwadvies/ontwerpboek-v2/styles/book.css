@@ -79,6 +79,13 @@
   box-shadow: 0 0.14rem 0.24rem rgba(57, 47, 36, 0.14);
 }
 
+.book-spread--canvas {
+  display: block;
+  background:
+    linear-gradient(to right, transparent 49.9%, rgba(83, 70, 54, 0.055) 50%, transparent 50.12%),
+    var(--color-paper);
+}
+
 .book-page {
   position: relative;
   min-width: 0;
@@ -141,6 +148,10 @@
   object-fit: cover;
   object-position: 50% 54%;
   filter: saturate(0.9) contrast(0.98) brightness(0.99);
+}
+
+.book-page--interior img {
+  object-position: 53% 50%;
 }
 
 .book-gutter {

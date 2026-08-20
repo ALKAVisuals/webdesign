@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" role="img" aria-labelledby="title desc">
+  <title id="title">Plattegrond begane grond</title>
+  <desc id="desc">Schematische technische plattegrond van de houten woning met entree, keuken, eetruimte, woonkamer en glazen tuinzone.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto"><path d="m0 4 8-4v8z" fill="#9a7449"/></marker>
+    <style>.wall{fill:none;stroke:#24231f;stroke-width:6}.inner{fill:none;stroke:#24231f;stroke-width:3}.thin{fill:none;stroke:#777168;stroke-width:1.25}.accent{fill:none;stroke:#9a7449;stroke-width:1.8}.furn{fill:none;stroke:#8a857c;stroke-width:1.35}.label{fill:#5f5a53;font:18px Arial,sans-serif;letter-spacing:2px}.dim{fill:#9a7449;font:15px Arial,sans-serif}</style>
+  </defs>
+  <g transform="translate(132 112)">
+    <path class="wall" d="M70 80h602v144h302v376H70z"/>
+    <path class="inner" d="M70 322h330M400 80v242M672 224v376M400 442h272M230 322v278M70 498h160"/>
+    <path class="accent" d="M672 224h302v376H672M746 224v376M822 224v376M898 224v376"/>
+    <path class="thin" d="M70 80h602M70 600h904"/>
+    <g class="furn">
+      <rect x="108" y="113" width="246" height="72" rx="3"/><circle cx="324" cy="149" r="23"/>
+      <rect x="108" y="364" width="82" height="104" rx="3"/><path d="M120 378h58M120 455h58"/>
+      <rect x="286" y="354" width="250" height="58" rx="3"/><circle cx="318" cy="432" r="24"/><circle cx="385" cy="432" r="24"/><circle cx="452" cy="432" r="24"/><circle cx="519" cy="432" r="24"/>
+      <rect x="294" y="494" width="266" height="80" rx="4"/><rect x="320" y="517" width="75" height="35" rx="3"/><rect x="458" y="517" width="75" height="35" rx="3"/>
+      <rect x="708" y="304" width="222" height="82" rx="4"/><rect x="732" y="327" width="68" height="36" rx="3"/><rect x="836" y="327" width="68" height="36" rx="3"/>
+      <rect x="746" y="452" width="146" height="62" rx="4"/>
+    </g>
+    <g class="thin">
+      <path d="M400 269a53 53 0 0 1 53 53M230 539a61 61 0 0 0-61 61M672 525a75 75 0 0 1-75 75"/>
+      <path d="M39 80V600M29 80h20M29 600h20M70 640h904M70 630v20M974 630v20"/>
+    </g>
+    <g class="label">
+      <text x="105" y="232">WERK / LOGEER</text><text x="452" y="160">ENTREE</text>
+      <text x="102" y="548">BIJKEUKEN</text><text x="286" y="472">KEUKEN &amp; ETEN</text>
+      <text x="738" y="272">WOONKAMER</text><text x="760" y="570">TUINKAMER</text>
+    </g>
+    <g class="dim">
+      <text x="-10" y="357" transform="rotate(-90 -10 357)">7.200</text><text x="500" y="682">13.800</text>
+      <text x="757" y="211">NIEUWE GLAZEN TUINZONE</text>
+    </g>
+  </g>
+</svg>

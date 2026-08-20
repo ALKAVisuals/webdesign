@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" role="img" aria-labelledby="title desc">
+  <title id="title">Ontwerpvariant B — gelaagde volumes</title>
+  <desc id="desc">Schematische perspectieftekening van een woning met terugliggende verdieping en brede glazen tuingevel.</desc>
+  <g fill="none" stroke="#292722" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke">
+    <path stroke-width="1.7" d="M67 315 235 228l270 56-164 90zM235 228V129l156 32 54 76M67 315V219l168-90M341 374V252l164-74"/>
+    <path stroke-width=".85" d="m67 219 168 36 156-94M235 255V129M341 252l-106 3M101 307v-67M137 289v-42M176 268v-13M273 347v-78M309 358v-82M376 356v-87M414 334v-82M452 313v-79M489 293v-77"/>
+    <path stroke="#aa7b4a" stroke-width="1.4" d="M341 252v122M505 284V178M341 252l164 32M235 228l106 24"/>
+    <path stroke-width=".7" d="m45 334 291 63 205-116M55 344l281 62M336 397v9M541 281v10" opacity=".48"/>
+  </g>
+</svg>

@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" role="img" aria-labelledby="title desc">
+  <title id="title">Ontwerpvariant A — houten lamellen</title>
+  <desc id="desc">Schematische perspectieftekening van een compacte houten woning met glazen tuinpaviljoen.</desc>
+  <g fill="none" stroke="#292722" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke">
+    <path stroke-width="1.7" d="M78 309 247 222l248 52-158 91zM247 222V105l171 37 77 132M78 309V206l169-101M337 365V253l158-79"/>
+    <path stroke-width=".85" d="m78 206 169 39 171-103M247 245v-140M337 253l-90-8M108 301v-70M139 285v-47M173 267v-22M276 338v-76M310 348v-78M371 345v-74M406 326v-73M441 306v-72M476 287v-73"/>
+    <path stroke="#aa7b4a" stroke-width="1.3" d="M337 253v112M495 274v-100M337 253l158 21"/>
+    <path stroke-width=".7" d="m54 328 278 60 199-115M63 338l269 59M332 388v9M531 273v10" opacity=".48"/>
+  </g>
+</svg>

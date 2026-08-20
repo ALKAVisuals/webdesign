@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 720" role="img" aria-labelledby="title desc">
+  <title id="title">Doorsnede A-A</title><desc id="desc">Technische doorsnede door woonhuis en glazen tuinzone met niveauaanduidingen.</desc>
+  <defs><style>.cut{fill:none;stroke:#25241f;stroke-width:4.5}.main{fill:none;stroke:#25241f;stroke-width:1.8}.thin{fill:none;stroke:#7d776f;stroke-width:.85}.accent{fill:none;stroke:#9a7449;stroke-width:1.1}.txt{fill:#666159;font:13px Arial,sans-serif}.dim{fill:#9a7449;font:12px Arial,sans-serif}</style></defs>
+  <g transform="translate(92 78)">
+    <path class="cut" d="M104 486V142h421v126h279v218M104 142h421M525 268h279M104 486h700"/>
+    <path class="main" d="M104 325h421M185 486V385h92v101M347 486V385h98v101M577 486V326h167v160M237 325l92 71 89-71"/>
+    <path class="thin" d="M104 337h421M104 474h700M104 504h700M78 142v344M68 142h20M68 486h20M832 142v344M822 142h20M822 486h20"/>
+    <path class="accent" d="M525 268h279v218H525"/>
+    <g class="thin"><path d="M181 372h267M181 362v20M448 362v20"/><path d="M577 310h167M577 300v20M744 300v20"/></g>
+    <g class="dim"><text x="45" y="337" transform="rotate(-90 45 337)">+6.300</text><text x="859" y="349" transform="rotate(-90 859 349)">+3.150</text></g>
+    <g class="txt"><text x="105" y="548">PEIL ±0</text><text x="311" y="548">HOUTSKELETBOUW</text><text x="622" y="548">GLAZEN TUINZONE</text></g>
+  </g>
+</svg>
