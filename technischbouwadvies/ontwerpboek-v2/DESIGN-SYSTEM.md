@@ -33,3 +33,7 @@ Checkpoint 1 implementeert alleen archetype 1.
 ## Scherpte en rendering
 
 De definitieve pagina's gebruiken geen permanente `transform`, `perspective` of CSS-3D. Een latere pagina-omslag mag een tijdelijke animatielaag krijgen, waarna de scherpe 2D-pagina terugkeert.
+
+## Premium boek-shell
+
+De goedgekeurde Projectintro-richting gebruikt afzonderlijke lagen voor papierstapel, dunne donkere kaftsnede, middenrug, contactschaduw en omgevingsschaduw. De boekillusie mag nooit op een wit platform lijken en blijft ondergeschikt aan de pagina-inhoud. De previewomgeving bevat buiten het boek geen decoratieve footer of dashboardachtige bediening.
