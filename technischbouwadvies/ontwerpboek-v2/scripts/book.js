@@ -2,6 +2,7 @@ import './content.js';
 
 const cover = document.querySelector('#book-cover');
 const reader = document.querySelector('#book-reader');
+const closedBook = cover.querySelector('.closed-book');
 const stage = document.querySelector('.preview-stage');
 const sequence = document.querySelector('#book-sequence');
 const spreads = [...document.querySelectorAll('.spread-frame')];
@@ -16,12 +17,14 @@ const liveRegion = document.querySelector('#reader-live');
 const mobileQuery = window.matchMedia('(max-width: 48rem)');
 const reducedMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
 const pageTurnDuration = 560;
+const bookTransitionDuration = 720;
 
 const state = {
   open: false,
   spread: 0,
   mobilePage: 0,
-  turning: false
+  turning: false,
+  transitioning: false
 };
 
 const pad = (value) => String(value).padStart(2, '0');
@@ -101,17 +104,81 @@ const render = ({ announce = true, focus = false } = {}) => {
   updateHash();
 };
 
-const openBook = ({ spread = 0, focus = true } = {}) => {
+const transitionGhost = (source, className) => {
+  const rect = source.getBoundingClientRect();
+  const ghost = source.cloneNode(true);
+  ghost.querySelectorAll('[id]').forEach((element) => element.removeAttribute('id'));
+  ghost.querySelectorAll('img').forEach((image) => {
+    image.loading = 'eager';
+  });
+  ghost.classList.add(className);
+  ghost.setAttribute('aria-hidden', 'true');
+  ghost.style.setProperty('--transition-top', `${rect.top}px`);
+  ghost.style.setProperty('--transition-left', `${rect.left}px`);
+  ghost.style.setProperty('--transition-width', `${rect.width}px`);
+  ghost.style.setProperty('--transition-height', `${rect.height}px`);
+  document.body.append(ghost);
+  return ghost;
+};
+
+const openBook = ({ spread = 0, focus = true, animate = true } = {}) => {
+  if (state.transitioning) return;
+
+  if (state.open) {
+    state.spread = Math.max(0, Math.min(spreads.length - 1, spread));
+    state.mobilePage = state.spread * 2;
+    render({ focus });
+    return;
+  }
+
+  const shouldAnimate = animate && !reducedMotionQuery.matches;
+  const ghost = shouldAnimate ? transitionGhost(closedBook, 'book-transition-cover') : null;
   state.open = true;
   state.spread = Math.max(0, Math.min(spreads.length - 1, spread));
   state.mobilePage = state.spread * 2;
-  render({ focus });
+  if (!shouldAnimate) {
+    render({ focus });
+    return;
+  }
+
+  state.transitioning = true;
+  stage.classList.add('is-opening');
+  render({ announce: false });
+  reader.inert = true;
+
+  window.setTimeout(() => {
+    ghost.remove();
+    stage.classList.remove('is-opening');
+    reader.inert = false;
+    state.transitioning = false;
+    render({ focus });
+  }, bookTransitionDuration);
 };
 
-const closeBook = ({ focus = true } = {}) => {
-  if (state.turning) return;
+const closeBook = ({ focus = true, animate = true } = {}) => {
+  if (state.turning || state.transitioning || !state.open) return;
+
+  const activeScene = spreads[state.spread].querySelector('.book-scene');
+  const shouldAnimate = animate && !reducedMotionQuery.matches;
+  const ghost = shouldAnimate ? transitionGhost(activeScene, 'book-transition-spread') : null;
   state.open = false;
-  render({ focus });
+  if (!shouldAnimate) {
+    render({ focus });
+    return;
+  }
+
+  state.transitioning = true;
+  stage.classList.add('is-closing');
+  render({ announce: false });
+  cover.inert = true;
+
+  window.setTimeout(() => {
+    ghost.remove();
+    stage.classList.remove('is-closing');
+    cover.inert = false;
+    state.transitioning = false;
+    render({ focus });
+  }, bookTransitionDuration);
 };
 
 const commitStep = (direction) => {
@@ -158,7 +225,7 @@ const turnFace = ({ spread, side, mobilePageIndex, back = false }) => {
 };
 
 const turnPage = (direction) => {
-  if (!state.open || state.turning) return;
+  if (!state.open || state.turning || state.transitioning) return;
 
   const mobile = mobileQuery.matches;
   const current = mobile ? state.mobilePage : state.spread;
@@ -238,6 +305,8 @@ document.querySelectorAll('[data-action="cover"]').forEach((control) => {
 });
 
 document.addEventListener('keydown', (event) => {
+  if (state.transitioning) return;
+
   if (!state.open) {
     if (event.key === 'Enter' && document.activeElement === openButton) openBook();
     return;
@@ -302,5 +371,5 @@ window.addEventListener('hashchange', () => {
 sequence.setAttribute('tabindex', '-1');
 
 const initialSpread = window.location.hash.match(/^#spread-(0[1-8])$/);
-if (initialSpread) openBook({ spread: Number(initialSpread[1]) - 1, focus: false });
+if (initialSpread) openBook({ spread: Number(initialSpread[1]) - 1, focus: false, animate: false });
 else render({ announce: false });

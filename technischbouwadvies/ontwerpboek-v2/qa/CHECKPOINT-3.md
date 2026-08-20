@@ -76,6 +76,8 @@ Na de eerste interactieve versie is de boekervaring opnieuw visueel beoordeeld t
 - de oude tegenoverliggende pagina blijft tijdens het omslaan liggen en verdwijnt pas na de draai.
 - cameragerichte perspectiefschaal is verwijderd, zodat het blad niet langer buiten de vaste boekmaat groeit;
 - de volgende pagina wordt tijdens de draai uitsluitend onder het omslaande blad onthuld en de hoofdstukstatus wisselt pas na afloop.
+- openen en sluiten gebruikt een tweefasenovergang zonder overlappende kaft- en spreadtekst;
+- mobiel gebruikt voor kaftwissels een volledige paginaovergang in plaats van een desktopachtige middenrugmaskering.
 
 Aanvullend gecontroleerd op 1440 × 900 en 390 × 844:
 
@@ -85,3 +87,6 @@ Aanvullend gecontroleerd op 1440 × 900 en 390 × 844:
 - exact één spread en op mobiel exact één boekpagina is actief;
 - mobiel heeft geen horizontale of verticale viewportoverflow;
 - geen browserconsolefouten of -waarschuwingen aangetroffen.
+- na openen en sluiten blijven geen tijdelijke visuele kopieën achter;
+- focus eindigt na openen op de boeksequentie en na sluiten op de knop `Open het ontwerpboek`;
+- tijdens de overgang zijn de tijdelijke en nog niet actieve toestanden niet interactief.

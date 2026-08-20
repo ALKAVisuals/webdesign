@@ -1,3 +1,110 @@
+.book-transition-cover,
+.book-transition-spread {
+  position: fixed !important;
+  z-index: 50;
+  top: var(--transition-top) !important;
+  left: var(--transition-left) !important;
+  width: var(--transition-width) !important;
+  height: var(--transition-height) !important;
+  margin: 0 !important;
+  pointer-events: none;
+  transform-origin: center;
+  will-change: clip-path, opacity, transform;
+}
+
+.book-transition-cover {
+  animation: cover-leave 720ms cubic-bezier(0.55, 0.04, 0.3, 1) both;
+}
+
+.book-transition-spread {
+  animation: spread-close 720ms cubic-bezier(0.55, 0.04, 0.3, 1) both;
+}
+
+.preview-stage.is-opening .book-sequence {
+  animation: spread-open 720ms cubic-bezier(0.55, 0.04, 0.3, 1) both;
+}
+
+.preview-stage.is-opening .reader-controls {
+  animation: reader-controls-in 720ms ease both;
+}
+
+.preview-stage.is-closing .closed-book {
+  animation: cover-return 720ms cubic-bezier(0.55, 0.04, 0.3, 1) both;
+}
+
+.preview-stage.is-closing .cover-open {
+  animation: cover-action-in 720ms ease both;
+}
+
+@keyframes cover-leave {
+  0% {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+  26% {
+    opacity: 1;
+    transform: translateX(-1.2%) scale(0.99);
+  }
+  50%, 100% {
+    opacity: 0;
+    transform: translateX(-9%) scale(0.94);
+  }
+}
+
+@keyframes spread-open {
+  0%, 30% {
+    opacity: 0;
+    clip-path: inset(0 49.4% 0 49.4%);
+    transform: scale(0.985);
+  }
+  48% {
+    opacity: 0.92;
+    clip-path: inset(0 31% 0 31%);
+  }
+  100% {
+    opacity: 1;
+    clip-path: inset(0);
+    transform: scale(1);
+  }
+}
+
+@keyframes reader-controls-in {
+  0%, 74% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes spread-close {
+  0%, 26% {
+    opacity: 1;
+    clip-path: inset(0);
+    transform: scale(1);
+  }
+  64%, 100% {
+    opacity: 0;
+    clip-path: inset(0 49.4% 0 49.4%);
+    transform: scale(0.985);
+  }
+}
+
+@keyframes cover-return {
+  0%, 54% {
+    opacity: 0;
+    transform: translateX(-7%) scale(0.95);
+  }
+  76% {
+    opacity: 0.62;
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+@keyframes cover-action-in {
+  0%, 82% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
 .page-turn-layer,
 .page-turn-underlay {
   position: absolute;
@@ -146,13 +253,59 @@
 }
 
 @media (max-width: 48rem) {
+  .preview-stage.is-opening .book-sequence {
+    animation-name: mobile-page-open;
+  }
+
+  .book-transition-spread {
+    animation-name: mobile-page-close;
+  }
+
   .page-turn-face__content {
     left: 0 !important;
     width: 100%;
   }
 }
 
+@keyframes mobile-page-open {
+  0%, 34% {
+    opacity: 0;
+    clip-path: inset(0);
+    transform: translateY(0.45rem) scale(0.985);
+  }
+  100% {
+    opacity: 1;
+    clip-path: inset(0);
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes mobile-page-close {
+  0%, 28% {
+    opacity: 1;
+    clip-path: inset(0);
+    transform: translateY(0) scale(1);
+  }
+  68%, 100% {
+    opacity: 0;
+    clip-path: inset(0);
+    transform: translateY(0.45rem) scale(0.985);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
+  .book-transition-cover,
+  .book-transition-spread {
+    display: none;
+  }
+
+  .preview-stage.is-opening .book-sequence,
+  .preview-stage.is-opening .reader-controls,
+  .preview-stage.is-closing .closed-book,
+  .preview-stage.is-closing .cover-open {
+    animation: none;
+  }
+
   .page-turn-layer,
   .page-turn-underlay {
     display: none;

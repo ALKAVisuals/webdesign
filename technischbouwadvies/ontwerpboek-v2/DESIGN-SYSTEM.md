@@ -78,6 +78,8 @@ tekst, logo's, personen of commerciële elementen.
 
 De bediening staat buiten de inhoudelijke spreads en blijft visueel ondergeschikt aan het boek. Tijdens het omslaan gebruikt de tijdelijke animatielaag echte kopieën van de uitgaande en inkomende boekpagina. De stilstaande tegenoverliggende pagina blijft liggen totdat de draai voltooid is; hierdoor ontstaan geen grijze placeholdervlakken of dubbele pagina's halverwege de animatie. De draai gebruikt bewust geen cameragerichte perspectiefschaal: het omslaande blad, de onderliggende pagina en het boek behouden tijdens ieder frame exact dezelfde boven- en onderrand.
 
+Openen en sluiten gebruikt een rustige tweefasenovergang in plaats van een zware 3D-kaft. Op desktop verdwijnt eerst de gesloten kaft en opent de spread vervolgens vanuit de middenrug; bij sluiten gebeurt dit in omgekeerde volgorde. Op mobiel verschijnt en verdwijnt één volledige boekpagina zonder afgekapt tekstbeeld. Tijdelijke visuele kopieën zijn `aria-hidden`, niet interactief en worden na de overgang volledig verwijderd. Bij `prefers-reduced-motion` wordt direct tussen kaft en boek gewisseld.
+
 ## Mobiele paginering
 
 Onder 48 rem verandert het boek in zestien afzonderlijke boekpagina's. Iedere viewport toont exact één pagina. De technische tekeningen blijven echte SVG's; comparison- en full-visualspreads krijgen een eigen mobiele paginaverdeling zodat tekst en beeld niet worden verkleind tot een onleesbare dubbelspread.
