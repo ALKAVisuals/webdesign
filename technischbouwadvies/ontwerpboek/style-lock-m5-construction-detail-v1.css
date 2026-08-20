@@ -1,0 +1,299 @@
+/* M5 — Bouwdetail V1.
+   Scope: spread 05 desktop only. Left page is a restrained technical introduction;
+   right page gives the construction junction maximum authority, like a detail plate in
+   an architectural monograph rather than a dashboard or card layout. */
+
+:root {
+  --m5-paper: #faf7ef;
+  --m5-paper-warm: #f5efe5;
+  --m5-ink: #242522;
+  --m5-muted: #716e67;
+  --m5-bronze: #a97636;
+}
+
+@media (min-width: 761px) {
+  .book:has(.editorial-layout[data-spread="05"]) {
+    grid-template-columns: 37% 63% !important;
+    aspect-ratio: 1.46 !important;
+    filter:
+      drop-shadow(0 4px 4px rgba(54,42,31,.07))
+      drop-shadow(0 16px 22px rgba(63,50,37,.07)) !important;
+  }
+
+  .book:has(.editorial-layout[data-spread="05"]) .stack-left {
+    width: 37% !important;
+    left: 0 !important;
+    right: auto !important;
+    top: 3px !important;
+    bottom: -8px !important;
+    transform: translate(-8px,3px) !important;
+    border-radius: 3px 0 0 4px !important;
+    background: #f3ede4 !important;
+    box-shadow:
+      -1px 0 0 rgba(74,62,50,.38),
+      -3px 0 0 #e7dfd4,
+      -5px 0 0 rgba(248,244,236,.94),
+      -7px 0 0 rgba(104,91,77,.32),
+      0 2px 0 #f8f4ec,
+      0 4px 0 #e9e1d6,
+      0 6px 0 #f4ede4,
+      0 8px 0 rgba(174,160,145,.38) !important;
+  }
+
+  .book:has(.editorial-layout[data-spread="05"]) .stack-right {
+    width: 63% !important;
+    right: 0 !important;
+    left: auto !important;
+    top: 3px !important;
+    bottom: -8px !important;
+    transform: translate(10px,3px) !important;
+    border-radius: 0 3px 4px 0 !important;
+    background: #f3ede4 !important;
+    box-shadow:
+      1px 0 0 #faf6ef,
+      3px 0 0 rgba(188,176,162,.55),
+      5px 0 0 #f8f3eb,
+      7px 0 0 rgba(139,126,112,.34),
+      9px 0 0 rgba(89,77,65,.44),
+      0 2px 0 #f8f4ec,
+      0 4px 0 #e8e0d5,
+      0 6px 0 #f5eee5,
+      0 8px 0 rgba(176,162,147,.38) !important;
+  }
+
+  .book:has(.editorial-layout[data-spread="05"]) .book-spine {
+    left: 37% !important;
+    width: 20px !important;
+    transform: translateX(-50%) !important;
+    border-radius: 0 !important;
+    opacity: .76 !important;
+    background: linear-gradient(90deg,
+      transparent 0%,
+      rgba(79,61,43,.018) 16%,
+      rgba(68,52,36,.056) 39%,
+      rgba(48,36,25,.13) 50%,
+      rgba(72,56,40,.065) 58%,
+      rgba(255,255,255,.09) 72%,
+      transparent 100%) !important;
+  }
+
+  .book:has(.editorial-layout[data-spread="05"]) .book-spine::after {
+    top: 0 !important;
+    bottom: 0 !important;
+    background: rgba(46,35,24,.19) !important;
+    box-shadow: -2px 0 4px rgba(54,41,29,.06), 2px 0 4px rgba(255,255,255,.055) !important;
+  }
+
+  .book-stage:has(.book .editorial-layout[data-spread="05"]) .book-shadow {
+    width: min(980px,78%) !important;
+    height: 38px !important;
+    bottom: 9.2% !important;
+    border-radius: 50% !important;
+    background: rgba(63,50,37,.09) !important;
+    filter: blur(18px) !important;
+    opacity: .40 !important;
+  }
+
+  .page-left:has(.editorial-text-page[data-spread="05"]),
+  .page-right:has(.editorial-technical-page[data-spread="05"]) {
+    border-color: rgba(83,68,50,.045) !important;
+    background:
+      radial-gradient(ellipse at 18% 12%, rgba(255,255,255,.27), transparent 42%),
+      linear-gradient(135deg, rgba(255,255,255,.045), transparent 48%, rgba(111,88,60,.015) 100%),
+      var(--m5-paper) !important;
+  }
+
+  .page-left:has(.editorial-text-page[data-spread="05"]) {
+    padding: 8.0% 9.8% 6.7% 11.4% !important;
+    border-radius: 2px 0 2px 3px !important;
+    box-shadow: inset -10px 0 18px rgba(63,50,35,.024) !important;
+  }
+
+  .page-right:has(.editorial-technical-page[data-spread="05"]) {
+    padding: 5.2% 5.0% 5.8% 6.2% !important;
+    border-radius: 0 2px 3px 2px !important;
+    box-shadow: inset 10px 0 18px rgba(63,50,35,.020) !important;
+  }
+
+  .page-left:has(.editorial-text-page[data-spread="05"])::before {
+    opacity: .68 !important;
+    background:
+      radial-gradient(ellipse 72% 104% at 100% 50%, rgba(54,40,27,.070) 0%, rgba(72,55,38,.034) 24%, transparent 69%),
+      linear-gradient(90deg, transparent 79%, rgba(255,255,255,.095) 97%, rgba(255,255,255,.13) 100%) !important;
+  }
+
+  .page-right:has(.editorial-technical-page[data-spread="05"])::before {
+    opacity: .64 !important;
+    background:
+      radial-gradient(ellipse 72% 104% at 0% 50%, rgba(54,40,27,.066) 0%, rgba(72,55,38,.031) 24%, transparent 69%),
+      linear-gradient(90deg, rgba(255,255,255,.11) 0%, rgba(255,255,255,.06) 4%, transparent 22%) !important;
+  }
+
+  /* Left page — sparse explanatory plate. */
+  .editorial-text-page[data-spread="05"] {
+    min-height: 100% !important;
+    align-items: flex-start !important;
+    justify-content: flex-start !important;
+  }
+
+  .editorial-text-page[data-spread="05"] .editorial-kicker {
+    margin: 0 0 31px !important;
+    padding: 0 !important;
+    color: var(--m5-bronze) !important;
+    font-family: "DM Sans", system-ui, sans-serif !important;
+    font-size: 7.45px !important;
+    font-weight: 600 !important;
+    line-height: 1 !important;
+    letter-spacing: .145em !important;
+  }
+
+  .editorial-text-page[data-spread="05"] .editorial-title {
+    width: min(250px,84%) !important;
+    max-width: min(250px,84%) !important;
+    margin: 0 !important;
+    color: var(--m5-ink) !important;
+    font-family: "Libre Baskerville", Georgia, serif !important;
+    font-size: clamp(26px,1.9vw,32px) !important;
+    font-weight: 400 !important;
+    line-height: 1.07 !important;
+    letter-spacing: -.032em !important;
+  }
+
+  .editorial-text-page[data-spread="05"] .editorial-rule {
+    display: block !important;
+    width: 25px !important;
+    height: 1px !important;
+    margin: 27px 0 30px !important;
+    background: var(--m5-bronze) !important;
+  }
+
+  .editorial-text-page[data-spread="05"] .editorial-copy {
+    width: min(242px,78%) !important;
+    max-width: min(242px,78%) !important;
+    margin: 0 !important;
+    color: var(--m5-muted) !important;
+    font-family: "DM Sans", system-ui, sans-serif !important;
+    font-size: 9.35px !important;
+    font-weight: 400 !important;
+    line-height: 1.72 !important;
+    letter-spacing: .002em !important;
+  }
+
+  /* Technical facts are treated as a small specification register, not cards. */
+  .editorial-text-page[data-spread="05"] .editorial-facts {
+    width: min(230px,78%) !important;
+    margin: 42px 0 0 !important;
+    padding: 14px 0 0 !important;
+    display: grid !important;
+    grid-template-columns: 72px minmax(0,1fr) !important;
+    column-gap: 14px !important;
+    row-gap: 10px !important;
+    border-top: 1px solid rgba(85,73,59,.15) !important;
+    color: #747069 !important;
+    font-family: "DM Sans", system-ui, sans-serif !important;
+  }
+
+  .editorial-text-page[data-spread="05"] .editorial-facts dt,
+  .editorial-text-page[data-spread="05"] .editorial-facts dd {
+    margin: 0 !important;
+    padding: 0 !important;
+    font-size: 6.75px !important;
+    line-height: 1.35 !important;
+    letter-spacing: .09em !important;
+    text-transform: uppercase !important;
+  }
+
+  .editorial-text-page[data-spread="05"] .editorial-facts dt {
+    color: #8a857e !important;
+  }
+
+  .editorial-text-page[data-spread="05"] .editorial-facts dd,
+  .editorial-text-page[data-spread="05"] .editorial-facts dd strong {
+    color: #4f4e49 !important;
+    font-weight: 500 !important;
+  }
+
+  .editorial-text-page[data-spread="05"] .editorial-footer-label {
+    margin-top: auto !important;
+    padding: 0 !important;
+    color: #706d66 !important;
+    font-family: "DM Sans", system-ui, sans-serif !important;
+    font-size: 6.35px !important;
+    font-weight: 500 !important;
+    line-height: 1 !important;
+    letter-spacing: .135em !important;
+  }
+
+  /* Right page — the detail drawing is the page. */
+  .editorial-technical-page[data-spread="05"] {
+    min-height: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+  }
+
+  .editorial-technical-page[data-spread="05"] .editorial-kicker {
+    margin: 0 0 12px !important;
+    color: var(--m5-bronze) !important;
+    font-family: "DM Sans", system-ui, sans-serif !important;
+    font-size: 6.85px !important;
+    font-weight: 600 !important;
+    line-height: 1 !important;
+    letter-spacing: .15em !important;
+  }
+
+  .editorial-technical-page[data-spread="05"] .editorial-title {
+    margin: 0 !important;
+    color: var(--m5-ink) !important;
+    font-family: "Libre Baskerville", Georgia, serif !important;
+    font-size: clamp(23px,1.58vw,27px) !important;
+    font-weight: 400 !important;
+    line-height: 1.04 !important;
+    letter-spacing: -.03em !important;
+  }
+
+  .editorial-technical-page[data-spread="05"] .visual {
+    flex: 1 1 auto !important;
+    width: 100% !important;
+    height: auto !important;
+    min-height: 0 !important;
+    margin-top: 10px !important;
+    overflow: visible !important;
+  }
+
+  .editorial-technical-page[data-spread="05"] .asset-single {
+    width: 100% !important;
+    height: 100% !important;
+    min-height: 0 !important;
+    display: grid !important;
+    place-items: center !important;
+    border: 0 !important;
+    background: transparent !important;
+    overflow: visible !important;
+  }
+
+  .editorial-technical-page[data-spread="05"] .asset-single img {
+    width: 100% !important;
+    height: 100% !important;
+    max-width: 100% !important;
+    max-height: 100% !important;
+    display: block !important;
+    object-fit: contain !important;
+    object-position: center 48% !important;
+    filter: none !important;
+  }
+
+  .page-left:has(.editorial-text-page[data-spread="05"])::after,
+  .page-right:has(.editorial-technical-page[data-spread="05"])::after {
+    display: block !important;
+    bottom: 3.0% !important;
+    color: rgba(82,78,71,.57) !important;
+    font-family: "Libre Baskerville", Georgia, serif !important;
+    font-size: 6.55px !important;
+    line-height: 1 !important;
+    letter-spacing: 0 !important;
+  }
+
+  .page-left:has(.editorial-text-page[data-spread="05"])::after { left: 6.0% !important; }
+  .page-right:has(.editorial-technical-page[data-spread="05"])::after { right: 4.8% !important; }
+}
