@@ -76,7 +76,7 @@ tekst, logo's, personen of commerciële elementen.
 - een live-regio voor schermlezers;
 - een `prefers-reduced-motion`-route zonder omslaganimatie.
 
-De bediening staat buiten de inhoudelijke spreads en blijft visueel ondergeschikt aan het boek. Tijdens het omslaan gebruikt de tijdelijke animatielaag echte kopieën van de uitgaande en inkomende boekpagina. De stilstaande tegenoverliggende pagina blijft liggen totdat de draai voltooid is; hierdoor ontstaan geen grijze placeholdervlakken of dubbele pagina's halverwege de animatie.
+De bediening staat buiten de inhoudelijke spreads en blijft visueel ondergeschikt aan het boek. Tijdens het omslaan gebruikt de tijdelijke animatielaag echte kopieën van de uitgaande en inkomende boekpagina. De stilstaande tegenoverliggende pagina blijft liggen totdat de draai voltooid is; hierdoor ontstaan geen grijze placeholdervlakken of dubbele pagina's halverwege de animatie. De draai gebruikt bewust geen cameragerichte perspectiefschaal: het omslaande blad, de onderliggende pagina en het boek behouden tijdens ieder frame exact dezelfde boven- en onderrand.
 
 ## Mobiele paginering
 

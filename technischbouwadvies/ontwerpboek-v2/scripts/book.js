@@ -15,6 +15,7 @@ const previewStatus = document.querySelector('#preview-status');
 const liveRegion = document.querySelector('#reader-live');
 const mobileQuery = window.matchMedia('(max-width: 48rem)');
 const reducedMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+const pageTurnDuration = 560;
 
 const state = {
   open: false,
@@ -205,29 +206,24 @@ const turnPage = (direction) => {
   const sceneLeft = sceneRect.left - readerRect.left;
   positionTurnElement(layer, sceneLeft + (direction > 0 && !mobile ? layerWidth : 0));
 
-  let underlay = null;
-  if (!mobile) {
-    underlay = turnFace({
-      spread: currentSpread,
-      side: direction > 0 ? 'left' : 'right',
-      mobilePageIndex: state.mobilePage
-    });
-    underlay.className = 'page-turn-underlay';
-    underlay.setAttribute('aria-hidden', 'true');
-    positionTurnElement(underlay, sceneLeft + (direction < 0 ? layerWidth : 0));
-    reader.append(underlay);
-  }
+  const underlay = turnFace({
+    spread: targetSpread,
+    side: direction > 0 ? 'right' : 'left',
+    mobilePageIndex: targetMobilePage
+  });
+  underlay.className = 'page-turn-underlay';
+  underlay.setAttribute('aria-hidden', 'true');
+  positionTurnElement(underlay, sceneLeft + (direction > 0 && !mobile ? layerWidth : 0));
 
-  reader.append(layer);
-  commitStep(direction);
-  render({ announce: false });
+  reader.append(underlay, layer);
 
   window.setTimeout(() => {
-    layer.remove();
-    underlay?.remove();
-    state.turning = false;
+    commitStep(direction);
     render();
-  }, 680);
+    layer.remove();
+    underlay.remove();
+    state.turning = false;
+  }, pageTurnDuration + 30);
 };
 
 openButton.addEventListener('click', () => openBook());

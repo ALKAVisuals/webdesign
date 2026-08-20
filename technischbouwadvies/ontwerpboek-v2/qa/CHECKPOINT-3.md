@@ -74,10 +74,13 @@ Na de eerste interactieve versie is de boekervaring opnieuw visueel beoordeeld t
 - de readerkop en bediening zijn teruggebracht zodat het boek visueel leidend blijft;
 - de pagina-omslag toont echte pagina-inhoud op voor- en achterzijde;
 - de oude tegenoverliggende pagina blijft tijdens het omslaan liggen en verdwijnt pas na de draai.
+- cameragerichte perspectiefschaal is verwijderd, zodat het blad niet langer buiten de vaste boekmaat groeit;
+- de volgende pagina wordt tijdens de draai uitsluitend onder het omslaande blad onthuld en de hoofdstukstatus wisselt pas na afloop.
 
 Aanvullend gecontroleerd op 1440 × 900 en 390 × 844:
 
 - vooruit- en terugbladeren hebben een fysiek logische laagvolgorde;
+- boek, onderliggende pagina en draaiend blad hebben in ieder gemeten tussenframe exact dezelfde hoogte en verticale positie;
 - na iedere animatie blijven nul tijdelijke lagen achter;
 - exact één spread en op mobiel exact één boekpagina is actief;
 - mobiel heeft geen horizontale of verticale viewportoverflow;
