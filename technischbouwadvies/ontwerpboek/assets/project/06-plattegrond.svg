@@ -1,33 +1,62 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 820" role="img" aria-labelledby="title desc">
-  <title id="title">Technisch Bouwadvies V0.4 testplattegrond</title>
-  <desc id="desc">Een maatvaste schematische beganegrondplattegrond met bestaande woning en nieuwe uitbouw voor het testen van de ontwerpboek assetpijplijn.</desc>
-  <rect width="1200" height="820" fill="#fbfaf7"/>
-  <g fill="none" stroke="#202629" stroke-width="7" stroke-linejoin="miter">
+  <title id="title">Begane grond — bestaande woning met nieuwe uitbouw</title>
+  <desc id="desc">Schematische technische plattegrond met bestaande ruimtes, nieuwe uitbouw en hoofdmaatvoering.</desc>
+  <rect width="1200" height="820" fill="#faf7ef"/>
+
+  <g fill="#f7f3eb">
     <rect x="180" y="150" width="620" height="470"/>
-    <path d="M180 340h620M420 150v190M620 150v190M360 340v280M600 340v280"/>
-    <rect x="800" y="340" width="250" height="280" stroke="#aa7b35" stroke-width="10"/>
-    <path d="M800 410h250M855 410v210M925 410v210M995 410v210" stroke="#aa7b35" stroke-width="5"/>
-    <path d="M420 340a80 80 0 0 1 80 80M360 470a68 68 0 0 0-68 68" stroke-width="4"/>
   </g>
-  <g fill="#596066" font-family="Arial, sans-serif" font-size="24">
+  <g fill="#f2eadf">
+    <rect x="800" y="340" width="250" height="280"/>
+  </g>
+
+  <g fill="none" stroke="#242522" stroke-linejoin="miter" stroke-linecap="square">
+    <rect x="180" y="150" width="620" height="470" stroke-width="7"/>
+    <path d="M180 340h620M420 150v190M620 150v190M360 340v280M600 340v280" stroke-width="5"/>
+    <path d="M420 340a80 80 0 0 1 80 80M360 470a68 68 0 0 0-68 68" stroke-width="3.5"/>
+  </g>
+
+  <g fill="none" stroke="#a97636" stroke-linejoin="miter" stroke-linecap="square">
+    <rect x="800" y="340" width="250" height="280" stroke-width="8"/>
+    <path d="M800 410h250M855 410v210M925 410v210M995 410v210" stroke-width="4"/>
+  </g>
+
+  <path d="M800 340v280" fill="none" stroke="#8e877e" stroke-width="3" stroke-dasharray="14 10"/>
+
+  <g fill="#605d57" font-family="Arial, sans-serif" font-size="21" letter-spacing="1.4">
     <text x="205" y="190">WOONKAMER</text>
     <text x="445" y="190">KEUKEN</text>
     <text x="650" y="190">HAL</text>
-    <text x="815" y="375" fill="#8f682e">NIEUWE UITBOUW</text>
   </g>
-  <g fill="none" stroke="#78736b" stroke-width="3">
-    <path d="M180 690h870M180 675v30M1050 675v30"/>
-    <path d="M110 150v470M95 150h30M95 620h30"/>
+  <g fill="#8c652f" font-family="Arial, sans-serif" font-size="19" letter-spacing="1.5">
+    <text x="824" y="378">NIEUWE UITBOUW</text>
   </g>
-  <g fill="#67625b" font-family="Arial, sans-serif" font-size="22">
-    <text x="565" y="730">10.200 mm</text>
+
+  <g fill="none" stroke="#7e7870" stroke-width="2.4">
+    <path d="M180 690h870M180 677v26M1050 677v26"/>
+    <path d="M110 150v470M97 150h26M97 620h26"/>
+    <path d="M800 650h250M800 640v20M1050 640v20"/>
+  </g>
+  <g fill="#6d6861" font-family="Arial, sans-serif" font-size="19" letter-spacing=".7">
+    <text x="565" y="729">10.200 mm</text>
     <text x="72" y="410" transform="rotate(-90 72 410)">5.400 mm</text>
+    <text x="882" y="684">2.800 mm</text>
   </g>
-  <g fill="#8f682e" font-family="Arial, sans-serif">
-    <text x="180" y="90" font-size="25" font-weight="700">BEGANE GROND · V0.4 PIPELINE TEST</text>
-    <text x="180" y="120" font-size="18">Tijdelijke technische asset — wordt later vervangen door jouw echte tekening</text>
+
+  <g font-family="Arial, sans-serif">
+    <text x="180" y="88" fill="#9a6e32" font-size="22" font-weight="700" letter-spacing="2.8">BEGANE GROND · NIEUWE SITUATIE</text>
+    <text x="180" y="117" fill="#747069" font-size="16" letter-spacing="1.5">BESTAANDE WONING + UITBREIDING</text>
   </g>
-  <g fill="#777168" font-family="Arial, sans-serif" font-size="17">
-    <text x="180" y="780">Schaalindicatie 1:100 · demo voor asset-integratie</text>
+
+  <g transform="translate(1006 86)" fill="none" stroke="#3f403d">
+    <path d="M0 36L15 0l15 36" stroke-width="2"/>
+    <path d="M15 0v54" stroke-width="1.8"/>
+    <path d="M7 46h16" stroke-width="1.5"/>
+  </g>
+  <text x="1015" y="156" fill="#69655f" font-family="Arial, sans-serif" font-size="15" text-anchor="middle">N</text>
+
+  <g fill="#777168" font-family="Arial, sans-serif" font-size="16" letter-spacing="1.1">
+    <text x="180" y="782">SCHAALINDICATIE 1:100</text>
+    <text x="1018" y="782" text-anchor="end">TECHNISCH BOUWADVIES</text>
   </g>
 </svg>
