@@ -1,0 +1,137 @@
+/* M3 — Plattegrond V2.
+   Precision pass for spread 03 desktop. Keeps V1's physical-book foundation,
+   while letting the technical drawing become the dominant object. */
+
+@media (min-width: 761px) {
+  /* Give the drawing a little more of the opening without turning the left page
+     into a sidebar. The book still reads as one balanced printed spread. */
+  .book:has(.editorial-layout[data-spread="03"]) {
+    grid-template-columns: 39.5% 60.5% !important;
+    aspect-ratio: 1.46 !important;
+  }
+
+  .book:has(.editorial-layout[data-spread="03"]) .stack-left {
+    width: 39.5% !important;
+  }
+
+  .book:has(.editorial-layout[data-spread="03"]) .stack-right {
+    width: 60.5% !important;
+  }
+
+  .book:has(.editorial-layout[data-spread="03"]) .book-spine {
+    left: 39.5% !important;
+    width: 20px !important;
+    opacity: .76 !important;
+  }
+
+  /* Left page becomes quieter and slightly narrower. */
+  .page-left:has(.editorial-text-page[data-spread="03"]) {
+    padding: 7.8% 9.2% 6.6% 11.1% !important;
+  }
+
+  .editorial-text-page[data-spread="03"] .editorial-kicker {
+    margin-bottom: 28px !important;
+    font-size: 7.35px !important;
+  }
+
+  .editorial-text-page[data-spread="03"] .editorial-title {
+    width: min(245px, 82%) !important;
+    max-width: min(245px, 82%) !important;
+    font-size: clamp(26px, 1.92vw, 31px) !important;
+    line-height: 1.06 !important;
+  }
+
+  .editorial-text-page[data-spread="03"] .editorial-rule {
+    width: 24px !important;
+    margin: 25px 0 28px !important;
+  }
+
+  .editorial-text-page[data-spread="03"] .editorial-copy {
+    width: min(235px, 74%) !important;
+    max-width: min(235px, 74%) !important;
+    font-size: 9.25px !important;
+    line-height: 1.74 !important;
+    color: #74716a !important;
+  }
+
+  /* Legend now behaves like drawing notation instead of an interface component. */
+  .editorial-text-page[data-spread="03"] .editorial-legend {
+    width: min(190px, 70%) !important;
+    margin-top: 34px !important;
+    padding-top: 12px !important;
+    row-gap: 9px !important;
+    column-gap: 14px !important;
+  }
+
+  .editorial-text-page[data-spread="03"] .editorial-legend dt,
+  .editorial-text-page[data-spread="03"] .editorial-legend dd {
+    font-size: 6.45px !important;
+    letter-spacing: .12em !important;
+  }
+
+  .editorial-text-page[data-spread="03"] .editorial-legend dd {
+    min-width: 34px !important;
+  }
+
+  .editorial-text-page[data-spread="03"] .editorial-footer-label {
+    font-size: 6.25px !important;
+    letter-spacing: .14em !important;
+  }
+
+  /* Right page: pull back the furniture and let the plan carry the page. */
+  .page-right:has(.editorial-technical-page[data-spread="03"]) {
+    padding: 5.7% 4.8% 5.4% 6.1% !important;
+  }
+
+  .editorial-technical-page[data-spread="03"] .editorial-kicker {
+    margin-bottom: 12px !important;
+    font-size: 6.9px !important;
+    letter-spacing: .145em !important;
+  }
+
+  .editorial-technical-page[data-spread="03"] .editorial-title {
+    font-size: clamp(23px, 1.58vw, 27px) !important;
+    line-height: 1.03 !important;
+    letter-spacing: -.028em !important;
+  }
+
+  .editorial-technical-page[data-spread="03"] .visual {
+    margin-top: 10px !important;
+    flex: 1 1 auto !important;
+  }
+
+  .editorial-technical-page[data-spread="03"] .asset-single {
+    place-items: center !important;
+  }
+
+  .editorial-technical-page[data-spread="03"] .asset-single img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: contain !important;
+    object-position: 50% 51% !important;
+    transform: scale(1.012) !important;
+    transform-origin: center !important;
+  }
+
+  /* Softer centre curvature: present, but never strong enough to interfere
+     with technical linework. */
+  .page-left:has(.editorial-text-page[data-spread="03"])::before {
+    opacity: .68 !important;
+    background:
+      radial-gradient(ellipse 70% 104% at 100% 50%, rgba(54,40,27,.073) 0%, rgba(72,55,38,.034) 23%, transparent 69%),
+      linear-gradient(90deg, transparent 80%, rgba(255,255,255,.09) 97%, rgba(255,255,255,.13) 100%) !important;
+  }
+
+  .page-right:has(.editorial-technical-page[data-spread="03"])::before {
+    opacity: .64 !important;
+    background:
+      radial-gradient(ellipse 70% 104% at 0% 50%, rgba(54,40,27,.066) 0%, rgba(72,55,38,.031) 23%, transparent 69%),
+      linear-gradient(90deg, rgba(255,255,255,.105) 0%, rgba(255,255,255,.06) 4%, transparent 20%) !important;
+  }
+
+  .page-left:has(.editorial-text-page[data-spread="03"])::after,
+  .page-right:has(.editorial-technical-page[data-spread="03"])::after {
+    font-size: 6.45px !important;
+    color: rgba(82,78,71,.56) !important;
+  }
+}
