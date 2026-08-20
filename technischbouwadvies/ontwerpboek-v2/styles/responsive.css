@@ -1,0 +1,32 @@
+@media (max-width: 74rem) {
+  :root {
+    --book-width: min(86vw, 70rem);
+  }
+
+  .preview-stage {
+    padding-inline: 2rem;
+  }
+}
+
+@media (max-width: 56rem) {
+  .preview-stage {
+    min-width: 52rem;
+  }
+
+  .preview-header,
+  .preview-footer {
+    width: 48rem;
+  }
+
+  .book-scene {
+    width: 48rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+  }
+}

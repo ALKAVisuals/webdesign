@@ -1,0 +1,27 @@
+:root {
+  color-scheme: light;
+
+  --color-stage: #e8e2d9;
+  --color-stage-light: #f0ece5;
+  --color-paper: #f5f0e7;
+  --color-paper-edge: #d8d0c3;
+  --color-ink: #171713;
+  --color-muted: #777168;
+  --color-hairline: rgba(40, 36, 31, 0.18);
+  --color-bronze: #a77d4e;
+  --color-bronze-soft: #c3a17b;
+
+  --font-editorial: "Bodoni 72", Didot, "Bodoni MT", "Times New Roman", serif;
+  --font-technical: "Avenir Next", Avenir, "Helvetica Neue", Arial, sans-serif;
+
+  --tracking-label: 0.14em;
+  --tracking-technical: 0.08em;
+
+  --book-width: min(78vw, 87.5rem);
+  --book-ratio: 1.93 / 1;
+  --page-padding-x: clamp(2.5rem, 4vw, 5.4rem);
+  --page-padding-y: clamp(2.3rem, 3.4vw, 4.5rem);
+
+  --shadow-contact: 0 1.25rem 1.4rem -1.25rem rgba(30, 23, 16, 0.54);
+  --shadow-ambient: 0 3rem 5rem -2.25rem rgba(46, 37, 27, 0.44);
+}
