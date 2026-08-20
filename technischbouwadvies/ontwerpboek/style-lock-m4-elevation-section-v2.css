@@ -1,0 +1,143 @@
+/* M4 — Gevel & Doorsnede V2.
+   Precision pass for spread 04 desktop. Keeps the V1 physical-book system but
+   makes both technical drawings read as one continuous architectural opening. */
+
+@media (min-width: 761px) {
+  /* Slightly quieter paper geometry; preserve the equal-page technical spread. */
+  .book:has(.editorial-layout[data-spread="04"]) {
+    aspect-ratio: 1.46 !important;
+  }
+
+  .page-left:has(.editorial-technical-page[data-spread="04"]),
+  .page-right:has(.editorial-technical-page[data-spread="04"]) {
+    padding-top: 5.7% !important;
+    padding-bottom: 5.45% !important;
+  }
+
+  .page-left:has(.editorial-technical-page[data-spread="04"]) {
+    padding-left: 6.1% !important;
+    padding-right: 6.0% !important;
+  }
+
+  .page-right:has(.editorial-technical-page[data-spread="04"]) {
+    padding-left: 6.0% !important;
+    padding-right: 6.1% !important;
+  }
+
+  /* Establish one common typographic datum across both pages. */
+  .editorial-technical-page[data-spread="04"] .editorial-kicker {
+    margin-bottom: 12px !important;
+    font-size: 6.7px !important;
+    letter-spacing: .15em !important;
+  }
+
+  .editorial-technical-page[data-spread="04"] .editorial-title {
+    font-size: clamp(22px,1.48vw,26px) !important;
+    line-height: 1.035 !important;
+    letter-spacing: -.026em !important;
+  }
+
+  .editorial-technical-page[data-spread="04"] .editorial-copy {
+    width: min(285px,68%) !important;
+    max-width: min(285px,68%) !important;
+    margin-top: 6px !important;
+    font-size: 7.45px !important;
+    line-height: 1.5 !important;
+    color: #76726b !important;
+  }
+
+  /* The drawings become the dominant field and share the same vertical datum. */
+  .editorial-technical-page[data-spread="04"] .visual {
+    width: 104% !important;
+    margin-left: -2% !important;
+    margin-top: 10px !important;
+    min-height: 0 !important;
+  }
+
+  .editorial-technical-page[data-spread="04"] .visual > svg {
+    width: 104% !important;
+    max-width: none !important;
+    height: 100% !important;
+    transform-origin: 50% 50% !important;
+  }
+
+  /* Optical correction: each drawing opens slightly away from the gutter. */
+  .page-left:has(.editorial-technical-page[data-spread="04"]) .visual > svg {
+    transform: translateX(-.45%) scale(1.018) !important;
+  }
+
+  .page-right:has(.editorial-technical-page[data-spread="04"]) .visual > svg {
+    transform: translateX(.45%) scale(1.018) !important;
+  }
+
+  /* Technical hierarchy: cut lines stay authoritative, fine information recedes. */
+  .editorial-technical-page[data-spread="04"] .visual > svg path,
+  .editorial-technical-page[data-spread="04"] .visual > svg rect,
+  .editorial-technical-page[data-spread="04"] .visual > svg line,
+  .editorial-technical-page[data-spread="04"] .visual > svg polyline {
+    stroke-width: 1.15 !important;
+  }
+
+  .editorial-technical-page[data-spread="04"] .visual > svg .section-cut {
+    stroke-width: 2.25 !important;
+  }
+
+  .editorial-technical-page[data-spread="04"] .visual > svg .thin {
+    stroke-width: .66 !important;
+    stroke: #8f8980 !important;
+  }
+
+  .editorial-technical-page[data-spread="04"] .visual > svg .ghost {
+    stroke-width: .55 !important;
+    stroke: #bbb3a9 !important;
+  }
+
+  .editorial-technical-page[data-spread="04"] .visual > svg .accent {
+    stroke-width: .94 !important;
+  }
+
+  .editorial-technical-page[data-spread="04"] .visual > svg text {
+    fill: #7b756d !important;
+    letter-spacing: .052em !important;
+  }
+
+  .editorial-technical-page[data-spread="04"] .visual > svg text.accent-text {
+    fill: #9d6e32 !important;
+  }
+
+  /* Let the gutter read as paper curvature, not a dark separator. */
+  .book:has(.editorial-layout[data-spread="04"]) .book-spine {
+    width: 18px !important;
+    opacity: .70 !important;
+  }
+
+  .page-left:has(.editorial-technical-page[data-spread="04"])::before {
+    opacity: .60 !important;
+    background:
+      radial-gradient(ellipse 68% 104% at 100% 50%, rgba(54,40,27,.064) 0%, rgba(72,55,38,.030) 24%, transparent 70%),
+      linear-gradient(90deg, transparent 82%, rgba(255,255,255,.085) 98%, rgba(255,255,255,.12) 100%) !important;
+  }
+
+  .page-right:has(.editorial-technical-page[data-spread="04"])::before {
+    opacity: .58 !important;
+    background:
+      radial-gradient(ellipse 68% 104% at 0% 50%, rgba(54,40,27,.061) 0%, rgba(72,55,38,.029) 24%, transparent 70%),
+      linear-gradient(90deg, rgba(255,255,255,.10) 0%, rgba(255,255,255,.05) 4%, transparent 18%) !important;
+  }
+
+  /* Printed folios remain readable, but secondary to the technical content. */
+  .page-left:has(.editorial-technical-page[data-spread="04"])::after,
+  .page-right:has(.editorial-technical-page[data-spread="04"])::after {
+    bottom: 2.8% !important;
+    font-size: 6.25px !important;
+    color: rgba(82,78,71,.52) !important;
+  }
+
+  .page-left:has(.editorial-technical-page[data-spread="04"])::after {
+    left: 5.1% !important;
+  }
+
+  .page-right:has(.editorial-technical-page[data-spread="04"])::after {
+    right: 5.1% !important;
+  }
+}
