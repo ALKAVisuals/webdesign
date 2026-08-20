@@ -45,6 +45,13 @@ export const assetManifest = {
     fit: 'contain',
     label: 'Plattegrond'
   },
+  '05-bouwdetail-visual': {
+    type: 'single',
+    src: 'assets/project/10-bouwdetail-dakkapel.svg',
+    alt: 'Technisch bouwdetail van de dakkapel- en dakaansluiting met materiaalopbouw en maatvoering',
+    fit: 'contain',
+    label: 'Bouwdetail D1'
+  },
   '06-interieur-visual': {
     type: 'full',
     src: prodAsset('3d-visualisatie-aanbouw-schets-naar-realisatie.webp'),
