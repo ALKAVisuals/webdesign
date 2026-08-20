@@ -111,3 +111,21 @@ Mobiel op 390 × 844:
 - de hashes lopen correct per spreadpaar van `#spread-01` tot en met `#spread-08`;
 - de eerste pagina blokkeert terugbladeren en de laatste pagina blokkeert verderbladeren;
 - geen horizontale overflow, achtergebleven animatielagen of browserfouten aangetroffen.
+
+## Finale visuele verfijning
+
+De kaft en bladomslag zijn daarna nog eenmaal direct vergeleken met de aangeleverde `BINNENWERK SPREAD SYSTEM`-referentie. De inhoudelijke spreads, tekeningen, plattegronden en renders zijn daarbij niet gewijzigd.
+
+- de desktopkaft is vergroot van maximaal 24 naar 27 rem en heeft een gelaagdere, warmere contactschaduw gekregen;
+- de kafttitel gebruikt een rustiger formaat en blijft op desktop op één regel;
+- de pagina-omslag duurt 640 milliseconden en gebruikt een gelijkmatiger redactioneel tempo;
+- tijdens het midden van de omslag krijgt het blad een tijdelijke slagschaduw zonder de vaste boekmaat te beïnvloeden;
+- de onderliggende pagina krijgt uitsluitend tijdens de draai een subtiele rugschaduw;
+- reduced motion blijft de tijdelijke omslaglagen volledig overslaan.
+
+Na deze aanpassingen opnieuw gecontroleerd:
+
+- acht desktopspreads en zeven vooruitgaande overgangen op 1440 × 900;
+- zestien mobiele pagina's en vijftien overgangen op 390 × 844;
+- sluiten en opnieuw openen op desktop;
+- nul maatverschillen, nul overflow, nul achtergebleven overgangslagen en nul browserfouten.

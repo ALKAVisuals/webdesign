@@ -16,7 +16,7 @@ const previewStatus = document.querySelector('#preview-status');
 const liveRegion = document.querySelector('#reader-live');
 const mobileQuery = window.matchMedia('(max-width: 48rem)');
 const reducedMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
-const pageTurnDuration = 560;
+const pageTurnDuration = 640;
 const bookTransitionDuration = 720;
 
 const state = {
@@ -278,7 +278,7 @@ const turnPage = (direction) => {
     side: direction > 0 ? 'right' : 'left',
     mobilePageIndex: targetMobilePage
   });
-  underlay.className = 'page-turn-underlay';
+  underlay.className = `page-turn-underlay page-turn-underlay--${direction > 0 ? 'next' : 'previous'}`;
   underlay.setAttribute('aria-hidden', 'true');
   positionTurnElement(underlay, sceneLeft + (direction > 0 && !mobile ? layerWidth : 0));
 
