@@ -63,3 +63,22 @@ De layout gebruikt Safari-veilige principes (`svh`, veilige ondermarge, geen per
 ## Status
 
 Checkpoint 3 is praktisch finaal en bevat geen bekende blocker of duidelijke visuele regressie. De productie-repository en live website zijn niet gewijzigd.
+
+## Verfijning boekervaring
+
+Na de eerste interactieve versie is de boekervaring opnieuw visueel beoordeeld tegen de `BINNENWERK SPREAD SYSTEM`-referentie. Daarbij zijn uitsluitend de kaft, book-shell, bediening en paginawissel aangepast; de inhoudelijke tekeningen, plattegronden en renders zijn ongemoeid gelaten.
+
+- de donkere kaft is vervangen door warm ivoor met een subtiele linnenstructuur;
+- kaft, binnenwerk en readeromgeving gebruiken nu één doorlopende kleur- en typografierichting;
+- paginadikte, boekrug, papierstapel en contactschaduw zijn subtieler en fysieker opgebouwd;
+- de readerkop en bediening zijn teruggebracht zodat het boek visueel leidend blijft;
+- de pagina-omslag toont echte pagina-inhoud op voor- en achterzijde;
+- de oude tegenoverliggende pagina blijft tijdens het omslaan liggen en verdwijnt pas na de draai.
+
+Aanvullend gecontroleerd op 1440 × 900 en 390 × 844:
+
+- vooruit- en terugbladeren hebben een fysiek logische laagvolgorde;
+- na iedere animatie blijven nul tijdelijke lagen achter;
+- exact één spread en op mobiel exact één boekpagina is actief;
+- mobiel heeft geen horizontale of verticale viewportoverflow;
+- geen browserconsolefouten of -waarschuwingen aangetroffen.

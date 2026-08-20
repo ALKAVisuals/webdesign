@@ -47,7 +47,7 @@ De definitieve pagina's gebruiken geen permanente `transform`, `perspective` of 
 
 ## Premium boek-shell
 
-De goedgekeurde Projectintro-richting gebruikt afzonderlijke lagen voor papierstapel, dunne donkere kaftsnede, middenrug, contactschaduw en omgevingsschaduw. De boekillusie mag nooit op een wit platform lijken en blijft ondergeschikt aan de pagina-inhoud. De previewomgeving bevat buiten het boek geen decoratieve footer of dashboardachtige bediening.
+De goedgekeurde Projectintro-richting gebruikt afzonderlijke lagen voor papierstapel, een dunne warm-taupe kaftsnede, middenrug, contactschaduw en omgevingsschaduw. De gesloten omslag gebruikt hetzelfde warme ivoor, ingetogen brons en charcoal als het binnenwerk; een los donker kaftthema is bewust uitgesloten. De boekillusie mag nooit op een wit platform lijken en blijft ondergeschikt aan de pagina-inhoud. De previewomgeving bevat buiten het boek geen decoratieve footer of dashboardachtige bediening.
 
 ## Technische presentatie
 
@@ -76,7 +76,7 @@ tekst, logo's, personen of commerciële elementen.
 - een live-regio voor schermlezers;
 - een `prefers-reduced-motion`-route zonder omslaganimatie.
 
-De bediening staat buiten de inhoudelijke spreads en blijft visueel ondergeschikt aan het boek.
+De bediening staat buiten de inhoudelijke spreads en blijft visueel ondergeschikt aan het boek. Tijdens het omslaan gebruikt de tijdelijke animatielaag echte kopieën van de uitgaande en inkomende boekpagina. De stilstaande tegenoverliggende pagina blijft liggen totdat de draai voltooid is; hierdoor ontstaan geen grijze placeholdervlakken of dubbele pagina's halverwege de animatie.
 
 ## Mobiele paginering
 

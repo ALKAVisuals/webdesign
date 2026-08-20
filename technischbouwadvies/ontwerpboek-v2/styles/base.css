@@ -197,7 +197,7 @@ a {
 
 .closed-book {
   position: relative;
-  width: min(30vw, 23rem);
+  width: min(31vw, 24rem);
   min-width: 17rem;
   aspect-ratio: 0.735 / 1;
   filter: drop-shadow(0 2.1rem 1.7rem rgba(47, 36, 25, 0.26));
@@ -224,18 +224,39 @@ a {
   display: grid;
   grid-template-rows: auto 1fr auto;
   padding: clamp(2.2rem, 4vw, 3.8rem) clamp(2rem, 3.7vw, 3.4rem) clamp(1.8rem, 3.3vw, 2.8rem);
-  border: 1px solid rgba(24, 22, 18, 0.7);
-  border-left-width: 0.42rem;
-  border-radius: 0.13rem 0.32rem 0.32rem 0.13rem;
-  color: #eee7da;
+  border: 1px solid rgba(105, 90, 70, 0.42);
+  border-left-width: 0.52rem;
+  border-radius: 0.12rem 0.24rem 0.24rem 0.12rem;
+  color: var(--color-ink);
   background:
-    linear-gradient(90deg, rgba(0, 0, 0, 0.32), transparent 4%, transparent 96%, rgba(255, 255, 255, 0.04)),
-    radial-gradient(circle at 75% 20%, rgba(171, 131, 83, 0.08), transparent 36%),
-    #252822;
+    repeating-linear-gradient(90deg, rgba(90, 72, 51, 0.026) 0 1px, transparent 1px 3px),
+    radial-gradient(circle at 72% 18%, rgba(255, 255, 255, 0.22), transparent 34%),
+    linear-gradient(90deg, rgba(87, 67, 45, 0.16), transparent 4.5%, transparent 96%, rgba(87, 67, 45, 0.045)),
+    #ede6da;
   box-shadow:
-    inset 0.1rem 0 0 rgba(255, 255, 255, 0.04),
-    inset -0.1rem 0 0 rgba(0, 0, 0, 0.18),
-    0 0.25rem 0.35rem rgba(35, 26, 18, 0.22);
+    inset 0.1rem 0 0 rgba(255, 255, 255, 0.32),
+    inset -0.08rem 0 0 rgba(86, 65, 43, 0.1),
+    0 0.25rem 0.36rem rgba(58, 44, 30, 0.18);
+}
+
+.closed-book__cover::before {
+  content: "";
+  position: absolute;
+  inset: 1.05rem;
+  border: 1px solid rgba(167, 125, 78, 0.28);
+  pointer-events: none;
+}
+
+.closed-book__cover::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0.72rem;
+  width: 1px;
+  background: linear-gradient(transparent 2%, rgba(107, 82, 53, 0.24) 12%, rgba(107, 82, 53, 0.24) 88%, transparent 98%);
+  box-shadow: 0.13rem 0 0 rgba(255, 255, 255, 0.38);
+  pointer-events: none;
 }
 
 .cover-monogram {
@@ -266,7 +287,7 @@ a {
 
 .cover-copy > p,
 .cover-folio {
-  color: #bdb7ad;
+  color: #736c63;
   font-size: clamp(0.48rem, 0.55vw, 0.63rem);
   font-weight: 500;
   letter-spacing: 0.16em;
@@ -293,7 +314,7 @@ a {
 
 .cover-folio {
   align-self: end;
-  color: #d2cbc0;
+  color: #4e4942;
 }
 
 .cover-open,
@@ -334,6 +355,7 @@ a {
 }
 
 .reader {
+  position: relative;
   display: grid;
   align-content: start;
   justify-items: center;
@@ -341,7 +363,7 @@ a {
 }
 
 .reader-controls {
-  width: min(33rem, 86vw);
+  width: min(31rem, 78vw);
   display: grid;
   grid-template-columns: auto 1fr auto auto;
   align-items: center;
@@ -351,21 +373,21 @@ a {
 .reader-control {
   display: inline-grid;
   place-items: center;
-  min-width: 2.8rem;
-  height: 2.8rem;
+  min-width: 2.4rem;
+  height: 2.4rem;
   color: #4e4942;
   background: transparent;
 }
 
 .reader-control--icon {
-  border: 1px solid rgba(63, 55, 46, 0.2);
-  border-radius: 50%;
+  border: 0;
+  border-radius: 0;
 }
 
 .reader-control--text {
   min-width: auto;
   height: auto;
-  padding: 0.6rem 0 0.6rem 0.6rem;
+  padding: 0.55rem 0 0.55rem 0.7rem;
   color: var(--color-muted);
   font-size: 0.58rem;
   font-weight: 600;
@@ -420,6 +442,37 @@ a {
   height: 100%;
   background: var(--color-bronze);
   transition: width 260ms ease;
+}
+
+.preview-stage.is-book-open .preview-header {
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  min-height: 2rem;
+  padding-bottom: 0.55rem;
+  margin-bottom: clamp(0.85rem, 1.7vh, 1.3rem);
+}
+
+.preview-stage.is-book-open .preview-header::after {
+  display: none;
+}
+
+.preview-stage.is-book-open .preview-heading {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.preview-stage.is-book-open .brand {
+  opacity: 0.78;
+}
+
+.preview-stage.is-book-open .preview-status {
+  grid-column: 2;
+  justify-self: end;
 }
 
 .spread-heading {

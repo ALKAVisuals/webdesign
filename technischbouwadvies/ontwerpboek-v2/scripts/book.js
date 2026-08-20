@@ -2,6 +2,7 @@ import './content.js';
 
 const cover = document.querySelector('#book-cover');
 const reader = document.querySelector('#book-reader');
+const stage = document.querySelector('.preview-stage');
 const sequence = document.querySelector('#book-sequence');
 const spreads = [...document.querySelectorAll('.spread-frame')];
 const openButton = document.querySelector('#open-book');
@@ -65,6 +66,7 @@ const updateMobilePage = () => {
 };
 
 const render = ({ announce = true, focus = false } = {}) => {
+  stage.classList.toggle('is-book-open', state.open);
   cover.hidden = state.open;
   reader.hidden = !state.open;
 
@@ -121,6 +123,39 @@ const commitStep = (direction) => {
   }
 };
 
+const turnClone = (spread, mobilePageIndex) => {
+  const clone = spread.querySelector('.book-spread').cloneNode(true);
+  clone.querySelectorAll('[id]').forEach((element) => element.removeAttribute('id'));
+  clone.querySelectorAll('img').forEach((image) => {
+    image.loading = 'eager';
+  });
+
+  if (mobileQuery.matches) {
+    const canvasPages = [...clone.querySelectorAll('.mobile-canvas-page')];
+    const pages = canvasPages.length ? canvasPages : [...clone.querySelectorAll(':scope > .book-page')];
+    pages.forEach((page, index) => {
+      page.classList.toggle('is-mobile-active', index === mobilePageIndex % 2);
+    });
+  }
+
+  return clone;
+};
+
+const turnFace = ({ spread, side, mobilePageIndex, back = false }) => {
+  const face = document.createElement('div');
+  face.className = `page-turn-face page-turn-face--${back ? 'back' : 'front'}`;
+
+  const crop = document.createElement('div');
+  crop.className = `page-turn-face__crop page-turn-face__crop--${side}`;
+
+  const content = document.createElement('div');
+  content.className = 'page-turn-face__content';
+  content.append(turnClone(spread, mobilePageIndex));
+  crop.append(content);
+  face.append(crop);
+  return face;
+};
+
 const turnPage = (direction) => {
   if (!state.open || state.turning) return;
 
@@ -136,23 +171,63 @@ const turnPage = (direction) => {
   }
 
   state.turning = true;
-  const activeScene = spreads[state.spread].querySelector('.book-scene');
+  const currentSpread = spreads[state.spread];
+  const targetMobilePage = state.mobilePage + direction;
+  const targetSpreadIndex = mobile ? Math.floor(targetMobilePage / 2) : state.spread + direction;
+  const targetSpread = spreads[targetSpreadIndex];
+  const activeScene = currentSpread.querySelector('.book-scene');
   const layer = document.createElement('div');
   layer.className = `page-turn-layer page-turn-layer--${direction > 0 ? 'next' : 'previous'}`;
   layer.setAttribute('aria-hidden', 'true');
-  layer.innerHTML = '<i></i>';
-  activeScene.append(layer);
+  layer.append(
+    turnFace({
+      spread: currentSpread,
+      side: direction > 0 ? 'right' : 'left',
+      mobilePageIndex: state.mobilePage
+    }),
+    turnFace({
+      spread: targetSpread,
+      side: direction > 0 ? 'left' : 'right',
+      mobilePageIndex: targetMobilePage,
+      back: true
+    })
+  );
+  const sceneRect = activeScene.getBoundingClientRect();
+  const readerRect = reader.getBoundingClientRect();
+  const layerWidth = mobile ? sceneRect.width : sceneRect.width / 2;
+  const positionTurnElement = (element, left) => {
+    element.style.setProperty('--turn-top', `${sceneRect.top - readerRect.top}px`);
+    element.style.setProperty('--turn-left', `${left}px`);
+    element.style.setProperty('--turn-width', `${layerWidth}px`);
+    element.style.setProperty('--turn-height', `${sceneRect.height}px`);
+  };
 
-  window.setTimeout(() => {
-    commitStep(direction);
-    render();
-    spreads[state.spread].querySelector('.book-scene')?.append(layer);
-  }, 300);
+  const sceneLeft = sceneRect.left - readerRect.left;
+  positionTurnElement(layer, sceneLeft + (direction > 0 && !mobile ? layerWidth : 0));
+
+  let underlay = null;
+  if (!mobile) {
+    underlay = turnFace({
+      spread: currentSpread,
+      side: direction > 0 ? 'left' : 'right',
+      mobilePageIndex: state.mobilePage
+    });
+    underlay.className = 'page-turn-underlay';
+    underlay.setAttribute('aria-hidden', 'true');
+    positionTurnElement(underlay, sceneLeft + (direction < 0 ? layerWidth : 0));
+    reader.append(underlay);
+  }
+
+  reader.append(layer);
+  commitStep(direction);
+  render({ announce: false });
 
   window.setTimeout(() => {
     layer.remove();
+    underlay?.remove();
     state.turning = false;
-  }, 620);
+    render();
+  }, 680);
 };
 
 openButton.addEventListener('click', () => openBook());
