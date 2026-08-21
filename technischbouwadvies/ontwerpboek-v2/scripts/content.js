@@ -56,21 +56,21 @@ const variants = [
   {
     number: '01',
     name: 'Lamel',
-    image: 'assets/drawings/variant-a.svg',
+    image: 'assets/generated/variant-lamellen-sketch-v2.webp',
     copy: 'Een compacte basis met ritmische houten gevel en een ingetogen glazen tuinzone.',
     facts: [['Oriëntatie', 'Zuid'], ['Gevelopbouw', 'Hout'], ['Karakter', 'Rustig']]
   },
   {
     number: '02',
     name: 'Gelaagd',
-    image: 'assets/drawings/variant-b.svg',
+    image: 'assets/generated/variant-gelaagd-sketch-v2.webp',
     copy: 'Terugliggende volumes geven diepte, beschutting en een heldere overgang naar de tuin.',
     facts: [['Oriëntatie', 'Zuidwest'], ['Gevelopbouw', 'Hout / mineraal'], ['Karakter', 'Gelaagd']]
   },
   {
     number: '03',
     name: 'Paviljoen',
-    image: 'assets/drawings/variant-c.svg',
+    image: 'assets/generated/variant-paviljoen-sketch-v1.webp',
     copy: 'Een transparante leefzone verlengt de woning en maakt het landschap onderdeel van het interieur.',
     facts: [['Oriëntatie', 'West'], ['Gevelopbouw', 'Glas / hout'], ['Karakter', 'Open']]
   }
