@@ -24,7 +24,11 @@
   }
 }
 
-@media (max-width: 48rem) {
+@media (max-width: 48rem), (max-width: 60rem) and (max-height: 34rem) and (orientation: landscape) {
+  html {
+    min-width: 0;
+  }
+
   :root {
     --book-width: min(88vw, 27rem);
     --book-ratio: 0.735 / 1;
@@ -40,7 +44,11 @@
 
   .preview-stage {
     min-height: 100svh;
-    padding: 1rem 0.9rem max(1.15rem, env(safe-area-inset-bottom));
+    padding:
+      max(1rem, env(safe-area-inset-top))
+      max(0.9rem, env(safe-area-inset-right))
+      max(1.15rem, env(safe-area-inset-bottom))
+      max(0.9rem, env(safe-area-inset-left));
   }
 
   .preview-header {
@@ -416,8 +424,8 @@
   }
 
   .reader-control {
-    min-width: 2.55rem;
-    height: 2.55rem;
+    min-width: 2.75rem;
+    height: 2.75rem;
   }
 
   .reader-control--text {
@@ -432,14 +440,186 @@
     font-size: 0.5rem;
   }
 
-  .page-turn-layer {
-    width: 100%;
+}
+
+@media (min-width: 48.001rem) and (max-width: 60rem) and (max-height: 34rem) and (orientation: landscape) {
+  :root {
+    --book-width: min(55svh, 20rem);
+    --page-padding-x: clamp(1rem, 3.5vh, 1.25rem);
+    --page-padding-y: clamp(1rem, 3.5vh, 1.25rem);
+  }
+
+  .preview-stage.is-book-open {
+    grid-template-rows: 1fr;
+  }
+
+  .preview-stage.is-book-open .preview-header,
+  .preview-stage.is-book-open .spread-heading {
+    display: none;
+  }
+
+  .book-scene {
+    margin-top: 0;
+  }
+
+  .page-topline,
+  .page-footer,
+  .technical-sheet__head,
+  .technical-sheet__foot,
+  .technical-plate__label {
+    font-size: 0.38rem;
+  }
+
+  .folio--visual {
+    right: 1rem;
+    bottom: 1rem;
+    font-size: 0.38rem;
+  }
+
+  .intro-copy h3,
+  .technical-copy h3,
+  .material-copy__content h3,
+  .result-copy__content h3 {
+    font-size: 1.36rem;
+  }
+
+  .intro-lead,
+  .intro-body,
+  .technical-copy > p:last-child,
+  .material-copy__content > p,
+  .result-copy__content > p:last-child {
+    font-size: 0.52rem;
+    line-height: 1.46;
+  }
+
+  .title-rule {
+    margin: 0.72rem 0 0.62rem;
+  }
+
+  .technical-kicker {
+    margin-bottom: 0.58rem;
+    font-size: 0.4rem;
+  }
+
+  .plan-legend,
+  .detail-facts {
+    gap: 0.22rem;
+    margin-bottom: 0.58rem;
+    font-size: 0.38rem;
+  }
+
+  .plan-legend div,
+  .detail-facts div {
+    gap: 0.3rem;
+    padding-top: 0.28rem;
+  }
+
+  .technical-plate,
+  .technical-sheet {
+    padding: 1.15rem 1rem 0.9rem;
+  }
+
+  .material-samples {
+    gap: 0.38rem;
+    margin-top: 0.7rem;
+  }
+
+  .sample {
+    margin-bottom: 0.35rem;
+  }
+
+  .material-samples p,
+  .material-samples h4,
+  .material-samples span,
+  .result-signature {
+    font-size: 0.35rem;
+  }
+
+  .result-signature {
+    margin-bottom: 0.6rem;
+    padding-top: 0.45rem;
+  }
+
+  .mobile-compare-page {
+    padding-bottom: 0.9rem;
+  }
+
+  .mobile-variant-list {
+    gap: 0.48rem;
+  }
+
+  .mobile-variant-list--single {
+    padding-top: 0.55rem;
+  }
+
+  .mobile-variant {
+    column-gap: 0.55rem;
+    padding-bottom: 0.42rem;
+  }
+
+  .mobile-variant > div p {
+    font-size: 0.55rem;
+  }
+
+  .mobile-variant h3 {
+    font-size: 0.4rem;
+  }
+
+  .mobile-variant img {
+    height: 3.25rem;
+  }
+
+  .mobile-variant > p,
+  .mobile-compare-note {
+    margin-top: 0.32rem;
+    font-size: 0.43rem;
+    line-height: 1.4;
+  }
+
+  .mobile-compare-note {
+    margin-bottom: 0.5rem;
+  }
+
+  .mobile-visual-page .full-visual-spread__label {
+    top: 1.45rem;
+    left: 1.15rem;
+  }
+
+  .mobile-visual-page .full-visual-spread__label p {
+    margin-bottom: 0.5rem;
+    font-size: 0.58rem;
+  }
+
+  .mobile-visual-page .full-visual-spread__label h3 {
+    font-size: 1.35rem;
+  }
+
+  .reader {
+    gap: 0.65rem;
+  }
+
+  .reader-controls {
+    width: min(90vw, 34rem);
+    grid-template-columns: auto minmax(8rem, 1fr) auto auto;
+  }
+
+  .reader-control--text {
+    grid-column: auto;
   }
 }
 
 @media (max-width: 24rem) {
   :root {
     --book-width: 92vw;
+  }
+
+  .book-scene::before {
+    right: 0;
+    left: 0;
+  }
+
+  .page-stack--right {
+    right: 0;
   }
 
   .preview-stage {

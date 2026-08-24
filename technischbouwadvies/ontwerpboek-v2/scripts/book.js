@@ -14,9 +14,9 @@ const progressValue = document.querySelector('#progress-value');
 const progressBar = document.querySelector('#progress-bar');
 const previewStatus = document.querySelector('#preview-status');
 const liveRegion = document.querySelector('#reader-live');
-const mobileQuery = window.matchMedia('(max-width: 48rem)');
+const mobileQuery = window.matchMedia('(max-width: 48rem), (max-width: 60rem) and (max-height: 34rem) and (orientation: landscape)');
 const reducedMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
-const pageTurnDuration = 780;
+const pageTurnDuration = 880;
 const bookTransitionDuration = 720;
 
 const state = {
@@ -244,6 +244,9 @@ const turnPage = (direction) => {
   const targetSpreadIndex = mobile ? Math.floor(targetMobilePage / 2) : state.spread + direction;
   const targetSpread = spreads[targetSpreadIndex];
   const activeScene = currentSpread.querySelector('.book-scene');
+  const viewport = document.createElement('div');
+  viewport.className = 'page-turn-viewport';
+  viewport.setAttribute('aria-hidden', 'true');
   const layer = document.createElement('div');
   layer.className = `page-turn-layer page-turn-layer--${direction > 0 ? 'next' : 'previous'}`;
   layer.setAttribute('aria-hidden', 'true');
@@ -263,15 +266,15 @@ const turnPage = (direction) => {
   const sceneRect = activeScene.getBoundingClientRect();
   const readerRect = reader.getBoundingClientRect();
   const layerWidth = mobile ? sceneRect.width : sceneRect.width / 2;
-  const positionTurnElement = (element, left) => {
-    element.style.setProperty('--turn-top', `${sceneRect.top - readerRect.top}px`);
-    element.style.setProperty('--turn-left', `${left}px`);
-    element.style.setProperty('--turn-width', `${layerWidth}px`);
-    element.style.setProperty('--turn-height', `${sceneRect.height}px`);
-  };
-
   const sceneLeft = sceneRect.left - readerRect.left;
-  positionTurnElement(layer, sceneLeft + (direction > 0 && !mobile ? layerWidth : 0));
+  const pageLeft = direction > 0 && !mobile ? layerWidth : 0;
+
+  viewport.style.setProperty('--turn-top', `${sceneRect.top - readerRect.top}px`);
+  viewport.style.setProperty('--turn-left', `${sceneLeft}px`);
+  viewport.style.setProperty('--turn-width', `${sceneRect.width}px`);
+  viewport.style.setProperty('--turn-height', `${sceneRect.height}px`);
+  viewport.style.setProperty('--turn-page-left', `${pageLeft}px`);
+  viewport.style.setProperty('--turn-page-width', `${layerWidth}px`);
 
   const underlay = turnFace({
     spread: targetSpread,
@@ -280,9 +283,8 @@ const turnPage = (direction) => {
   });
   underlay.className = `page-turn-underlay page-turn-underlay--${direction > 0 ? 'next' : 'previous'}`;
   underlay.setAttribute('aria-hidden', 'true');
-  positionTurnElement(underlay, sceneLeft + (direction > 0 && !mobile ? layerWidth : 0));
-
-  reader.append(underlay, layer);
+  viewport.append(underlay, layer);
+  reader.append(viewport);
 
   reader.classList.add('is-turning');
   reader.setAttribute('aria-busy', 'true');
@@ -293,8 +295,7 @@ const turnPage = (direction) => {
     turnCommitted = true;
     commitStep(direction);
     render();
-    layer.remove();
-    underlay.remove();
+    viewport.remove();
     reader.classList.remove('is-turning');
     reader.removeAttribute('aria-busy');
     state.turning = false;
@@ -351,19 +352,28 @@ let pointerStart = null;
 reader.addEventListener('pointerdown', (event) => {
   if (event.target.closest('button, a')) return;
   pointerStart = { x: event.clientX, y: event.clientY, id: event.pointerId };
+  if (reader.setPointerCapture) {
+    try {
+      reader.setPointerCapture(event.pointerId);
+    } catch {
+      // Safari kan pointer capture weigeren wanneer een systeemgebaar de aanraking overneemt.
+    }
+  }
 });
 
 reader.addEventListener('pointerup', (event) => {
   if (!pointerStart || pointerStart.id !== event.pointerId) return;
   const horizontal = event.clientX - pointerStart.x;
   const vertical = event.clientY - pointerStart.y;
+  if (reader.hasPointerCapture?.(event.pointerId)) reader.releasePointerCapture(event.pointerId);
   pointerStart = null;
   if (Math.abs(horizontal) > 45 && Math.abs(horizontal) > Math.abs(vertical) * 1.2) {
     turnPage(horizontal < 0 ? 1 : -1);
   }
 });
 
-reader.addEventListener('pointercancel', () => {
+reader.addEventListener('pointercancel', (event) => {
+  if (reader.hasPointerCapture?.(event.pointerId)) reader.releasePointerCapture(event.pointerId);
   pointerStart = null;
 });
 

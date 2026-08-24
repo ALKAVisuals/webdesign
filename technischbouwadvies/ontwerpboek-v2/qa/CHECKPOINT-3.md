@@ -118,14 +118,56 @@ De kaft en bladomslag zijn daarna nog eenmaal direct vergeleken met de aangeleve
 
 - de desktopkaft is vergroot van maximaal 24 naar 27 rem en heeft een gelaagdere, warmere contactschaduw gekregen;
 - de kafttitel gebruikt een rustiger formaat en blijft op desktop op één regel;
-- de pagina-omslag duurt 640 milliseconden en gebruikt een gelijkmatiger redactioneel tempo;
+- de pagina-omslag duurt 880 milliseconden en gebruikt een rustiger redactioneel tempo zonder abrupte versnelling rond de middenrug;
 - tijdens het midden van de omslag krijgt het blad een tijdelijke slagschaduw zonder de vaste boekmaat te beïnvloeden;
 - de onderliggende pagina krijgt uitsluitend tijdens de draai een subtiele rugschaduw;
+- een vaste `page-turn-viewport` met de exacte boekmaat begrenst het tijdelijke 3D-blad, zodat geen enkel zichtbaar deel boven of onder de vaste boekrand kan groeien;
 - reduced motion blijft de tijdelijke omslaglagen volledig overslaan.
 
 Na deze aanpassingen opnieuw gecontroleerd:
 
-- acht desktopspreads en zeven vooruitgaande overgangen op 1440 × 900;
-- zestien mobiele pagina's en vijftien overgangen op 390 × 844;
-- sluiten en opnieuw openen op desktop;
+- acht desktopspreads, zeven vooruitgaande en zeven teruggaande overgangen op 1440 × 900;
+- zestien mobiele pagina's, vijftien vooruitgaande en vijftien teruggaande overgangen op 390 × 844;
+- horizontaal swipen in beide richtingen en een verticale veeg die bewust geen paginawissel activeert;
+- openen, sluiten, de zichtbare kaftlink, `Escape`, `Home`, `End`, pijltjestoetsen en `Page Up`/`Page Down`;
+- directe deep link naar spread 05 en een live breakpointwissel van desktop naar mobiel en terug;
+- een aanvullende voorwaartse maatcontrole op 1920 × 1080;
 - nul maatverschillen, nul overflow, nul achtergebleven overgangslagen en nul browserfouten.
+
+De tijdelijke viewport viel daarbij exact samen met de vaste boekmaat. Na iedere overgang waren nul tijdelijke lagen aanwezig en bleef exact één spread of mobiele pagina actief. De begin- en eindknoppen, hashes en voortgangslabels volgden in alle gemeten toestanden de verwachte waarde.
+
+## Safari- en iPhone-hardening
+
+Op 24 augustus 2026 is de mobiele reader aanvullend op Safari-risico's gecontroleerd en technisch aangescherpt.
+
+Aanpassingen:
+
+- `viewport-fit=cover` en veilige marges voor alle vier iPhone-insets;
+- vaste tekstschaal via `-webkit-text-size-adjust: 100%`;
+- `100vh`-fallback naast `100svh`;
+- expliciete WebKit-perspective en preserve-3d uitsluitend op de tijdelijke omslaglaag;
+- pointer capture tijdens swipen, met veilig vrijgeven na `pointerup` en `pointercancel`;
+- een eigen compacte reader- en typografiemodus voor liggende telefoons;
+- een smalle-schermcorrectie die op 320 pixels breedte ook de laatste horizontale pixeloverflow verwijdert.
+
+Responsief gecontroleerd op:
+
+- 320 × 568;
+- 375 × 667;
+- 390 × 844;
+- 430 × 932;
+- 844 × 390 liggend;
+- 932 × 430 liggend.
+
+Resultaat:
+
+- ieder formaat activeert exact één mobiele boekpagina;
+- tekst, labels, materiaalstalen en bediening blijven binnen hun pagina of viewport;
+- geen horizontale documentoverflow op alle zes formaten;
+- alle zestien pagina's zijn op 844 × 390 en 932 × 430 zonder tekstoverflow doorlopen;
+- horizontale swipes werken in beide richtingen; een verticale veeg wisselt niet van pagina;
+- definitieve spread en pagina hebben na iedere overgang `transform: none`;
+- na iedere overgang blijven nul tijdelijke omslaglagen achter;
+- geen browserconsolefouten of -waarschuwingen.
+
+Dit is een compatibiliteits- en responsive audit in de lokale browseromgeving. Een korte eindcontrole op een fysiek iPhone-toestel met de native Safari-engine blijft het enige externe controlemoment dat niet lokaal kan worden nagebootst.

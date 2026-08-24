@@ -105,25 +105,42 @@
   100% { opacity: 1; }
 }
 
-.page-turn-layer,
-.page-turn-underlay {
+.page-turn-viewport {
   position: absolute;
   top: var(--turn-top);
   left: var(--turn-left);
   width: var(--turn-width);
   height: var(--turn-height);
+  z-index: 19;
+  overflow: hidden;
+  pointer-events: none;
+  isolation: isolate;
+  perspective: 3200px;
+  -webkit-perspective: 3200px;
+  perspective-origin: center center;
+  contain: paint;
+}
+
+.page-turn-layer,
+.page-turn-underlay {
+  position: absolute;
+  top: 0;
+  left: var(--turn-page-left);
+  width: var(--turn-page-width);
+  height: 100%;
   pointer-events: none;
 }
 
 .page-turn-layer {
-  z-index: 20;
+  z-index: 2;
   transform-box: border-box;
   transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
   will-change: transform;
 }
 
 .page-turn-underlay {
-  z-index: 19;
+  z-index: 1;
   overflow: hidden;
   border: 1px solid rgba(91, 77, 60, 0.12);
   background: var(--color-paper);
@@ -144,13 +161,13 @@
 .page-turn-underlay--next::after {
   left: 0;
   background: linear-gradient(90deg, rgba(47, 35, 24, 0.16), rgba(47, 35, 24, 0.052) 38%, transparent 100%);
-  animation: turn-underlay-next 780ms cubic-bezier(0.45, 0.02, 0.2, 1) both;
+  animation: turn-underlay-next 880ms cubic-bezier(0.42, 0, 0.18, 1) both;
 }
 
 .page-turn-underlay--previous::after {
   left: 0;
   background: linear-gradient(270deg, rgba(47, 35, 24, 0.16), rgba(47, 35, 24, 0.052) 38%, transparent 100%);
-  animation: turn-underlay-previous 780ms cubic-bezier(0.45, 0.02, 0.2, 1) both;
+  animation: turn-underlay-previous 880ms cubic-bezier(0.42, 0, 0.18, 1) both;
 }
 
 .page-turn-layer::after {
@@ -159,7 +176,7 @@
   z-index: 3;
   inset: 0;
   opacity: 0;
-  animation: turn-surface 780ms cubic-bezier(0.45, 0.02, 0.2, 1) both;
+  animation: turn-surface 880ms cubic-bezier(0.42, 0, 0.18, 1) both;
 }
 
 .page-turn-layer::before {
@@ -170,7 +187,7 @@
   bottom: 0;
   width: clamp(0.42rem, 1vw, 0.9rem);
   opacity: 0;
-  animation: turn-edge 780ms cubic-bezier(0.45, 0.02, 0.2, 1) both;
+  animation: turn-edge 880ms cubic-bezier(0.42, 0, 0.18, 1) both;
 }
 
 .page-turn-layer--next::before {
@@ -247,53 +264,53 @@
 
 .page-turn-layer--next {
   transform-origin: left center;
-  animation: turn-next 780ms cubic-bezier(0.45, 0.02, 0.2, 1) both;
+  animation: turn-next 880ms cubic-bezier(0.42, 0, 0.18, 1) both;
 }
 
 .page-turn-layer--previous {
   transform-origin: right center;
-  animation: turn-previous 780ms cubic-bezier(0.45, 0.02, 0.2, 1) both;
+  animation: turn-previous 880ms cubic-bezier(0.42, 0, 0.18, 1) both;
 }
 
 @keyframes turn-next {
   0% {
-    transform: perspective(2600px) rotateY(0deg) translateZ(0);
+    transform: rotateY(0deg);
   }
-  18% {
-    transform: perspective(2600px) rotateY(-13deg) translateZ(1px);
+  22% {
+    transform: rotateY(-19deg);
   }
-  46% {
-    transform: perspective(2600px) rotateY(-78deg) translateZ(8px);
+  48% {
+    transform: rotateY(-83deg);
   }
-  54% {
-    transform: perspective(2600px) rotateY(-102deg) translateZ(8px);
+  52% {
+    transform: rotateY(-97deg);
   }
-  82% {
-    transform: perspective(2600px) rotateY(-167deg) translateZ(1px);
+  78% {
+    transform: rotateY(-161deg);
   }
   100% {
-    transform: perspective(2600px) rotateY(-180deg) translateZ(0);
+    transform: rotateY(-180deg);
   }
 }
 
 @keyframes turn-previous {
   0% {
-    transform: perspective(2600px) rotateY(0deg) translateZ(0);
+    transform: rotateY(0deg);
   }
-  18% {
-    transform: perspective(2600px) rotateY(13deg) translateZ(1px);
+  22% {
+    transform: rotateY(19deg);
   }
-  46% {
-    transform: perspective(2600px) rotateY(78deg) translateZ(8px);
+  48% {
+    transform: rotateY(83deg);
   }
-  54% {
-    transform: perspective(2600px) rotateY(102deg) translateZ(8px);
+  52% {
+    transform: rotateY(97deg);
   }
-  82% {
-    transform: perspective(2600px) rotateY(167deg) translateZ(1px);
+  78% {
+    transform: rotateY(161deg);
   }
   100% {
-    transform: perspective(2600px) rotateY(180deg) translateZ(0);
+    transform: rotateY(180deg);
   }
 }
 
@@ -349,7 +366,7 @@
   pointer-events: none;
 }
 
-@media (max-width: 48rem) {
+@media (max-width: 48rem), (max-width: 60rem) and (max-height: 34rem) and (orientation: landscape) {
   .preview-stage.is-opening .book-sequence {
     animation-name: mobile-page-open;
   }
@@ -404,7 +421,8 @@
   }
 
   .page-turn-layer,
-  .page-turn-underlay {
+  .page-turn-underlay,
+  .page-turn-viewport {
     display: none;
   }
 }
