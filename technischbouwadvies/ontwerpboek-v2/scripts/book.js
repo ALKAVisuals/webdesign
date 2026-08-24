@@ -16,7 +16,7 @@ const previewStatus = document.querySelector('#preview-status');
 const liveRegion = document.querySelector('#reader-live');
 const mobileQuery = window.matchMedia('(max-width: 48rem)');
 const reducedMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
-const pageTurnDuration = 640;
+const pageTurnDuration = 780;
 const bookTransitionDuration = 720;
 
 const state = {
@@ -284,13 +284,24 @@ const turnPage = (direction) => {
 
   reader.append(underlay, layer);
 
-  window.setTimeout(() => {
+  reader.classList.add('is-turning');
+  reader.setAttribute('aria-busy', 'true');
+
+  let turnCommitted = false;
+  const finishTurn = () => {
+    if (turnCommitted) return;
+    turnCommitted = true;
     commitStep(direction);
     render();
     layer.remove();
     underlay.remove();
+    reader.classList.remove('is-turning');
+    reader.removeAttribute('aria-busy');
     state.turning = false;
-  }, pageTurnDuration + 30);
+  };
+
+  layer.addEventListener('animationend', finishTurn, { once: true });
+  window.setTimeout(finishTurn, pageTurnDuration + 120);
 };
 
 openButton.addEventListener('click', () => openBook());

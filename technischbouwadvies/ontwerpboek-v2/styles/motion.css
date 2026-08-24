@@ -127,7 +127,7 @@
   overflow: hidden;
   border: 1px solid rgba(91, 77, 60, 0.12);
   background: var(--color-paper);
-  box-shadow: 0 0.45rem 1.15rem rgba(41, 31, 22, 0.12);
+  box-shadow: 0 0.24rem 0.7rem rgba(41, 31, 22, 0.09);
 }
 
 .page-turn-underlay::after {
@@ -136,20 +136,21 @@
   z-index: 5;
   top: 0;
   bottom: 0;
-  width: 22%;
+  width: 26%;
   pointer-events: none;
   opacity: 0;
-  animation: turn-underlay-depth 640ms cubic-bezier(0.68, 0, 0.26, 1) both;
 }
 
 .page-turn-underlay--next::after {
   left: 0;
-  background: linear-gradient(90deg, rgba(47, 35, 24, 0.19), rgba(47, 35, 24, 0.055) 34%, transparent 100%);
+  background: linear-gradient(90deg, rgba(47, 35, 24, 0.16), rgba(47, 35, 24, 0.052) 38%, transparent 100%);
+  animation: turn-underlay-next 780ms cubic-bezier(0.45, 0.02, 0.2, 1) both;
 }
 
 .page-turn-underlay--previous::after {
-  right: 0;
-  background: linear-gradient(270deg, rgba(47, 35, 24, 0.19), rgba(47, 35, 24, 0.055) 34%, transparent 100%);
+  left: 0;
+  background: linear-gradient(270deg, rgba(47, 35, 24, 0.16), rgba(47, 35, 24, 0.052) 38%, transparent 100%);
+  animation: turn-underlay-previous 780ms cubic-bezier(0.45, 0.02, 0.2, 1) both;
 }
 
 .page-turn-layer::after {
@@ -158,7 +159,7 @@
   z-index: 3;
   inset: 0;
   opacity: 0;
-  animation: turn-surface 640ms cubic-bezier(0.68, 0, 0.26, 1) both;
+  animation: turn-surface 780ms cubic-bezier(0.45, 0.02, 0.2, 1) both;
 }
 
 .page-turn-layer::before {
@@ -167,27 +168,27 @@
   z-index: 4;
   top: 0;
   bottom: 0;
-  width: clamp(0.55rem, 1.4vw, 1.15rem);
+  width: clamp(0.42rem, 1vw, 0.9rem);
   opacity: 0;
-  animation: turn-edge 640ms cubic-bezier(0.68, 0, 0.26, 1) both;
+  animation: turn-edge 780ms cubic-bezier(0.45, 0.02, 0.2, 1) both;
 }
 
 .page-turn-layer--next::before {
   right: 0;
-  background: linear-gradient(90deg, transparent, rgba(55, 43, 30, 0.2));
+  background: linear-gradient(90deg, transparent, rgba(55, 43, 30, 0.16));
 }
 
 .page-turn-layer--previous::before {
   left: 0;
-  background: linear-gradient(90deg, rgba(55, 43, 30, 0.2), transparent);
+  background: linear-gradient(90deg, rgba(55, 43, 30, 0.16), transparent);
 }
 
 .page-turn-layer--next::after {
-  background: linear-gradient(90deg, rgba(255, 255, 255, 0.03), transparent 58%, rgba(58, 44, 30, 0.1));
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.08), transparent 52%, rgba(58, 44, 30, 0.09));
 }
 
 .page-turn-layer--previous::after {
-  background: linear-gradient(90deg, rgba(58, 44, 30, 0.1), transparent 42%, rgba(255, 255, 255, 0.03));
+  background: linear-gradient(90deg, rgba(58, 44, 30, 0.09), transparent 48%, rgba(255, 255, 255, 0.08));
 }
 
 .page-turn-face,
@@ -202,13 +203,17 @@
   overflow: hidden;
   border: 1px solid rgba(91, 77, 60, 0.14);
   background: var(--color-paper);
-  box-shadow: 0 0.25rem 0.7rem rgba(41, 31, 22, 0.13);
+  box-shadow: 0 0.16rem 0.48rem rgba(41, 31, 22, 0.1);
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
 }
 
+.page-turn-face--front {
+  transform: translateZ(0.05px);
+}
+
 .page-turn-face--back {
-  transform: rotateY(180deg);
+  transform: rotateY(180deg) translateZ(0.05px);
 }
 
 .page-turn-face__crop {
@@ -242,67 +247,106 @@
 
 .page-turn-layer--next {
   transform-origin: left center;
-  animation: turn-next 640ms cubic-bezier(0.68, 0, 0.26, 1) both;
+  animation: turn-next 780ms cubic-bezier(0.45, 0.02, 0.2, 1) both;
 }
 
 .page-turn-layer--previous {
   transform-origin: right center;
-  animation: turn-previous 640ms cubic-bezier(0.68, 0, 0.26, 1) both;
+  animation: turn-previous 780ms cubic-bezier(0.45, 0.02, 0.2, 1) both;
 }
 
 @keyframes turn-next {
   0% {
-    filter: drop-shadow(0 0 0 rgba(47, 35, 24, 0));
-    transform: rotateY(0deg);
+    transform: perspective(2600px) rotateY(0deg) translateZ(0);
+  }
+  18% {
+    transform: perspective(2600px) rotateY(-13deg) translateZ(1px);
   }
   46% {
-    filter: drop-shadow(-0.72rem 0.32rem 0.58rem rgba(47, 35, 24, 0.25));
-    transform: rotateY(-82deg);
+    transform: perspective(2600px) rotateY(-78deg) translateZ(8px);
   }
   54% {
-    filter: drop-shadow(-0.58rem 0.28rem 0.48rem rgba(47, 35, 24, 0.2));
-    transform: rotateY(-98deg);
+    transform: perspective(2600px) rotateY(-102deg) translateZ(8px);
+  }
+  82% {
+    transform: perspective(2600px) rotateY(-167deg) translateZ(1px);
   }
   100% {
-    filter: drop-shadow(0 0 0 rgba(47, 35, 24, 0));
-    transform: rotateY(-180deg);
+    transform: perspective(2600px) rotateY(-180deg) translateZ(0);
   }
 }
 
 @keyframes turn-previous {
   0% {
-    filter: drop-shadow(0 0 0 rgba(47, 35, 24, 0));
-    transform: rotateY(0deg);
+    transform: perspective(2600px) rotateY(0deg) translateZ(0);
+  }
+  18% {
+    transform: perspective(2600px) rotateY(13deg) translateZ(1px);
   }
   46% {
-    filter: drop-shadow(0.72rem 0.32rem 0.58rem rgba(47, 35, 24, 0.25));
-    transform: rotateY(82deg);
+    transform: perspective(2600px) rotateY(78deg) translateZ(8px);
   }
   54% {
-    filter: drop-shadow(0.58rem 0.28rem 0.48rem rgba(47, 35, 24, 0.2));
-    transform: rotateY(98deg);
+    transform: perspective(2600px) rotateY(102deg) translateZ(8px);
+  }
+  82% {
+    transform: perspective(2600px) rotateY(167deg) translateZ(1px);
   }
   100% {
-    filter: drop-shadow(0 0 0 rgba(47, 35, 24, 0));
-    transform: rotateY(180deg);
+    transform: perspective(2600px) rotateY(180deg) translateZ(0);
   }
 }
 
 @keyframes turn-surface {
   0%, 100% { opacity: 0; }
-  42%, 58% { opacity: 0.78; }
+  18% { opacity: 0.15; }
+  45%, 55% { opacity: 0.68; }
+  82% { opacity: 0.1; }
 }
 
 @keyframes turn-edge {
   0%, 100% { opacity: 0; }
-  44%, 56% { opacity: 0.65; }
+  20% { opacity: 0.18; }
+  45%, 55% { opacity: 0.52; }
+  80% { opacity: 0.12; }
 }
 
-@keyframes turn-underlay-depth {
-  0%, 100% { opacity: 0; }
-  38% { opacity: 0.28; }
-  50% { opacity: 0.95; }
-  66% { opacity: 0.2; }
+@keyframes turn-underlay-next {
+  0% {
+    left: 74%;
+    opacity: 0;
+  }
+  18% { opacity: 0.16; }
+  50% {
+    left: 36%;
+    opacity: 0.78;
+  }
+  82% { opacity: 0.12; }
+  100% {
+    left: -3%;
+    opacity: 0;
+  }
+}
+
+@keyframes turn-underlay-previous {
+  0% {
+    left: 0;
+    opacity: 0;
+  }
+  18% { opacity: 0.16; }
+  50% {
+    left: 38%;
+    opacity: 0.78;
+  }
+  82% { opacity: 0.12; }
+  100% {
+    left: 77%;
+    opacity: 0;
+  }
+}
+
+.reader.is-turning .reader-controls {
+  pointer-events: none;
 }
 
 @media (max-width: 48rem) {
