@@ -48,4 +48,3 @@ De Safari-controle is geslaagd wanneer:
 - [ ] Afwijking gevonden
 
 Notities:
-

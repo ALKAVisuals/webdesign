@@ -1,6 +1,6 @@
 # Ontwerpboeken-selector — desktopcheckpoint
 
-Datum: 27 augustus 2026  
+Datum: 27 augustus 2026
 Status: gereed voor visuele goedkeuring
 
 ## Scope

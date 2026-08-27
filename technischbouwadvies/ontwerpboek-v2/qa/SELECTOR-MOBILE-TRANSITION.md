@@ -1,6 +1,6 @@
 # Ontwerpboeken-selector — mobiele overgang
 
-Datum: 28 augustus 2026  
+Datum: 28 augustus 2026
 Status: gereed
 
 ## Opgelost probleem

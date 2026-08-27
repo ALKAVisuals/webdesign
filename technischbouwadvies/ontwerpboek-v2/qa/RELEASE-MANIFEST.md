@@ -1,8 +1,8 @@
 # Ontwerpboek V2 — releasemanifest
 
-Datum: 28 augustus 2026  
-Branch: `codex/ontwerpboek-v2`  
-Basiscommit: `b27bb0c` (`Harden ontwerpboek reader for Safari and mobile`)  
+Datum: 28 augustus 2026
+Branch: `codex/ontwerpboek-v2`
+Basiscommit: `b27bb0c` (`Harden ontwerpboek reader for Safari and mobile`)
 Status: gereed voor R2 — nog niet gecommit of gepusht
 
 ## Repositorygrens

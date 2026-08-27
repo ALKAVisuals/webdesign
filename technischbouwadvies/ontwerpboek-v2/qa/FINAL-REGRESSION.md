@@ -1,6 +1,6 @@
 # Ontwerpboek V2 — finale regressiecontrole
 
-Datum: 28 augustus 2026  
+Datum: 28 augustus 2026
 Status: geslaagd — geen bekende blocker
 
 ## Geteste gebruikersketen
