@@ -116,12 +116,12 @@ Mobiel op 390 × 844:
 
 De kaft en bladomslag zijn daarna nog eenmaal direct vergeleken met de aangeleverde `BINNENWERK SPREAD SYSTEM`-referentie. De inhoudelijke spreads, tekeningen, plattegronden en renders zijn daarbij niet gewijzigd.
 
-- de desktopkaft is vergroot van maximaal 24 naar 27 rem en heeft een gelaagdere, warmere contactschaduw gekregen;
+- de desktopkaft gebruikt nu exact de verhouding van één binnenpagina, is maximaal 30 rem breed en heeft een gelaagdere, warmere contactschaduw gekregen;
 - de kafttitel gebruikt een rustiger formaat en blijft op desktop op één regel;
-- de pagina-omslag duurt 880 milliseconden en gebruikt een rustiger redactioneel tempo zonder abrupte versnelling rond de middenrug;
+- de pagina-omslag duurt 960 milliseconden en gebruikt een rustige tweefasenbeweging rond de middenrug;
 - tijdens het midden van de omslag krijgt het blad een tijdelijke slagschaduw zonder de vaste boekmaat te beïnvloeden;
 - de onderliggende pagina krijgt uitsluitend tijdens de draai een subtiele rugschaduw;
-- een vaste `page-turn-viewport` met de exacte boekmaat begrenst het tijdelijke 3D-blad, zodat geen enkel zichtbaar deel boven of onder de vaste boekrand kan groeien;
+- een vaste `page-turn-viewport` met de exacte boekmaat begrenst het tijdelijke 2D-blad, zodat geen enkel zichtbaar deel boven of onder de vaste boekrand kan groeien;
 - reduced motion blijft de tijdelijke omslaglagen volledig overslaan.
 
 Na deze aanpassingen opnieuw gecontroleerd:
@@ -145,10 +145,11 @@ Aanpassingen:
 - `viewport-fit=cover` en veilige marges voor alle vier iPhone-insets;
 - vaste tekstschaal via `-webkit-text-size-adjust: 100%`;
 - `100vh`-fallback naast `100svh`;
-- expliciete WebKit-perspective en preserve-3d uitsluitend op de tijdelijke omslaglaag;
+- een perspectiefvrije tijdelijke omslaglaag, zodat Safari geen grote gerasterde 3D-plaat hoeft te renderen;
 - pointer capture tijdens swipen, met veilig vrijgeven na `pointerup` en `pointercancel`;
 - een eigen compacte reader- en typografiemodus voor liggende telefoons;
-- een smalle-schermcorrectie die op 320 pixels breedte ook de laatste horizontale pixeloverflow verwijdert.
+- een smalle-schermcorrectie die op 320 pixels breedte ook de laatste horizontale pixeloverflow verwijdert;
+- op 320 × 568 verdwijnt uitsluitend in de geopende boekstand de dubbele previewkop, zodat boek, hoofdstuklabel en bediening zonder verticale scroll in één viewport passen.
 
 Responsief gecontroleerd op:
 
@@ -170,4 +171,4 @@ Resultaat:
 - na iedere overgang blijven nul tijdelijke omslaglagen achter;
 - geen browserconsolefouten of -waarschuwingen.
 
-Dit is een compatibiliteits- en responsive audit in de lokale browseromgeving. Een korte eindcontrole op een fysiek iPhone-toestel met de native Safari-engine blijft het enige externe controlemoment dat niet lokaal kan worden nagebootst.
+Dit is een compatibiliteits- en responsive audit in de lokale browseromgeving. Een korte eindcontrole op een fysiek iPhone-toestel met de native Safari-engine blijft het enige externe controlemoment dat niet lokaal kan worden nagebootst. De reproduceerbare stappen staan in `qa/SAFARI-CHECKLIST.md`.

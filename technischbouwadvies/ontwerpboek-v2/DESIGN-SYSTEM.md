@@ -1,5 +1,19 @@
 # Ontwerpboek V2 — designsysteem
 
+## Projectselector
+
+De buitenste presentatie is een los, data-driven niveau boven de bestaande boekengine:
+
+`projectdata → omslag → selector → lazy open → gedeelde book engine`
+
+Projectmetadata staat centraal in `scripts/projects.js`. `scripts/selector.js` rendert de projectcovers en beheert klikken, pijlen, swipe en actieve projectinformatie. Binnenpagina's worden pas via een dynamische import geladen wanneer een beschikbaar ontwerpboek wordt geopend. De selector gebruikt uitsluitend 2D CSS-transforms en opacity.
+
+De huidige desktopselector toont steeds het actieve project en de directe vorige en volgende buur. Daardoor kan de projectlijst later groeien zonder nieuwe selectorinterface of overlappende covers.
+
+Op mobiel wordt de compositie teruggebracht tot één dominante omslag per viewport. Van de directe buren blijft alleen een smalle visuele aanwijzing zichtbaar. Projectdata en boekbeschikbaarheid blijven uit dezelfde centrale databron komen; de mobiele variant introduceert dus geen tweede interface of aparte projectmarkup.
+
+De mobiele selector en reader zijn met één geometrische overgang verbonden. Openen vergroot de actieve omslag naar het boekpaginaformaat. Sluiten gebruikt de werkelijke positie van diezelfde omslag als eindpunt en laat de overige selectorcontext vertraagd terugkeren. De beweging blijft tweedimensionaal; permanente tekst en technische inhoud krijgen geen 3D-transforms.
+
 ## Designrichting
 
 De visuele bron van waarheid is `assets/reference/binnenwerk-spread-system.png`. Het systeem combineert een Zwitsers/architectonisch raster met de warmte van een gedrukte projectmonografie.
@@ -76,7 +90,7 @@ tekst, logo's, personen of commerciële elementen.
 - een live-regio voor schermlezers;
 - een `prefers-reduced-motion`-route zonder omslaganimatie.
 
-De bediening staat buiten de inhoudelijke spreads en blijft visueel ondergeschikt aan het boek. Tijdens het omslaan gebruikt de tijdelijke animatielaag echte kopieën van de uitgaande en inkomende boekpagina. De stilstaande tegenoverliggende pagina blijft liggen totdat de draai voltooid is; hierdoor ontstaan geen grijze placeholdervlakken of dubbele pagina's halverwege de animatie. De draai gebruikt bewust geen cameragerichte perspectiefschaal. Een vaste, schilderkundig begrensde overgangsviewport valt exact samen met de boekrand en bevat zowel het draaiende blad als de inkomende pagina; zo blijft de zichtbare boven- en onderrand in ieder frame gelijk aan het boek.
+De bediening staat buiten de inhoudelijke spreads en blijft visueel ondergeschikt aan het boek. Tijdens het omslaan gebruikt de tijdelijke animatielaag echte kopieën van de uitgaande en inkomende boekpagina. Het uitgaande blad vouwt in de eerste helft horizontaal tot de rug in; in de tweede helft opent de achterzijde naar de andere kant. De stilstaande tegenoverliggende pagina blijft liggen totdat die door het nieuwe blad wordt bedekt. De overgang gebruikt bewust geen cameragericht perspectief of roterende 3D-plaat. Een vaste, schilderkundig begrensde overgangsviewport valt exact samen met de boekrand, waardoor rug, buitenmaat en schaduw in ieder frame op dezelfde positie blijven.
 
 Openen en sluiten gebruikt een rustige tweefasenovergang in plaats van een zware 3D-kaft. Op desktop verdwijnt eerst de gesloten kaft en opent de spread vervolgens vanuit de middenrug; bij sluiten gebeurt dit in omgekeerde volgorde. Op mobiel verschijnt en verdwijnt één volledige boekpagina zonder afgekapt tekstbeeld. Tijdelijke visuele kopieën zijn `aria-hidden`, niet interactief en worden na de overgang volledig verwijderd. Bij `prefers-reduced-motion` wordt direct tussen kaft en boek gewisseld.
 
@@ -84,7 +98,7 @@ Openen en sluiten gebruikt een rustige tweefasenovergang in plaats van een zware
 
 Onder 48 rem verandert het boek in zestien afzonderlijke boekpagina's. Iedere viewport toont exact één pagina. De technische tekeningen blijven echte SVG's; comparison- en full-visualspreads krijgen een eigen mobiele paginaverdeling zodat tekst en beeld niet worden verkleind tot een onleesbare dubbelspread.
 
-De viewport gebruikt `svh`, `viewport-fit=cover`, veilige marges via `env(safe-area-inset-*)` en geen permanente 3D-transforms. `-webkit-text-size-adjust` staat vast op 100%, zodat Safari de redactionele hiërarchie niet zelfstandig vergroot. De tijdelijke omslaglaag heeft expliciete WebKit-varianten voor perspective en preserve-3d; de definitieve pagina blijft daarna gewone 2D-content.
+De viewport gebruikt `svh`, `viewport-fit=cover`, veilige marges via `env(safe-area-inset-*)` en geen permanente 3D-transforms. `-webkit-text-size-adjust` staat vast op 100%, zodat Safari de redactionele hiërarchie niet zelfstandig vergroot. Ook de tijdelijke omslaglaag gebruikt geen perspective of `preserve-3d`; de definitieve pagina blijft gewone scherpe 2D-content.
 
 Liggende telefoons tot 60 rem breed en 34 rem hoog gebruiken hetzelfde één-pagina-systeem. De readerkop verdwijnt daar alleen wanneer het boek open is, de bediening wordt tot één rij teruggebracht en het boek schaalt op beschikbare `svh`. Een afzonderlijke compacte typografieschaal voorkomt dat tekst of materiaalstalen buiten de kleinere liggende pagina vallen.
 
