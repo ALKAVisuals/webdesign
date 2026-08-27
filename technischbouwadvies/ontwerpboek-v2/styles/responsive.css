@@ -61,7 +61,7 @@
   .preview-header::after {
     left: 0;
     width: 2.4rem;
-    translate: 0 0;
+    transform: none;
   }
 
   .brand__name {
@@ -107,6 +107,7 @@
   .closed-book {
     width: min(63vw, 19.5rem);
     min-width: 14.5rem;
+    aspect-ratio: var(--book-ratio);
   }
 
   .closed-book__cover {
@@ -272,7 +273,7 @@
 
   .technical-plate > img,
   .technical-sheet > img {
-    scale: 1;
+    transform: scale(1);
   }
 
   .technical-sheet + .technical-sheet {
@@ -628,6 +629,16 @@
 
   .preview-status {
     max-width: 10rem;
+  }
+}
+
+@media (max-width: 24rem) and (max-height: 40rem) {
+  .preview-stage.is-book-open {
+    grid-template-rows: 1fr;
+  }
+
+  .preview-stage.is-book-open .preview-header {
+    display: none;
   }
 }
 

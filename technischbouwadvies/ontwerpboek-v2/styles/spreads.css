@@ -340,11 +340,11 @@
 }
 
 .technical-plate--plan > img {
-  scale: 1.04;
+  transform: scale(1.04);
 }
 
 .technical-plate--detail > img {
-  scale: 0.94;
+  transform: scale(0.94);
 }
 
 /* 04 — Gevel & doorsnede */

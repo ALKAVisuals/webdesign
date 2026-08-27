@@ -3,10 +3,11 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="description" content="Interactief ontwerpboek van Technisch Bouwadvies voor het project De Houtkavel.">
-  <title>Ontwerpboek — De Houtkavel</title>
+  <meta name="description" content="Ontdek de interactieve ontwerpboeken van Technisch Bouwadvies.">
+  <title>Ontwerpboeken — Technisch Bouwadvies</title>
   <link rel="stylesheet" href="styles/tokens.css">
   <link rel="stylesheet" href="styles/base.css">
+  <link rel="stylesheet" href="styles/selector.css">
   <link rel="stylesheet" href="styles/book.css">
   <link rel="stylesheet" href="styles/spreads.css">
   <link rel="stylesheet" href="styles/motion.css">
@@ -23,32 +24,46 @@
       </a>
 
       <div class="preview-heading">
-        <h1 id="preview-title">Het ontwerpboek</h1>
-        <p class="eyebrow">De Houtkavel · conceptpresentatie</p>
+        <h1 id="preview-title">Ontwerpboeken</h1>
+        <p class="eyebrow">Projectverhalen · concept en techniek</p>
       </div>
 
-      <p class="preview-status" id="preview-status">Interactief ontwerpboek · 08 spreads</p>
+      <p class="preview-status" id="preview-status">Selecteer een projectboek</p>
     </header>
 
-    <section class="cover-state" id="book-cover" aria-labelledby="cover-title">
-      <div class="closed-book">
-        <div class="closed-book__pages"></div>
-        <div class="closed-book__cover">
-          <div class="cover-monogram"><span>T</span><span>B</span></div>
-          <div class="cover-copy">
-            <p>Ontwerpboek · 2026</p>
-            <h2 id="cover-title">De Houtkavel</h2>
-            <span></span>
-            <p>Concept · techniek · visualisatie</p>
-          </div>
-          <p class="cover-folio">Technisch Bouwadvies</p>
-        </div>
+    <section class="cover-state project-selector" id="book-cover" aria-labelledby="selector-title">
+      <div class="project-selector__stage" id="project-selector-stage" aria-label="Kies een ontwerpboek">
+        <div class="project-selector__books" id="project-books"></div>
       </div>
 
-      <button class="cover-open" id="open-book" type="button">
-        <span>Open het ontwerpboek</span>
-        <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M5 12h13M14 7l5 5-5 5"/></svg>
-      </button>
+      <div class="project-selector__details">
+        <p class="project-selector__eyebrow">Ontdek onze ontwerpboeken</p>
+        <p class="project-selector__intro">Technisch onderbouwd. Esthetisch doordacht. Gebouwd voor de toekomst.</p>
+
+        <div class="project-selector__navigation">
+          <button class="project-selector__arrow" id="previous-project" type="button" aria-label="Vorig ontwerpboek">
+            <svg aria-hidden="true" viewBox="0 0 48 24"><path d="M2 12h42M11 3 2 12l9 9"/></svg>
+          </button>
+
+          <div class="project-selector__project" aria-live="polite" aria-atomic="true">
+            <h1 id="selector-title">De Houtkavel</h1>
+            <span class="project-selector__rule" aria-hidden="true"></span>
+            <p id="project-summary">Van concept naar technisch ontwerp</p>
+          </div>
+
+          <button class="project-selector__arrow" id="next-project" type="button" aria-label="Volgend ontwerpboek">
+            <svg aria-hidden="true" viewBox="0 0 48 24"><path d="M4 12h42M37 3l9 9-9 9"/></svg>
+          </button>
+        </div>
+
+        <button class="cover-open" id="open-book" type="button">
+          <span>Open ontwerpboek</span>
+          <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M5 12h13M14 7l5 5-5 5"/></svg>
+        </button>
+
+        <p class="project-selector__position" id="project-position">02 / 03</p>
+        <p class="visually-hidden" id="project-selector-live" aria-live="polite"></p>
+      </div>
     </section>
 
     <section class="reader" id="book-reader" aria-label="Interactief ontwerpboek" hidden>

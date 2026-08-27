@@ -1,11 +1,12 @@
-import './content.js';
+import { createProjectSelector } from './selector.js';
 
 const cover = document.querySelector('#book-cover');
 const reader = document.querySelector('#book-reader');
-const closedBook = cover.querySelector('.closed-book');
 const stage = document.querySelector('.preview-stage');
 const sequence = document.querySelector('#book-sequence');
-const spreads = [...document.querySelectorAll('.spread-frame')];
+let spreads = [];
+let contentPromise = null;
+let projectSelector = null;
 const openButton = document.querySelector('#open-book');
 const previousButton = document.querySelector('#previous-page');
 const nextButton = document.querySelector('#next-page');
@@ -16,18 +17,28 @@ const previewStatus = document.querySelector('#preview-status');
 const liveRegion = document.querySelector('#reader-live');
 const mobileQuery = window.matchMedia('(max-width: 48rem), (max-width: 60rem) and (max-height: 34rem) and (orientation: landscape)');
 const reducedMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
-const pageTurnDuration = 880;
-const bookTransitionDuration = 720;
+const pageTurnDuration = 960;
+const bookTransitionDuration = () => mobileQuery.matches ? 880 : 720;
 
 const state = {
   open: false,
   spread: 0,
   mobilePage: 0,
   turning: false,
-  transitioning: false
+  transitioning: false,
+  loading: false
 };
 
 const pad = (value) => String(value).padStart(2, '0');
+
+const ensureBookContent = async () => {
+  if (!contentPromise) {
+    contentPromise = import('./content.js').then(() => {
+      spreads = [...document.querySelectorAll('.spread-frame')];
+    });
+  }
+  await contentPromise;
+};
 
 const mobileCandidates = (spread) => {
   const canvasPages = [...spread.querySelectorAll('.mobile-canvas-page')];
@@ -96,8 +107,8 @@ const render = ({ announce = true, focus = false } = {}) => {
 
     if (focus) sequence.focus({ preventScroll: true });
   } else {
-    previewStatus.textContent = 'Interactief ontwerpboek · 08 spreads';
-    if (announce) liveRegion.textContent = 'Omslag van het ontwerpboek De Houtkavel';
+    previewStatus.textContent = 'Selecteer een projectboek';
+    if (announce) liveRegion.textContent = `Projectselectie: ${projectSelector?.getActiveProject().title || 'De Houtkavel'}`;
     if (focus) openButton.focus({ preventScroll: true });
   }
 
@@ -117,12 +128,33 @@ const transitionGhost = (source, className) => {
   ghost.style.setProperty('--transition-left', `${rect.left}px`);
   ghost.style.setProperty('--transition-width', `${rect.width}px`);
   ghost.style.setProperty('--transition-height', `${rect.height}px`);
+  ghost.style.setProperty('--transition-target-top', `${rect.top}px`);
+  ghost.style.setProperty('--transition-target-left', `${rect.left}px`);
+  ghost.style.setProperty('--transition-target-width', `${rect.width}px`);
+  ghost.style.setProperty('--transition-target-height', `${rect.height}px`);
   document.body.append(ghost);
   return ghost;
 };
 
-const openBook = ({ spread = 0, focus = true, animate = true } = {}) => {
-  if (state.transitioning) return;
+const setTransitionTarget = (ghost, rect) => {
+  if (!ghost || !rect) return;
+  ghost.style.setProperty('--transition-target-top', `${rect.top}px`);
+  ghost.style.setProperty('--transition-target-left', `${rect.left}px`);
+  ghost.style.setProperty('--transition-target-width', `${rect.width}px`);
+  ghost.style.setProperty('--transition-target-height', `${rect.height}px`);
+};
+
+const openBook = async ({ spread = 0, focus = true, animate = true } = {}) => {
+  if (state.transitioning || state.loading) return;
+
+  state.loading = true;
+  openButton.setAttribute('aria-busy', 'true');
+  try {
+    await ensureBookContent();
+  } finally {
+    state.loading = false;
+    openButton.removeAttribute('aria-busy');
+  }
 
   if (state.open) {
     state.spread = Math.max(0, Math.min(spreads.length - 1, spread));
@@ -132,7 +164,8 @@ const openBook = ({ spread = 0, focus = true, animate = true } = {}) => {
   }
 
   const shouldAnimate = animate && !reducedMotionQuery.matches;
-  const ghost = shouldAnimate ? transitionGhost(closedBook, 'book-transition-cover') : null;
+  const activeCover = projectSelector?.getActiveCover();
+  const ghost = shouldAnimate && activeCover ? transitionGhost(activeCover, 'book-transition-cover') : null;
   state.open = true;
   state.spread = Math.max(0, Math.min(spreads.length - 1, spread));
   state.mobilePage = state.spread * 2;
@@ -144,6 +177,13 @@ const openBook = ({ spread = 0, focus = true, animate = true } = {}) => {
   state.transitioning = true;
   stage.classList.add('is-opening');
   render({ announce: false });
+  const targetScene = spreads[state.spread].querySelector('.book-scene').getBoundingClientRect();
+  setTransitionTarget(ghost, {
+    top: targetScene.top,
+    left: targetScene.left,
+    width: mobileQuery.matches ? targetScene.width : targetScene.width / 2,
+    height: targetScene.height
+  });
   reader.inert = true;
 
   window.setTimeout(() => {
@@ -152,7 +192,7 @@ const openBook = ({ spread = 0, focus = true, animate = true } = {}) => {
     reader.inert = false;
     state.transitioning = false;
     render({ focus });
-  }, bookTransitionDuration);
+  }, bookTransitionDuration());
 };
 
 const closeBook = ({ focus = true, animate = true } = {}) => {
@@ -168,8 +208,10 @@ const closeBook = ({ focus = true, animate = true } = {}) => {
   }
 
   state.transitioning = true;
-  stage.classList.add('is-closing');
   render({ announce: false });
+  const activeCover = projectSelector?.getActiveCover();
+  if (ghost && activeCover) setTransitionTarget(ghost, activeCover.getBoundingClientRect());
+  stage.classList.add('is-closing');
   cover.inert = true;
 
   window.setTimeout(() => {
@@ -178,7 +220,7 @@ const closeBook = ({ focus = true, animate = true } = {}) => {
     cover.inert = false;
     state.transitioning = false;
     render({ focus });
-  }, bookTransitionDuration);
+  }, bookTransitionDuration());
 };
 
 const commitStep = (direction) => {
@@ -263,27 +305,29 @@ const turnPage = (direction) => {
       back: true
     })
   );
+
+  const stationary = turnFace({
+    spread: currentSpread,
+    side: direction > 0 ? 'left' : 'right',
+    mobilePageIndex: state.mobilePage
+  });
+  stationary.className = `page-turn-stationary page-turn-stationary--${direction > 0 ? 'left' : 'right'}`;
+  stationary.setAttribute('aria-hidden', 'true');
+
   const sceneRect = activeScene.getBoundingClientRect();
   const readerRect = reader.getBoundingClientRect();
-  const layerWidth = mobile ? sceneRect.width : sceneRect.width / 2;
   const sceneLeft = sceneRect.left - readerRect.left;
-  const pageLeft = direction > 0 && !mobile ? layerWidth : 0;
 
   viewport.style.setProperty('--turn-top', `${sceneRect.top - readerRect.top}px`);
   viewport.style.setProperty('--turn-left', `${sceneLeft}px`);
   viewport.style.setProperty('--turn-width', `${sceneRect.width}px`);
   viewport.style.setProperty('--turn-height', `${sceneRect.height}px`);
-  viewport.style.setProperty('--turn-page-left', `${pageLeft}px`);
-  viewport.style.setProperty('--turn-page-width', `${layerWidth}px`);
 
-  const underlay = turnFace({
-    spread: targetSpread,
-    side: direction > 0 ? 'right' : 'left',
-    mobilePageIndex: targetMobilePage
-  });
-  underlay.className = `page-turn-underlay page-turn-underlay--${direction > 0 ? 'next' : 'previous'}`;
+  const underlay = document.createElement('div');
+  underlay.className = 'page-turn-underlay';
   underlay.setAttribute('aria-hidden', 'true');
-  viewport.append(underlay, layer);
+  underlay.append(turnClone(targetSpread, targetMobilePage));
+  viewport.append(underlay, stationary, layer);
   reader.append(viewport);
 
   reader.classList.add('is-turning');
@@ -305,7 +349,6 @@ const turnPage = (direction) => {
   window.setTimeout(finishTurn, pageTurnDuration + 120);
 };
 
-openButton.addEventListener('click', () => openBook());
 previousButton.addEventListener('click', () => turnPage(-1));
 nextButton.addEventListener('click', () => turnPage(1));
 
@@ -377,20 +420,30 @@ reader.addEventListener('pointercancel', (event) => {
   pointerStart = null;
 });
 
-mobileQuery.addEventListener('change', (event) => {
+const handleMobileQueryChange = (event) => {
   state.mobilePage = event.matches ? state.spread * 2 : Math.floor(state.mobilePage / 2) * 2;
   state.spread = Math.floor(state.mobilePage / 2);
   render({ announce: false });
-});
+};
+
+if (mobileQuery.addEventListener) mobileQuery.addEventListener('change', handleMobileQueryChange);
+else mobileQuery.addListener(handleMobileQueryChange);
 
 window.addEventListener('hashchange', () => {
   const match = window.location.hash.match(/^#spread-(0[1-8])$/);
-  if (match) openBook({ spread: Number(match[1]) - 1, focus: false });
+  if (match) {
+    projectSelector.selectProject('de-houtkavel', { announce: false });
+    openBook({ spread: Number(match[1]) - 1, focus: false });
+  }
   if (window.location.hash === '#cover') closeBook({ focus: false });
 });
 
 sequence.setAttribute('tabindex', '-1');
+projectSelector = createProjectSelector({ onOpen: () => openBook() });
 
 const initialSpread = window.location.hash.match(/^#spread-(0[1-8])$/);
-if (initialSpread) openBook({ spread: Number(initialSpread[1]) - 1, focus: false, animate: false });
+if (initialSpread) {
+  projectSelector.selectProject('de-houtkavel', { announce: false });
+  openBook({ spread: Number(initialSpread[1]) - 1, focus: false, animate: false });
+}
 else render({ announce: false });
